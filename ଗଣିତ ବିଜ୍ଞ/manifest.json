@@ -1,21 +1,53 @@
 {
-    "name": "SB ଗଣିତ ବିଜ୍ଞ",
-    "short_name": "ଗଣିତ ବିଜ୍ଞ",
-    "description": "A fun math game for kids in Odia.",
-    "start_url": "./index.html",
-    "display": "standalone",
-    "background_color": "#F0F4F8",
-    "theme_color": "#3B82F6",
-    "icons": [
-        {
-            "src": "icon-192.png",
-            "type": "image/png",
-            "sizes": "192x192"
-        },
-        {
-            "src": "icon-512.png",
-            "type": "image/png",
-            "sizes": "512x512"
-        }
-    ]
+  "name": "SB ଗଣିତ ବିଜ୍ଞ - Odia Math Game",
+  "short_name": "ଗଣିତ ବିଜ୍ଞ",
+  "description": "A fun, offline-first math game for kids to learn addition, subtraction, multiplication, and division in Odia.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F0F4F8",
+  "theme_color": "#3B82F6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://imsbg.github.io/odiagames/icon/mo.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "https://imsbg.github.io/odiagames/icon/mo.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "https://imsbg.github.io/odiagames/icon/mo.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "https://imsbg.github.io/odiagames/icon/mo.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://imsbg.github.io/odiagames/icon/mo.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "https://imsbg.github.io/odiagames/icon/mo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://imsbg.github.io/odiagames/icon/mo.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "https://imsbg.github.io/odiagames/icon/mo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
