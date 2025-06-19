@@ -3,15 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SB ଗଣିତ ବିଜ୍ଞ</title>
+    <title>SB ଗଣିତ ବିଜ୍ଞ - Odia Math Game for Kids</title>
     <meta name="theme-color" content="#3B82F6"/>
 
     <!-- Link to Manifest File -->
     <link rel="manifest" href="manifest.json">
 
-    <!-- SEO and Metadata -->
-    <meta id="meta-description" name="description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ।">
-    <meta name="keywords" content="Odia math game, ganita bigyan, math for kids, odia learning, ଗଣିତ ଖେଳ, ପିଲାଙ୍କ ପାଇଁ ଗଣିତ, SB Ganita Bigyan">
+    <!-- ===== SEO and Metadata (Enhanced) ===== -->
+    <meta id="meta-description" name="description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ। An offline-first math game in Odia.">
+    <meta name="keywords" content="Odia math game, ganita bigyan, math for kids, odia learning, ଗଣିତ ଖେଳ, ପିଲାଙ୍କ ପାଇଁ ଗଣିତ, SB Ganita Bigyan, offline math game, PWA game">
+    
+    <!-- Canonical URL (Important for SEO - Replace with your actual URL) -->
+    <link rel="canonical" href="https://odiagames.netlify.app/ଗଣିତ%20ବିଜ୍ଞ/" />
+
+    <!-- Open Graph Tags (for Facebook, LinkedIn, etc.) -->
+    <meta property="og:title" content="SB ଗଣିତ ବିଜ୍ଞ - Odia Math Game" />
+    <meta property="og:description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ।" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://odiagames.netlify.app/ଗଣିତ%20ବିଜ୍ଞ/" /> <!-- Replace with your actual URL -->
+    <meta property="og:image" content="https://imsbg.github.io/odiagames/icon/mo.png" /> <!-- Add a 1200x630px image here -->
+    <meta property="og:site_name" content="SB ଗଣିତ ବିଜ୍ଞ" />
+    <meta property="og:locale" content="or_IN" />
+
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SB ଗଣିତ ବିଜ୍ଞ - Odia Math Game">
+    <meta name="twitter:description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ।">
+    <meta name="twitter:image" content="https://imsbg.github.io/odiagames/icon/mo.png"> <!-- Use the same image as og:image -->
+
+    <!-- Icons for PWA and Browsers -->
+    <link rel="apple-touch-icon" href="https://imsbg.github.io/odiagames/icon/mo.png">
     
     <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,6 +127,7 @@
         .modal-close { position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; font-weight: bold; color: var(--text-muted-color); cursor: pointer; line-height: 1; }
         .modal-close:hover { color: var(--text-color); }
         #history-modal-title { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        #history-content-area { max-height: 65vh; overflow-y: auto; padding-right: 1rem; }
         .history-entry { border-bottom: 1px solid var(--border-color); padding: 1rem 0; }
         .history-entry:last-child { border-bottom: none; }
         .history-q { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
@@ -118,6 +140,7 @@
     </style>
 </head>
 <body data-theme="light">
+    <!-- The rest of your body tag remains exactly the same -->
     <header class="app-header">
         <div class="container">
             <div class="header-content">
@@ -173,7 +196,6 @@
                      <div class="select-group" id="next-q-delay-group">
                         <label for="next-q-delay-select" id="next-q-delay-label"></label>
                         <select id="next-q-delay-select">
-                            <!-- CHANGED: Made 0s the default option -->
                             <option value="0">0s</option>
                             <option value="5">5s</option>
                         </select>
@@ -204,7 +226,7 @@
         </div>
     </div>
 
-    <script>
+       <script>
         document.addEventListener('DOMContentLoaded', () => {
             const dom = {
                 backBtn: document.getElementById('back-btn'), title: document.querySelector('.title'), scoreLabel: document.getElementById('score-label'), scoreValue: document.getElementById('score-value'), incorrectScoreLabel: document.getElementById('incorrect-score-label'), incorrectScoreValue: document.getElementById('incorrect-score-value'), langSwitch: document.getElementById('lang-switch'), langText: document.getElementById('lang-text'), themeSwitch: document.getElementById('theme-switch'), resetBtn: document.getElementById('reset-score-btn'), operationLabel: document.getElementById('operation-label'), operationSelect: document.getElementById('operation-select'), difficultyLabel: document.getElementById('difficulty-label'), difficultySelect: document.getElementById('difficulty-select'), instruction: document.getElementById('instruction'), question: document.getElementById('question'), optionsContainer: document.getElementById('options-container'), nextBtn: document.getElementById('next-question-btn'), skipBtn: document.getElementById('skip-question-btn'), footerBar: document.getElementById('footer-bar'), footerMsgText: document.getElementById('footer-message-text'), closeFooterMsg: document.getElementById('close-footer-msg'), metaDescription: document.getElementById('meta-description'), timerChallengeCheckbox: document.getElementById('timer-challenge-checkbox'), timerChallengeLabel: document.getElementById('timer-challenge-label'), timerDurationGroup: document.getElementById('timer-duration-group'), timerDurationLabel: document.getElementById('timer-duration-label'), timerDurationSelect: document.getElementById('timer-duration-select'), gameTimerDisplay: document.getElementById('game-timer-display'), gameOverDisplay: document.getElementById('game-over-display'), gameOverTitle: document.getElementById('game-over-title'), gameOverSummary: document.getElementById('game-over-summary'), playAgainBtn: document.getElementById('play-again-btn'), appFooter: document.getElementById('app-footer'),
@@ -213,118 +235,267 @@
                 historyBtn: document.getElementById('history-btn'), historyModal: document.getElementById('history-modal'), historyModalClose: document.getElementById('history-modal-close'), historyModalTitle: document.getElementById('history-modal-title'), historyContentArea: document.getElementById('history-content-area'),
             };
             
-            // CHANGED: nextQuestionDelay now defaults to 0 (Instant)
-            let state = { score: 0, incorrectScore: 0, lang: 'odia', theme: 'light', difficulty: 'easy', operation: 'mix', nextQuestionDelay: 0, answerHistory: [] };
+            let state = { 
+                scores: { normal: { correct: 0, incorrect: 0 }, timed: { correct: 0, incorrect: 0 } },
+                lang: 'odia', theme: 'light', difficulty: 'easy', operation: 'mix', nextQuestionDelay: 0, answerHistory: [] 
+            };
+            
             let currentQuestion = {}, nextQuestionTimerId = null, gameTimerId = null;
+            let timedSessionCorrect = 0;
 
             const translations = {
                 odia: {
-                    title: "SB ଗଣିତ ବିଜ୍ଞ", appName: "SB ଗଣିତ ବିଜ୍ଞ", scoreLabel: "ସ୍କୋର୍", incorrectLabel: "ଭୁଲ୍", langText: "English",
+                    title: "SB ଗଣିତ ବିଜ୍ଞ", appName: "SB ଗଣିତ ବିଜ୍ଞ", 
+                    scoreLabelNormal: "ସାଧାରଣ ସ୍କୋର୍", incorrectLabelNormal: "ଭୁଲ୍",
+                    scoreLabelTimed: "ସମୟ ସ୍କୋର୍", incorrectLabelTimed: "ଭୁଲ୍",
+                    langText: "English",
                     opLabel: "ପ୍ରକାର:", ops: { mix: "ମିଶ୍ରଣ", "+": "ମିଶାଣ", "-": "ଫେଡାଣ", "×": "ଗୁଣନ", "÷": "ହରଣ" },
                     diffLabel: "ସ୍ତର:", diffs: { easy: "ସହଜ", medium: "ମଧ୍ୟମ", hard: "କଠିନ" },
                     instruction: "ଆପଣଙ୍କର ଉତ୍ତର ବାଛନ୍ତୁ", nextBtn: "ପରବର୍ତ୍ତୀ ପ୍ରଶ୍ନ", skipBtn: "ପ୍ରଶ୍ନ ଛାଡନ୍ତୁ",
-                    metaDesc: "ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ।", backBtnTitle: "ପଛକୁ ଯାଆନ୍ତୁ", resetBtnTitle: "ସ୍କୋର୍ ପୁନଃ ସେଟ୍ କରନ୍ତୁ", resetConfirm: "ଆପଣ ନିଶ୍ଚିତ ଯେ ଆପଣ ସ୍କୋର୍ ଓ ଇତିହାସ ପୁନଃ ସେଟ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି?",
-                    timerChallenge: "ସମୟ ଚ୍ୟାଲେଞ୍ଜ", timerDuration: "ସମୟ (ମିନିଟ):", gameOverTitle: "ସମୟ ସମାପ୍ତ!", gameOverSummary: (s) => `ଆପଣ ${toOdiaNum(s)} ଟି ଠିକ୍ ଉତ୍ତର ଦେଇଛନ୍ତି।`, playAgain: "ପୁଣି ଖେଳନ୍ତୁ",
+                    metaDesc: "ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ।", backBtnTitle: "ପଛକୁ ଯାଆନ୍ତୁ", 
+                    resetBtnTitle: "ସମସ୍ତ ସ୍କୋର୍ ପୁନଃ ସେଟ୍ କରନ୍ତୁ", resetConfirm: "ଆପଣ ନିଶ୍ଚିତ ଯେ ଆପଣ ସମସ୍ତ ସ୍କୋର୍ (ସାଧାରଣ ଓ ସମୟ) ଏବଂ ଇତିହାସ ପୁନଃ ସେଟ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି?",
+                    timerChallenge: "ସମୟ ଚ୍ୟାଲେଞ୍ଜ", timerDuration: "ସମୟ (ମିନିଟ):", gameOverTitle: "ସମୟ ସମାପ୍ତ!", 
+                    gameOverSummary: (s) => `ଏହି ରାଉଣ୍ଡରେ ଆପଣ ${toOdiaNum(s)} ଟି ଠିକ୍ ଉତ୍ତର ଦେଇଛନ୍ତି।`, playAgain: "ପୁଣି ଖେଳନ୍ତୁ",
                     playLiveBtnTitle: "ଲାଇଭ୍ ଖେଳନ୍ତୁ",
-                    footerText: (year, name) => `© ${year} <a href="https://imsbg.github.io/odiagames/" target="_blank">${name}</a>. ସର୍ବସ୍ବତ୍ବ ସଂରକ୍ଷିତ.`,
+                    footerText: (year, name) => `© ${toOdiaNum(year)} <a href="https://imsbg.github.io/odiagames/" target="_blank">${name}</a>. ସର୍ବସ୍ବତ୍ବ ସଂରକ୍ଷିତ.`,
                     nextQDelayLabel: "ପରବର୍ତ୍ତୀ ବିଳମ୍ବ:", nextQDelayOptions: { "0": "ତୁରନ୍ତ", "5": "୫ ସେକେଣ୍ଡ" },
                     historyBtnTitle: "ଉତ୍ତର ଇତିହାସ ଦେଖନ୍ତୁ", historyModalTitle: "ଉତ୍ତର ଇତିହାସ", historyUserAnswer: "ଆପଣଙ୍କ ଉତ୍ତର:", historyCorrectAnswer: "ଠିକ୍ ଉତ୍ତର:", historyNoEntries: "କୌଣସି ଇତିହାସ ମିଳିଲା ନାହିଁ।",
+                    offlineMessage: "ଆପଣ ବର୍ତ୍ତମାନ ଅଫଲାଇନ୍ ଅଛନ୍ତି।", onlineMessage: "ଅନଲାଇନ୍ କୁ ଫେରିଆସିଲେ!",
                 },
                 english: {
-                    title: "SB Math Wizard", appName: "SB Math Wizard", scoreLabel: "Score", incorrectLabel: "Wrong", langText: "ଓଡ଼ିଆ",
+                    title: "SB Math Wizard", appName: "SB Math Wizard", 
+                    scoreLabelNormal: "Normal Score", incorrectLabelNormal: "Wrong",
+                    scoreLabelTimed: "Timed Score", incorrectLabelTimed: "Wrong",
+                    langText: "ଓଡ଼ିଆ",
                     opLabel: "Type:", ops: { mix: "Mix", "+": "Addition", "-": "Subtraction", "×": "Multiplication", "÷": "Division" },
                     diffLabel: "Level:", diffs: { easy: "Easy", medium: "Medium", hard: "Hard" },
                     instruction: "Choose your answer", nextBtn: "Next Question", skipBtn: "Skip Question",
-                    metaDesc: "A fun math game for kids.", backBtnTitle: "Go Back", resetBtnTitle: "Reset Score", resetConfirm: "Are you sure you want to reset your score and history?",
-                    timerChallenge: "Timer Challenge", timerDuration: "Duration (min):", gameOverTitle: "Time's Up!", gameOverSummary: (s) => `You answered ${s} questions correctly.`, playAgain: "Play Again",
+                    metaDesc: "A fun math game for kids.", backBtnTitle: "Go Back", 
+                    resetBtnTitle: "Reset All Scores", resetConfirm: "Are you sure you want to reset ALL scores (Normal and Timed) and your history?",
+                    timerChallenge: "Timer Challenge", timerDuration: "Duration (min):", gameOverTitle: "Time's Up!", 
+                    gameOverSummary: (s) => `You answered ${s} questions correctly in this round.`, playAgain: "Play Again",
                     playLiveBtnTitle: "Play Live",
-                    footerText: (year, name) => `© ${year} <a href="https://imsbg.github.io/odiagames/" target="_blank">${name}</a>. All rights reserved.`,
+                    footerText: (year, name) => `© ${year} <a href="https://www.instagram.com/sandeepbiswalg" target="_blank">${name}</a>. All rights reserved.`,
                     nextQDelayLabel: "Next Q Delay:", nextQDelayOptions: { "0": "Instant", "5": "5 Seconds" },
                     historyBtnTitle: "View Answer History", historyModalTitle: "Answer History", historyUserAnswer: "Your Answer:", historyCorrectAnswer: "Correct Answer:", historyNoEntries: "No history found.",
+                    offlineMessage: "You are currently offline.", onlineMessage: "Back online!",
                 }
             };
-
+            // The rest of your script remains exactly the same...
             const toOdiaNum = num => (state.lang === 'english') ? num.toString() : String(num).split('').map(d => ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'][parseInt(d)] || d).join('');
             
-            const saveState = () => {
-                for (const key in state) {
-                    const value = key === 'answerHistory' ? JSON.stringify(state[key]) : state[key];
-                    localStorage.setItem(`sbGanita.${key}`, value);
+            const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+            const generateAdvancedTrickyOptions = (answer) => {
+                const options = new Set([answer]);
+                const answerStr = answer.toString();
+                
+                const strategies = [
+                    // Off by 1 or -1
+                    () => answer + (Math.random() < 0.5 ? 1 : -1),
+                    // Off by 10 or -10
+                    () => answer + (Math.random() < 0.5 ? 10 : -10),
+                    // Last digit is wrong
+                    () => {
+                        if (answer < 10) return answer + 2;
+                        const lastDigit = answer % 10;
+                        let newLastDigit = (lastDigit + getRandom(1, 9)) % 10;
+                        return (answer - lastDigit) + newLastDigit;
+                    },
+                    // A middle digit is wrong (a "typo")
+                    () => {
+                        if (answerStr.length < 2) return answer - 2;
+                        const i = getRandom(0, answerStr.length - 1);
+                        const newDigit = (parseInt(answerStr[i]) + getRandom(1, 9)) % 10;
+                        const newStr = answerStr.substring(0, i) + newDigit + answerStr.substring(i + 1);
+                        return parseInt(newStr);
+                    },
+                    // Adjacent digits are swapped
+                    () => {
+                        if (answerStr.length < 2) return answer + 3;
+                        const i = getRandom(0, answerStr.length - 2);
+                        const newStr = answerStr.substring(0, i) + answerStr[i+1] + answerStr[i] + answerStr.substring(i+2);
+                        return parseInt(newStr);
+                    }
+                ];
+
+                // Shuffle strategies to get variety
+                for (let i = strategies.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [strategies[i], strategies[j]] = [strategies[j], strategies[i]];
                 }
+
+                let i = 0;
+                while (options.size < 4 && i < strategies.length * 2) {
+                    const newOpt = strategies[i % strategies.length]();
+                    if (newOpt >= 0 && !options.has(newOpt)) {
+                        options.add(newOpt);
+                    }
+                    i++;
+                }
+                
+                // Fallback to ensure we always have 4 options
+                while (options.size < 4) {
+                    const randomOffset = getRandom(1, 20) * (options.size % 2 === 0 ? 1 : -1);
+                    const newOption = answer + randomOffset;
+                     if (newOption >= 0 && !options.has(newOption)) {
+                        options.add(newOption);
+                    }
+                }
+
+                return [...options].sort(() => Math.random() - 0.5);
             };
+
+            const generateQuestion = () => {
+                if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
+                const op = (state.operation === 'mix') ? ['+', '-', '×', '÷'][getRandom(0, 3)] : state.operation;
+                
+                let num1, num2, answer, text, options;
+
+                if (state.difficulty === 'hard') {
+                    // 60% chance for a complex, multi-operation question
+                    if (state.operation === 'mix' && Math.random() < 0.6) {
+                        const templates = [
+                            // a + (b / c)
+                            { gen: () => { const c = getRandom(2, 19); const r = getRandom(5, 25); const b = c * r; const a = getRandom(100, 500); return { ans: a + r, txt: `${toOdiaNum(a)} + (${toOdiaNum(b)} ÷ ${toOdiaNum(c)}) = ?` }}},
+                            // a + (b - c)
+                            { gen: () => { const a = getRandom(100, 500); const b = getRandom(100, 300); const c = getRandom(10, b - 1); return { ans: a + (b-c), txt: `${toOdiaNum(a)} + (${toOdiaNum(b)} - ${toOdiaNum(c)}) = ?` }}},
+                            // (a + b) * c
+                            { gen: () => { const a = getRandom(20, 70); const b = getRandom(20, 70); const c = getRandom(2, 9); return { ans: (a+b) * c, txt: `(${toOdiaNum(a)} + ${toOdiaNum(b)}) × ${toOdiaNum(c)} = ?` }}},
+                            // a - (b + c)
+                            { gen: () => { let a,b,c; do { a=getRandom(200,800); b=getRandom(20,99); c=getRandom(20,99) } while(a <= (b+c)); return { ans: a-(b+c), txt: `${toOdiaNum(a)} - (${toOdiaNum(b)} + ${toOdiaNum(c)}) = ?` }}}
+                        ];
+                        const qData = templates[getRandom(0, templates.length - 1)].gen();
+                        answer = qData.ans;
+                        text = qData.txt;
+                    } else { // Single operation with large numbers
+                        const level = { addSub: [100, 999], mul: [10, 99], divAns: [10, 50], divNum: [2, 19] };
+                        switch (op) {
+                            case '+': num1 = getRandom(level.addSub[0], level.addSub[1]); num2 = getRandom(level.addSub[0], level.addSub[1]); answer = num1+num2; break;
+                            case '-': num1 = getRandom(level.addSub[0], level.addSub[1]); num2 = getRandom(10, num1 - 1); answer = num1-num2; break;
+                            case '×': num1 = getRandom(level.mul[0], level.mul[1]); num2 = getRandom(2, 99); answer = num1*num2; break;
+                            case '÷': const r = getRandom(level.divAns[0], level.divAns[1]); num2=getRandom(level.divNum[0], level.divNum[1]); num1=r*num2; answer=r; break;
+                        }
+                        text = `${toOdiaNum(num1)} ${op} ${toOdiaNum(num2)} = ?`;
+                    }
+                    options = generateAdvancedTrickyOptions(answer);
+                } else { // Easy and Medium logic (unchanged)
+                    const level = { 
+                        easy: {add:20,sub:20,mul:10,div:5}, 
+                        medium:{add:100,sub:100,mul:15,div:10}
+                    }[state.difficulty];
+                    switch (op) {
+                        case '+': num1 = getRandom(1,level.add); num2 = getRandom(1,level.add); answer = num1+num2; break;
+                        case '-': num1 = getRandom(5,level.sub); num2 = getRandom(1,num1-1); answer = num1-num2; break;
+                        case '×': num1 = getRandom(2,level.mul); num2 = getRandom(1,10); answer = num1*num2; break;
+                        case '÷': const r = getRandom(2,level.div); num2=getRandom(2,9); num1=r*num2; answer=r; break;
+                    }
+                    text = `${toOdiaNum(num1)} ${op} ${toOdiaNum(num2)} = ?`;
+                    const optionSet = new Set([answer]);
+                    while (optionSet.size < 4) {
+                        const wrongOption = answer + getRandom(-10, 10);
+                        if (wrongOption !== answer && wrongOption >= 0) {
+                            optionSet.add(wrongOption);
+                        }
+                    }
+                    options = [...optionSet].sort(() => Math.random() - 0.5);
+                }
+
+                currentQuestion = { text, answer, options };
+                displayQuestion();
+            };
+
+            const displayQuestion = () => {
+                dom.question.textContent = currentQuestion.text;
+                dom.optionsContainer.innerHTML = '';
+                currentQuestion.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'option-btn';
+                    button.textContent = toOdiaNum(option);
+                    button.dataset.value = option;
+                    button.addEventListener('click', handleOptionClick);
+                    dom.optionsContainer.appendChild(button);
+                });
+                dom.nextBtn.style.display = 'none';
+                dom.skipBtn.style.display = 'block';
+                dom.nextBtn.textContent = translations[state.lang].nextBtn;
+            };
+
+            const handleOptionClick = e => {
+                const allBtns = dom.optionsContainer.querySelectorAll('.option-btn');
+                allBtns.forEach(btn => { btn.classList.add('disabled'); btn.removeEventListener('click', handleOptionClick); });
+                const selectedBtn = e.currentTarget;
+                const chosenAnswer = parseInt(selectedBtn.dataset.value);
+                
+                state.answerHistory.push({ questionText: currentQuestion.text, userAnswer: chosenAnswer, correctAnswer: currentQuestion.answer, timestamp: new Date().toISOString() });
+                if (state.answerHistory.length > 1000) { state.answerHistory.shift(); }
+
+                const currentMode = dom.timerChallengeCheckbox.checked ? 'timed' : 'normal';
+                selectedBtn.classList.add('selected');
+                if (chosenAnswer === currentQuestion.answer) { 
+                    state.scores[currentMode].correct++;
+                    selectedBtn.classList.add('correct');
+                    if (currentMode === 'timed') timedSessionCorrect++;
+                } else { 
+                    state.scores[currentMode].incorrect++;
+                    selectedBtn.classList.add('wrong'); 
+                    allBtns.forEach(btn => { if (parseInt(btn.dataset.value) === currentQuestion.answer) btn.classList.add('correct-answer'); }); 
+                }
+                
+                updateAllScoresDisplay(); 
+                saveState();
+                
+                if (currentMode === 'timed') { setTimeout(generateQuestion, 500); } 
+                else { dom.nextBtn.style.display = 'block'; dom.skipBtn.style.display = 'none'; startNextQuestionTimer(); }
+            };
+
+            const saveState = () => {
+                try {
+                    localStorage.setItem('sbGanita.scores', JSON.stringify(state.scores));
+                    localStorage.setItem('sbGanita.lang', state.lang);
+                    localStorage.setItem('sbGanita.theme', state.theme);
+                    localStorage.setItem('sbGanita.difficulty', state.difficulty);
+                    localStorage.setItem('sbGanita.operation', state.operation);
+                    localStorage.setItem('sbGanita.nextQuestionDelay', state.nextQuestionDelay);
+                    localStorage.setItem('sbGanita.answerHistory', JSON.stringify(state.answerHistory));
+                } catch (e) { console.error("Could not save state to localStorage:", e); }
+            };
+
             const loadState = () => {
+                const storedScores = localStorage.getItem('sbGanita.scores');
+                if (storedScores) {
+                    try {
+                        const parsedScores = JSON.parse(storedScores);
+                        if(parsedScores.normal && parsedScores.timed) {
+                           state.scores = parsedScores;
+                        }
+                    } catch (e) { console.error("Could not parse stored scores:", e); }
+                }
+
                 const storedLang = localStorage.getItem('sbGanita.lang');
                 if (storedLang) state.lang = storedLang;
                 const params = new URLSearchParams(window.location.search);
                 if (params.get('lang') === 'en') state.lang = 'english'; else if (params.get('lang') === 'or') state.lang = 'odia';
                 
-                state.score = parseInt(localStorage.getItem('sbGanita.score')) || 0;
-                state.incorrectScore = parseInt(localStorage.getItem('sbGanita.incorrectScore')) || 0;
                 state.theme = localStorage.getItem('sbGanita.theme') || 'light';
                 state.difficulty = localStorage.getItem('sbGanita.difficulty') || 'easy';
                 state.operation = localStorage.getItem('sbGanita.operation') || 'mix';
-                state.nextQuestionDelay = localStorage.getItem('sbGanita.nextQuestionDelay') !== null ? parseInt(localStorage.getItem('sbGanita.nextQuestionDelay')) : state.nextQuestionDelay;
-                state.answerHistory = JSON.parse(localStorage.getItem('sbGanita.answerHistory')) || [];
+                state.nextQuestionDelay = localStorage.getItem('sbGanita.nextQuestionDelay') !== null ? parseInt(localStorage.getItem('sbGanita.nextQuestionDelay')) : 0;
+                try {
+                    state.answerHistory = JSON.parse(localStorage.getItem('sbGanita.answerHistory')) || [];
+                } catch(e) { state.answerHistory = []; }
 
                 dom.difficultySelect.value = state.difficulty;
                 dom.operationSelect.value = state.operation;
                 dom.nextQDelaySelect.value = state.nextQuestionDelay;
             };
-
-            const generateQuestion = () => {
-                if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
-                const op = (state.operation === 'mix') ? ['+', '-', '×', '÷'][Math.floor(Math.random() * 4)] : state.operation;
-                const level = { easy: {add:20,sub:20,mul:10,div:5}, medium:{add:100,sub:100,mul:15,div:10}, hard:{add:1000,sub:1000,mul:30,div:25}}[state.difficulty];
-                let num1, num2, answer;
-                switch (op) {
-                    case '+': num1 = Math.floor(Math.random()*level.add)+1; num2 = Math.floor(Math.random()*level.add)+1; answer = num1+num2; break;
-                    case '-': num1 = Math.floor(Math.random()*level.sub)+5; num2 = Math.floor(Math.random()*(num1-1))+1; answer = num1-num2; break;
-                    case '×': num1 = Math.floor(Math.random()*level.mul)+2; num2 = Math.floor(Math.random()*10)+1; answer = num1*num2; break;
-                    case '÷': const r = Math.floor(Math.random()*level.div)+2; num2=Math.floor(Math.random()*9)+2; num1=r*num2; answer=r; break;
-                }
-                const options = new Set([answer]);
-                while (options.size < 4) {
-                    const wrongOption = answer + Math.floor(Math.random() * 20) - 10;
-                    if (wrongOption !== answer && wrongOption >= 0 && !options.has(wrongOption)) options.add(wrongOption);
-                }
-                currentQuestion = { text: `${toOdiaNum(num1)} ${op} ${toOdiaNum(num2)} = ?`, answer, options: [...options].sort(() => Math.random() - 0.5) };
-                displayQuestion();
-            };
-            const displayQuestion = () => {
-                dom.question.textContent = currentQuestion.text; dom.optionsContainer.innerHTML = '';
-                currentQuestion.options.forEach(option => {
-                    const button = document.createElement('button');
-                    button.className = 'option-btn'; button.textContent = toOdiaNum(option); button.dataset.value = option;
-                    button.addEventListener('click', handleOptionClick);
-                    dom.optionsContainer.appendChild(button);
-                });
-                dom.nextBtn.style.display = 'none'; dom.skipBtn.style.display = 'block';
-                dom.nextBtn.textContent = translations[state.lang].nextBtn;
-            };
-            const handleOptionClick = e => {
-                const allBtns = dom.optionsContainer.querySelectorAll('.option-btn');
-                allBtns.forEach(btn => { btn.classList.add('disabled'); btn.removeEventListener('click', handleOptionClick); });
-                const selectedBtn = e.currentTarget, chosenAnswer = parseInt(selectedBtn.dataset.value);
-                
-                state.answerHistory.push({ questionText: currentQuestion.text, userAnswer: chosenAnswer, correctAnswer: currentQuestion.answer });
-
-                selectedBtn.classList.add('selected');
-                if (chosenAnswer === currentQuestion.answer) { state.score++; selectedBtn.classList.add('correct'); } 
-                else { state.incorrectScore++; selectedBtn.classList.add('wrong'); allBtns.forEach(btn => { if (parseInt(btn.dataset.value) === currentQuestion.answer) btn.classList.add('correct-answer'); }); }
-                
-                updateAllScoresDisplay(); 
-                if (!dom.timerChallengeCheckbox.checked) { saveState(); }
-                
-                if (dom.timerChallengeCheckbox.checked) { setTimeout(generateQuestion, 500); } 
-                else { dom.nextBtn.style.display = 'block'; dom.skipBtn.style.display = 'none'; startNextQuestionTimer(); }
-            };
+            
             const startNextQuestionTimer = () => {
                 if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
                 const baseText = translations[state.lang].nextBtn;
 
                 if (state.nextQuestionDelay == 0) {
                     dom.nextBtn.textContent = baseText;
-                    // CHANGED: Delay reduced from 800ms to 200ms for a faster, almost instant feel
                     nextQuestionTimerId = setTimeout(() => { generateQuestion(); }, 200); 
                 } else {
                     let countdown = 5;
@@ -336,64 +507,109 @@
                     }, 1000);
                 }
             };
+
             const resetScores = (confirmReset = true) => {
                 if (confirmReset && !confirm(translations[state.lang].resetConfirm)) return;
-                state.score = 0; state.incorrectScore = 0; state.answerHistory = [];
-                updateAllScoresDisplay(); saveState();
+                state.scores.normal = { correct: 0, incorrect: 0 };
+                state.scores.timed = { correct: 0, incorrect: 0 };
+                state.answerHistory = [];
+                updateAllScoresDisplay(); 
+                saveState();
             };
+
             const applyLanguage = () => {
                 const T = translations[state.lang];
                 document.documentElement.lang = state.lang === 'odia' ? 'or' : 'en';
-                dom.title.textContent = T.title; dom.scoreLabel.textContent = T.scoreLabel; dom.incorrectScoreLabel.textContent = T.incorrectLabel;
-                dom.langText.textContent = T.langText; dom.operationLabel.textContent = T.opLabel; dom.difficultyLabel.textContent = T.diffLabel;
-                dom.instruction.textContent = T.instruction; dom.nextBtn.textContent = T.nextBtn; dom.skipBtn.textContent = T.skipBtn;
-                dom.metaDescription.setAttribute('content', T.metaDesc); dom.backBtn.title = T.backBtnTitle; dom.resetBtn.title = T.resetBtnTitle;
+                document.title = T.title; // Also update the document title
+                dom.title.textContent = T.title;
+                dom.langText.textContent = T.langText;
+                dom.operationLabel.textContent = T.opLabel;
+                dom.difficultyLabel.textContent = T.diffLabel;
+                dom.instruction.textContent = T.instruction;
+                dom.nextBtn.textContent = T.nextBtn;
+                dom.skipBtn.textContent = T.skipBtn;
+                dom.metaDescription.setAttribute('content', T.metaDesc);
+                dom.backBtn.title = T.backBtnTitle;
+                dom.resetBtn.title = T.resetBtnTitle;
                 for (const opt of dom.difficultySelect.options) opt.textContent = T.diffs[opt.value];
                 for (const opt of dom.operationSelect.options) opt.textContent = T.ops[opt.value];
                 for (const opt of dom.timerDurationSelect.options) { opt.textContent = toOdiaNum(parseInt(opt.value) / 60); }
-                dom.timerChallengeLabel.textContent = T.timerChallenge; dom.timerDurationLabel.textContent = T.timerDuration;
-                dom.playAgainBtn.textContent = T.playAgain; dom.gameOverTitle.textContent = T.gameOverTitle;
+                dom.timerChallengeLabel.textContent = T.timerChallenge;
+                dom.timerDurationLabel.textContent = T.timerDuration;
+                dom.playAgainBtn.textContent = T.playAgain;
+                dom.gameOverTitle.textContent = T.gameOverTitle;
                 dom.playLiveIconBtn.title = T.playLiveBtnTitle; 
                 dom.nextQDelayLabel.textContent = T.nextQDelayLabel;
                 for (const opt of dom.nextQDelaySelect.options) { opt.textContent = T.nextQDelayOptions[opt.value]; }
                 dom.historyBtn.title = T.historyBtnTitle;
                 dom.historyModalTitle.textContent = T.historyModalTitle;
                 const year = new Date().getFullYear();
-                dom.appFooter.innerHTML = T.footerText(toOdiaNum(year), T.appName);
+                dom.appFooter.innerHTML = T.footerText(year, T.appName);
                 updateAllScoresDisplay();
+                updateOnlineStatus();
             };
+
             const startGame = () => {
-                if (gameTimerId) clearInterval(gameTimerId); if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
-                if(dom.timerChallengeCheckbox.checked) {
-                    state.score = 0; state.incorrectScore = 0; state.answerHistory = []; saveState();
-                    updateAllScoresDisplay();
+                if (gameTimerId) clearInterval(gameTimerId);
+                if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
+                
+                const isTimedMode = dom.timerChallengeCheckbox.checked;
+
+                if (isTimedMode) {
+                    timedSessionCorrect = 0;
                     startGameTimer(parseInt(dom.timerDurationSelect.value));
                     dom.gameTimerDisplay.style.display = 'block';
                     dom.nextQDelaySelect.parentElement.style.display = 'none';
                 } else {
-                    loadState(); updateAllScoresDisplay();
                     dom.gameTimerDisplay.style.display = 'none';
                     dom.nextQDelaySelect.parentElement.style.display = 'flex';
                 }
-                dom.gameOverDisplay.style.display = 'none'; dom.optionsContainer.style.pointerEvents = 'auto'; dom.question.style.display = 'block';
+                dom.gameOverDisplay.style.display = 'none';
+                dom.optionsContainer.style.pointerEvents = 'auto';
+                dom.question.style.display = 'block';
                 generateQuestion();
             };
+            
+            const updateAllScoresDisplay = () => {
+                const isTimedMode = dom.timerChallengeCheckbox.checked;
+                const T = translations[state.lang];
+                const currentMode = isTimedMode ? 'timed' : 'normal';
+                
+                dom.scoreLabel.textContent = isTimedMode ? T.scoreLabelTimed : T.scoreLabelNormal;
+                dom.incorrectScoreLabel.textContent = isTimedMode ? T.incorrectLabelTimed : T.incorrectLabelNormal;
+                
+                dom.scoreValue.textContent = toOdiaNum(state.scores[currentMode].correct);
+                dom.incorrectScoreValue.textContent = toOdiaNum(state.scores[currentMode].incorrect);
+            };
+
             const startGameTimer = (duration) => {
                 let timer = duration;
                 const updateDisplay = () => {
-                    const minutes = Math.floor(timer / 60), seconds = timer % 60;
+                    const minutes = Math.floor(timer / 60);
+                    const seconds = timer % 60;
                     dom.gameTimerDisplay.textContent = `${toOdiaNum(String(minutes).padStart(2, '0'))}:${toOdiaNum(String(seconds).padStart(2, '0'))}`;
                 };
                 updateDisplay();
-                gameTimerId = setInterval(() => { timer--; if(timer >= 0) updateDisplay(); else endGame(); }, 1000);
+                gameTimerId = setInterval(() => {
+                    timer--;
+                    if (timer >= 0) {
+                        updateDisplay();
+                    } else {
+                        endGame();
+                    }
+                }, 1000);
             };
+
             const endGame = () => {
                 clearInterval(gameTimerId);
-                dom.gameOverSummary.textContent = translations[state.lang].gameOverSummary(state.score);
-                dom.gameOverDisplay.style.display = 'flex'; dom.optionsContainer.style.pointerEvents = 'none';
-                dom.question.style.display = 'none'; dom.skipBtn.style.display = 'none';
+                dom.gameOverSummary.textContent = translations[state.lang].gameOverSummary(timedSessionCorrect);
+                dom.gameOverDisplay.style.display = 'flex';
+                dom.optionsContainer.style.pointerEvents = 'none';
+                dom.question.style.display = 'none';
+                dom.skipBtn.style.display = 'none';
                 if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
             };
+
             const displayHistory = () => {
                 const T = translations[state.lang];
                 dom.historyContentArea.innerHTML = '';
@@ -413,24 +629,71 @@
                 }
                 dom.historyModal.style.display = 'flex';
             };
+
+            const updateOnlineStatus = () => {
+                const T = translations[state.lang];
+                if (!navigator.onLine) {
+                    dom.footerMsgText.textContent = T.offlineMessage;
+                    dom.footerBar.classList.add('visible');
+                    dom.closeFooterMsg.style.display = 'none';
+                } else {
+                    if (dom.footerBar.classList.contains('visible')) {
+                        dom.footerMsgText.textContent = T.onlineMessage;
+                        setTimeout(() => dom.footerBar.classList.remove('visible'), 2000);
+                    }
+                }
+            };
+
             const init = () => {
-                loadState(); applyLanguage();
-                document.body.dataset.theme = state.theme; dom.themeSwitch.querySelector('i').className = state.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-                dom.themeSwitch.addEventListener('click', () => { state.theme = (state.theme === 'light' ? 'dark' : 'light'); document.body.dataset.theme = state.theme; dom.themeSwitch.querySelector('i').className = state.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; saveState(); });
-                dom.langSwitch.addEventListener('click', () => { state.lang = (state.lang === 'odia' ? 'english' : 'odia'); applyLanguage(); saveState(); generateQuestion(); });
+                loadState();
+                applyLanguage();
+                document.body.dataset.theme = state.theme;
+                dom.themeSwitch.querySelector('i').className = state.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                
+                dom.themeSwitch.addEventListener('click', () => {
+                    state.theme = (state.theme === 'light' ? 'dark' : 'light');
+                    document.body.dataset.theme = state.theme;
+                    dom.themeSwitch.querySelector('i').className = state.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                    saveState();
+                });
+
+                dom.langSwitch.addEventListener('click', () => {
+                    state.lang = (state.lang === 'odia' ? 'english' : 'odia');
+                    applyLanguage();
+                    saveState();
+                    generateQuestion();
+                });
+
                 dom.resetBtn.addEventListener('click', () => resetScores(true));
-                dom.nextBtn.addEventListener('click', generateQuestion); dom.skipBtn.addEventListener('click', generateQuestion);
-                [dom.difficultySelect, dom.operationSelect].forEach(el => el.addEventListener('change', (e) => { state[el.id.includes('diff') ? 'difficulty' : 'operation'] = e.target.value; saveState(); generateQuestion(); }));
-                dom.timerChallengeCheckbox.addEventListener('change', (e) => { dom.timerDurationGroup.style.display = e.target.checked ? 'flex' : 'none'; startGame(); });
+                dom.nextBtn.addEventListener('click', generateQuestion);
+                dom.skipBtn.addEventListener('click', generateQuestion);
+
+                [dom.difficultySelect, dom.operationSelect].forEach(el => el.addEventListener('change', (e) => {
+                    state[el.id.includes('diff') ? 'difficulty' : 'operation'] = e.target.value;
+                    saveState();
+                    generateQuestion();
+                }));
+                
+                dom.timerChallengeCheckbox.addEventListener('change', (e) => { 
+                    dom.timerDurationGroup.style.display = e.target.checked ? 'flex' : 'none';
+                    updateAllScoresDisplay();
+                    startGame(); 
+                });
+                
                 dom.timerDurationSelect.addEventListener('change', startGame);
                 dom.playAgainBtn.addEventListener('click', startGame);
                 dom.nextQDelaySelect.addEventListener('change', (e) => { state.nextQuestionDelay = parseInt(e.target.value); saveState(); });
                 dom.historyBtn.addEventListener('click', displayHistory);
                 dom.historyModalClose.addEventListener('click', () => dom.historyModal.style.display = 'none');
                 dom.historyModal.addEventListener('click', (e) => { if (e.target === dom.historyModal) dom.historyModal.style.display = 'none'; });
+                
+                window.addEventListener('online', updateOnlineStatus);
+                window.addEventListener('offline', updateOnlineStatus);
+                
+                updateAllScoresDisplay();
                 startGame();
             };
-            const updateAllScoresDisplay = () => { dom.scoreValue.textContent = toOdiaNum(state.score); dom.incorrectScoreValue.textContent = toOdiaNum(state.incorrectScore); };
+            
             init();
         });
     </script>
