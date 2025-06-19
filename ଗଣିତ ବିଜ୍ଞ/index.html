@@ -6,33 +6,32 @@
     <title>SB ଗଣିତ ବିଜ୍ଞ - Odia Math Game for Kids</title>
     <meta name="theme-color" content="#3B82F6"/>
 
-    <!-- Link to Manifest File -->
-    <link rel="manifest" href="manifest.json">
+    <!-- Link to Manifest File (Correct Relative Path) -->
+    <link rel="manifest" href="./manifest.json">
 
     <!-- ===== SEO and Metadata (Enhanced) ===== -->
     <meta id="meta-description" name="description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ। An offline-first math game in Odia.">
     <meta name="keywords" content="Odia math game, ganita bigyan, math for kids, odia learning, ଗଣିତ ଖେଳ, ପିଲାଙ୍କ ପାଇଁ ଗଣିତ, SB Ganita Bigyan, offline math game, PWA game">
     
-    <!-- Canonical URL (Important for SEO - Replace with your actual URL) -->
     <link rel="canonical" href="https://odiagames.netlify.app/ଗଣିତ%20ବିଜ୍ଞ/" />
 
-    <!-- Open Graph Tags (for Facebook, LinkedIn, etc.) -->
+    <!-- Open Graph Tags (Using Correct Relative Paths) -->
     <meta property="og:title" content="SB ଗଣିତ ବିଜ୍ଞ - Odia Math Game" />
     <meta property="og:description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ।" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://odiagames.netlify.app/ଗଣିତ%20ବିଜ୍ଞ/" /> <!-- Replace with your actual URL -->
-    <meta property="og:image" content="https://imsbg.github.io/odiagames/icon/mo.png" /> <!-- Add a 1200x630px image here -->
+    <meta property="og:url" content="https://odiagames.netlify.app/ଗଣିତ%20ବିଜ୍ଞ/" />
+    <meta property="og:image" content="/icons/icon-512x512.png" /> <!-- CHANGED TO CORRECT PATH -->
     <meta property="og:site_name" content="SB ଗଣିତ ବିଜ୍ଞ" />
     <meta property="og:locale" content="or_IN" />
 
-    <!-- Twitter Card Tags -->
+    <!-- Twitter Card Tags (Using Correct Relative Paths) -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="SB ଗଣିତ ବିଜ୍ଞ - Odia Math Game">
     <meta name="twitter:description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ।">
-    <meta name="twitter:image" content="https://imsbg.github.io/odiagames/icon/mo.png"> <!-- Use the same image as og:image -->
+    <meta name="twitter:image" content="./icons/icon-512x512.png"> <!-- CHANGED TO CORRECT PATH -->
 
-    <!-- Icons for PWA and Browsers -->
-    <link rel="apple-touch-icon" href="https://imsbg.github.io/odiagames/icon/mo.png">
+    <!-- Icons for PWA and Browsers (Using Correct Relative Paths) -->
+    <link rel="apple-touch-icon" href="/icons/icon-512x512.png"> <!-- CHANGED TO CORRECT PATH -->
     
     <!-- Fonts and Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -70,7 +69,16 @@
             50% { opacity: 0.3; transform: scale(0.9); }
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Noto Sans Oriya', 'Poppins', sans-serif; background-color: var(--bg-color); color: var(--text-color); transition: background-color 0.3s, color 0.3s; padding-bottom: 5rem; }
+        
+        body { 
+            font-family: 'Noto Sans Oriya', 'Poppins', sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            transition: background-color 0.3s, color 0.3s; 
+            padding-bottom: 5rem; 
+            overscroll-behavior-y: contain; /* This disables pull-to-refresh */
+        }
+        /* ... The rest of your CSS remains unchanged ... */
         .container { max-width: 800px; margin: 0 auto; padding: 0 1rem; }
         .app-header { background-color: var(--header-bg); color: var(--header-text); padding: 1rem; }
         .header-content { display: flex; justify-content: space-between; align-items: center; }
@@ -140,7 +148,7 @@
     </style>
 </head>
 <body data-theme="light">
-    <!-- The rest of your body tag remains exactly the same -->
+    <!-- The rest of your body tag and inline JS is exactly the same -->
     <header class="app-header">
         <div class="container">
             <div class="header-content">
@@ -225,8 +233,7 @@
             <div id="history-content-area"></div>
         </div>
     </div>
-
-       <script>
+    <script>
         document.addEventListener('DOMContentLoaded', () => {
             const dom = {
                 backBtn: document.getElementById('back-btn'), title: document.querySelector('.title'), scoreLabel: document.getElementById('score-label'), scoreValue: document.getElementById('score-value'), incorrectScoreLabel: document.getElementById('incorrect-score-label'), incorrectScoreValue: document.getElementById('incorrect-score-value'), langSwitch: document.getElementById('lang-switch'), langText: document.getElementById('lang-text'), themeSwitch: document.getElementById('theme-switch'), resetBtn: document.getElementById('reset-score-btn'), operationLabel: document.getElementById('operation-label'), operationSelect: document.getElementById('operation-select'), difficultyLabel: document.getElementById('difficulty-label'), difficultySelect: document.getElementById('difficulty-select'), instruction: document.getElementById('instruction'), question: document.getElementById('question'), optionsContainer: document.getElementById('options-container'), nextBtn: document.getElementById('next-question-btn'), skipBtn: document.getElementById('skip-question-btn'), footerBar: document.getElementById('footer-bar'), footerMsgText: document.getElementById('footer-message-text'), closeFooterMsg: document.getElementById('close-footer-msg'), metaDescription: document.getElementById('meta-description'), timerChallengeCheckbox: document.getElementById('timer-challenge-checkbox'), timerChallengeLabel: document.getElementById('timer-challenge-label'), timerDurationGroup: document.getElementById('timer-duration-group'), timerDurationLabel: document.getElementById('timer-duration-label'), timerDurationSelect: document.getElementById('timer-duration-select'), gameTimerDisplay: document.getElementById('game-timer-display'), gameOverDisplay: document.getElementById('game-over-display'), gameOverTitle: document.getElementById('game-over-title'), gameOverSummary: document.getElementById('game-over-summary'), playAgainBtn: document.getElementById('play-again-btn'), appFooter: document.getElementById('app-footer'),
@@ -281,94 +288,29 @@
                     offlineMessage: "You are currently offline.", onlineMessage: "Back online!",
                 }
             };
-            // The rest of your script remains exactly the same...
             const toOdiaNum = num => (state.lang === 'english') ? num.toString() : String(num).split('').map(d => ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'][parseInt(d)] || d).join('');
-            
             const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
-
             const generateAdvancedTrickyOptions = (answer) => {
                 const options = new Set([answer]);
                 const answerStr = answer.toString();
-                
-                const strategies = [
-                    // Off by 1 or -1
-                    () => answer + (Math.random() < 0.5 ? 1 : -1),
-                    // Off by 10 or -10
-                    () => answer + (Math.random() < 0.5 ? 10 : -10),
-                    // Last digit is wrong
-                    () => {
-                        if (answer < 10) return answer + 2;
-                        const lastDigit = answer % 10;
-                        let newLastDigit = (lastDigit + getRandom(1, 9)) % 10;
-                        return (answer - lastDigit) + newLastDigit;
-                    },
-                    // A middle digit is wrong (a "typo")
-                    () => {
-                        if (answerStr.length < 2) return answer - 2;
-                        const i = getRandom(0, answerStr.length - 1);
-                        const newDigit = (parseInt(answerStr[i]) + getRandom(1, 9)) % 10;
-                        const newStr = answerStr.substring(0, i) + newDigit + answerStr.substring(i + 1);
-                        return parseInt(newStr);
-                    },
-                    // Adjacent digits are swapped
-                    () => {
-                        if (answerStr.length < 2) return answer + 3;
-                        const i = getRandom(0, answerStr.length - 2);
-                        const newStr = answerStr.substring(0, i) + answerStr[i+1] + answerStr[i] + answerStr.substring(i+2);
-                        return parseInt(newStr);
-                    }
-                ];
-
-                // Shuffle strategies to get variety
-                for (let i = strategies.length - 1; i > 0; i--) {
-                    const j = Math.floor(Math.random() * (i + 1));
-                    [strategies[i], strategies[j]] = [strategies[j], strategies[i]];
-                }
-
+                const strategies = [() => answer + (Math.random() < 0.5 ? 1 : -1),() => answer + (Math.random() < 0.5 ? 10 : -10),() => {if (answer < 10) return answer + 2;const lastDigit = answer % 10;let newLastDigit = (lastDigit + getRandom(1, 9)) % 10;return (answer - lastDigit) + newLastDigit;},() => {if (answerStr.length < 2) return answer - 2;const i = getRandom(0, answerStr.length - 1);const newDigit = (parseInt(answerStr[i]) + getRandom(1, 9)) % 10;const newStr = answerStr.substring(0, i) + newDigit + answerStr.substring(i + 1);return parseInt(newStr);},() => {if (answerStr.length < 2) return answer + 3;const i = getRandom(0, answerStr.length - 2);const newStr = answerStr.substring(0, i) + answerStr[i+1] + answerStr[i] + answerStr.substring(i+2);return parseInt(newStr); }];
+                for (let i = strategies.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [strategies[i], strategies[j]] = [strategies[j], strategies[i]]; }
                 let i = 0;
-                while (options.size < 4 && i < strategies.length * 2) {
-                    const newOpt = strategies[i % strategies.length]();
-                    if (newOpt >= 0 && !options.has(newOpt)) {
-                        options.add(newOpt);
-                    }
-                    i++;
-                }
-                
-                // Fallback to ensure we always have 4 options
-                while (options.size < 4) {
-                    const randomOffset = getRandom(1, 20) * (options.size % 2 === 0 ? 1 : -1);
-                    const newOption = answer + randomOffset;
-                     if (newOption >= 0 && !options.has(newOption)) {
-                        options.add(newOption);
-                    }
-                }
-
+                while (options.size < 4 && i < strategies.length * 2) { const newOpt = strategies[i % strategies.length](); if (newOpt >= 0 && !options.has(newOpt)) { options.add(newOpt); } i++; }
+                while (options.size < 4) { const randomOffset = getRandom(1, 20) * (options.size % 2 === 0 ? 1 : -1); const newOption = answer + randomOffset; if (newOption >= 0 && !options.has(newOption)) { options.add(newOption); } }
                 return [...options].sort(() => Math.random() - 0.5);
             };
-
             const generateQuestion = () => {
                 if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
                 const op = (state.operation === 'mix') ? ['+', '-', '×', '÷'][getRandom(0, 3)] : state.operation;
-                
                 let num1, num2, answer, text, options;
-
                 if (state.difficulty === 'hard') {
-                    // 60% chance for a complex, multi-operation question
                     if (state.operation === 'mix' && Math.random() < 0.6) {
-                        const templates = [
-                            // a + (b / c)
-                            { gen: () => { const c = getRandom(2, 19); const r = getRandom(5, 25); const b = c * r; const a = getRandom(100, 500); return { ans: a + r, txt: `${toOdiaNum(a)} + (${toOdiaNum(b)} ÷ ${toOdiaNum(c)}) = ?` }}},
-                            // a + (b - c)
-                            { gen: () => { const a = getRandom(100, 500); const b = getRandom(100, 300); const c = getRandom(10, b - 1); return { ans: a + (b-c), txt: `${toOdiaNum(a)} + (${toOdiaNum(b)} - ${toOdiaNum(c)}) = ?` }}},
-                            // (a + b) * c
-                            { gen: () => { const a = getRandom(20, 70); const b = getRandom(20, 70); const c = getRandom(2, 9); return { ans: (a+b) * c, txt: `(${toOdiaNum(a)} + ${toOdiaNum(b)}) × ${toOdiaNum(c)} = ?` }}},
-                            // a - (b + c)
-                            { gen: () => { let a,b,c; do { a=getRandom(200,800); b=getRandom(20,99); c=getRandom(20,99) } while(a <= (b+c)); return { ans: a-(b+c), txt: `${toOdiaNum(a)} - (${toOdiaNum(b)} + ${toOdiaNum(c)}) = ?` }}}
-                        ];
+                        const templates = [{ gen: () => { const c = getRandom(2, 19); const r = getRandom(5, 25); const b = c * r; const a = getRandom(100, 500); return { ans: a + r, txt: `${toOdiaNum(a)} + (${toOdiaNum(b)} ÷ ${toOdiaNum(c)}) = ?` }}},{ gen: () => { const a = getRandom(100, 500); const b = getRandom(100, 300); const c = getRandom(10, b - 1); return { ans: a + (b-c), txt: `${toOdiaNum(a)} + (${toOdiaNum(b)} - ${toOdiaNum(c)}) = ?` }}},{ gen: () => { const a = getRandom(20, 70); const b = getRandom(20, 70); const c = getRandom(2, 9); return { ans: (a+b) * c, txt: `(${toOdiaNum(a)} + ${toOdiaNum(b)}) × ${toOdiaNum(c)} = ?` }}},{ gen: () => { let a,b,c; do { a=getRandom(200,800); b=getRandom(20,99); c=getRandom(20,99) } while(a <= (b+c)); return { ans: a-(b+c), txt: `${toOdiaNum(a)} - (${toOdiaNum(b)} + ${toOdiaNum(c)}) = ?` }}}];
                         const qData = templates[getRandom(0, templates.length - 1)].gen();
                         answer = qData.ans;
                         text = qData.txt;
-                    } else { // Single operation with large numbers
+                    } else { 
                         const level = { addSub: [100, 999], mul: [10, 99], divAns: [10, 50], divNum: [2, 19] };
                         switch (op) {
                             case '+': num1 = getRandom(level.addSub[0], level.addSub[1]); num2 = getRandom(level.addSub[0], level.addSub[1]); answer = num1+num2; break;
@@ -379,11 +321,8 @@
                         text = `${toOdiaNum(num1)} ${op} ${toOdiaNum(num2)} = ?`;
                     }
                     options = generateAdvancedTrickyOptions(answer);
-                } else { // Easy and Medium logic (unchanged)
-                    const level = { 
-                        easy: {add:20,sub:20,mul:10,div:5}, 
-                        medium:{add:100,sub:100,mul:15,div:10}
-                    }[state.difficulty];
+                } else { 
+                    const level = { easy: {add:20,sub:20,mul:10,div:5}, medium:{add:100,sub:100,mul:15,div:10} }[state.difficulty];
                     switch (op) {
                         case '+': num1 = getRandom(1,level.add); num2 = getRandom(1,level.add); answer = num1+num2; break;
                         case '-': num1 = getRandom(5,level.sub); num2 = getRandom(1,num1-1); answer = num1-num2; break;
@@ -392,19 +331,12 @@
                     }
                     text = `${toOdiaNum(num1)} ${op} ${toOdiaNum(num2)} = ?`;
                     const optionSet = new Set([answer]);
-                    while (optionSet.size < 4) {
-                        const wrongOption = answer + getRandom(-10, 10);
-                        if (wrongOption !== answer && wrongOption >= 0) {
-                            optionSet.add(wrongOption);
-                        }
-                    }
+                    while (optionSet.size < 4) { const wrongOption = answer + getRandom(-10, 10); if (wrongOption !== answer && wrongOption >= 0) { optionSet.add(wrongOption); } }
                     options = [...optionSet].sort(() => Math.random() - 0.5);
                 }
-
                 currentQuestion = { text, answer, options };
                 displayQuestion();
             };
-
             const displayQuestion = () => {
                 dom.question.textContent = currentQuestion.text;
                 dom.optionsContainer.innerHTML = '';
@@ -420,16 +352,13 @@
                 dom.skipBtn.style.display = 'block';
                 dom.nextBtn.textContent = translations[state.lang].nextBtn;
             };
-
             const handleOptionClick = e => {
                 const allBtns = dom.optionsContainer.querySelectorAll('.option-btn');
                 allBtns.forEach(btn => { btn.classList.add('disabled'); btn.removeEventListener('click', handleOptionClick); });
                 const selectedBtn = e.currentTarget;
                 const chosenAnswer = parseInt(selectedBtn.dataset.value);
-                
                 state.answerHistory.push({ questionText: currentQuestion.text, userAnswer: chosenAnswer, correctAnswer: currentQuestion.answer, timestamp: new Date().toISOString() });
                 if (state.answerHistory.length > 1000) { state.answerHistory.shift(); }
-
                 const currentMode = dom.timerChallengeCheckbox.checked ? 'timed' : 'normal';
                 selectedBtn.classList.add('selected');
                 if (chosenAnswer === currentQuestion.answer) { 
@@ -441,86 +370,38 @@
                     selectedBtn.classList.add('wrong'); 
                     allBtns.forEach(btn => { if (parseInt(btn.dataset.value) === currentQuestion.answer) btn.classList.add('correct-answer'); }); 
                 }
-                
                 updateAllScoresDisplay(); 
                 saveState();
-                
                 if (currentMode === 'timed') { setTimeout(generateQuestion, 500); } 
                 else { dom.nextBtn.style.display = 'block'; dom.skipBtn.style.display = 'none'; startNextQuestionTimer(); }
             };
-
-            const saveState = () => {
-                try {
-                    localStorage.setItem('sbGanita.scores', JSON.stringify(state.scores));
-                    localStorage.setItem('sbGanita.lang', state.lang);
-                    localStorage.setItem('sbGanita.theme', state.theme);
-                    localStorage.setItem('sbGanita.difficulty', state.difficulty);
-                    localStorage.setItem('sbGanita.operation', state.operation);
-                    localStorage.setItem('sbGanita.nextQuestionDelay', state.nextQuestionDelay);
-                    localStorage.setItem('sbGanita.answerHistory', JSON.stringify(state.answerHistory));
-                } catch (e) { console.error("Could not save state to localStorage:", e); }
-            };
-
+            const saveState = () => { try { localStorage.setItem('sbGanita.scores', JSON.stringify(state.scores)); localStorage.setItem('sbGanita.lang', state.lang); localStorage.setItem('sbGanita.theme', state.theme); localStorage.setItem('sbGanita.difficulty', state.difficulty); localStorage.setItem('sbGanita.operation', state.operation); localStorage.setItem('sbGanita.nextQuestionDelay', state.nextQuestionDelay); localStorage.setItem('sbGanita.answerHistory', JSON.stringify(state.answerHistory)); } catch (e) { console.error("Could not save state to localStorage:", e); } };
             const loadState = () => {
                 const storedScores = localStorage.getItem('sbGanita.scores');
-                if (storedScores) {
-                    try {
-                        const parsedScores = JSON.parse(storedScores);
-                        if(parsedScores.normal && parsedScores.timed) {
-                           state.scores = parsedScores;
-                        }
-                    } catch (e) { console.error("Could not parse stored scores:", e); }
-                }
-
+                if (storedScores) { try { const parsedScores = JSON.parse(storedScores); if(parsedScores.normal && parsedScores.timed) { state.scores = parsedScores; } } catch (e) { console.error("Could not parse stored scores:", e); } }
                 const storedLang = localStorage.getItem('sbGanita.lang');
                 if (storedLang) state.lang = storedLang;
                 const params = new URLSearchParams(window.location.search);
                 if (params.get('lang') === 'en') state.lang = 'english'; else if (params.get('lang') === 'or') state.lang = 'odia';
-                
                 state.theme = localStorage.getItem('sbGanita.theme') || 'light';
                 state.difficulty = localStorage.getItem('sbGanita.difficulty') || 'easy';
                 state.operation = localStorage.getItem('sbGanita.operation') || 'mix';
                 state.nextQuestionDelay = localStorage.getItem('sbGanita.nextQuestionDelay') !== null ? parseInt(localStorage.getItem('sbGanita.nextQuestionDelay')) : 0;
-                try {
-                    state.answerHistory = JSON.parse(localStorage.getItem('sbGanita.answerHistory')) || [];
-                } catch(e) { state.answerHistory = []; }
-
+                try { state.answerHistory = JSON.parse(localStorage.getItem('sbGanita.answerHistory')) || []; } catch(e) { state.answerHistory = []; }
                 dom.difficultySelect.value = state.difficulty;
                 dom.operationSelect.value = state.operation;
                 dom.nextQDelaySelect.value = state.nextQuestionDelay;
             };
-            
             const startNextQuestionTimer = () => {
                 if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
                 const baseText = translations[state.lang].nextBtn;
-
-                if (state.nextQuestionDelay == 0) {
-                    dom.nextBtn.textContent = baseText;
-                    nextQuestionTimerId = setTimeout(() => { generateQuestion(); }, 200); 
-                } else {
-                    let countdown = 5;
-                    dom.nextBtn.textContent = `${baseText} (${toOdiaNum(countdown)})`;
-                    nextQuestionTimerId = setInterval(() => {
-                        countdown--;
-                        if (countdown >= 0) dom.nextBtn.textContent = `${baseText} (${toOdiaNum(countdown)})`;
-                        else { clearInterval(nextQuestionTimerId); generateQuestion(); }
-                    }, 1000);
-                }
+                if (state.nextQuestionDelay == 0) { dom.nextBtn.textContent = baseText; nextQuestionTimerId = setTimeout(() => { generateQuestion(); }, 200); } else { let countdown = 5; dom.nextBtn.textContent = `${baseText} (${toOdiaNum(countdown)})`; nextQuestionTimerId = setInterval(() => { countdown--; if (countdown >= 0) dom.nextBtn.textContent = `${baseText} (${toOdiaNum(countdown)})`; else { clearInterval(nextQuestionTimerId); generateQuestion(); } }, 1000); }
             };
-
-            const resetScores = (confirmReset = true) => {
-                if (confirmReset && !confirm(translations[state.lang].resetConfirm)) return;
-                state.scores.normal = { correct: 0, incorrect: 0 };
-                state.scores.timed = { correct: 0, incorrect: 0 };
-                state.answerHistory = [];
-                updateAllScoresDisplay(); 
-                saveState();
-            };
-
+            const resetScores = (confirmReset = true) => { if (confirmReset && !confirm(translations[state.lang].resetConfirm)) return; state.scores.normal = { correct: 0, incorrect: 0 }; state.scores.timed = { correct: 0, incorrect: 0 }; state.answerHistory = []; updateAllScoresDisplay(); saveState(); };
             const applyLanguage = () => {
                 const T = translations[state.lang];
                 document.documentElement.lang = state.lang === 'odia' ? 'or' : 'en';
-                document.title = T.title; // Also update the document title
+                document.title = T.title; 
                 dom.title.textContent = T.title;
                 dom.langText.textContent = T.langText;
                 dom.operationLabel.textContent = T.opLabel;
@@ -548,73 +429,36 @@
                 updateAllScoresDisplay();
                 updateOnlineStatus();
             };
-
             const startGame = () => {
                 if (gameTimerId) clearInterval(gameTimerId);
                 if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
-                
                 const isTimedMode = dom.timerChallengeCheckbox.checked;
-
-                if (isTimedMode) {
-                    timedSessionCorrect = 0;
-                    startGameTimer(parseInt(dom.timerDurationSelect.value));
-                    dom.gameTimerDisplay.style.display = 'block';
-                    dom.nextQDelaySelect.parentElement.style.display = 'none';
-                } else {
-                    dom.gameTimerDisplay.style.display = 'none';
-                    dom.nextQDelaySelect.parentElement.style.display = 'flex';
-                }
+                if (isTimedMode) { timedSessionCorrect = 0; startGameTimer(parseInt(dom.timerDurationSelect.value)); dom.gameTimerDisplay.style.display = 'block'; dom.nextQDelaySelect.parentElement.style.display = 'none'; } else { dom.gameTimerDisplay.style.display = 'none'; dom.nextQDelaySelect.parentElement.style.display = 'flex'; }
                 dom.gameOverDisplay.style.display = 'none';
                 dom.optionsContainer.style.pointerEvents = 'auto';
                 dom.question.style.display = 'block';
                 generateQuestion();
             };
-            
             const updateAllScoresDisplay = () => {
                 const isTimedMode = dom.timerChallengeCheckbox.checked;
                 const T = translations[state.lang];
                 const currentMode = isTimedMode ? 'timed' : 'normal';
-                
                 dom.scoreLabel.textContent = isTimedMode ? T.scoreLabelTimed : T.scoreLabelNormal;
                 dom.incorrectScoreLabel.textContent = isTimedMode ? T.incorrectLabelTimed : T.incorrectLabelNormal;
-                
                 dom.scoreValue.textContent = toOdiaNum(state.scores[currentMode].correct);
                 dom.incorrectScoreValue.textContent = toOdiaNum(state.scores[currentMode].incorrect);
             };
-
             const startGameTimer = (duration) => {
                 let timer = duration;
-                const updateDisplay = () => {
-                    const minutes = Math.floor(timer / 60);
-                    const seconds = timer % 60;
-                    dom.gameTimerDisplay.textContent = `${toOdiaNum(String(minutes).padStart(2, '0'))}:${toOdiaNum(String(seconds).padStart(2, '0'))}`;
-                };
+                const updateDisplay = () => { const minutes = Math.floor(timer / 60); const seconds = timer % 60; dom.gameTimerDisplay.textContent = `${toOdiaNum(String(minutes).padStart(2, '0'))}:${toOdiaNum(String(seconds).padStart(2, '0'))}`; };
                 updateDisplay();
-                gameTimerId = setInterval(() => {
-                    timer--;
-                    if (timer >= 0) {
-                        updateDisplay();
-                    } else {
-                        endGame();
-                    }
-                }, 1000);
+                gameTimerId = setInterval(() => { timer--; if (timer >= 0) { updateDisplay(); } else { endGame(); } }, 1000);
             };
-
-            const endGame = () => {
-                clearInterval(gameTimerId);
-                dom.gameOverSummary.textContent = translations[state.lang].gameOverSummary(timedSessionCorrect);
-                dom.gameOverDisplay.style.display = 'flex';
-                dom.optionsContainer.style.pointerEvents = 'none';
-                dom.question.style.display = 'none';
-                dom.skipBtn.style.display = 'none';
-                if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
-            };
-
+            const endGame = () => { clearInterval(gameTimerId); dom.gameOverSummary.textContent = translations[state.lang].gameOverSummary(timedSessionCorrect); dom.gameOverDisplay.style.display = 'flex'; dom.optionsContainer.style.pointerEvents = 'none'; dom.question.style.display = 'none'; dom.skipBtn.style.display = 'none'; if (nextQuestionTimerId) clearInterval(nextQuestionTimerId); };
             const displayHistory = () => {
                 const T = translations[state.lang];
                 dom.historyContentArea.innerHTML = '';
-                if (state.answerHistory.length === 0) {
-                    dom.historyContentArea.textContent = T.historyNoEntries;
+                if (state.answerHistory.length === 0) { dom.historyContentArea.textContent = T.historyNoEntries;
                 } else {
                     [...state.answerHistory].reverse().forEach(entry => {
                         const entryDiv = document.createElement('div');
@@ -629,79 +473,55 @@
                 }
                 dom.historyModal.style.display = 'flex';
             };
-
             const updateOnlineStatus = () => {
                 const T = translations[state.lang];
-                if (!navigator.onLine) {
-                    dom.footerMsgText.textContent = T.offlineMessage;
-                    dom.footerBar.classList.add('visible');
-                    dom.closeFooterMsg.style.display = 'none';
-                } else {
-                    if (dom.footerBar.classList.contains('visible')) {
-                        dom.footerMsgText.textContent = T.onlineMessage;
-                        setTimeout(() => dom.footerBar.classList.remove('visible'), 2000);
-                    }
-                }
+                if (!navigator.onLine) { dom.footerMsgText.textContent = T.offlineMessage; dom.footerBar.classList.add('visible'); dom.closeFooterMsg.style.display = 'none';
+                } else { if (dom.footerBar.classList.contains('visible')) { dom.footerMsgText.textContent = T.onlineMessage; setTimeout(() => dom.footerBar.classList.remove('visible'), 2000); } }
             };
-
             const init = () => {
                 loadState();
                 applyLanguage();
                 document.body.dataset.theme = state.theme;
                 dom.themeSwitch.querySelector('i').className = state.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-                
-                dom.themeSwitch.addEventListener('click', () => {
-                    state.theme = (state.theme === 'light' ? 'dark' : 'light');
-                    document.body.dataset.theme = state.theme;
-                    dom.themeSwitch.querySelector('i').className = state.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-                    saveState();
-                });
-
-                dom.langSwitch.addEventListener('click', () => {
-                    state.lang = (state.lang === 'odia' ? 'english' : 'odia');
-                    applyLanguage();
-                    saveState();
-                    generateQuestion();
-                });
-
+                dom.themeSwitch.addEventListener('click', () => { state.theme = (state.theme === 'light' ? 'dark' : 'light'); document.body.dataset.theme = state.theme; dom.themeSwitch.querySelector('i').className = state.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; saveState(); });
+                dom.langSwitch.addEventListener('click', () => { state.lang = (state.lang === 'odia' ? 'english' : 'odia'); applyLanguage(); saveState(); generateQuestion(); });
                 dom.resetBtn.addEventListener('click', () => resetScores(true));
                 dom.nextBtn.addEventListener('click', generateQuestion);
                 dom.skipBtn.addEventListener('click', generateQuestion);
-
-                [dom.difficultySelect, dom.operationSelect].forEach(el => el.addEventListener('change', (e) => {
-                    state[el.id.includes('diff') ? 'difficulty' : 'operation'] = e.target.value;
-                    saveState();
-                    generateQuestion();
-                }));
-                
-                dom.timerChallengeCheckbox.addEventListener('change', (e) => { 
-                    dom.timerDurationGroup.style.display = e.target.checked ? 'flex' : 'none';
-                    updateAllScoresDisplay();
-                    startGame(); 
-                });
-                
+                [dom.difficultySelect, dom.operationSelect].forEach(el => el.addEventListener('change', (e) => { state[el.id.includes('diff') ? 'difficulty' : 'operation'] = e.target.value; saveState(); generateQuestion(); }));
+                dom.timerChallengeCheckbox.addEventListener('change', (e) => { dom.timerDurationGroup.style.display = e.target.checked ? 'flex' : 'none'; updateAllScoresDisplay(); startGame(); });
                 dom.timerDurationSelect.addEventListener('change', startGame);
                 dom.playAgainBtn.addEventListener('click', startGame);
                 dom.nextQDelaySelect.addEventListener('change', (e) => { state.nextQuestionDelay = parseInt(e.target.value); saveState(); });
                 dom.historyBtn.addEventListener('click', displayHistory);
                 dom.historyModalClose.addEventListener('click', () => dom.historyModal.style.display = 'none');
                 dom.historyModal.addEventListener('click', (e) => { if (e.target === dom.historyModal) dom.historyModal.style.display = 'none'; });
-                
                 window.addEventListener('online', updateOnlineStatus);
                 window.addEventListener('offline', updateOnlineStatus);
-                
                 updateAllScoresDisplay();
                 startGame();
             };
-            
             init();
         });
     </script>
+    <!-- Your service worker registration script -->
     <script>
-        // Service Worker registration script
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+       <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
                     .then(registration => {
                         console.log('ServiceWorker registration successful with scope: ', registration.scope);
                     })
