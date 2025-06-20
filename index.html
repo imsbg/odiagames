@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/my.png">
 
     <!-- SEO: 1. CRITICAL TITLE TAG - Keywords first -->
     <title>ମୋ ଓଡ଼ିଆ ଖେଳ, My Odia Games - Play Fun Odia Games | SB ମୋ ଓଡ଼ିଆ ଖେଳ</title>
@@ -272,11 +273,31 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative; /* ADDED: To position the 'NEW' badge relative to the card */
+            overflow: hidden;   /* ADDED: To contain the ribbon badge neatly */
         }
 
         .game-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* ADDED: Styles for the "NEW" badge/ribbon */
+        .new-game::after {
+            content: attr(data-new-badge); /* Gets content from a data attribute for translation */
+            position: absolute;
+            top: 10px;
+            right: -35px;
+            background-color: #2ecc71; /* A nice, vibrant green */
+            color: var(--text-light);
+            padding: 5px 40px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            font-family: 'Poppins', 'Noto Sans Oriya', sans-serif;
+            text-transform: uppercase;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1;
         }
 
         .game-icon {
@@ -503,7 +524,14 @@
             <div class="container">
                 <h2 data-key="games_title">ଆମର ଖେଳ</h2>
                 <div class="grid-container">
-                    
+                       <div class="game-card new-game" data-new-badge>
+                        <div>
+                            <img src="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/gk.png" alt="More Odia games are coming soon" class="game-icon">
+                            <h3 data-key="game4_title">ଜ୍ଞାନ ପରୀକ୍ଷା</h3>
+                            <p data-key="game4_desc">ସାଧାରଣ ଜ୍ଞାନ ପରୀକ୍ଷା କରନ୍ତୁ । </p>
+                        </div>
+                        <a href="/gk" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
+                    </div>
                     <div class="game-card">
                         <div>
                             <!-- SEO: 8. DESCRIPTIVE ALT TEXT FOR IMAGES -->
@@ -523,7 +551,9 @@
                         <a href="/ଗଣିତ%20ବିଜ୍ଞ/live" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
                     </div>
 
-                    <div class="game-card">
+                    <!-- ADDED: The `new-game` class and `data-new-badge` attribute for the symbol -->
+                 
+                         <div class="game-card">
                         <div>
                             <img src="https://i.ibb.co/6RkCPyjz/deafc4b6-ed6e-49b5-9496-670689cf4b57.jpg" alt="More Odia games are coming soon" class="game-icon">
                             <h3 data-key="game3_title">ଆଗକୁ ଆସିବ</h3>
@@ -531,9 +561,9 @@
                         </div>
                         <a href="#" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
                     </div>
-                  
                 </div>
             </div>
+        </div>
         </section>
     </main>
 
@@ -593,7 +623,6 @@
                 nav_privacy: "ଗୋପନୀୟତା ନୀତି", 
                 nav_instagram: "ଇନଷ୍ଟାଗ୍ରାମ",
                 
-                // SEO: Added translation keys for the new hero section
                 main_headline: "ଓଡ଼ିଆ ଖେଳ ଖେଳନ୍ତୁ: ଗଣିତ ବିଜ୍ଞ",
                 main_subheadline: "ମନକୁ ଚ୍ୟାଲେଞ୍ଜ କରିବା ଏବଂ ଶିଖିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ ଗଣିତ ବିଜ୍ଞ ଭଳି ମଜାଦାର ଏବଂ ଶିକ୍ଷଣୀୟ ଓଡ଼ିଆ ଖେଳର ସର୍ବୋତ୍ତମ ସଂଗ୍ରହ।",
                 
@@ -605,8 +634,10 @@
                 game2_desc: "ନିଜ ସାଙ୍ଗସାଥି ମାନଙ୍କ ସହ ସମାନ ପ୍ରଶ୍ନ ଓ ସମୟ ନିର୍ଦ୍ଧାରିତ ଖେଳ ଏକାଠି ଖେଳିପାରିବେ ଓ ଫଳାଫଳ ମଧ୍ୟ ଦେଖିପାରିବେ |", 
                 game3_title: "ଆଗକୁ ଆସିବ", 
                 game3_desc: "କିଛି ନୂତନ ଖେଳ ଆସିଲେ ଏଠାରେ ଯୋଗ କରାଯିବ |", 
+                game4_title: "ଜ୍ଞାନ ପରୀକ୍ଷା", 
+                game4_desc: "ସାଧାରଣ ଜ୍ଞାନ ପରୀକ୍ଷା କରନ୍ତୁ । ", 
                 footer_copyright: "© ୨୦୨୫ ମୋ ଓଡ଼ିଆ ଖେଳ | ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ",
-                
+
                 terms_title: "ସେବା ସର୍ତ୍ତାବଳୀ",
                 terms_p1: "ଆମର ଖେଳକୁ ବ୍ୟବହାର କରିବାକୁ ସ୍ୱାଗତ! ଏହି ଆପ୍ଲିକେଶନକୁ ଡାଉନଲୋଡ୍ କରି କିମ୍ବା ବ୍ୟବହାର କରି, ଆପଣ ଏହି ସେବା ସର୍ତ୍ତାବଳୀକୁ ମାନିବାକୁ ରାଜି ହେଉଛନ୍ତି।",
                 terms_h_license: "ବ୍ୟବହାର ଲାଇସେନ୍ସ",
@@ -628,6 +659,7 @@
                 privacy_p_security: "ଆମେ ଆପଣଙ୍କ ତଥ୍ୟକୁ ଅନଧିକୃତ ପ୍ରବେଶରୁ ରକ୍ଷା କରିବା ପାଇଁ ଯୁକ୍ତିଯୁକ୍ତ ପଦକ୍ଷେପ ଗ୍ରହଣ କରୁ।",
                 privacy_h_contact: "ଯୋଗାଯୋଗ",
                 privacy_p_contact: "ଯଦି ଆପଣଙ୍କର ଏହି ଗୋପନୀୟତା ନୀତି ବିଷୟରେ କୌଣସି ପ୍ରଶ୍ନ ଅଛି, ଦୟାକରି ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+                new_badge_text: "ନୂଆ" // ADDED: Odia translation for the new badge
             },
             en: {
                 logo_text: "My Odia Games", 
@@ -635,7 +667,6 @@
                 nav_privacy: "Privacy Policy", 
                 nav_instagram: "Instagram",
 
-                // SEO: Added translation keys for the new hero section
                 main_headline: "Play Odia Games: Math Wizard",
                 main_subheadline: "The best collection of fun and educational Odia games like Math Wizard to challenge your mind and help you learn.",
 
@@ -646,6 +677,9 @@
                 game2_title: "Math Wiz Game Room", 
                 game2_desc: "You can play the same question and time-bound game together with your friends and also see the results.", 
                 game3_title: "Coming Soon", 
+                game4_title: "Knowledge Test", 
+                game4_desc: "Take a general knowledge test.", 
+                footer_copyright: "© ୨୦୨୫ ମୋ ଓଡ଼ିଆ ଖେଳ | ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ",
                 game3_desc: "If any new games come up, they will be added here.", 
                 footer_copyright: "© 2025 My Odia Games | All Rights Reserved",
                 
@@ -670,6 +704,7 @@
                 privacy_p_security: "We take reasonable measures to protect your information from unauthorized access.",
                 privacy_h_contact: "Contact Us",
                 privacy_p_contact: "If you have any questions about this Privacy Policy, please contact us.",
+                new_badge_text: "New" // ADDED: English translation for the new badge
             }
         };
 
@@ -686,6 +721,13 @@
                 const key = elem.getAttribute('data-key');
                 if (translations[lang][key] !== undefined) {
                     elem.innerHTML = translations[lang][key];
+                }
+            });
+
+            // ADDED: Apply translation to the "new" badge attribute
+            document.querySelectorAll('[data-new-badge]').forEach(elem => {
+                if (translations[lang]['new_badge_text']) {
+                    elem.setAttribute('data-new-badge', translations[lang]['new_badge_text']);
                 }
             });
 
