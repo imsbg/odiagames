@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ଜ୍ଞାନ ପରୀକ୍ଷା | Gyan Pariksha | My Odia Game</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/gk.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #8961ff, #6f42c1);
+            --primary-color: #8961ff;
+            --secondary-color: #ff7f50; /* Orange for lifelines */
+            --correct-color: #20c997; /* Mint Green */
+            --incorrect-color: #dc3545; /* Red */
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-light: #ffffff;
+            --text-dark: #212529;
+            --border-color: #e9ecef;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', 'Noto Sans Oriya', sans-serif;
+            background: var(--primary-gradient);
+            color: var(--text-dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 15px;
+        }
+        .app-container {
+            width: 100%;
+            max-width: 420px;
+            height: 100%;
+            max-height: 850px;
+            background: var(--bg-color);
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        .quiz-ui { display: flex; flex-direction: column; height: 100%; }
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 25px; background: var(--primary-gradient); color: var(--text-light);
+        }
+        .header-right-icons { display: flex; align-items: center; gap: 10px; }
+        header .icon-btn {
+            font-size: 1.5rem; background: rgba(255, 255, 255, 0.2); color: var(--text-light);
+            border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; text-decoration: none;
+        }
+        /* MODIFIED: Added style for the new image icon */
+        header .icon-btn img {
+            height: 24px;
+            width: 24px;
+            object-fit: contain;
+        }
+        header h2 { font-size: 1.2rem; font-weight: 600; }
+        .quiz-body { flex-grow: 1; padding: 25px; display: flex; flex-direction: column; }
+        .question-card {
+            background: var(--card-bg); border-radius: 20px; padding: 30px;
+            text-align: center; margin-bottom: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        #question-text { font-size: 1.4rem; font-weight: 600; }
+        .options-list { list-style: none; display: flex; flex-direction: column; gap: 15px; flex-grow: 1; }
+        .option {
+            display: flex; align-items: center; background: var(--card-bg); border: 2px solid var(--border-color);
+            border-radius: 15px; padding: 15px; cursor: pointer; transition: all 0.3s ease;
+        }
+        .option:hover { border-color: var(--primary-color); background: #f4efff; }
+        .option .option-letter { font-weight: 700; margin-right: 15px; }
+        .option .option-text { flex-grow: 1; text-align: left; }
+        .option.correct { background-color: var(--correct-color); border-color: var(--correct-color); color: var(--text-light); }
+        .option.incorrect { background-color: var(--incorrect-color); border-color: var(--incorrect-color); color: var(--text-light); }
+        .options-list.disabled .option:not(.correct):not(.incorrect) { opacity: 0.6; pointer-events: none; }
+        .option.lifeline-disabled { opacity: 0.4; pointer-events: none; background: #e9ecef; }
+        .lifeline-container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 0 25px 25px 25px; }
+        .lifeline-btn {
+            background: var(--secondary-color); color: var(--text-light); border: none; border-radius: 15px;
+            padding: 15px 5px; cursor: pointer; text-align: center; transition: all 0.3s ease;
+        }
+        .lifeline-btn:hover:not(:disabled) { transform: scale(1.05); }
+        .lifeline-btn i { font-size: 1.5rem; display: block; margin-bottom: 5px; }
+        .lifeline-btn:disabled { background-color: #6c757d; cursor: not-allowed; opacity: 0.5; }
+        
+        .modal-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center;
+            padding: 15px; backdrop-filter: blur(5px); z-index: 1000;
+        }
+        .modal-content {
+            background: var(--bg-color); width: 100%; max-width: 380px;
+            border-radius: 20px; display: flex; flex-direction: column; overflow: hidden;
+            max-height: 90%;
+        }
+        .modal-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 20px; border-bottom: 1px solid var(--border-color);
+        }
+        .modal-header h3 { font-size: 1.2rem; color: var(--primary-color); }
+        .modal-body { padding: 20px; overflow-y: auto; }
+        .answer-list { list-style: none; }
+        .answer-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid var(--border-color); }
+        .answer-item .q { font-weight: 600; margin-bottom: 5px; }
+        .answer-item .a { color: var(--correct-color); font-weight: 500; }
+        .hidden { display: none !important; }
+
+        .history-stat { font-size: 1.1rem; margin-bottom: 15px; text-align: left; }
+        .history-stat strong { color: var(--primary-color); }
+        #clear-history-btn {
+            width: 100%; padding: 12px; font-size: 1rem; font-weight: 600;
+            border-radius: 10px; border: none; cursor: pointer; margin-top: 20px;
+            background: var(--incorrect-color); color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- ===== QUIZ UI ===== -->
+        <div class="quiz-ui" id="quiz-ui">
+            <header>
+                 <!-- MODIFIED: Replaced <i> icon with <img> tag -->
+                 <a href="https://odiagames.netlify.app/" target="_blank" class="icon-btn" aria-label="Main Website">
+                    <img src="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/gk.png" alt="Odia Games Icon">
+                </a>
+                <h2 id="progress-text">Loading...</h2>
+                <div class="header-right-icons">
+                    <button class="icon-btn" id="lang-switch-btn" aria-label="Switch Language"><i class="bi bi-translate"></i></button>
+                    <button class="icon-btn" id="history-btn" aria-label="History"><i class="bi bi-clock-history"></i></button>
+                    <a href="https://odiagames.netlify.app/" target="_blank" class="icon-btn" aria-label="Home"><i class="bi bi-house-fill"></i></a>
+                </div>
+            </header>
+            <div class="quiz-body">
+                <div class="question-card"><h3 id="question-text">...</h3></div>
+                <ul class="options-list" id="options-list"></ul>
+            </div>
+            <div class="lifeline-container">
+                <button class="lifeline-btn" id="lifeline-5050"><i class="bi bi-star-half"></i><span data-lang-key="fiftyFifty">50/50</span></button>
+                <button class="lifeline-btn" id="restart-btn"><i class="bi bi-arrow-clockwise"></i><span data-lang-key="restart">Restart</span></button>
+                <button class="lifeline-btn" id="lifeline-skip"><i class="bi bi-arrow-right-short"></i><span data-lang-key="skip">Skip</span></button>
+                <button class="lifeline-btn" id="answer-key-btn"><i class="bi bi-card-checklist"></i><span data-lang-key="study">Study</span></button>
+            </div>
+        </div>
+
+        <!-- ===== ANSWER KEY MODAL ===== -->
+        <div class="modal-container hidden" id="answer-key-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 data-lang-key="answerKeyTitle">Answer Key</h3>
+                    <button class="icon-btn" id="close-answer-key-btn"><i class="bi bi-x-lg"></i></button>
+                </div>
+                <div class="modal-body"><ul class="answer-list" id="answer-list"></ul></div>
+            </div>
+        </div>
+        
+        <!-- ===== HISTORY MODAL ===== -->
+        <div class="modal-container hidden" id="history-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 data-lang-key="historyTitle">All-Time History</h3>
+                    <button class="icon-btn" id="close-history-btn"><i class="bi bi-x-lg"></i></button>
+                </div>
+                <div class="modal-body">
+                    <p class="history-stat"><span data-lang-key="historyCorrect">Correct Answers</span>: <strong id="history-correct-text">0</strong></p>
+                    <p class="history-stat"><span data-lang-key="historyWrong">Wrong Answers</span>: <strong id="history-wrong-text">0</strong></p>
+                    <button id="clear-history-btn" data-lang-key="clearHistory">Clear History</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="questions.js"></script>
+    <script>
+        // DOM Elements
+        const progressText = document.getElementById('progress-text'), questionText = document.getElementById('question-text'), optionsList = document.getElementById('options-list');
+        const lifeline5050 = document.getElementById('lifeline-5050'), lifelineSkip = document.getElementById('lifeline-skip');
+        const answerKeyBtn = document.getElementById('answer-key-btn'), answerKeyModal = document.getElementById('answer-key-modal'), closeAnswerKeyBtn = document.getElementById('close-answer-key-btn'), answerList = document.getElementById('answer-list');
+        const restartBtn = document.getElementById('restart-btn'), langSwitchBtn = document.getElementById('lang-switch-btn');
+        const historyBtn = document.getElementById('history-btn'), historyModal = document.getElementById('history-modal'), closeHistoryBtn = document.getElementById('close-history-btn'), clearHistoryBtn = document.getElementById('clear-history-btn');
+        const historyCorrectText = document.getElementById('history-correct-text'), historyWrongText = document.getElementById('history-wrong-text');
+
+        // STATE & TRANSLATIONS
+        let gameState = {};
+        let allTimeHistory = { correct: 0, wrong: 0 };
+        const translations = {
+            en: { progress: "Question", fiftyFifty: "Unlimited", restart: "Restart", skip: "Skip", study: "Study", answerKeyTitle: "Answer Key", historyTitle: "All-Time History", historyCorrect: "Correct Answers", historyWrong: "Wrong Answers", clearHistory: "Clear History", quizComplete: "Quiz Complete!", yourScore: "Your score", clearHistoryConfirm: "Are you sure you want to clear your all-time history? This cannot be undone." },
+            or: { progress: "ପ୍ରଶ୍ନ", fiftyFifty: "ଅସୀମିତ", restart: "ପୁନଃ ଆରମ୍ଭ", skip: "ଛାଡ଼ନ୍ତୁ", study: "ଅଧ୍ୟୟନ", answerKeyTitle: "ଉତ୍ତର ସୂଚୀ", historyTitle: "ସମୁଦାୟ ଇତିହାସ", historyCorrect: "ଠିକ୍ ଉତ୍ତର", historyWrong: "ଭୁଲ୍ ଉତ୍ତର", clearHistory: "ଇତିହାସ ମିଟାନ୍ତୁ", quizComplete: "କ୍ୱିଜ୍ ସମାପ୍ତ!", yourScore: "ଆପଣଙ୍କ ସ୍କୋର", clearHistoryConfirm: "ଆପଣ ନିଶ୍ଚିତ କି ଆପଣ ନିଜର ସମସ୍ତ ଇତିହାସ ମିଟାଇବାକୁ ଚାହୁଁଛନ୍ତି? ଏହାକୁ ପୁନର୍ବାର ଫେରାଇ ଆଣିହେବ ନାହିଁ।" }
+        };
+
+        // HELPER FUNCTIONS
+        function toOdia(num) {
+            const odiaDigits = ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'];
+            return String(num).split('').map(digit => odiaDigits[parseInt(digit, 10)] || digit).join('');
+        }
+
+        // STATE MANAGEMENT
+        function saveState() {
+            localStorage.setItem('gyanParikshaGameState', JSON.stringify(gameState));
+            localStorage.setItem('gyanParikshaHistory', JSON.stringify(allTimeHistory));
+        }
+        function loadState() {
+            const savedGame = localStorage.getItem('gyanParikshaGameState');
+            const savedHistory = localStorage.getItem('gyanParikshaHistory');
+            if (savedGame) gameState = JSON.parse(savedGame);
+            if (savedHistory) allTimeHistory = JSON.parse(savedHistory);
+        }
+        function clearGameState() {
+            localStorage.removeItem('gyanParikshaGameState');
+        }
+        // MODIFIED: This function is confirmed to work correctly.
+        function clearHistory() {
+            const confirmationText = translations[gameState.currentLanguage].clearHistoryConfirm;
+            if (confirm(confirmationText)) {
+                // 1. Reset the history variable in memory
+                allTimeHistory = { correct: 0, wrong: 0 };
+                // 2. Save the reset history to persistent storage
+                saveState();
+                // 3. Update the visible modal with the new zero values
+                updateHistoryModal();
+            }
+        }
+
+        // EVENT LISTENERS
+        restartBtn.addEventListener('click', () => { clearGameState(); location.reload(); });
+        langSwitchBtn.addEventListener('click', switchLanguage);
+        lifeline5050.addEventListener('click', handle5050);
+        lifelineSkip.addEventListener('click', handleSkip);
+        answerKeyBtn.addEventListener('click', showAnswerKey);
+        closeAnswerKeyBtn.addEventListener('click', () => answerKeyModal.classList.add('hidden'));
+        historyBtn.addEventListener('click', showHistoryModal);
+        closeHistoryBtn.addEventListener('click', () => historyModal.classList.add('hidden'));
+        clearHistoryBtn.addEventListener('click', clearHistory);
+        
+        // CORE FUNCTIONS
+        function initializeGame() {
+            loadState();
+            if (!gameState.shuffledQuestions || gameState.currentQuestionIndex === undefined) {
+                gameState = {
+                    currentQuestionIndex: 0,
+                    score: 0,
+                    currentLanguage: 'or', // Default language
+                    shuffledQuestions: [...questions].sort(() => Math.random() - 0.5)
+                };
+            }
+            updateUILanguage();
+            loadQuestion();
+            saveState();
+        }
+        function switchLanguage() {
+            gameState.currentLanguage = (gameState.currentLanguage === 'en') ? 'or' : 'en';
+            updateUILanguage();
+            loadQuestion();
+            saveState();
+        }
+        function updateUILanguage() {
+            document.querySelectorAll('[data-lang-key]').forEach(el => {
+                const key = el.dataset.langKey;
+                if (translations[gameState.currentLanguage][key]) {
+                    el.textContent = translations[gameState.currentLanguage][key];
+                }
+            });
+        }
+        function loadQuestion() {
+            if (gameState.currentQuestionIndex >= gameState.shuffledQuestions.length) {
+                const t = translations[gameState.currentLanguage];
+                alert(`${t.quizComplete}\n${t.yourScore}: ${gameState.score}/${gameState.shuffledQuestions.length}`);
+                clearGameState();
+                location.reload();
+                return;
+            }
+            resetState();
+            const question = gameState.shuffledQuestions[gameState.currentQuestionIndex];
+            const lang = gameState.currentLanguage;
+            
+            const currentNum = gameState.currentQuestionIndex + 1;
+            const totalNum = gameState.shuffledQuestions.length;
+            const displayCurrent = lang === 'or' ? toOdia(currentNum) : currentNum;
+            const displayTotal = lang === 'or' ? toOdia(totalNum) : totalNum;
+            progressText.textContent = `${translations[lang].progress} ${displayCurrent}/${displayTotal}`;
+            
+            questionText.textContent = question[`question_${lang}`];
+            const options = question[`options_${lang}`];
+            const optionLetters = ['A', 'B', 'C', 'D'];
+            options.forEach((option, index) => {
+                const li = document.createElement('li');
+                li.classList.add('option'); li.dataset.index = index;
+                li.innerHTML = `<span class="option-letter">${optionLetters[index]}</span><span class="option-text">${option}</span>`;
+                li.addEventListener('click', selectAnswer);
+                optionsList.appendChild(li);
+            });
+        }
+        function selectAnswer(e) {
+            const selectedOption = e.currentTarget;
+            const selectedIndex = parseInt(selectedOption.dataset.index);
+            const correctIndex = gameState.shuffledQuestions[gameState.currentQuestionIndex].correct_answer_index;
+
+            if (selectedIndex === correctIndex) {
+                selectedOption.classList.add('correct');
+                gameState.score++;
+                allTimeHistory.correct++;
+            } else {
+                selectedOption.classList.add('incorrect');
+                const correctOption = optionsList.querySelector(`[data-index='${correctIndex}']`);
+                if (correctOption) correctOption.classList.add('correct');
+                allTimeHistory.wrong++;
+            }
+            
+            optionsList.classList.add('disabled');
+            gameState.currentQuestionIndex++;
+            saveState();
+            setTimeout(loadQuestion, 2500);
+        }
+        function resetState() { optionsList.innerHTML = ''; optionsList.classList.remove('disabled'); }
+
+        // LIFELINES & MODALS
+        function handle5050() {
+            const correctIndex = gameState.shuffledQuestions[gameState.currentQuestionIndex].correct_answer_index;
+            const wrongOptions = [];
+            optionsList.querySelectorAll('.option').forEach((opt, index) => {
+                if (index !== correctIndex) wrongOptions.push(opt);
+            });
+            wrongOptions.sort(() => Math.random() - 0.5);
+            wrongOptions.slice(0, 2).forEach(opt => opt.classList.add('lifeline-disabled'));
+        }
+        function handleSkip() {
+            gameState.currentQuestionIndex++;
+            saveState();
+            loadQuestion();
+        }
+        function showAnswerKey() {
+            answerList.innerHTML = '';
+            const lang = gameState.currentLanguage;
+            gameState.shuffledQuestions.forEach(q => {
+                const li = document.createElement('li');
+                li.classList.add('answer-item');
+                li.innerHTML = `<div class="q">${q[`question_${lang}`]}</div><div class="a">➔ ${q[`options_${lang}`][q.correct_answer_index]}</div>`;
+                answerList.appendChild(li);
+            });
+            answerKeyModal.classList.remove('hidden');
+        }
+        function updateHistoryModal() {
+            const lang = gameState.currentLanguage;
+            historyCorrectText.textContent = lang === 'or' ? toOdia(allTimeHistory.correct) : allTimeHistory.correct;
+            historyWrongText.textContent = lang === 'or' ? toOdia(allTimeHistory.wrong) : allTimeHistory.wrong;
+            updateUILanguage();
+        }
+        function showHistoryModal() {
+            updateHistoryModal();
+            historyModal.classList.remove('hidden');
+        }
+
+        // INITIALIZE GAME ON PAGE LOAD
+        initializeGame();
+    </script>
+</body>
+</html>
