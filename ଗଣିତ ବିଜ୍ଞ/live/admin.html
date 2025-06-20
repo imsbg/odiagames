@@ -2,51 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Panel</title>
+    <title>Admin Panel - SB Math Game Room</title>
+    <meta name="robots" content="noindex, nofollow"> <!-- Prevent search engines from indexing admin page -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary-color: #0A2463; --secondary-color: #3E92CC; --accent-color: #FF9F1C; --danger-color: #dc3545; --success-color: #28a745; --text-dark: #121212; --bg-light: #F4F7FC; --card-bg: #FFFFFF; --shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
         body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); color: var(--text-dark); padding: 2rem; }
-        .container { max-width: 900px; margin: 0 auto; }
+        .container { max-width: 1000px; margin: 0 auto; }
         .card { background-color: var(--card-bg); padding: 2rem; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 2rem; }
         h1, h2, h3 { color: var(--primary-color); text-align: center; margin-bottom: 1rem; }
         .btn { background-color: var(--accent-color); color: white; padding: 0.8rem 2rem; border-radius: 20px; border: none; cursor: pointer; width: 100%; font-size: 1.1rem; margin-top: 0.5rem;}
         #admin-panel { display: none; }
+        .admin-actions { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap; }
+        .btn-admin { padding: 0.8rem 1.5rem; font-size: 1rem; width: auto; margin-top: 0; }
+        .btn-admin.delete-all { background-color: var(--danger-color); }
+        .btn-admin.cleanup { background-color: var(--secondary-color); }
         table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
         th, td { padding: 0.8rem; border: 1px solid #ddd; }
         th { background-color: var(--secondary-color); color: white; }
         .room-details-card { border: 2px solid var(--primary-color); margin-bottom: 2rem; padding: 0; }
         .room-header { background-color: var(--primary-color); color: white; padding: 1rem; border-radius: 10px 10px 0 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;}
-        .room-header h2 { color: white; margin: 0; text-align: left; }
+        .room-header h2 { color: white; margin: 0; text-align: left; font-size: 1.2rem; }
         .room-header p { margin: 0; font-size: 0.9rem; }
         .room-header strong { color: var(--accent-color); }
         .room-actions { display: flex; gap: 0.5rem; }
         .btn-small { padding: 0.5rem 1rem; font-size: 0.9rem; width: auto; margin: 0;}
         .btn-delete { background-color: var(--danger-color); }
         .btn-report { background-color: var(--success-color); }
-        .room-content { padding: 1rem; }
+        .room-content { padding: 1rem; overflow-x: auto; }
         .details-toggle { cursor: pointer; color: var(--primary-color); font-weight: bold; text-decoration: underline; }
         .player-details-row { display: none; }
-        .player-details { background-color: #f0f8ff; padding: 1rem; margin-top: -1px; border: 1px solid #ddd; }
-        .player-details ul { list-style: none; padding: 0; }
-        .player-details li { padding: 0.5rem; border-bottom: 1px solid #e0e0e0; font-size: 0.9rem; }
-        .correct-ans { color: var(--success-color); }
-        .wrong-ans { color: var(--danger-color); }
     </style>
 </head>
 <body>
     <div class="container">
         <div id="login-screen" class="card">
             <h1>Admin Login</h1>
-            <div class="form-group"><input type="text" id="username" placeholder="Username" style="box-sizing: border-box; width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem;"></div>
-            <div class="form-group"><input type="password" id="password" placeholder="Password" style="box-sizing: border-box; width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem;"></div>
+            <div class="form-group" style="margin-bottom: 1rem;"><input type="text" id="username" placeholder="Username" style="box-sizing: border-box; width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem;"></div>
+            <div class="form-group" style="margin-bottom: 1rem;"><input type="password" id="password" placeholder="Password" style="box-sizing: border-box; width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 8px; font-size: 1rem;"></div>
             <button id="login-btn" class="btn">Login</button>
-            <div id="login-error" class="error" style="color: var(--danger-color); text-align: center; min-height: 1.2em; margin-top: 1rem;"></div>
+            <div id="login-error" style="color: var(--danger-color); text-align: center; min-height: 1.2em; margin-top: 1rem;"></div>
         </div>
         <div id="admin-panel">
              <h1>Admin Master Panel</h1>
+             <div class="admin-actions">
+                 <button id="cleanup-btn" class="btn btn-admin cleanup">Cleanup 24h+ Rooms</button>
+                 <button id="delete-all-btn" class="btn btn-admin delete-all">Delete All Rooms</button>
+             </div>
              <div id="all-rooms-container"></div>
         </div>
     </div>
@@ -54,7 +58,6 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // Your unique Firebase keys have been added here.
     const firebaseConfig = {
       apiKey: "AIzaSyAYurYfkcGSbRmLNBtXmX60iml5ty8-ipI",
       authDomain: "sbg-math-game.firebaseapp.com",
@@ -69,29 +72,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const db = firebase.database();
 
     const dom = {};
-    ['login-screen', 'admin-panel', 'login-btn', 'all-rooms-container', 'username', 'password', 'login-error'].forEach(id => dom[id.replace(/-/g,'_')] = document.getElementById(id));
+    ['login-screen', 'admin-panel', 'login-btn', 'all-rooms-container', 'username', 'password', 'login-error', 'cleanup-btn', 'delete-all-btn'].forEach(id => dom[id.replace(/-/g,'_')] = document.getElementById(id));
 
     const getRoomData = async (rc) => { const snapshot = await db.ref('rooms/'+rc).get(); return snapshot.exists() ? snapshot.val() : null; };
+    function generateAndDownloadReport(roomCode, roomData) { if (!roomData) { alert("Could not find data for this room."); return; } let reportContent = `GAME REPORT FOR ROOM: ${roomCode}\n========================================\n\n--- Room Details ---\nStatus: ${roomData.status}\nPassword: ${roomData.password || 'None'}\nCreated At: ${new Date(roomData.createdAt).toLocaleString()}\n\n--- Game Settings ---\nTotal Time: ${roomData.settings.timer / 60} minutes\nNumber of Questions: ${roomData.settings.q_count}\nGame Type: ${roomData.settings.type}\nDifficulty: ${roomData.settings.difficulty}\n\n`; if (roomData.questions) { reportContent += `--- Question & Answer Key ---\n`; roomData.questions.forEach((q, i) => { reportContent += `Q${i + 1}: ${q.question} = ${q.answer}\n`; }); reportContent += `\n`; } if (roomData.status === 'finished' && roomData.results) { reportContent += `--- Final Results & Player Answers ---\n`; const sortedResults = Object.values(roomData.results).sort((a, b) => b.score - a.score); sortedResults.forEach((player, i) => { reportContent += `\n#${i + 1} | Player: ${player.name} | Score: ${player.score}/${roomData.settings.q_count}\n`; if (player.answers) { player.answers.forEach(ans => { const status = ans.answer === ans.correctAnswer ? "Correct" : (ans.answer === null ? "Unanswered" : "Incorrect"); reportContent += `  Q${ans.qIndex + 1} (${ans.question}): You answered: ${ans.answer === null ? 'N/A' : ans.answer}. Correct was: ${ans.correctAnswer}. [${status}]\n`; }); } }); } else if (roomData.players) { reportContent += `--- Players in Lobby ---\n`; Object.values(roomData.players).forEach(p => { reportContent += `- ${p.name} ${p.isHost ? '(Host)' : ''}\n`; }); } const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' }); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `${roomCode}_Report.txt`; document.body.appendChild(link); link.click(); document.body.removeChild(link); }
 
-    function generateAndDownloadReport(roomCode, roomData) {
-        if (!roomData) { alert("Could not find data for this room."); return; }
-        let reportContent = `GAME REPORT FOR ROOM: ${roomCode}\n========================================\n\n--- Room Details ---\nStatus: ${roomData.status}\nPassword: ${roomData.password || 'None'}\nCreated At: ${new Date(roomData.createdAt).toLocaleString()}\n\n--- Game Settings ---\nTotal Time: ${roomData.settings.timer / 60} minutes\nNumber of Questions: ${roomData.settings.q_count}\nGame Type: ${roomData.settings.type}\nDifficulty: ${roomData.settings.difficulty}\n\n`;
-        if (roomData.questions) { reportContent += `--- Question & Answer Key ---\n`; roomData.questions.forEach((q, i) => { reportContent += `Q${i + 1}: ${q.question} = ${q.answer}\n`; }); reportContent += `\n`; }
-        if (roomData.status === 'finished' && roomData.results) { reportContent += `--- Final Results & Player Answers ---\n`; const sortedResults = Object.values(roomData.results).sort((a, b) => b.score - a.score); sortedResults.forEach((player, i) => { reportContent += `\n#${i + 1} | Player: ${player.name} | Score: ${player.score}/${roomData.settings.q_count}\n`; if (player.answers) { player.answers.forEach(ans => { const status = ans.answer === ans.correctAnswer ? "Correct" : (ans.answer === null ? "Unanswered" : "Incorrect"); reportContent += `  Q${ans.qIndex + 1} (${ans.question}): You answered: ${ans.answer === null ? 'N/A' : ans.answer}. Correct was: ${ans.correctAnswer}. [${status}]\n`; }); } });
-        } else if (roomData.players) { reportContent += `--- Players in Lobby ---\n`; Object.values(roomData.players).forEach(p => { reportContent += `- ${p.name} ${p.isHost ? '(Host)' : ''}\n`; }); }
-        const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' }); const link = document.createElement('a'); link.href = URL.createObjectURL(blob); link.download = `${roomCode}_Report.txt`; document.body.appendChild(link); link.click(); document.body.removeChild(link);
-    }
-
-    function cleanupOldRooms(snapshot) {
+    async function cleanupOldRooms() {
+        if (!confirm("Are you sure you want to delete all rooms created more than 24 hours ago?")) return;
+        const roomsRef = db.ref('rooms');
+        const snapshot = await roomsRef.get();
+        if (!snapshot.exists()) { alert("No rooms to clean up."); return; }
         const now = new Date().getTime();
         const twentyFourHours = 24 * 60 * 60 * 1000;
+        let deleteCount = 0;
+        let promises = [];
         snapshot.forEach(childSnapshot => {
             const roomData = childSnapshot.val();
             if (roomData.createdAt && (now - roomData.createdAt > twentyFourHours)) {
-                console.log(`Removing expired room: ${childSnapshot.key}`);
-                childSnapshot.ref.remove();
+                promises.push(childSnapshot.ref.remove());
+                deleteCount++;
             }
         });
+        await Promise.all(promises);
+        alert(`${deleteCount} old room(s) have been deleted.`);
     }
     
     function loadAllRoomsData() {
@@ -99,26 +102,20 @@ document.addEventListener('DOMContentLoaded', () => {
         roomsRef.on('value', (snapshot) => {
             dom.all_rooms_container.innerHTML = '';
             if (!snapshot.exists()) { dom.all_rooms_container.innerHTML = '<p style="text-align:center;">No game rooms found.</p>'; return; }
-            
-            cleanupOldRooms(snapshot);
-
             let cardsHTML = '';
             const roomsArray = [];
             snapshot.forEach(child => { roomsArray.push({key: child.key, val: child.val()}); });
-
             roomsArray.reverse().forEach(room => {
-                const roomCode = room.key;
-                const roomData = room.val;
+                const { key: roomCode, val: roomData } = room;
                 if(!roomData.settings) return;
-                
                 let card = `<div class="card room-details-card" id="admin-card-${roomCode}"><div class="room-header"><div><h2>Room: <strong>${roomCode}</strong></h2><p>Password: <strong>${roomData.password || 'None'}</strong> | Status: <strong>${roomData.status}</strong></p><p>Created: ${new Date(roomData.createdAt).toLocaleString()}</p></div><div class="room-actions"><button class="btn-small btn-report" data-roomcode="${roomCode}">Report</button><button class="btn-small btn-delete" data-roomcode="${roomCode}">Delete</button></div></div><div class="room-content">`;
                 if (roomData.status === 'finished' && roomData.results) {
                     const sortedResults = Object.values(roomData.results).sort((a, b) => b.score - a.score);
                     card += `<h3>Final Scores</h3><table><thead><tr><th>Rank</th><th>Name</th><th>Score</th><th>Details</th></tr></thead><tbody>
-                        ${sortedResults.map((p, i) => `<tr><td>${i + 1}</td><td>${p.name}</td><td>${p.score} / ${roomData.settings.q_count}</td><td><span class="details-toggle" data-player-index="${i}" data-room-code="${roomCode}">Answers</span></td></tr><tr class="player-details-row"><td colspan="4"><div class="player-details"></div></td></tr>`).join('')}
+                        ${sortedResults.map((p, i) => `<tr><td>${i + 1}</td><td>${p.name}</td><td>${p.score} / ${roomData.settings.q_count}</td><td><span class="details-toggle" data-player-index="${i}" data-room-code="${roomCode}">Answers</span></td></tr><tr class="player-details-row"><td colspan="4"><div class="player-details" style="background-color: #f0f8ff; padding: 1rem; margin-top: -1px; border: 1px solid #ddd;"></div></td></tr>`).join('')}
                     </tbody></table>`;
                 } else if (roomData.players) {
-                    card += `<h3>Lobby Status</h3><h4>Players in Lobby:</h4><ul>${Object.values(roomData.players).map(p => `<li>${p.name} ${p.isHost ? '👑' : ''}</li>`).join('') || '<li>No players currently in lobby.</li>'}</ul>`;
+                    card += `<h3>Lobby Status</h3><h4>Players:</h4><ul>${Object.values(roomData.players).map(p => `<li>${p.name} ${p.isHost ? '👑' : ''}</li>`).join('') || '<li>No players in lobby.</li>'}</ul>`;
                 }
                 card += '</div></div>';
                 cardsHTML += card;
@@ -129,32 +126,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
     dom.all_rooms_container.addEventListener('click', async (event) => {
         const target = event.target;
-        if (target.classList.contains('btn-delete')) {
-            const roomCode = target.dataset.roomcode;
-            if (confirm(`Are you sure you want to PERMANENTLY DELETE room "${roomCode}"?`)) {
-                await db.ref(`rooms/${roomCode}`).remove();
-            }
-        }
-        if (target.classList.contains('btn-report')) {
-            const roomCode = target.dataset.roomcode;
-            const roomData = await getRoomData(roomCode);
-            generateAndDownloadReport(roomCode, roomData);
-        }
+        if (target.classList.contains('btn-delete')) { const roomCode = target.dataset.roomcode; if (confirm(`DELETE room "${roomCode}"? This is permanent.`)) { await db.ref(`rooms/${roomCode}`).remove(); } }
+        if (target.classList.contains('btn-report')) { const roomCode = target.dataset.roomcode; const roomData = await getRoomData(roomCode); generateAndDownloadReport(roomCode, roomData); }
         if (target.classList.contains('details-toggle')) {
             const { playerIndex, roomCode } = target.dataset;
             const roomData = await getRoomData(roomCode);
             const detailsRow = target.closest('tr').nextElementSibling;
             if (detailsRow.style.display === 'table-row') { detailsRow.style.display = 'none'; return; }
             const detailsContentDiv = detailsRow.querySelector('.player-details');
-            const questions = roomData.questions;
             const player = Object.values(roomData.results).sort((a,b) => b.score - a.score)[playerIndex];
-            let detailsContent = `<h4>Answer Report for ${player.name}</h4><ul>`;
-            questions.forEach((q, i) => { const playerAnswerObj = player.answers.find(a => a.qIndex === i); let answerText; if (!playerAnswerObj || playerAnswerObj.answer === null) { answerText = `<span class="wrong-ans">Unanswered</span>`; } else if (playerAnswerObj.answer === q.answer) { answerText = `<span class="correct-ans">Correct</span>`; } else { answerText = `<span class="wrong-ans">Incorrect</span> (Answered: ${playerAnswerObj.answer})`; } detailsContent += `<li><strong>Q${i+1}. ${q.question}</strong> = ${q.answer} | ${answerText}</li>`; });
-            detailsContent += `</ul>`;
+            let detailsContent = `<h4>Answers for ${player.name}</h4><ul>${roomData.questions.map((q, i) => { const pa = player.answers.find(a => a.qIndex === i); const ansText = !pa || pa.answer === null ? `<span style="color:var(--danger-color);">Unanswered</span>` : pa.answer === q.answer ? `<span style="color:var(--success-color);">Correct</span>` : `<span style="color:var(--danger-color);">Incorrect</span> (Ans: ${pa.answer})`; return `<li><strong>Q${i+1}. ${q.question}</strong> = ${q.answer} | ${ansText}</li>`; }).join('')}</ul>`;
             detailsContentDiv.innerHTML = detailsContent;
+            document.querySelectorAll('.player-details-row').forEach(row => row.style.display = 'none');
             detailsRow.style.display = 'table-row';
         }
     });
+
+    dom.delete_all_btn.onclick = async () => {
+        if (confirm("DANGER: Are you sure you want to delete ALL rooms? This is irreversible.") && confirm("FINAL CONFIRMATION: This will delete every single game room. Proceed?")) {
+            await db.ref('rooms').remove();
+            alert("All rooms have been deleted.");
+        }
+    };
+    dom.cleanup_btn.onclick = cleanupOldRooms;
 
     dom.login_btn.onclick = () => {
         if (dom.username.value === 'sbg' && dom.password.value === 'sbg90') {
