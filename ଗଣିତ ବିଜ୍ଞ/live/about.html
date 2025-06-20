@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About SB Math Games</title>
+    <meta name="description" content="Learn more about SB Math Games - a free, ad-free platform for educational fun, created by Sandeep Biswal G.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-color: #0A2463; --secondary-color: #3E92CC; --accent-color: #FF9F1C; --bg-light: #F4F7FC; --card-bg: #FFFFFF; --shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); display: flex; flex-direction: column; min-height: 100vh; }
+        body.or-lang { font-family: 'Noto Sans Oriya', sans-serif; }
+        
+        /* Unified Header */
+        header { background-color: var(--primary-color); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+        header .container { display: flex; justify-content: space-between; align-items: center; max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.2rem; font-weight: 700; color: white; text-decoration: none; }
+        #menu-toggle { background: none; border: none; color: white; font-size: 2rem; cursor: pointer; display: none; z-index: 1002; transition: transform 0.3s ease; }
+        nav { display: flex; align-items: center; gap: 1.5rem; }
+        nav a { color: white; text-decoration: none; font-weight: 600; }
+        .lang-switcher button { background: none; border: 1px solid white; color: white; width: 35px; height: 35px; cursor: pointer; font-size: 1rem; border-radius: 50%; }
+        .lang-switcher button.active { background-color: var(--accent-color); border-color: var(--accent-color); }
+
+        main { flex-grow: 1; }
+        .content-container { max-width: 800px; margin: 2rem auto; padding: 2rem; background: var(--card-bg); border-radius: 12px; box-shadow: var(--shadow); }
+        h1, h2 { color: var(--primary-color); text-align: center; margin-bottom: 1rem; }
+        p { line-height: 1.8; margin: 1rem 0; }
+        a { color: var(--secondary-color); text-decoration: none; font-weight: 600; }
+        .version { text-align: center; color: #777; font-size: 0.9rem; margin-top: 2rem; }
+        [data-lang-content] { display: none; }
+        body.en-lang [data-lang-content="en"], body.or-lang [data-lang-content="or"] { display: block; }
+        
+        /* Unified Footer */
+        footer { background-color: var(--primary-color); color: white; padding: 2rem 0; text-align: center; margin-top: auto; }
+        .footer-links { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+        footer a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
+
+        @media (max-width: 768px) {
+            #menu-toggle { display: block; }
+            nav { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(10, 36, 99, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2rem; z-index: 1001; transform: translateY(-100%); transition: transform 0.4s ease-in-out; }
+            nav.active { transform: translateY(0); }
+            .lang-switcher { position: absolute; top: 1.5rem; right: 5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container"> 
+            <a href="./index.html" class="logo" data-key="logo_text"></a>
+            <div class="nav-wrapper">
+                <nav id="main-nav">
+                    <a href="./index.html" data-key="home_btn"></a>
+                    <a href="./results.html" data-key="results_btn"></a>
+                    <div class="lang-switcher">
+                        <button id="lang-or">ଓ</button>
+                        <button id="lang-en">E</button>
+                    </div>
+                </nav>
+                <button id="menu-toggle">☰</button>
+            </div>
+        </div> 
+    </header>
+
+    <main>
+        <div class="content-container">
+            <div data-lang-content="en">
+                <h1>About SB Math Games</h1>
+                <p>Welcome to SB Math Games, a place for fun and learning! Our mission is to provide an engaging and educational experience for everyone, completely free of charge.</p>
+                <h2>Our Promise</h2>
+                <p><strong>This website will always be ad-free and free to use for everyone.</strong> We believe in accessible education, and this platform will remain free for its lifetime.</p>
+                <h2>Technology</h2>
+                <p>This application is proudly built using modern web technologies: <strong>HTML5, CSS, and JavaScript.</strong> All game data is securely stored and managed in real-time using <strong>Google Firebase</strong>, ensuring a fast and reliable experience. Your data is 100% secure with us.</p>
+                <h2>Privacy</h2>
+                <p>We respect your privacy. For more information on how we handle data, please read our <a href="./terms.html">Terms of Service</a> and <a href="./privacy.html">Privacy Policy</a>.</p>
+                <h2>The Creator</h2>
+                <p>Made with ❤️ by <a href="https://www.instagram.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer">Sandeep Biswal G</a>.</p>
+                <p class="version">Version: SB 1.0.3</p>
+                <p style="text-align: center;"><a href="./index.html">← Back to Game</a></p>
+            </div>
+    
+            <div data-lang-content="or">
+                <h1>SB ଗଣିତ ଗେମ୍ସ ବିଷୟରେ</h1>
+                <p>SB ଗଣିତ ଗେମ୍ସକୁ ସ୍ୱାଗତ, ମଜା ଏବଂ ଶିକ୍ଷାର ଏକ ସ୍ଥାନ! ଆମର ଲକ୍ଷ୍ୟ ହେଉଛି ସମସ୍ତଙ୍କ ପାଇଁ ଏକ ଆକର୍ଷଣୀୟ ଏବଂ ଶೈକ୍ଷଣିକ ଅନୁଭବ ପ୍ରଦାନ କରିବା, ସମ୍ପୂର୍ଣ୍ଣ ମାଗଣାରେ ।</p>
+                <h2>ଆମର ପ୍ରତିଜ୍ଞା</h2>
+                <p><strong>ଏହି ୱେବସାଇଟ୍ ସର୍ବଦା ବିଜ୍ଞାପନ-ମୁକ୍ତ ଏବଂ ସମସ୍ତଙ୍କ ପାଇଁ ବ୍ୟବହାର କରିବାକୁ ମାଗଣା ରହିବ ।</strong> ଆମେ ସୁଲଭ ଶିକ୍ଷାରେ ବିଶ୍ୱାସ କରୁ, ଏବଂ ଏହି ପ୍ଲାଟଫର୍ମ ଏହାର ଆଜୀବନ ପାଇଁ ମାଗଣା ରହିବ ।</p>
+                <h2>ବୈଷୟିକ ଜ୍ଞାନ</h2>
+                <p>ଏହି ଆପ୍ଲିକେସନ୍ ଗର୍ବର ସହିତ ଆଧୁନିକ ୱେବ୍ ଟେକ୍ନୋଲୋଜି ବ୍ୟବହାର କରି ନିର୍ମିତ: <strong>HTML5, CSS, ଏବଂ JavaScript ।</strong> ସମସ୍ତ ଗେମ୍ ଡାଟା <strong>Google Firebase</strong> ବ୍ୟବହାର କରି ସୁରକ୍ଷିତ ଭାବରେ ସଂରକ୍ଷିତ ଏବଂ ପରିଚାଳିତ ହୁଏ, ଯାହା ଏକ ଦ୍ରୁତ ଏବଂ ନିର୍ଭରଯୋଗ୍ୟ ଅନୁଭବ ସୁନିଶ୍ଚିତ କରେ । ଆପଣଙ୍କ ଡାଟା ଆମ ସହିତ ୧୦୦% ସୁରକ୍ଷିତ ।</p>
+                <h2>ଗୋପନୀୟତା</h2>
+                <p>ଆମେ ଆପଣଙ୍କ ଗୋପନୀୟତାକୁ ସମ୍ମାନ କରୁ। ଆମେ କିପରି ଡାଟା ପରିଚାଳନା କରୁ, ସେ ବିଷୟରେ ଅଧିକ ସୂଚନା ପାଇଁ, ଦୟାକରି ଆମର <a href="./terms.html">ସେବା ସର୍ତ୍ତାବଳୀ</a> ଏବଂ <a href="./privacy.html">ଗୋପନୀୟତା ନୀତି</a> ପଢନ୍ତୁ ।</p>
+                <h2>ନିର୍ମାତା</h2>
+                <p>❤️ ସହିତ <a href="https://www.instagram.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer">ସନ୍ଦୀପ ବିଶ୍ଵାଳ G</a> ଙ୍କ ଦ୍ଵାରା ପ୍ରସ୍ତୁତ।</p>
+                <p class="version">ସଂସ୍କରଣ: SB ୧.୦.୩</p>
+                <p style="text-align: center;"><a href="./index.html">← ଗେମକୁ ଫେରନ୍ତୁ</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer> 
+        <div class="container">
+            <div data-key="footer_made_by"></div>
+            <div class="footer-links">
+                <a href="./terms.html" data-key="terms_btn"></a>
+                <a href="./privacy.html" data-key="privacy_btn"></a>
+            </div>
+        </div> 
+    </footer>
+
+<script>
+    const translations = {
+        en: { logo_text: "SB Math Wiz", home_btn: "Home", results_btn: "Results", footer_made_by: "Made with ❤️ by <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>Sandeep Biswal G</a>", terms_btn: "Terms", privacy_btn: "Privacy" },
+        or: { logo_text: "SB ଗଣିତ ବିଜ୍ଞ", home_btn: "ହୋମ୍", results_btn: "ଫଳାଫଳ", footer_made_by: "❤️ ସହିତ <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>ସନ୍ଦୀପ ବିଶ୍ଵାଳ G</a> ଙ୍କ ଦ୍ଵାରା ପ୍ରସ୍ତୁତ", terms_btn: "ସର୍ତ୍ତାବଳୀ", privacy_btn: "ଗୋପନୀୟତା ନୀତି" }
+    };
+
+    const setLanguage = (lang) => {
+        document.documentElement.lang = lang;
+        document.body.className = `${lang}-lang`;
+        localStorage.setItem('preferredLang', lang);
+        
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.dataset.key;
+            if (translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+
+        document.getElementById('lang-or').classList.toggle('active', lang === 'or');
+        document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+    };
+
+    document.getElementById('lang-or').onclick = () => setLanguage('or');
+    document.getElementById('lang-en').onclick = () => setLanguage('en');
+
+    document.getElementById('menu-toggle').onclick = () => {
+        const nav = document.getElementById('main-nav');
+        const toggleBtn = document.getElementById('menu-toggle');
+        const isActive = nav.classList.toggle('active');
+        toggleBtn.textContent = isActive ? '✕' : '☰';
+        toggleBtn.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+    };
+
+    setLanguage(localStorage.getItem('preferredLang') || 'or');
+</script>
+</body>
+</html>
