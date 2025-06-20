@@ -2,114 +2,107 @@
 <html lang="or">
 <head>
     <meta charset="UTF-8">
-    <!-- ESSENTIAL: Added viewport meta tag for responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ଫଳାଫଳ - Game Results</title>
+    <title>ଫଳାଫଳ - Game Results History</title>
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/ml.png">
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Check past game results for SB Math Games. See final scores, player rankings, and detailed answer reports for all completed games.">
+    <meta name="keywords" content="game results, score history, math game report, ଓଡ଼ିଆ ଗେମ୍ ଫଳାଫଳ">
+    <meta name="author" content="Sandeep Biswal G">
+    <link rel="canonical" href="https://your-website-url.com/room/results.html" /> <!-- Replace with your actual URL -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root { --primary-color: #0A2463; --secondary-color: #3E92CC; --accent-color: #FF9F1C; --success-color: #28a745; --danger-color: #dc3545; --text-light: #FFFFFF; --text-dark: #121212; --bg-light: #F4F7FC; --card-bg: #FFFFFF; --shadow: 0 4px 15px rgba(0, 0, 0, 0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; font-family: 'Poppins', sans-serif; display: flex; flex-direction: column; min-height: 100vh; }
+        body.or-lang { font-family: 'Noto Sans Oriya', 'Poppins', sans-serif; }
         
-        /* General body styles */
-        body { font-family: 'Poppins', sans-serif; background-color: var(--bg-light); color: var(--text-dark); margin: 0; padding: 1rem; }
-        body.or-lang { font-family: 'Noto Sans Oriya', sans-serif; }
-        .container { max-width: 900px; margin: 0 auto; }
+        /* --- Unified Header & Mobile Menu --- */
+        header { background-color: var(--primary-color); color: var(--text-light); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; }
+        .header-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.2rem; font-weight: 700; color: var(--text-light); text-decoration: none; }
+        .header-right { display: flex; align-items: center; gap: 1.5rem; }
+        nav#main-nav { display: flex; align-items: center; gap: 1.5rem; }
+        nav#main-nav .nav-links { display: flex; gap: 1.5rem; }
+        nav#main-nav a { color: var(--text-light); text-decoration: none; font-weight: 600; }
+        nav#main-nav a:hover { color: var(--accent-color); }
+        .lang-switcher button { background: none; border: 1px solid var(--text-light); color: var(--text-light); width: 35px; height: 35px; cursor: pointer; font-size: 1rem; transition: background-color 0.3s ease; font-family: inherit; border-radius: 50%; }
+        .lang-switcher button.active { background-color: var(--accent-color); font-weight: 700; border-color: var(--accent-color); }
+        #menu-toggle { display: none; background: none; border: none; color: white; font-size: 2rem; cursor: pointer; z-index: 1002; transition: transform 0.3s ease; }
+
+        main { flex-grow: 1; padding: 2rem 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 0 20px; }
         .main-card { background-color: var(--card-bg); padding: 1.5rem; border-radius: 12px; box-shadow: var(--shadow); }
-        h1 { font-size: 1.8rem; }
         h1, h2, h3 { color: var(--primary-color); text-align: center; margin-bottom: 1.5rem; }
-        
-        /* Language switcher */
-        .lang-switcher { display: flex; justify-content: center; margin-bottom: 2rem; gap: 10px; }
-        .lang-switcher button { background: #eee; border: none; padding: 0.5rem 1rem; cursor: pointer; border-radius: 20px; font-family: inherit; }
-        .lang-switcher button.active { background-color: var(--accent-color); color: white; font-weight: bold; }
-        
-        /* Room list card */
         .room-card { display: flex; flex-direction: column; gap: 0.5rem; justify-content: space-between; align-items: center; background: #fdfdfd; border: 1px solid #eee; padding: 1rem; border-radius: 8px; margin-bottom: 1rem; }
-        .room-info strong { font-size: 1.2rem; }
-        .btn { background-color: var(--accent-color); color: var(--text-light); padding: 0.6rem 1.5rem; border-radius: 20px; border: none; cursor: pointer; text-align: center; width: 100%; max-width: 200px; }
-        
-        /* General table styles */
+        .btn { background-color: var(--accent-color); color: var(--text-light); padding: 0.6rem 1.5rem; border-radius: 20px; border: none; cursor: pointer; }
         table { width: 100%; border-collapse: collapse; margin-top: 1rem; font-size: 0.9rem; }
         th, td { padding: 0.8rem; border: 1px solid #ddd; text-align: left; vertical-align: middle; }
-        th { background-color: var(--secondary-color); color: var(--text-light); }
         
-        /* Player details styles */
-        .details-toggle { cursor: pointer; color: var(--primary-color); font-weight: bold; text-decoration: underline; }
-        .player-details-row { display: none; }
-        .player-details { background-color: #f9f9f9; padding: 1rem; margin-top: -1px; border: 1px solid #ddd; }
-        .player-details ul { list-style: none; padding: 0; }
-        .player-details li { padding: 0.5rem; border-bottom: 1px solid #eee; }
-        .correct-ans { color: var(--success-color); }
-        .wrong-ans { color: var(--danger-color); }
-
-        /* --- RESPONSIVE STYLES for mobile phones --- */
-        @media (min-width: 600px) {
-            .room-card { flex-direction: row; }
-            .btn { width: auto; }
-        }
-
-        @media (max-width: 768px) {
-            body { padding: 0.5rem; }
+        footer { background-color: var(--primary-color); color: var(--text-light); padding: 2rem 0; text-align: center; margin-top: auto; }
+        footer a { color: var(--accent-color); text-decoration: none; font-weight: bold; }
+        
+        @media (max-width: 820px) {
+            #menu-toggle { display: block; }
+            .header-right { gap: 1rem; }
+            nav#main-nav {
+                display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+                background: rgba(10, 36, 99, 0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+                flex-direction: column; align-items: center; justify-content: center;
+                padding-top: 5rem; z-index: 1001; transform: translateY(-100%); transition: transform 0.4s ease-in-out;
+            }
+            nav#main-nav.active { display: flex; transform: translateY(0); }
+            nav#main-nav .nav-links { flex-direction: column; text-align: center; gap: 2.5rem; }
+            .lang-switcher { position: absolute; top: 1.5rem; left: 50%; transform: translateX(-50%); }
             .main-card { padding: 1rem; }
             h1 { font-size: 1.5rem; }
-            h2 { font-size: 1.3rem; }
-            h3 { font-size: 1.2rem; }
-            
-            /* Responsive tables */
-            table { border: 0; }
-            table thead {
-                border: none;
-                clip: rect(0 0 0 0);
-                height: 1px;
-                margin: -1px;
-                overflow: hidden;
-                padding: 0;
-                position: absolute;
-                width: 1px;
-            }
-            table tr {
-                border-bottom: 3px solid var(--secondary-color);
-                display: block;
-                margin-bottom: .625em;
-            }
-            table td {
-                border-bottom: 1px solid #ddd;
-                display: block;
-                font-size: .8em;
-                text-align: right; /* Align cell content to the right */
-            }
-            table td::before {
-                /* Use data-label for the text, coming from JS */
-                content: attr(data-label);
-                float: left; /* Float the label to the left */
-                font-weight: bold;
-                text-transform: uppercase;
-            }
-            table td:last-child {
-                border-bottom: 0;
-            }
-            /* Make details span full width */
-            .player-details-row td {
-                padding: 0;
-            }
-            /* Reset alignment for player details list items */
-            .player-details li {
-                text-align: left;
-            }
+            table thead { display: none; }
+            table tr { display: block; margin-bottom: .625em; border-bottom: 3px solid var(--secondary-color); }
+            table td { display: block; text-align: right; border-bottom: 1px solid #ddd; }
+            table td::before { content: attr(data-label); float: left; font-weight: bold; text-transform: uppercase; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="main-card">
-            <h1 data-key="results_panel_title"></h1>
-            <div class="lang-switcher"> <button id="lang-or"></button> <button id="lang-en"></button> </div>
-            <a href="index.html" class="home-link-btn" data-key="back_to_home" style="display: block; text-align: center; margin-bottom: 2rem; color: var(--primary-color); text-decoration: underline;"></a>
-            <div id="room-list-container"></div>
-            <div id="results-display-area"></div>
+    <header>
+        <div class="header-container"> 
+            <a href="./index.html" class="logo" data-key="logo_text"></a>
+            <div class="header-right">
+                <nav id="main-nav">
+                    <div class="lang-switcher">
+                        <button id="lang-or">ଓ</button>
+                        <button id="lang-en">E</button>
+                    </div>
+                    <div class="nav-links">
+                        <a href="./index.html" data-key="home_btn"></a>
+                        <a href="./about.html" data-key="about_btn"></a>
+                    </div>
+                </nav>
+                <button id="menu-toggle">☰</button>
+            </div>
+        </div> 
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="main-card">
+                <div id="results-display-area"></div>
+                <div id="room-list-container"></div>
+            </div>
         </div>
-    </div>
+    </main>
+
+    <footer> 
+        <div class="container">
+            <div data-key="footer_made_by"></div>
+        </div> 
+    </footer>
+
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 <script>
@@ -128,62 +121,36 @@ document.addEventListener('DOMContentLoaded', () => {
     const db = firebase.database();
 
     const translations = {
-        or: { lang_btn: "ଓଡ଼ିଆ", results_panel_title: "ଫଳାଫଳ ପ୍ୟାନେଲ୍", available_rooms: "ଉପଲବ୍ଧ ସମାପ୍ତ ଗେମ୍", no_rooms: "କୌଣସି ସମାପ୍ତ ଗେମ୍ ମିଳିଲା ନାହିଁ |", back_to_home: "ହୋମ୍ ପେଜକୁ ଫେରନ୍ତୁ |", check_results: "ଫଳାଫଳ ଦେଖନ୍ତୁ", loading_msg: "ଲୋଡ୍ କରୁଛି...", results_for: "ପାଇଁ ଫଳାଫଳ", final_scores: "ଅନ୍ତିମ ସ୍କୋର୍", rank: "ରାଙ୍କ୍", name: "ନାମ", score: "ସ୍କୋର୍", details: "ବିବରଣୀ", answer_key: "ଉତ୍ତର ସୂଚୀ", question: "ପ୍ରଶ୍ନ", correct_answer: "ସଠିକ୍ ଉତ୍ତର", player_report_for: "ପାଇଁ ଖେଳାଳି ରିପୋର୍ଟ", your_answer: "ଆପଣଙ୍କ ଉତ୍ତର", correct: "ସଠିକ୍", incorrect: "ଭୁଲ", unanswered: "ଉତ୍ତର ଦିଆଯାଇନାହିଁ", password_label: "ରୁମ୍ ପାସୱାର୍ଡ (ବୈକଳ୍ପିକ)", password_error: "ଭୁଲ୍ ପାସୱାର୍ଡ |" },
-        en: { lang_btn: "English", results_panel_title: "Results Panel", available_rooms: "Available Finished Games", no_rooms: "No finished games found.", back_to_home: "Back to Home Page", check_results: "Check Results", loading_msg: "Loading...", results_for: "Results for", final_scores: "Final Scores", rank: "Rank", name: "Name", score: "Score", details: "Details", answer_key: "Answer Key", question: "Question", correct_answer: "Correct Answer", player_report_for: "Player Report for", your_answer: "Your Answer", correct: "Correct", incorrect: "Incorrect", unanswered: "Unanswered", password_label: "Room Password (Optional)", password_error: "Incorrect password." }
+        or: { logo_text: "SB ଗଣିତ ବିଜ୍ଞ", home_btn: "ହୋମ୍", about_btn: "ଆମ ବିଷୟରେ", footer_made_by: "❤️ ସହିତ <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>ସନ୍ଦୀପ ବିଶ୍ଵାଳ G</a> ଙ୍କ ଦ୍ଵାରା ପ୍ରସ୍ତୁତ", results_panel_title: "ଫଳାଫଳ ପ୍ୟାନେଲ୍", available_rooms: "ଉପଲବ୍ଧ ସମାପ୍ତ ଗେମ୍", no_rooms: "କୌଣସି ସମାପ୍ତ ଗେମ୍ ମିଳିଲା ନାହିଁ |", check_results: "ଫଳାଫଳ ଦେଖନ୍ତୁ", loading_msg: "ଲୋଡ୍ କରୁଛି...", results_for: "ପାଇଁ ଫଳାଫଳ", final_scores: "ଅନ୍ତିମ ସ୍କୋର୍", rank: "ରାଙ୍କ୍", name: "ନାମ", score: "ସ୍କୋର୍", details: "ବିବରଣୀ", answer_key: "ଉତ୍ତର ସୂଚୀ", question: "ପ୍ରଶ୍ନ", correct_answer: "ସଠିକ୍ ଉତ୍ତର", player_report_for: "ପାଇଁ ଖେଳାଳି ରିପୋର୍ଟ", your_answer: "ଆପଣଙ୍କ ଉତ୍ତର", correct: "ସଠିକ୍", incorrect: "ଭୁଲ", unanswered: "ଉତ୍ତର ଦିଆଯାଇନାହିଁ", password_label: "ରୁମ୍ ପାସୱାର୍ଡ ଦିଅନ୍ତୁ", password_error: "ଭୁଲ୍ ପାସୱାର୍ଡ |", waiting_for_results: "ଫଳାଫଳ ପାଇଁ ଅପେକ୍ଷା କରୁଛି..." },
+        en: { logo_text: "SB Math Wiz", home_btn: "Home", about_btn: "About", footer_made_by: "Made with ❤️ by <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>Sandeep Biswal G</a>", results_panel_title: "Results Panel", available_rooms: "Available Finished Games", no_rooms: "No finished games found.", check_results: "Check Results", loading_msg: "Loading...", results_for: "Results for", final_scores: "Final Scores", rank: "Rank", name: "Name", score: "Score", details: "Details", answer_key: "Answer Key", question: "Question", correct_answer: "Correct Answer", player_report_for: "Player Report for", your_answer: "Your Answer", correct: "Correct", incorrect: "Incorrect", unanswered: "Unanswered", password_label: "Enter Room Password", password_error: "Incorrect password.", waiting_for_results: "Waiting for results..." }
     };
     const dom = {};
-    ['lang-or', 'lang-en', 'room-list-container', 'results-display-area'].forEach(id => dom[id.replace(/-/g, '_')] = document.getElementById(id));
+    ['lang-or', 'lang-en', 'room-list-container', 'results-display-area', 'menu-toggle', 'main-nav'].forEach(id => dom[id.replace(/-/g, '_')] = document.getElementById(id));
     const toOdiaNumerals = s => String(s).replace(/[0-9]/g, d => '୦୧୨୩୪୫୬୭୮୯'[d]);
     const displayNum = n => document.documentElement.lang === 'or' ? toOdiaNumerals(n) : String(n);
-    const setLanguage = (lang) => { document.documentElement.lang = lang; document.body.className = `${lang}-lang`; document.querySelectorAll('[data-key]').forEach(el => { const t = translations[lang]?.[el.dataset.key]; if (t) el.innerHTML = t; }); dom.lang_or.textContent = translations.or.lang_btn; dom.lang_en.textContent = translations.en.lang_btn; dom.lang_or.classList.toggle('active', lang === 'or'); dom.lang_en.classList.toggle('active', lang === 'en'); loadRooms(); };
-
-    async function loadRooms() {
-        const lang = document.documentElement.lang;
-        dom.room_list_container.innerHTML = `<h2 data-key="available_rooms">${translations[lang].available_rooms}</h2><p>${translations[lang].loading_msg}</p>`;
-        dom.results_display_area.innerHTML = '';
-        
-        try {
-            const roomsRef = db.ref('rooms').orderByChild('status').equalTo('finished');
-            const snapshot = await roomsRef.get();
-            
-            dom.room_list_container.innerHTML = `<h2 data-key="available_rooms">${translations[lang].available_rooms}</h2>`;
-            
-            if (!snapshot.exists()) {
-                dom.room_list_container.innerHTML += `<p data-key="no_rooms">${translations[lang].no_rooms}</p>`;
-                return;
+    
+    function setLanguage(lang, fromInit = false) {
+        document.documentElement.lang = lang; 
+        document.body.className = `${lang}-lang`; 
+        document.querySelectorAll('[data-key]').forEach(el => { 
+            const t = translations[lang]?.[el.dataset.key]; 
+            if (t) el.innerHTML = t; 
+        }); 
+        dom.lang_or.classList.toggle('active', lang === 'or'); 
+        dom.lang_en.classList.toggle('active', lang === 'en');
+        localStorage.setItem('preferredLang', lang); 
+        if (!fromInit) {
+            const roomCode = window.location.hash.substring(1);
+            if(roomCode) {
+                startResultsListener(roomCode);
+            } else {
+                loadRooms();
             }
-            
-            let roomsHTML = '';
-            let roomsArray = [];
-            snapshot.forEach(childSnapshot => {
-                roomsArray.push({ key: childSnapshot.key, val: childSnapshot.val() });
-            });
-            roomsArray.sort((a, b) => b.val.createdAt - a.val.createdAt);
-
-            roomsArray.forEach(room => {
-                const roomCode = room.key;
-                roomsHTML += `<div class="room-card"><div class="room-info"><strong>${roomCode}</strong></div><button class="btn check-result-btn" data-roomcode="${roomCode}" data-key="check_results">${translations[lang].check_results}</button></div>`;
-            });
-
-            dom.room_list_container.innerHTML += roomsHTML;
-            document.querySelectorAll('.check-result-btn').forEach(b => b.onclick = handleCheckResult);
-        } catch (error) {
-            console.error("Error loading rooms:", error);
-            dom.room_list_container.innerHTML += `<p style="color:red;">Error loading rooms. Check console and Firebase rules.</p>`;
         }
-    }
+    };
 
-    async function handleCheckResult(event) {
-        const roomCode = event.target.dataset.roomcode;
-        const snapshot = await db.ref(`rooms/${roomCode}`).get();
-        if (!snapshot.exists()) { alert('Room not found!'); return; }
-        const roomData = snapshot.val();
-        
+    function renderResults(roomCode, roomData) {
         const lang = document.documentElement.lang;
-        dom.results_display_area.innerHTML = '';
-        
-        if (roomData.password) { const pass = prompt(`${translations[lang].password_label} for "${roomCode}":`); if (pass !== roomData.password) { alert(translations[lang].password_error); return; } }
-        
         if (!roomData || roomData.status !== 'finished' || !roomData.results || !roomData.questions) {
             dom.results_display_area.innerHTML = `<h2>Error</h2><p>This room's data is incomplete or the game has not finished.</p>`;
             return;
@@ -192,16 +159,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const questions = roomData.questions;
         const sortedResults = Object.values(roomData.results).sort((a, b) => b.score - a.score);
         
-        // MODIFICATION: Add data-label attributes to TDs for responsive design
         let resultsHTML = `<h2>${translations[lang].results_for} ${roomCode}</h2><h3 data-key="final_scores">${translations[lang].final_scores}</h3><table><thead><tr><th data-key="rank">${translations[lang].rank}</th><th data-key="name">${translations[lang].name}</th><th data-key="score">${translations[lang].score}</th><th></th></tr></thead><tbody>`;
         sortedResults.forEach((player, i) => {
             resultsHTML += `<tr>
                 <td data-label="${translations[lang].rank}">${displayNum(i + 1)}</td>
                 <td data-label="${translations[lang].name}">${player.name}</td>
                 <td data-label="${translations[lang].score}">${displayNum(player.score)}/${displayNum(roomData.settings.q_count)}</td>
-                <td data-label="${translations[lang].details}"><span class="details-toggle" data-player-index="${i}" data-key="details">${translations[lang].details}</span></td>
+                <td data-label="${translations[lang].details}"><span class="details-toggle" style="cursor: pointer; color: var(--primary-color); font-weight: bold; text-decoration: underline;" data-player-index="${i}" data-key="details">${translations[lang].details}</span></td>
             </tr>
-            <tr class="player-details-row" id="details-row-${i}"><td colspan="4"><div class="player-details" id="details-content-${i}"></div></td></tr>`;
+            <tr class="player-details-row" style="display: none;"><td colspan="4"><div class="player-details" style="background-color: #f9f9f9; padding: 1rem; margin-top: -1px; border: 1px solid #ddd;"></div></td></tr>`;
         });
         resultsHTML += `</tbody></table><h3 data-key="answer_key">${translations[lang].answer_key}</h3><table><thead><tr><th>#</th><th data-key="question">${translations[lang].question}</th><th data-key="correct_answer">${translations[lang].correct_answer}</th></tr></thead><tbody>`;
         questions.forEach((q, i) => { 
@@ -218,40 +184,109 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('.details-toggle').forEach(toggle => {
             toggle.onclick = () => {
                 const playerIndex = toggle.dataset.playerIndex;
-                const detailsRow = document.getElementById(`details-row-${playerIndex}`);
-                if (detailsRow.style.display === 'block') { // Changed from table-row to block for responsive layout
+                const detailsRow = toggle.closest('tr').nextElementSibling;
+                if (detailsRow.style.display === 'block' || detailsRow.style.display === 'table-row') { 
                     detailsRow.style.display = 'none'; return; 
                 }
 
                 const detailsContentDiv = detailsRow.querySelector('.player-details');
                 const player = sortedResults[playerIndex];
-                let detailsContent = `<h4>${translations[lang].player_report_for} ${player.name}</h4><ul>`;
+                let detailsContent = `<h4>${translations[lang].player_report_for} ${player.name}</h4><ul style="list-style: none; padding: 0;">`;
                 const playerAnswers = player.answers || [];
                 questions.forEach((q, i) => {
                     const playerAnswerObj = playerAnswers.find(a => a.qIndex === i);
                     let answerText, qText = q.question.split(' ').map(p => isNaN(p) ? p : displayNum(p)).join(' ');
-                    if (!playerAnswerObj || playerAnswerObj.answer === null) { answerText = `<span class="wrong-ans">${translations[lang].unanswered}</span>`; }
-                    else if (playerAnswerObj.answer === q.answer) { answerText = `<span class="correct-ans">${translations[lang].correct}</span>`; }
-                    else { answerText = `<span class="wrong-ans">${translations[lang].incorrect}</span> (${translations[lang].your_answer}: ${displayNum(playerAnswerObj.answer)})`; }
-                    detailsContent += `<li><strong>${displayNum(i+1)}. ${qText}</strong> = ${displayNum(q.answer)} | ${answerText}</li>`;
+                    if (!playerAnswerObj || playerAnswerObj.answer === null) { answerText = `<span style="color:var(--danger-color);">${translations[lang].unanswered}</span>`; }
+                    else if (playerAnswerObj.answer === q.answer) { answerText = `<span style="color:var(--success-color);">${translations[lang].correct}</span>`; }
+                    else { answerText = `<span style="color:var(--danger-color);">${translations[lang].incorrect}</span> (${translations[lang].your_answer}: ${displayNum(playerAnswerObj.answer)})`; }
+                    detailsContent += `<li style="padding: 0.5rem; border-bottom: 1px solid #eee;"><strong>${displayNum(i+1)}. ${qText}</strong> = ${displayNum(q.answer)} | ${answerText}</li>`;
                 });
                 detailsContent += `</ul>`;
                 detailsContentDiv.innerHTML = detailsContent;
                 
                 document.querySelectorAll('.player-details-row').forEach(row => row.style.display = 'none');
-                detailsRow.style.display = 'block'; // Changed from table-row to block for responsive layout
+                detailsRow.style.display = window.innerWidth <= 768 ? 'block' : 'table-row';
             };
         });
     }
 
+    async function startResultsListener(roomCode) {
+        const lang = document.documentElement.lang;
+        dom.room_list_container.innerHTML = ''; // Hide room list
+        dom.results_display_area.innerHTML = `<h2 data-key="waiting_for_results">${translations[lang].waiting_for_results}</h2>`;
+        
+        const roomRef = db.ref(`rooms/${roomCode}`);
+        roomRef.on('value', (snapshot) => {
+            const roomData = snapshot.val();
+            if (roomData && roomData.status === 'finished') {
+                renderResults(roomCode, roomData);
+                roomRef.off(); // Stop listening once results are shown
+            }
+        });
+    }
+
+    async function loadRooms() {
+        const lang = document.documentElement.lang;
+        dom.results_display_area.innerHTML = '';
+        dom.room_list_container.innerHTML = `<h1 data-key="results_panel_title">${translations[lang].results_panel_title}</h1><h2 data-key="available_rooms">${translations[lang].available_rooms}</h2><p>${translations[lang].loading_msg}</p>`;
+        
+        try {
+            const roomsRef = db.ref('rooms').orderByChild('status').equalTo('finished');
+            const snapshot = await roomsRef.get();
+            dom.room_list_container.innerHTML = `<h1 data-key="results_panel_title">${translations[lang].results_panel_title}</h1><h2 data-key="available_rooms">${translations[lang].available_rooms}</h2>`;
+            if (!snapshot.exists()) {
+                dom.room_list_container.innerHTML += `<p data-key="no_rooms">${translations[lang].no_rooms}</p>`;
+                return;
+            }
+            let roomsArray = [];
+            snapshot.forEach(childSnapshot => {
+                roomsArray.push({ key: childSnapshot.key, val: childSnapshot.val() });
+            });
+            roomsArray.sort((a, b) => b.val.createdAt - a.val.createdAt);
+            let roomsHTML = '';
+            roomsArray.forEach(room => {
+                const roomCode = room.key;
+                roomsHTML += `<div class="room-card"><div class="room-info"><strong>${roomCode}</strong></div><button class="btn check-result-btn" data-roomcode="${roomCode}" data-key="check_results">${translations[lang].check_results}</button></div>`;
+            });
+            dom.room_list_container.innerHTML += roomsHTML;
+            document.querySelectorAll('.check-result-btn').forEach(b => b.onclick = handleCheckResult);
+        } catch (error) {
+            console.error("Error loading rooms:", error);
+            dom.room_list_container.innerHTML += `<p style="color:red;">Error loading rooms.</p>`;
+        }
+    }
+    
+    async function handleCheckResult(event) {
+        const roomCode = event.target.dataset.roomcode;
+        const snapshot = await db.ref(`rooms/${roomCode}`).get();
+        if (!snapshot.exists()) { alert('Room not found!'); return; }
+        const roomData = snapshot.val();
+        renderResults(roomCode, roomData);
+        dom.room_list_container.style.display = 'none';
+    }
+
     const init = () => {
-        if (!firebaseConfig || !firebaseConfig.apiKey || firebaseConfig.apiKey.includes("YOUR_")) {
-            document.body.innerHTML = `<div style="padding: 2rem; text-align: center; color: red; font-size: 1.2rem;"><h1>Configuration Error</h1><p>Firebase keys are missing. Please paste your firebaseConfig object into results.html.</p></div>`;
+        if (!firebaseConfig || !firebaseConfig.apiKey) {
+            document.body.innerHTML = `<div style="padding: 2rem; text-align: center; color: red; font-size: 1.2rem;"><h1>Config Error</h1><p>Please check your Firebase configuration in results.html</p></div>`;
             return;
         }
-        setLanguage('or');
+
+        const langFromStorage = localStorage.getItem('preferredLang');
+        setLanguage(langFromStorage || 'or', true);
+
+        const roomCodeFromHash = window.location.hash.substring(1);
+        if(roomCodeFromHash) {
+            startResultsListener(roomCodeFromHash);
+        } else {
+            loadRooms();
+        }
     };
     
+    dom.menu_toggle.onclick = () => {
+        const isActive = dom.main_nav.classList.toggle('active');
+        dom.menu_toggle.textContent = isActive ? '✕' : '☰';
+        dom.menu_toggle.style.transform = isActive ? 'rotate(180deg)' : 'rotate(0deg)';
+    };
     dom.lang_or.onclick = () => setLanguage('or');
     dom.lang_en.onclick = () => setLanguage('en');
     
