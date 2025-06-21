@@ -67,14 +67,52 @@
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
         #progress-bar-container { width: 100%; background-color: #ddd; border-radius: 5px; margin-bottom: 1rem; } #progress-bar { width: 0%; height: 10px; background-color: var(--accent-color); border-radius: 5px; transition: width 0.3s; } .answer-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         
-        /* Skeleton Loader */
-        .skeleton { animation: skeleton-loading 1s linear infinite alternate; }
-        @keyframes skeleton-loading { 0% { background-color: hsl(200, 20%, 80%); } 100% { background-color: hsl(200, 20%, 95%); } }
-        #skeleton-loader.hidden { display: none; }
-        #skeleton-loader { padding: 2rem 0; }
-        #skeleton-loader .game-card { padding: 1.5rem 2rem; }
-        .skeleton-title { width: 60%; height: 2.5rem; margin: 0 auto 1.5rem auto; border-radius: 8px; }
-        .skeleton-btn { width: 100%; height: 3.2rem; margin-bottom: 1rem; border-radius: 25px; }
+              /* Skeleton Loader */
+        .skeleton {
+            animation: skeleton-loading 1s linear infinite alternate;
+        }
+
+        @keyframes skeleton-loading {
+            0% {
+                background-color: hsl(200, 20%, 80%);
+            }
+
+            100% {
+                background-color: hsl(200, 20%, 95%);
+            }
+        }
+
+        #skeleton-loader.hidden {
+            display: none;
+        }
+
+        #skeleton-loader {
+            padding: 2rem 0;
+        }
+
+        #skeleton-loader .game-card {
+            padding: 1.5rem 2rem;
+        }
+
+        .skeleton-title {
+            width: 100%;
+            height: 2.5rem;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 10px;
+        }
+ .skeleton-title1 {
+            width: 70%;
+            height: 0.9rem;
+            margin: 0 auto 1.5rem auto;
+            border-radius: 8px;
+ }
+        .skeleton-btn {
+            width: 90%;
+            height: 3.2rem;
+            margin: 2rem auto;
+            margin-bottom: 2rem;
+            border-radius: 25px;
+        }
         
         /* Joining Popup CSS */
         .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: var(--primary-color); color: var(--text-light); padding: 1.5rem 2rem; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 10001; display: none; font-weight: bold; }
@@ -173,10 +211,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let db;
     const translations = {
         or: {
-            logo_text: "SB ଗଣିତ ବିଜ୍ଞ ", main_website_btn: "ମୁଖ୍ୟ ୱେବସାଇଟ୍", home_btn: "ହୋମ୍", other_games_btn: "ଗଣିତ ବିଜ୍ଞ", welcome: "ଗଣିତ ବିଜ୍ଞ ଦଳ କୁ ସ୍ଵାଗତ!", create_room_btn: "ରୁମ୍ ତିଆରି କରନ୍ତୁ", join_room_btn: "ରୁମ୍ ରେ ଯୋଗ ଦିଅନ୍ତୁ", check_results_btn: "ଫଳାଫଳ", check_results_btn_main: "ପୁରୁଣା ଫଳାଫଳ ଦେଖନ୍ତୁ", create_title: "ଏକ ଗେମ୍ ରୁମ୍ ତିଆରି କରନ୍ତୁ", room_code_label: "ରୁମ୍ କୋଡ୍", name_label: "ଆପଣଙ୍କ ନାମ", password_label: "ରୁମ୍ ପାସୱାର୍ଡ (ବୈକଳ୍ପିକ)", create_btn: "ତିଆରି କରି ଲବିରେ ପ୍ରବେଶ କରନ୍ତୁ", back_btn: "ପଛକୁ", join_title: "ଏକ ଗେମ୍ ରୁମ୍ ରେ ଯୋଗ ଦିଅନ୍ତୁ", join_btn: "ଲବିରେ ଯୋଗ ଦିଅନ୍ତୁ", lobby_title: "ଲବି", room_code_display: "ରୁମ୍ କୋଡ୍:", players_in_room: "ଖେଳାଳି:", game_settings_title: "ଗେମ୍ ସେଟିଂସ୍", total_time_label: "ମୋଟ ସମୟ", q_count_label: "ପ୍ରଶ୍ନ ସଂଖ୍ୟା", game_type_label: "ଗେମ୍ ପ୍ରକାର", difficulty_label: "କଠିନତା", type_mix: "ମିଶ୍ରଣ", type_add: "ମିଶାଣ", type_sub: "ଫେଡାଣ", type_mul: "ଗୁଣନ", type_div: "ହରଣ", diff_easy: "ସହଜ", diff_medium: "ମଧ୍ୟମ", diff_hard: "କଠିନ", diff_extra_hard: "ଅତି କଠିନ", start_game_btn: "ଗେମ୍ ଆରମ୍ଭ କରନ୍ତୁ", start_game_info: "ଆରମ୍ଭ ପାଇଁ ସର୍ବନିମ୍ନ ୨ ଖେଳାଳି ଆବଶ୍ୟକ", waiting_msg: "ହୋଷ୍ଟ୍ ଗେମ୍ ଆରମ୍ଭ କରିବାକୁ ଅପେକ୍ଷା କରନ୍ତୁ...", leave_lobby_btn: "ଲବି ଛାଡନ୍ତୁ", question: "ପ୍ରଶ୍ନ", results_title: "ଗେମ୍ ସମାପ୍ତ!", final_scores: "ଅନ୍ତିମ ସ୍କୋର୍", waiting_for_others: "ଅନ୍ୟ ଖେଳାଳିଙ୍କ ପାଇଁ ଅପେକ୍ଷା କରୁଛି...", show_answers_btn: "ଉତ୍ତର ଦେଖନ୍ତୁ", answer_key: "ଉତ୍ତର ସୂଚୀ", correct_answer: "ସଠିକ୍ ଉତ୍ତର", your_answer: "ଆପଣଙ୍କ ଉତ୍ତର", correct: "ସଠିକ୍", incorrect: "ଭୁଲ", unanswered: "ଉତ୍ତର ଦିଆଯାଇନାହିଁ", rank_header: "ରାଙ୍କ୍", name_header: "ନାମ", score_header: "ସ୍କୋର୍", play_again_btn: "ପୁଣି ଖେଳନ୍ତୁ", time_up_msg: "ସମୟ ସମାପ୍ତ!", room_deleted_msg: "ରୁମ୍ ହୋଷ୍ଟ୍ ଦ୍ଵାରା ଡିଲିଟ୍ ହୋଇଯାଇଛି |", you_msg: "ଆପଣ", minute_msg: "ମିନିଟ୍", download_report_btn: "ରିପୋର୍ଟ ଡାଉନଲୋଡ୍ କରନ୍ତୁ", room_code_error: "ଦୟାକରି ଏକ ୪-ଅଙ୍କ ବିଶିଷ୍ଟ କୋଡ୍ ଦିଅନ୍ତୁ |", general_error: "ଆପଣଙ୍କ ନାମ ଆବଶ୍ୟକ |", room_exists_error: "This room code already exists.", room_not_found_error: "ରୁମ୍ ମିଳିଲା ନାହିଁ |", room_full_error: "ରୁମ୍ ପୂର୍ଣ୍ଣ ଅଛି |", name_in_use_error: "ଏହି ନାମ ପୂର୍ବରୁ ବ୍ୟବହୃତ ହୋଇଛି |", password_error: "ଭୁଲ୍ ପାସୱାର୍ଡ |", share_btn: "ସାଙ୍ଗମାନଙ୍କୁ ନିମନ୍ତ୍ରଣ କରନ୍ତୁ", invite_copied: "ନିମନ୍ତ୍ରଣ ଲିଙ୍କ୍ କପି ହୋଇଗଲା!", you_were_kicked_msg: "ଆପଣଙ୍କୁ ହୋଷ୍ଟ୍ ଦ୍ଵାରା ରୁମ୍ ରୁ ବାହାର କରିଦିଆଯାଇଛି |", live_players_text: "ଏବେ {{count}} ଜଣ ଖେଳୁଛନ୍ତି", ping_text: "ପିଙ୍ଗ୍", about_btn: "ଆମ ବିଷୟରେ", footer_made_by: "❤️ ସହିତ <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>ସନ୍ଦୀପ୍ ବିଶ୍ଵାଳ G</a> ଙ୍କ ଦ୍ଵାରା ପ୍ରସ୍ତୁତ", ping_offline: "ପିଙ୍ଗ୍: 999ms", no_internet_title: "କୌଣସି ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ନାହିଁ", no_internet_msg: "ଦୟାକରି ମୋବାଇଲ୍ ଡାଟା ଚାଲୁ କରନ୍ତୁ କିମ୍ବା ୱାଇଫାଇ ସହିତ ସଂଯୋଗ କରନ୍ତୁ |", joining_room: "SB{{roomCode}} ରେ ଯୋଗ ଦେଉଛି..."
+            logo_text: "SB ଗଣିତ ବିଜ୍ଞ ", main_website_btn: "ମୁଖ୍ୟ ୱେବସାଇଟ୍", home_btn: "ହୋମ୍", other_games_btn: "ଗଣିତ ବିଜ୍ଞ", welcome: "ଗଣିତ ବିଜ୍ଞ ଦଳ କୁ ସ୍ଵାଗତ!", create_room_btn: "ରୁମ୍ ତିଆରି କରନ୍ତୁ", join_room_btn: "ରୁମ୍ ରେ ଯୋଗ ଦିଅନ୍ତୁ", check_results_btn: "ଫଳାଫଳ", check_results_btn_main: "ପୁରୁଣା ଫଳାଫଳ ଦେଖନ୍ତୁ", create_title: "ଏକ ଗେମ୍ ରୁମ୍ ତିଆରି କରନ୍ତୁ", room_code_label: "ରୁମ୍ କୋଡ୍", name_label: "ଆପଣଙ୍କ ନାମ", password_label: "ରୁମ୍ ପାସୱାର୍ଡ (ବୈକଳ୍ପିକ)", create_btn: "ତିଆରି କରି ଲବିରେ ପ୍ରବେଶ କରନ୍ତୁ", back_btn: "ପଛକୁ", join_title: "ଏକ ଗେମ୍ ରୁମ୍ ରେ ଯୋଗ ଦିଅନ୍ତୁ", join_btn: "ଲବିରେ ଯୋଗ ଦିଅନ୍ତୁ", lobby_title: "ଲବି", room_code_display: "ରୁମ୍ କୋଡ୍:", players_in_room: "ଖେଳାଳି:", game_settings_title: "ଗେମ୍ ସେଟିଂସ୍", total_time_label: "ମୋଟ ସମୟ", q_count_label: "ପ୍ରଶ୍ନ ସଂଖ୍ୟା", game_type_label: "ଗେମ୍ ପ୍ରକାର", difficulty_label: "କଠିନତା", type_mix: "ମିଶ୍ରଣ", type_add: "ମିଶାଣ", type_sub: "ଫେଡାଣ", type_mul: "ଗୁଣନ", type_div: "ହରଣ", diff_easy: "ସହଜ", diff_medium: "ମଧ୍ୟମ", diff_hard: "କଠିନ", diff_extra_hard: "ଅତି କଠିନ", start_game_btn: "ଗେମ୍ ଆରମ୍ଭ କରନ୍ତୁ", start_game_info: "ଆରମ୍ଭ ପାଇଁ ସର୍ବନିମ୍ନ ୨ ଖେଳାଳି ଆବଶ୍ୟକ", waiting_msg: "ହୋଷ୍ଟ୍ ଗେମ୍ ଆରମ୍ଭ କରିବାକୁ ଅପେକ୍ଷା କରନ୍ତୁ...", leave_lobby_btn: "ଲବି ଛାଡନ୍ତୁ", question: "ପ୍ରଶ୍ନ", results_title: "ଗେମ୍ ସମାପ୍ତ!", final_scores: "ଅନ୍ତିମ ସ୍କୋର୍", waiting_for_others: "ଅନ୍ୟ ଖେଳାଳିଙ୍କ ପାଇଁ ଅପେକ୍ଷା କରୁଛି...", show_answers_btn: "ଉତ୍ତର ଦେଖନ୍ତୁ", answer_key: "ଉତ୍ତର ସୂଚୀ", correct_answer: "ସଠିକ୍ ଉତ୍ତର", your_answer: "ଆପଣଙ୍କ ଉତ୍ତର", correct: "ସଠିକ୍", incorrect: "ଭୁଲ", unanswered: "ଉତ୍ତର ଦିଆଯାଇନାହିଁ", rank_header: "ରାଙ୍କ୍", name_header: "ନାମ", score_header: "ସ୍କୋର୍", play_again_btn: "ପୁଣି ଖେଳନ୍ତୁ", time_up_msg: "ସମୟ ସମାପ୍ତ!", room_deleted_msg: "ରୁମ୍ ହୋଷ୍ଟ୍ ଦ୍ଵାରା ଡିଲିଟ୍ ହୋଇଯାଇଛି |", you_msg: "ଆପଣ", minute_msg: "ମିନିଟ୍", download_report_btn: "ରିପୋର୍ଟ ଡାଉନଲୋଡ୍ କରନ୍ତୁ", room_code_error: "ଦୟାକରି ଏକ ୪-ଅଙ୍କ ବିଶିଷ୍ଟ କୋଡ୍ ଦିଅନ୍ତୁ |", general_error: "ଆପଣଙ୍କ ନାମ ଆବଶ୍ୟକ |", room_exists_error: "This room code already exists.", room_not_found_error: "ରୁମ୍ ମିଳିଲା ନାହିଁ |", room_full_error: "ରୁମ୍ ପୂର୍ଣ୍ଣ ଅଛି |", name_in_use_error: "ଏହି ନାମ ପୂର୍ବରୁ ବ୍ୟବହୃତ ହୋଇଛି |", password_error: "ଭୁଲ୍ ପାସୱାର୍ଡ |", share_btn: "ସାଙ୍ଗମାନଙ୍କୁ ନିମନ୍ତ୍ରଣ କରନ୍ତୁ", invite_copied: "ନିମନ୍ତ୍ରଣ ଲିଙ୍କ୍ କପି ହୋଇଗଲା!", you_were_kicked_msg: "ଆପଣଙ୍କୁ ହୋଷ୍ଟ୍ ଦ୍ଵାରା ରୁମ୍ ରୁ ବାହାର କରିଦିଆଯାଇଛି |", live_players_text: "ଏବେ {{count}} ଜଣ ଖେଳୁଛନ୍ତି", ping_text: "ପିଙ୍ଗ୍", about_btn: "ଆମ ବିଷୟରେ", footer_made_by: "❤️ ସହିତ <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>ସନ୍ଦୀପ୍ ବିଶ୍ଵାଳ G</a> ଙ୍କ ଦ୍ଵାରା ପ୍ରସ୍ତୁତ", ping_offline: "ପିଙ୍ଗ୍: 999ms", no_internet_title: "କୌଣସି ଇଣ୍ଟରନେଟ୍ ସଂଯୋଗ ନାହିଁ", no_internet_msg: "ଦୟାକରି ମୋବାଇଲ୍ ଡାଟା ଚାଲୁ କରନ୍ତୁ କିମ୍ବା ୱାଇଫାଇ ସହିତ ସଂଯୋଗ କରନ୍ତୁ |", joining_room: "SB{{roomCode}} ରେ ଯୋଗ ଦେଉଛି...",
+            detailed_report_header: "ବିସ୍ତୃତ ଉତ୍ତର ବିଶ୍ଳେଷଣ", answered_header: "ଉତ୍ତର ଦେଲେ", status_header: "ସ୍ଥିତି"
         },
         en: {
-            logo_text: "SB Math Wiz", home_btn: "Home", main_website_btn: "Main Website", other_games_btn: "Math Wizard", welcome: "Welcome to Math Wiz!", create_room_btn: "Create Room", join_room_btn: "Join Room", check_results_btn: "Results", check_results_btn_main: "Check Past Results", create_title: "Create a Game Room", room_code_label: "Room Code", name_label: "Your Name", password_label: "Room Password (Optional)", create_btn: "Create & Enter Lobby", back_btn: "Back", join_title: "Join a Game Room", join_btn: "Join Lobby", lobby_title: "Lobby", room_code_display: "Room Code:", players_in_room: "Players:", game_settings_title: "Game Settings", total_time_label: "Total Time", q_count_label: "No. of Questions", game_type_label: "Game Type", difficulty_label: "Difficulty", type_mix: "Mix", type_add: "Addition", type_sub: "Subtraction", type_mul: "Multiplication", type_div: "Division", diff_easy: "Easy", diff_medium: "Medium", diff_hard: "Hard", diff_extra_hard: "Extra Hard", start_game_btn: "Start Game", start_game_info: "Minimum 2 players to start", waiting_msg: "Waiting for the host to start...", leave_lobby_btn: "Leave Lobby", question: "Question", results_title: "Game Over!", final_scores: "Final Scores", waiting_for_others: "Waiting for other players to finish...", show_answers_btn: "Show Answers", answer_key: "Answer Key", correct_answer: "Correct Answer", your_answer: "Your Answer", correct: "Correct", incorrect: "Incorrect", unanswered: "Unanswered", rank_header: "Rank", name_header: "Name", score_header: "Score", play_again_btn: "Play Again", time_up_msg: "Time's Up!", room_deleted_msg: "Room was deleted by host.", you_msg: "You", minute_msg: "Minutes", download_report_btn: "Download Report", room_code_error: "Please enter a 4-digit room code.", general_error: "Your name is required.", room_exists_error: "This room code already exists.", room_not_found_error: "Room not found.", room_full_error: "Room is full.", name_in_use_error: "This name is already in use.", password_error: "Incorrect password.", share_btn: "Invite Friends", invite_copied: "Invite link copied!", you_were_kicked_msg: "You have been removed from the room by the host.", live_players_text: "Now playing: {{count}} people", ping_text: "Ping", about_btn: "About", footer_made_by: "Made with ❤️ by <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>Sandeep Biswal G</a>", ping_offline: "Ping: 666+", no_internet_title: "No Internet Connection", no_internet_msg: "Please turn on mobile data or connect to a wifi.", joining_room: "Joining SB{{roomCode}}..."
+            logo_text: "SB Math Wiz", home_btn: "Home", main_website_btn: "Main Website", other_games_btn: "Math Wizard", welcome: "Welcome to Math Wiz!", create_room_btn: "Create Room", join_room_btn: "Join Room", check_results_btn: "Results", check_results_btn_main: "Check Past Results", create_title: "Create a Game Room", room_code_label: "Room Code", name_label: "Your Name", password_label: "Room Password (Optional)", create_btn: "Create & Enter Lobby", back_btn: "Back", join_title: "Join a Game Room", join_btn: "Join Lobby", lobby_title: "Lobby", room_code_display: "Room Code:", players_in_room: "Players:", game_settings_title: "Game Settings", total_time_label: "Total Time", q_count_label: "No. of Questions", game_type_label: "Game Type", difficulty_label: "Difficulty", type_mix: "Mix", type_add: "Addition", type_sub: "Subtraction", type_mul: "Multiplication", type_div: "Division", diff_easy: "Easy", diff_medium: "Medium", diff_hard: "Hard", diff_extra_hard: "Extra Hard", start_game_btn: "Start Game", start_game_info: "Minimum 2 players to start", waiting_msg: "Waiting for the host to start...", leave_lobby_btn: "Leave Lobby", question: "Question", results_title: "Game Over!", final_scores: "Final Scores", waiting_for_others: "Waiting for other players to finish...", show_answers_btn: "Show Answers", answer_key: "Answer Key", correct_answer: "Correct Answer", your_answer: "Your Answer", correct: "Correct", incorrect: "Incorrect", unanswered: "Unanswered", rank_header: "Rank", name_header: "Name", score_header: "Score", play_again_btn: "Play Again", time_up_msg: "Time's Up!", room_deleted_msg: "Room was deleted by host.", you_msg: "You", minute_msg: "Minutes", download_report_btn: "Download Report", room_code_error: "Please enter a 4-digit room code.", general_error: "Your name is required.", room_exists_error: "This room code already exists.", room_not_found_error: "Room not found.", room_full_error: "Room is full.", name_in_use_error: "This name is already in use.", password_error: "Incorrect password.", share_btn: "Invite Friends", invite_copied: "Invite link copied!", you_were_kicked_msg: "You have been removed from the room by the host.", live_players_text: "Now playing: {{count}} people", ping_text: "Ping", about_btn: "About", footer_made_by: "Made with ❤️ by <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>Sandeep Biswal G</a>", ping_offline: "Ping: 666+", no_internet_title: "No Internet Connection", no_internet_msg: "Please turn on mobile data or connect to a wifi.", joining_room: "Joining SB{{roomCode}}...",
+            detailed_report_header: "Detailed Answer Breakdown", answered_header: "Answered", status_header: "Status"
         }
     };
     const PLAYER_LIMIT = 100;
@@ -214,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
     async function startMainTimer(roomData) { if (gameState.mainGameTimer) clearInterval(gameState.mainGameTimer); const serverTimeOffsetSnapshot = await db.ref('/.info/serverTimeOffset').once('value'); const serverTimeOffset = serverTimeOffsetSnapshot.val() || 0; if (typeof roomData.gameStartedAt !== 'number') { console.error("Game start time not found!"); dom.main_timer.textContent = '...'; return; } const estimatedServerTimeNow = new Date().getTime() + serverTimeOffset; const elapsedTime = Math.floor((estimatedServerTimeNow - roomData.gameStartedAt) / 1000); let timeLeft = roomData.settings.timer - elapsedTime; if (timeLeft < 0) timeLeft = 0; const update = () => dom.main_timer.textContent = `${displayNum(Math.floor(timeLeft/60))}:${displayNum((timeLeft%60).toString().padStart(2,'0'))}`; update(); gameState.mainGameTimer = setInterval(() => { if (--timeLeft < 0) { forceEndGame(true); } else update(); }, 1000); }
     async function displayNextQuestion() { gameLogicState.currentQuestionIndex++; const roomData = await getRoomData(gameState.roomCode); if (!roomData || gameLogicState.currentQuestionIndex >= roomData.settings.q_count) { forceEndGame(false); return; } const q = gameState.questions[gameLogicState.currentQuestionIndex]; dom.progress_bar.style.width = `${((gameLogicState.currentQuestionIndex + 1) / roomData.settings.q_count) * 100}%`; dom.question_counter.textContent = `${translations[document.documentElement.lang].question} ${displayNum(gameLogicState.currentQuestionIndex + 1)}/${displayNum(roomData.settings.q_count)}`; const qText = q.question.split(' ').map(part => isNaN(part) ? part : displayNum(part)).join(' '); dom.question_container.textContent = `${qText} = ?`; dom.answer_options.innerHTML = q.options.map(o => `<button class="btn answer-btn">${displayNum(o)}</button>`).join(''); dom.answer_options.querySelectorAll('.answer-btn').forEach(b => b.onclick = () => handleAnswer(parseInt(b.innerText.replace(/[୦-୯]/g, d => '୦୧୨୩୪୫୬୭୮୯'.indexOf(d))))); }
     function handleAnswer(selected) { const q = gameState.questions[gameLogicState.currentQuestionIndex]; if (selected === q.answer) gameLogicState.score++; gameLogicState.playerAnswers.push({ qIndex: gameLogicState.currentQuestionIndex, question: q.question, answer: selected, correctAnswer: q.answer }); dom.answer_options.querySelectorAll('.answer-btn').forEach(btn => { btn.disabled = true; const val = parseInt(btn.innerText.replace(/[୦-୯]/g, d => '୦୧୨୩୪୫୬୭୮୯'.indexOf(d))); if (val === q.answer) btn.classList.add('correct'); else if (val === selected) btn.classList.add('incorrect'); }); setTimeout(displayNextQuestion, 400); }
-    async function forceEndGame(isTimeUp) { clearInterval(gameState.mainGameTimer); if(isTimeUp) alert(translations[document.documentElement.lang].time_up_msg); const roomData = await getRoomData(gameState.roomCode); if (roomData) { for (let i = gameLogicState.currentQuestionIndex; i < roomData.settings.q_count; i++) { if (gameState.questions && i < gameState.questions.length && !gameLogicState.playerAnswers.find(a => a.qIndex === i)) { gameLogicState.playerAnswers.push({ qIndex: i, question: gameState.questions[i].question, answer: null, correctAnswer: gameState.questions[i].answer }); } } const myResult = { name: gameState.playerName, score: gameLogicState.score, answers: gameLogicState.playerAnswers }; await updateRoomData(gameState.roomCode, { [`results/${gameState.playerName}`]: myResult }); const updatedRoomData = await getRoomData(gameState.roomCode); if(updatedRoomData && updatedRoomData.players && updatedRoomData.results){ const numPlayers = Object.keys(updatedRoomData.players).length; const numResults = Object.keys(updatedRoomData.results).length; if (numResults >= numPlayers) { if (gameState.isHost) { getRoomRef(gameState.roomCode).onDisconnect().cancel(); } await updateRoomData(gameState.roomCode, { status: 'finished' }); } } } window.location.hash = gameState.roomCode; window.location.pathname = window.location.pathname.replace('index.html', 'results.html'); }
+    async function forceEndGame(isTimeUp) { clearInterval(gameState.mainGameTimer); if(isTimeUp) alert(translations[document.documentElement.lang].time_up_msg); showScreen('results-screen'); dom.results_subtitle.setAttribute('data-key', 'waiting_for_others'); setLanguage(document.documentElement.lang); startResultsListener(); const roomData = await getRoomData(gameState.roomCode); if (roomData) { for (let i = gameLogicState.currentQuestionIndex; i < roomData.settings.q_count; i++) { if (gameState.questions && i < gameState.questions.length && !gameLogicState.playerAnswers.find(a => a.qIndex === i)) { gameLogicState.playerAnswers.push({ qIndex: i, question: gameState.questions[i].question, answer: null, correctAnswer: gameState.questions[i].answer }); } } const myResult = { name: gameState.playerName, score: gameLogicState.score, answers: gameLogicState.playerAnswers }; await updateRoomData(gameState.roomCode, { [`results/${gameState.playerName}`]: myResult }); const updatedRoomData = await getRoomData(gameState.roomCode); if(updatedRoomData && updatedRoomData.players && updatedRoomData.results){ const numPlayers = Object.keys(updatedRoomData.players).length; const numResults = Object.keys(updatedRoomData.results).length; if (numResults >= numPlayers) { if (gameState.isHost) { getRoomRef(gameState.roomCode).onDisconnect().cancel(); } await updateRoomData(gameState.roomCode, { status: 'finished' }); } } } }
     function startResultsListener() { if (gameState.resultsListener) getRoomRef(gameState.roomCode).off('value', gameState.resultsListener); gameState.resultsListener = (snapshot) => { const finalRoomData = snapshot.val(); if(finalRoomData && finalRoomData.status === 'finished') { getRoomRef(gameState.roomCode).off('value', gameState.resultsListener); gameState.resultsListener = null; dom.results_room_code.textContent = `Room: ${gameState.roomCode}`; dom.results_subtitle.setAttribute('data-key', 'final_scores'); setLanguage(document.documentElement.lang); const results = Object.values(finalRoomData.results); dom.results_body.innerHTML = results.sort((a,b) => b.score - a.score).map((r, i) => `<tr><td>${displayNum(i+1)}</td><td>${r.name}</td><td>${displayNum(r.score)}/${displayNum(finalRoomData.settings.q_count)}</td></tr>`).join(''); } }; getRoomRef(gameState.roomCode).on('value', gameState.resultsListener); }
     
     // --- Event Listeners & UI Logic ---
@@ -226,6 +266,93 @@ document.addEventListener('DOMContentLoaded', () => {
     async function generateUniqueRoomCode() { let roomCode; let roomExists = true; while(roomExists) { const randomNum = Math.floor(1000 + Math.random() * 9000).toString(); roomCode = `SB${randomNum}`; const data = await getRoomData(roomCode); roomExists = data !== null; } return roomCode; }
     dom.create_btn.onclick = async () => { const pn = dom.create_player_name.value.trim(); const pw = dom.create_password.value.trim(); const lang = document.documentElement.lang; dom.create_error.textContent = ''; if (!pn) { dom.create_error.textContent = translations[lang].general_error; return; } const rc = await generateUniqueRoomCode(); const settings = { timer: 60, q_count: 10, type: 'mix', difficulty: 'easy' }; await getRoomRef(rc).set({ password: pw || null, players: { [pn]: { name: pn, isHost: true } }, status: 'lobby', settings, createdAt: firebase.database.ServerValue.TIMESTAMP }); enterLobby(rc, pn, true); };
     dom.join_btn.onclick = async () => { const rcNum = dom.join_room_code_num.value.trim(); const pn = dom.join_player_name.value.trim(); const pw = dom.join_password.value.trim(); const lang = document.documentElement.lang; dom.join_error.textContent = ''; if (rcNum.length !== 4 || !/^\d{4}$/.test(rcNum)) { dom.join_error.textContent = translations[lang].room_code_error; return; } if (!pn) { dom.join_error.textContent = translations[lang].general_error; return; } const rc = `SB${rcNum}`; dom.joining_popup.textContent = translations[lang].joining_room.replace('{{roomCode}}', rcNum); dom.joining_popup.classList.add('visible'); try { const rd = await getRoomData(rc); if (!rd) { dom.join_error.textContent = translations[lang].room_not_found_error; return; } if (rd.players && Object.keys(rd.players).length >= PLAYER_LIMIT) { dom.join_error.textContent = translations[lang].room_full_error; return; } if (rd.players && rd.players[pn]) { dom.join_error.textContent = translations[lang].name_in_use_error; return; } if (rd.password && rd.password !== pw) { dom.join_error.textContent = translations[lang].password_error; return; } await updateRoomData(rc, { [`players/${pn}`]: { name: pn, isHost: false } }); enterLobby(rc, pn, false); } finally { dom.joining_popup.classList.remove('visible'); } };
+    dom.start_game_btn.onclick = async () => { if (!gameState.isHost || !gameState.roomCode) return; dom.start_game_btn.disabled = true; const roomData = await getRoomData(gameState.roomCode); if (!roomData || !roomData.players || Object.keys(roomData.players).length < 2) { dom.start_game_btn.disabled = false; return; } const { settings } = roomData; const questions = generateMathQuestions(gameState.roomCode, settings.type, settings.difficulty, Number(settings.q_count)); await updateRoomData(gameState.roomCode, { status: 'started', questions: questions, gameStartedAt: firebase.database.ServerValue.TIMESTAMP }); };
+    
+    // ================== START OF FIX ==================
+    dom.download_report_btn.onclick = async () => {
+        const roomData = await getRoomData(gameState.roomCode);
+        if (!roomData || roomData.status !== 'finished' || !roomData.results || !roomData.questions) {
+            alert("Report data is not fully available yet. Please wait for the game to finish completely.");
+            return;
+        }
+
+        const lang = document.documentElement.lang;
+        const currentTranslations = translations[lang];
+        const results = Object.values(roomData.results).sort((a, b) => b.score - a.score);
+        
+        let reportContent = `SB Math Wiz - Game Report\n`;
+        reportContent += `=========================\n\n`;
+        reportContent += `Room Code: ${gameState.roomCode}\n`;
+        reportContent += `Date: ${new Date(roomData.createdAt).toLocaleString()}\n\n`;
+        
+        // --- Part 1: Final Scores Summary ---
+        reportContent += `${currentTranslations.final_scores}:\n`;
+        reportContent += `------------\n`;
+        const headerRank = (currentTranslations.rank_header || 'Rank').padEnd(6);
+        const headerName = (currentTranslations.name_header || 'Name').padEnd(21);
+        const headerScore = (currentTranslations.score_header || 'Score');
+        reportContent += `${headerRank}${headerName}${headerScore}\n`;
+
+        results.forEach((r, i) => {
+            const rank = (i + 1).toString().padEnd(6);
+            const name = r.name.padEnd(21);
+            const score = `${r.score}/${roomData.settings.q_count}`;
+            reportContent += `${rank}${name}${score}\n`;
+        });
+
+        // --- Part 2: Detailed Question Breakdown ---
+        reportContent += `\n\n=========================\n`;
+        reportContent += `${currentTranslations.detailed_report_header}:\n`;
+        reportContent += `=========================\n\n`;
+
+        roomData.questions.forEach((q, index) => {
+            const qNum = index + 1;
+            const qText = q.question.split(' ').map(p => isNaN(p) ? p : displayNum(p)).join(' ');
+            reportContent += `${currentTranslations.question} ${qNum}: ${qText} = ${displayNum(q.answer)}\n`;
+
+            results.forEach(playerResult => {
+                const playerAnswerObj = playerResult.answers.find(a => a.qIndex === index);
+                let answerText;
+                let statusText;
+
+                if (playerAnswerObj) {
+                    if (playerAnswerObj.answer === null) {
+                        answerText = currentTranslations.unanswered;
+                        statusText = `(${currentTranslations.incorrect})`;
+                    } else {
+                        answerText = displayNum(playerAnswerObj.answer);
+                        if (playerAnswerObj.answer === q.answer) {
+                            statusText = `(${currentTranslations.correct})`;
+                        } else {
+                            statusText = `(${currentTranslations.incorrect})`;
+                        }
+                    }
+                } else {
+                    answerText = "N/A"; // Should not happen, but for safety
+                    statusText = "";
+                }
+                
+                reportContent += `  - ${playerResult.name.padEnd(20)}: ${currentTranslations.answered_header} ${answerText.padEnd(8)} ${statusText}\n`;
+            });
+            reportContent += `\n`; // Add a space between questions
+        });
+
+        reportContent += `\nReport generated by SB Odia Games.`;
+
+        // Create a blob and trigger download
+        const blob = new Blob([reportContent], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        a.download = `Game-Report-${gameState.roomCode}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+    };
+    // =================== END OF FIX ===================
+
     function updateDifficultyOptions() { const gameType = dom.game_type.value; const extraHardOption = dom.game_difficulty.querySelector('option[value="extra_hard"]'); if (extraHardOption) { extraHardOption.disabled = (gameType !== 'mix'); if (gameType !== 'mix' && dom.game_difficulty.value === 'extra_hard') { dom.game_difficulty.value = 'hard'; if(gameState.isHost) { updateRoomData(gameState.roomCode, { 'settings/difficulty': 'hard' }); } } } }
     dom.game_type.onchange = () => { updateDifficultyOptions(); if(gameState.isHost) { updateRoomData(gameState.roomCode, { 'settings/type': dom.game_type.value }); } };
     ['game-timer', 'question-count', 'game-difficulty'].forEach(elId => { dom[elId.replace('-', '_')].onchange = (e) => { if (gameState.isHost) { let key, val = e.target.value; if(e.target.id === 'game-timer') key = 'timer'; else if(e.target.id === 'question-count') key = 'q_count'; else if(e.target.id === 'game-difficulty') key = 'difficulty'; if(key) updateRoomData(gameState.roomCode, { [`settings/${key}`]: val }); } }; });
