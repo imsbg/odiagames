@@ -517,5 +517,104 @@
             });
         }
     </script>
+    <!-- ======== FIREBASE SDK SCRIPTS (Required) ======== -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<!-- ======== JAVASCRIPT FOR VIEWING THE COUNTER ONLY ======== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. TRANSLATIONS AND GLOBAL STATE ---
+    const translations = {
+        or: { total_visits_text: "ମୋଟ ପରିଦର୍ଶନ: " },
+        en: { total_visits_text: "Total Visits: " }
+    };
+    let currentLang;
+    let latestVisitCount = 0;
+
+    // --- 2. FIREBASE SETUP ---
+    const firebaseConfig = {
+        // PASTE YOUR FIREBASE CONFIG OBJECT HERE
+        // (The same one you used on your main page)
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // --- 3. HELPER FUNCTIONS ---
+    const toOdiaNumerals = (num) => {
+        const odiaDigits = ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'];
+        return String(num).split('').map(digit => odiaDigits[digit] || digit).join('');
+    };
+
+    const displayCount = (count) => {
+        const countElement = document.getElementById('visit-count');
+        const textElement = document.querySelector('[data-key="total_visits_text"]');
+
+        if (countElement) {
+            if (currentLang === 'or') {
+                countElement.textContent = toOdiaNumerals(count);
+            } else {
+                countElement.textContent = count.toLocaleString('en-US');
+            }
+        }
+        if (textElement && translations[currentLang]) {
+            textElement.textContent = translations[currentLang].total_visits_text;
+        }
+    };
+
+    // --- 4. CORE LOGIC ---
+    const setLanguage = (lang) => {
+        if (!translations[lang]) lang = 'or';
+        currentLang = lang;
+        
+        const langToggleBtn = document.getElementById('lang-toggle-btn');
+        if(langToggleBtn) {
+            langToggleBtn.textContent = (lang === 'or') ? 'E' : 'ଓ';
+        }
+        
+        localStorage.setItem('userLanguage', lang);
+        if (latestVisitCount > 0) {
+            displayCount(latestVisitCount);
+        }
+    };
+    
+    // This function listens for live updates and displays them.
+    const listenForCountChanges = () => {
+        const counterRef = db.collection('counters').doc('pageVisits');
+        
+        counterRef.onSnapshot((doc) => {
+            if (doc.exists) {
+                const count = doc.data().count;
+                latestVisitCount = count; // Store the new count
+                displayCount(count); // Display it live
+            } else {
+                console.log("Counter document does not exist.");
+            }
+        }, (error) => {
+            console.error("Error listening for count changes: ", error);
+        });
+    };
+
+    // --- 5. EVENT LISTENERS & INITIALIZATION ---
+    const langToggleBtn = document.getElementById('lang-toggle-btn');
+    if(langToggleBtn) {
+        langToggleBtn.addEventListener('click', () => {
+            const newLang = currentLang === 'or' ? 'en' : 'or';
+            setLanguage(newLang);
+        });
+    }
+
+    const getInitialLanguage = () => {
+        // Simplified for portability, defaults to Odia if not set
+        return localStorage.getItem('userLanguage') || 'or';
+    };
+
+    setLanguage(getInitialLanguage());
+    
+    // This starts the live listener. Notice there is no "increment" call.
+    listenForCountChanges();
+});
+</script>
 </body>
 </html>
