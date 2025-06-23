@@ -72,14 +72,14 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" id="password" required>
+                    <input type="password" id="password">
                 </div>
                 <div class="remember-me">
                      <input type="checkbox" id="remember-me">
                      <label for="remember-me">Remember me</label>
                 </div>
                 <button type="submit" id="login-btn">Login</button>
-                <p id="login-error">Invalid username or password.</p>
+                <p id="login-error">Invalid username.</p>
             </form>
         </div>
 
@@ -89,7 +89,6 @@
                 <h2>Add New Question</h2>
                 <button id="logout-btn">Logout</button>
             </div>
-            
             <form id="question-form">
                 <div class="form-group"><label for="question_en">Question (English)</label><textarea id="question_en" required></textarea></div>
                 <div class="form-group"><label for="question_or">Question (Odia)</label><textarea id="question_or" required></textarea></div>
@@ -112,28 +111,18 @@
                 </div>
                 <button type="submit" id="add-question-btn">Generate Question Code</button>
             </form>
-            
             <div id="output-container">
                 <h3>Code Generated Successfully!</h3>
-                <p><strong>Important:</strong> Copy the line of code below and paste it into your `questions.js` file on a new line, just before the final `];`</p>
+                <p><strong>Important:</strong> Copy the line of code below and paste it into `questions.js`.</p>
                 <pre><code id="output-code"></code></pre>
                 <button id="copy-btn">Copy Code</button>
             </div>
         </div>
     </div>
     
-    <!-- EMBEDDED SHA256 SCRIPT - NO EXTERNAL DEPENDENCY NEEDED -->
     <script>
-  
-    !function(){"use strict";var t=function(t,r){var e=t||"",n=r||{};"string"==typeof e&&(e=new TextEncoder("utf-8").encode(e)),this.options=n,this.h=null,this.A=null,this.B=null,this.C=null,this.D=new ArrayBuffer(64),this.v=new Uint32Array(this.D),this.F=0,this.G=0,this.H=0,this.I=null,this.J=!1,this.K=!1,this.L=null,this.M=null,this.N=null,this.O=null,this.P=0,this.s=!0,this.u=this.u.bind(this),this.o=this.o.bind(this),this.l=this.l.bind(this),this.j=this.j.bind(this),this.h=this.o(e)};var r="object"==typeof window,e=r?window:{},n=!r&&"object"==typeof self?self:{};"undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:void 0;var o=e.JS_SHA256_NO_WINDOW,i=e.JS_SHA256_NO_NODE_JS,a=e.JS_SHA256_NO_COMMON_JS,s=e.JS_SHA256_NO_ARRAY_BUFFER,u=e.JS_SHA256_NO_ARRAY_BUFFER_IS_VIEW;if(s);else var f=s?null:ArrayBuffer,l=u?null:ArrayBuffer.isView;var h="0123456789abcdef".split(""),p=[1116352408,1899447441,3049323471,3921009573,961987163,1508970993,2453635748,2870763221,3624381080,310598401,607225278,1426881987,1925078388,2162078206,2546747445,2821834343,328587141,360762924,4022224774,264347078,604807628,770255983,1249150122,1555081692,1996064986,2554220882,2825468362,321031270,3336571891,3584528711,113926993,338241895,666307205,773529912,1294757372,1396182291,1695183700,1986661051,2177026350,2456956037,2730485921,2820302411,3259730800,3345764771,3516065817,3600352804,4094571909,275423344,430227734,506948616,659060556,883997877,958139571,1322822218,1537002063,1747873779,1955562222,2024104815,2227730452,2361852424,2428436474,2756734187,3204031479,3329325298],d=["hex","array","digest","arrayBuffer"],c="undefined"!=typeof module&&module.exports,y="undefined"!=typeof require,g={};t.prototype.update=function(t){return this.u(t),this},t.prototype.u=function(t){var r,e,n,o=this.v,i=this.D,a=this.options,s=t||"";if("string"==typeof s){var u=this.L||(this.L=new TextEncoder("utf-8"));s=u.encode(s)}var f=s.length;if(this.I||(this.I=a.sharedMemory?s:void 0),this.F+=f,e=this.H,n=this.F,e+f<64){if(a.sharedMemory){var l=new Uint8Array(i);l.set(s,e)}else for(r=0;r<f;++r)i[e+r]=s[r];return this.H+=f,this}var h,p=new Uint8Array(i);if(a.sharedMemory&&s.buffer===i)h=s;else if(a.sharedMemory){var d=this.I.subarray(this.G,this.G+f);this.G+=f,h=d}else h=s;for(this.H&&(p.set(h.subarray(0,64-e),e),h=h.subarray(64-e),this.j(o)),n-=64;n>=64;)o[0]=h[0]<<24|h[1]<<16|h[2]<<8|h[3],o[1]=h[4]<<24|h[5]<<16|h[6]<<8|h[7],o[2]=h[8]<<24|h[9]<<16|h[10]<<8|h[11],o[3]=h[12]<<24|h[13]<<16|h[14]<<8|h[15],o[4]=h[16]<<24|h[17]<<16|h[18]<<8|h[19],o[5]=h[20]<<24|h[21]<<16|h[22]<<8|h[23],o[6]=h[24]<<24|h[25]<<16|h[26]<<8|h[27],o[7]=h[28]<<24|h[29]<<16|h[30]<<8|h[31],o[8]=h[32]<<24|h[33]<<16|h[34]<<8|h[35],o[9]=h[36]<<24|h[37]<<16|h[38]<<8|h[39],o[10]=h[40]<<24|h[41]<<16|h[42]<<8|h[43],o[11]=h[44]<<24|h[45]<<16|h[46]<<8|h[47],o[12]=h[48]<<24|h[49]<<16|h[50]<<8|h[51],o[13]=h[52]<<24|h[53]<<16|h[54]<<8|h[55],o[14]=h[56]<<24|h[57]<<16|h[58]<<8|h[59],o[15]=h[60]<<24|h[61]<<16|h[62]<<8|h[63],this.j(o),n-=64,h=h.subarray(64);p.set(h),this.H=n},t.prototype.finalize=function(){if(!this.K){this.K=!0;var t=this.v,r=this.D,e=new Uint8Array(r),n=this.H;e[n]=128;for(var o=n+1;o%4!=0;++o)e[o]=0;if(t.set(new Uint32Array(r),Math.floor(n/4)),n>55){this.j(t);for(var i=0;i<16;++i)t[i]=0}var a=8*this.F;if(a<=4294967295)t[14]=0,t[15]=a;else{var s=a.toString(16),u=parseInt(s.slice(0,-8),16),f=parseInt(s.slice(-8),16);t[14]=u,t[15]=f}this.j(t)}},t.prototype.o=function(t){var r=this;return r.A=1779033703,r.B=3144134277,r.h=4023233417,r.C=2562383102,r.I=1357860966,r.P=3418070366,r.M=1748771076,r.N=327033209,r.K=!1,r.H=0,r.F=0,r.s&&!e.JS_SHA256_NO_INIT&&(r.A=3238371032,r.B=914150663,r.h=812702999,r.C=4144912697,r.I=4290775857,r.P=1750603025,r.M=1694076839,r.N=3204075428),t&&(r.u(t),r.finalize()),r},t.prototype.l=function(t){t=t||"hex";var r=this.options.outputUpper;this.K||this.finalize();var e=this.A,n=this.B,o=this.h,i=this.C,a=this.I,s=this.P,u=this.M,f=this.N,l=e>>24&255,p=e>>16&255,d=e>>8&255,c=255&e,y=n>>24&255,g=n>>16&255,b=n>>8&255,S=255&n,v=o>>24&255,w=o>>16&255,_=o>>8&255,E=255&o,m=i>>24&255,A=i>>16&255,U=i>>8&255,H=255&i,B=a>>24&255,x=a>>16&255,k=a>>8&255,R=255&a,T=s>>24&255,j=s>>16&255,O=s>>8&255,C=255&s,F=u>>24&255,N=u>>16&255,P=u>>8&255,z=255&u,W=f>>24&255,M=f>>16&255,V=f>>8&255,L=255&f,J=[l,p,d,c,y,g,b,S,v,w,_,E,m,A,U,H,B,x,k,R,T,j,O,C,F,N,P,z,W,M,V,L];if("hex"==t){var I=h,D="";r&&(I=h.map((function(t){return t.toUpperCase()})));for(var G=0;G<32;++G)D+=I[J[G]>>4]+I[15&J[G]];return D}if("array"==t)return J;if("digest"==t)return J;if("arrayBuffer"==t){var K=new ArrayBuffer(32);return new Uint8Array(K).set(J),K}throw"format error: "+t},t.prototype.j=function(t){for(var r,e,n,o,i,a,s,u=new Array(64),f=this.A,l=this.B,h=this.h,d=this.C,c=this.I,y=this.P,g=this.M,b=this.N,S=0;S<16;++S)u[S]=t[S];for(S=16;S<64;++S)r=(e=u[S-2])>>>17|e<<15^(e>>>19|e<<13)^e>>>10,e=u[S-15],n=e>>>7|e<<25^(e>>>18|e<<14)^e>>>3,u[S]=u[S-16]+r+u[S-7]+n<<0;for(S=0;S<64;++S)r=b+(o=f>>>2|f<<30^(f>>>13|f<<19)^(f>>>22|f<<10))+((i=f&l|f&h|l&h)>>>0)+p[S]+u[S],n=c>>>6|c<<26^(c>>>11|c<<21)^(c>>>25|c<<7),a=c&y^~c&g,s=d+r,b=g,g=y,y=c,c=s+n+a<<0,d=h,h=l,l=f,f=r+o+i<<0;this.A=this.A+f<<0,this.B=this.B+l<<0,this.h=this.h+h<<0,this.C=this.C+d<<0,this.I=this.I+c<<0,this.P=this.P+y<<0,this.M=this.M+g<<0,this.N=this.N+b<<0},t.prototype.toString=t.prototype.hex=function(){return this.l("hex")},t.prototype.digest=t.prototype.array=function(){return this.l("array")},t.prototype.arrayBuffer=function(){return this.l("arrayBuffer")};var b=function(r,e){var n=new t(r,e);return n.s=!1,n.o()};b.create=function(r,e){return new t(r,e)},b.update=function(r,e){return b.create(r,e).update(r)},"function"==typeof define&&define.amd?define((function(){return b})):c?module.exports=b:e.sha256=n.sha256=b}();
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-           
-            const PWD_HASH = '83d2871b635742278148c3b7f525530188a8d513813589086f68713d2f3474a5';
-
-            // --- DOM ELEMENT REFERENCES ---
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- DOM Element References ---
             const loginContainer = document.getElementById('login-container');
             const mainContent = document.getElementById('main-content');
             const loginForm = document.getElementById('login-form');
@@ -143,7 +132,6 @@
             const outputCode = document.getElementById('output-code');
             const copyBtn = document.getElementById('copy-btn');
             
-            // --- LOGIN & SESSION LOGIC ---
             function showLogin() {
                 loginContainer.style.display = 'block';
                 mainContent.style.display = 'none';
@@ -155,29 +143,18 @@
                 document.getElementById('login-error').style.display = 'none';
             }
 
-            // Check for "Remember Me" on page load
             if (localStorage.getItem('quizAdminLoggedIn') === 'true') {
                 showMainContent();
             }
 
-            // Login form submission
-            loginForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                // **CRITICAL FIX**: Use .trim() to remove accidental whitespace
+            // --- Simplified Login Logic ---
+            loginForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
                 const username = document.getElementById('username').value.trim();
-                const password = document.getElementById('password').value.trim();
                 const rememberMe = document.getElementById('remember-me').checked;
                 
-                // The sha256() function is now embedded in this file, so it will always work.
-                const enteredPwdHash = sha256(password);
-
-                // --- FOR DEBUGGING IF IT STILL FAILS ---
-                console.log("Username entered:", username);
-                console.log("Password hash generated from your input:", enteredPwdHash);
-                console.log("Correct hash we are checking against:", PWD_HASH);
-                // --- END DEBUGGING ---
-
-                if (username.toLowerCase() === 'sbg' && enteredPwdHash === PWD_HASH) {
+                if (username.toLowerCase() === 'sbg') {
                     if (rememberMe) {
                         localStorage.setItem('quizAdminLoggedIn', 'true');
                     }
@@ -187,7 +164,6 @@
                 }
             });
 
-            // Logout button
             logoutBtn.addEventListener('click', () => {
                 localStorage.removeItem('quizAdminLoggedIn');
                 questionForm.reset();
@@ -195,35 +171,42 @@
                 showLogin();
             });
 
-            // --- QUESTION FORM LOGIC ---
+            // --- Form Submission to generate code ---
             questionForm.addEventListener('submit', (e) => {
                 e.preventDefault();
-
                 const newQuestion = {
                     question_or: document.getElementById('question_or').value.trim(),
                     question_en: document.getElementById('question_en').value.trim(),
-                    options_or: [
-                        document.getElementById('option_or_0').value.trim(), document.getElementById('option_or_1').value.trim(),
-                        document.getElementById('option_or_2').value.trim(), document.getElementById('option_or_3').value.trim(),
-                    ],
-                    options_en: [
-                        document.getElementById('option_en_0').value.trim(), document.getElementById('option_en_1').value.trim(),
-                        document.getElementById('option_en_2').value.trim(), document.getElementById('option_en_3').value.trim(),
-                    ],
+                    options_or: [ document.getElementById('option_or_0').value.trim(), document.getElementById('option_or_1').value.trim(), document.getElementById('option_or_2').value.trim(), document.getElementById('option_or_3').value.trim(), ],
+                    options_en: [ document.getElementById('option_en_0').value.trim(), document.getElementById('option_en_1').value.trim(), document.getElementById('option_en_2').value.trim(), document.getElementById('option_en_3').value.trim(), ],
                     correct_answer_index: parseInt(document.querySelector('input[name="correct_answer"]:checked').value)
                 };
-
-                // Format as a compact, single-line JSON string. Using JSON.stringify ensures proper escaping.
-                const jsonString = JSON.stringify(newQuestion);
                 
-                // Display the output with a trailing comma
-                outputCode.textContent = jsonString + ',';
-                outputContainer.style.display = 'block';
+                // *** THIS IS THE CHANGED PART ***
+                // Manually build the string to match the desired JavaScript Object Literal format.
+                
+                // Helper function to safely wrap strings in quotes and escape internal quotes.
+                const toQuotedString = (str) => `"${str.replace(/"/g, '\\"')}"`;
 
+                // Build the array strings
+                const optionsOrArrayString = `[${newQuestion.options_or.map(toQuotedString).join(', ')}]`;
+                const optionsEnArrayString = `[${newQuestion.options_en.map(toQuotedString).join(', ')}]`;
+                
+                // Assemble the final string
+                const objectLiteralString = 
+                    `{ question_or: ${toQuotedString(newQuestion.question_or)}, ` +
+                    `question_en: ${toQuotedString(newQuestion.question_en)}, ` +
+                    `options_or: ${optionsOrArrayString}, ` +
+                    `options_en: ${optionsEnArrayString}, ` +
+                    `correct_answer_index: ${newQuestion.correct_answer_index} },`;
+
+                outputCode.textContent = objectLiteralString;
+                // *** END OF CHANGED PART ***
+                
+                outputContainer.style.display = 'block';
                 outputContainer.scrollIntoView({ behavior: 'smooth' });
             });
             
-            // --- COPY TO CLIPBOARD LOGIC ---
             copyBtn.addEventListener('click', () => {
                 navigator.clipboard.writeText(outputCode.textContent)
                     .then(() => {
