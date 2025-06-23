@@ -1,60 +1,66 @@
 <!DOCTYPE html>
 <!-- SEO: Specify language in the HTML tag -->
 <html lang="or">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta name="theme-color" content="#0a2463"/>
-<link rel="icon" type="image/png" href="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/my.png">
+    <meta name="theme-color" content="#0a2463" />
+    <link rel="icon" type="image/png"
+        href="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/my.png">
 
     <!-- SEO: 1. CRITICAL TITLE TAG - Keywords first -->
     <title>ମୋ ଓଡ଼ିଆ ଖେଳ, My Odia Games - Play Fun Odia Games | SB ମୋ ଓଡ଼ିଆ ଖେଳ</title>
 
     <!-- SEO: 2. POWERFUL META DESCRIPTION - Compelling and keyword-rich -->
-    <meta name="description" content="Play ଗଣିତ ବିଜ୍ଞ (Math Wizard) and other fun Odia games. Challenge your mind with our educational math puzzles. The best collection of Odia games for learning and fun!">
+    <meta name="description"
+        content="Play ଗଣିତ ବିଜ୍ଞ (Math Wizard) and other fun Odia games. Challenge your mind with our educational math puzzles. The best collection of Odia games for learning and fun!">
 
     <!-- SEO: 3. CANONICAL URL - Prevents duplicate content issues -->
     <link rel="canonical" href="https://imsbg.github.io/odiagames/">
 
     <!-- SEO: 4. META KEYWORDS (Good for focus) -->
-    <meta name="keywords" content="ଗଣିତ ବିଜ୍ଞ, Math Wizard, Odia Games, ଓଡ଼ିଆ ଖେଳ, Odia educational games, math puzzles, odia learning games, SB Odia Games, ସନ୍ଦୀପ ବିଶ୍ଵାଳ ଗେମ୍">
+    <meta name="keywords"
+        content="ଗଣିତ ବିଜ୍ଞ, Math Wizard, Odia Games, ଓଡ଼ିଆ ଖେଳ, Odia educational games, math puzzles, odia learning games, SB Odia Games, ସନ୍ଦୀପ ବିଶ୍ଵାଳ ଗେମ୍">
 
     <!-- SEO: 5. OPEN GRAPH & TWITTER CARDS (For social media sharing) -->
     <meta property="og:title" content="ଗଣିତ ବିଜ୍ଞ, Math Wizard - Play Fun Odia Games">
-    <meta property="og:description" content="Play the best collection of Odia games like ଗଣିତ ବିଜ୍ଞ (Math Wizard). Fun and educational math puzzles for everyone.">
-    <meta property="og:image" content="https://odiagames.netlify.app/icon/mo.png"> <!-- IMPORTANT: Create a 1200x630px image named 'social-preview.png' -->
+    <meta property="og:description"
+        content="Play the best collection of Odia games like ଗଣିତ ବିଜ୍ଞ (Math Wizard). Fun and educational math puzzles for everyone.">
+    <meta property="og:image" content="https://odiagames.netlify.app/icon/mo.png">
+    <!-- IMPORTANT: Create a 1200x630px image named 'social-preview.png' -->
     <meta property="og:url" content="https://odiagames.netlify.app/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="or_IN">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ଗଣିତ ବିଜ୍ଞ, Math Wizard - Play Fun Odia Games">
-    <meta name="twitter:description" content="The best collection of Odia educational games, including the popular Math Wizard (ଗଣିତ ବିଜ୍ଞ).">
+    <meta name="twitter:description"
+        content="The best collection of Odia educational games, including the popular Math Wizard (ଗଣିତ ବିଜ୍ଞ).">
     <meta name="twitter:image" content="https://imsbg.github.io/odiagames/icon/mo.png"> <!-- Use the same image -->
 
 
     <!-- Google Fonts: Noto Sans Oriya for Odia & Poppins for English -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- CSS STYLES --- */
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
+        rel="stylesheet">
 
-        /* --- CSS Variables for Easy Theme Management --- */
+    <style>
+        /* (Your existing CSS code is unchanged here) */
         :root {
-            --primary-color: #0A2463; /* Deep Blue */
-            --secondary-color: #00693f; /* Your new Green color */
-            --accent-color: #FF9F1C; /* Saffron/Orange */
+            --primary-color: #0A2463;
+            --secondary-color: #00693f;
+            --accent-color: #FF9F1C;
             --text-light: #FFFFFF;
             --text-dark: #121212;
             --bg-light: #F4F7FC;
             --card-bg: #FFFFFF;
             --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --header-bg-scrolled: rgba(255, 255, 255, 0.85); /* For Glassmorphism */
+            --header-bg-scrolled: rgba(255, 255, 255, 0.85);
             --header-text-scrolled: var(--primary-color);
         }
 
-        /* --- General & Reset Styles --- */
         * {
             margin: 0;
             padding: 0;
@@ -85,7 +91,6 @@
             padding: 0 20px;
         }
 
-        /* --- Header Styles (Sticky & Dynamic) --- */
         header {
             background-color: var(--primary-color);
             color: var(--text-light);
@@ -96,7 +101,6 @@
             transition: background-color 0.5s ease, backdrop-filter 0.5s ease, padding 0.5s ease;
         }
 
-        /* Scrolled state for the header */
         header.scrolled {
             background-color: var(--header-bg-scrolled);
             color: var(--header-text-scrolled);
@@ -114,14 +118,13 @@
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
-            color: inherit; /* Inherits color from header */
+            color: inherit;
             text-decoration: none;
             transition: font-size 0.3s ease, color 0.4s ease;
         }
-        
-        /* Nav Links Styling */
+
         nav a {
-            color: inherit; /* Inherits color from header */
+            color: inherit;
             text-decoration: none;
             font-size: 1rem;
             font-weight: 600;
@@ -132,12 +135,11 @@
         nav a:hover {
             color: var(--accent-color);
         }
-        
-        /* Scrolled state for links */
+
         header.scrolled nav a:hover {
             color: var(--accent-color);
         }
-        
+
         .header-right-group {
             display: flex;
             align-items: center;
@@ -147,25 +149,23 @@
         nav ul {
             list-style: none;
             display: flex;
-            align-items: center; /* Vertically align items */
+            align-items: center;
             gap: 2rem;
         }
 
-        /* --- Instagram Link Styles --- */
         .instagram-link {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        
+
         .instagram-link svg {
             width: 24px;
             height: 24px;
-            fill: currentColor; /* Use the parent link's text color by default */
-            transition: fill 0.3s ease; /* Add a smooth transition for the fill */
+            fill: currentColor;
+            transition: fill 0.3s ease;
         }
-        
-        /* --- Styles for the single language toggle button --- */
+
         .lang-toggle-btn {
             background-color: var(--secondary-color);
             color: var(--text-light);
@@ -176,23 +176,21 @@
             cursor: pointer;
             font-size: 1.2rem;
             font-weight: 700;
-            /* Use both fonts so it can render either character correctly */
             font-family: 'Poppins', 'Noto Sans Oriya', sans-serif;
             transition: background-color 0.3s ease, transform 0.2s ease;
             display: flex;
             justify-content: center;
             align-items: center;
-            line-height: 1; /* Helps vertically center single characters */
+            line-height: 1;
         }
 
         .lang-toggle-btn:hover {
             background-color: var(--accent-color);
             transform: scale(1.1);
         }
-        
-        /* --- Mobile Menu Toggle ("Hamburger") --- */
+
         #menu-toggle {
-            display: none; /* Hidden on desktop */
+            display: none;
             width: 30px;
             height: 22px;
             cursor: pointer;
@@ -206,39 +204,40 @@
             display: block;
             width: 100%;
             height: 3px;
-            background-color: var(--text-light); /* Default white color */
+            background-color: var(--text-light);
             border-radius: 3px;
             transition: all 0.3s ease-in-out;
         }
-        
-        /* Change hamburger color on scroll */
+
         header.scrolled #menu-toggle span {
             background-color: var(--header-text-scrolled);
         }
-        
-        /* Animate hamburger to "X" */
+
         #menu-toggle.active span:nth-child(1) {
             transform: rotate(45deg) translate(7px, 7px);
         }
+
         #menu-toggle.active span:nth-child(2) {
             opacity: 0;
         }
+
         #menu-toggle.active span:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -7px);
         }
-        
-        /* SEO: CSS FOR THE NEW HERO SECTION */
+
         .hero-section {
             background: var(--primary-color);
             color: var(--text-light);
             text-align: center;
             padding: 3rem 1rem;
         }
+
         .hero-section h1 {
             font-size: 3rem;
             margin-bottom: 0.5rem;
             line-height: 1.2;
         }
+
         .hero-section p {
             font-size: 1.2rem;
             max-width: 700px;
@@ -246,7 +245,6 @@
             opacity: 0.9;
         }
 
-        /* --- Games Grid Section --- */
         .games-grid {
             padding: 4rem 0;
         }
@@ -274,22 +272,21 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            position: relative; /* ADDED: To position the 'NEW' badge relative to the card */
-            overflow: hidden;   /* ADDED: To contain the ribbon badge neatly */
+            position: relative;
+            overflow: hidden;
         }
 
         .game-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
-        
-        /* ADDED: Styles for the "NEW" badge/ribbon */
+
         .new-game::after {
-            content: attr(data-new-badge); /* Gets content from a data attribute for translation */
+            content: attr(data-new-badge);
             position: absolute;
             top: 10px;
             right: -35px;
-            background-color: #2ecc71; /* A nice, vibrant green */
+            background-color: #2ecc71;
             color: var(--text-light);
             padding: 5px 40px;
             font-size: 0.9rem;
@@ -297,7 +294,7 @@
             font-family: 'Poppins', 'Noto Sans Oriya', sans-serif;
             text-transform: uppercase;
             transform: rotate(45deg);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1;
         }
 
@@ -309,8 +306,18 @@
             object-fit: cover;
         }
 
-        .game-card h3 { font-size: 1.5rem; color: var(--primary-color); margin-bottom: 0.75rem; }
-        .game-card p { font-size: 1rem; color: #555; margin-bottom: 1.5rem; flex-grow: 1; }
+        .game-card h3 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.75rem;
+        }
+
+        .game-card p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
 
         .btn-play {
             display: inline-block;
@@ -322,9 +329,11 @@
             font-weight: 700;
             transition: background-color 0.3s ease;
         }
-        .btn-play:hover { background-color: #e68a00; }
 
-        /* --- Footer --- */
+        .btn-play:hover {
+            background-color: #e68a00;
+        }
+
         footer {
             background-color: var(--primary-color);
             color: var(--text-light);
@@ -332,51 +341,137 @@
             text-align: center;
             margin-top: 2rem;
         }
-        .footer-links { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; }
-        .footer-links a { color: var(--text-light); text-decoration: none; opacity: 0.8; cursor: pointer; }
-        .footer-links a:hover { opacity: 1; text-decoration: underline; }
-        
-        /* --- MODAL (POP-UP) STYLES --- */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.6); animation: fadeIn 0.3s; }
-        .modal-content { background-color: #fefefe; margin: 10% auto; padding: 2rem 3rem; border: 1px solid #888; width: 80%; max-width: 800px; border-radius: 10px; position: relative; animation: slideIn 0.4s; }
-        .modal-content h1 { font-size: 2rem; color: var(--primary-color); margin-bottom: 1.5rem; border-bottom: 2px solid var(--bg-light); padding-bottom: 1rem; }
-        .modal-content h3 { font-size: 1.3rem; color: var(--primary-color); margin-top: 1.5rem; margin-bottom: 0.5rem; }
-        .modal-content p { margin-bottom: 1rem; font-size: 1rem; line-height: 1.7; }
-        .close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; position: absolute; top: 15px; right: 25px; }
-        .close-button:hover, .close-button:focus { color: black; text-decoration: none; cursor: pointer; }
 
-        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-        @keyframes slideIn { from {transform: translateY(-50px);} to {transform: translateY(0);} }
+        .footer-links {
+            margin-top: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
 
-        /* --- Responsive Design --- */
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            opacity: 0.8;
+            cursor: pointer;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 2rem 3rem;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 10px;
+            position: relative;
+            animation: slideIn 0.4s;
+        }
+
+        .modal-content h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--bg-light);
+            padding-bottom: 1rem;
+        }
+
+        .modal-content h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-content p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 768px) {
             .logo {
                 font-size: 1.5rem;
             }
 
             #menu-toggle {
-                display: flex; /* Show hamburger */
+                display: flex;
             }
 
             .main-nav {
-                display: none; /* Hide nav links by default */
+                display: none;
                 position: absolute;
-                top: 100%; /* Position below the header */
+                top: 100%;
                 left: 0;
                 width: 100%;
                 background-color: var(--header-bg-scrolled);
                 -webkit-backdrop-filter: blur(10px);
                 backdrop-filter: blur(10px);
-                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
                 padding: 1rem 0;
             }
 
             .main-nav.active {
-                display: block; /* Show nav when active */
+                display: block;
             }
 
             .main-nav ul {
-                flex-direction: column; /* Stack links vertically */
+                flex-direction: column;
                 align-items: center;
                 gap: 0;
             }
@@ -387,25 +482,33 @@
             }
 
             .main-nav a {
-                color: var(--text-dark); /* Always dark text for mobile dropdown */
+                color: var(--text-dark);
                 padding: 1rem;
-                display: block; /* Make the whole area clickable */
+                display: block;
                 width: 100%;
             }
-             .main-nav a.instagram-link {
-                display: inline-flex; /* Keep icon and text together */
+
+            .main-nav a.instagram-link {
+                display: inline-flex;
                 justify-content: center;
                 width: auto;
             }
+
             .main-nav a:hover {
                 background-color: var(--bg-light);
             }
+
             .main-nav a.instagram-link:hover {
-                 background-color: transparent; /* Prevent background color change on instagram link */
+                background-color: transparent;
             }
-            
-            .hero-section h1 { font-size: 2.2rem; }
-            .hero-section p { font-size: 1rem; }
+
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero-section p {
+                font-size: 1rem;
+            }
 
             .modal-content {
                 width: 90%;
@@ -415,63 +518,39 @@
                 overflow-y: auto;
             }
         }
+         .btn-play:hover { background-color: #e68a00; }
+
+    /* --- Footer --- */
+    footer {
+        background-color: var(--primary-color);
+        color: var(--text-light);
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    /* ====== ADD THIS RULE TO MAKE FOOTER TEXT BOLD ====== */
+    footer p {
+        font-weight: bold;
+    }
+    
+    .footer-links { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; }
+    .footer-links a { color: var(--text-light); text-decoration: none; opacity: 0.8; cursor: pointer; }
+    
     </style>
 
-    <!-- SEO: 6. JSON-LD STRUCTURED DATA - Speaks directly to Google -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "SB ମୋ ଓଡ଼ିଆ ଖେଳ - Odia Games",
-      "url": "https://odiagames.netlify.app/",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://odiagames.netlify.app/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ଗଣିତ ବିଜ୍ଞ (Math Wizard)",
-      "operatingSystem": "WEB",
-      "applicationCategory": "Game, EducationalGame",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.8", 
-        "ratingCount": "150" 
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      },
-      "description": "Challenge your brain with fun math puzzles. A popular Odia game for improving math skills.",
-      "inLanguage": "or"
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍ (Math Wiz Game Room)",
-      "operatingSystem": "WEB",
-      "applicationCategory": "Game, EducationalGame, MultiplayerGame",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "INR"
-      },
-      "description": "Play time-bound math challenges with your friends in a shared game room. The ultimate multiplayer Odia game.",
-      "inLanguage": "or"
-    }
-    </script>
+    <!-- (Your existing SEO JSON-LD scripts are unchanged here) -->
+    <script
+        type="application/ld+json">{ "@context": "https://schema.org", "@type": "WebSite", "name": "SB ମୋ ଓଡ଼ିଆ ଖେଳ - Odia Games", "url": "https://odiagames.netlify.app/", "potentialAction": { "@type": "SearchAction", "target": "https://odiagames.netlify.app/?q={search_term_string}", "query-input": "required name=search_term_string" } }</script>
+    <script
+        type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ଗଣିତ ବିଜ୍ଞ (Math Wizard)", "operatingSystem": "WEB", "applicationCategory": "Game, EducationalGame", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "150" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }, "description": "Challenge your brain with fun math puzzles. A popular Odia game for improving math skills.", "inLanguage": "or" }</script>
+    <script
+        type="application/ld+json">{ "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍ (Math Wiz Game Room)", "operatingSystem": "WEB", "applicationCategory": "Game, EducationalGame, MultiplayerGame", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "INR" }, "description": "Play time-bound math challenges with your friends in a shared game room. The ultimate multiplayer Odia game.", "inLanguage": "or" }</script>
 </head>
+
 <body class="or-lang">
 
-    <!-- ======== SVG DEFINITIONS (for gradient) ======== -->
+    <!-- (Your existing HTML body content is unchanged here) -->
     <svg width="0" height="0" style="position:absolute">
         <defs>
             <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
@@ -482,107 +561,72 @@
             </linearGradient>
         </defs>
     </svg>
-
-    <!-- ======== HTML BODY ======== -->
-
     <header id="main-header">
-        <div class="container">
-            <a href="#ଓଡ଼ିଆ" class="logo" data-key="logo_text">SB ମୋ ଓଡ଼ିଆ ଖେଳ</a>
-            
+        <div class="container"><a href="#ଓଡ଼ିଆ" class="logo" data-key="logo_text">SB ମୋ ଓଡ଼ିଆ ଖେଳ</a>
             <div class="header-right-group">
                 <nav class="main-nav">
                     <ul>
                         <li><a id="terms-link" data-key="nav_terms">ସର୍ତ୍ତାବଳୀ</a></li>
                         <li><a id="privacy-link" data-key="nav_privacy">ଗୋପନୀୟତା ନୀତି</a></li>
-                        <li>
-                            <a href="https://www.instagram.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer" class="instagram-link">
-                                <svg role="img" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.314 1.65 20.644 1.237 19.854.93c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.056 1.17-.249 1.805-.413 2.227-.217.562-.477.96-.896 1.381-.42.419-.82.679-1.382.896-.421.164-1.057.36-2.227.413-1.266.057-1.646.07-4.85.07s-3.585-.015-4.85-.074c-1.17-.056-1.805-.249-2.227-.413-.562-.217-.96-.477-1.381-.896-.42-.42-.68-.82-.896-1.381-.165-.422-.36-1.057-.413-2.227-.055-1.266-.07-1.646-.07-4.85s.015-3.585.07-4.85c.055-1.17.249-1.805.413-2.227.217-.562.477-.96.896-1.381.42-.42.819-.68 1.381-.896.422-.165 1.057-.36 2.227-.413C8.415 2.175 8.797 2.16 12 2.16zm0 5.482A4.357 4.357 0 1016.357 12 4.357 4.357 0 0012 7.642zm0 7.21a2.853 2.853 0 112.853-2.853A2.856 2.856 0 0112 14.852zm5.76-7.167a1.03 1.03 0 11-1.03-1.03 1.03 1.03 0 011.03 1.03z"></path></svg>
-                                <span data-key="nav_instagram">ଇନଷ୍ଟାଗ୍ରାମ</span>
-                            </a>
-                        </li>
+                        <li><a href="https://www.instagram.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer"
+                                class="instagram-link"><svg role="img" viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.314 1.65 20.644 1.237 19.854.93c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.056 1.17-.249 1.805-.413 2.227-.217.562-.477.96-.896 1.381-.42.419-.82.679-1.382.896-.421.164-1.057.36-2.227.413-1.266.057-1.646.07-4.85.07s-3.585-.015-4.85-.074c-1.17-.056-1.805-.249-2.227-.413-.562-.217-.96-.477-1.381-.896-.42-.42-.68-.82-.896-1.381-.165-.422-.36-1.057-.413-2.227-.055-1.266-.07-1.646-.07-4.85s.015-3.585.07-4.85c.055-1.17.249-1.805.413-2.227.217-.562.477.96.896-1.381.42-.42.819-.68 1.381-.896.422-.165 1.057-.36 2.227-.413C8.415 2.175 8.797 2.16 12 2.16zm0 5.482A4.357 4.357 0 1016.357 12 4.357 4.357 0 0012 7.642zm0 7.21a2.853 2.853 0 112.853-2.853A2.856 2.856 0 0112 14.852zm5.76-7.167a1.03 1.03 0 11-1.03-1.03 1.03 1.03 0 011.03 1.03z">
+                                    </path>
+                                </svg><span data-key="nav_instagram">ଇନଷ୍ଟାଗ୍ରାମ</span></a></li>
                     </ul>
-                </nav>
-                <button id="lang-toggle-btn" class="lang-toggle-btn"></button>
-                <button id="menu-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
+                </nav><button id="lang-toggle-btn" class="lang-toggle-btn"></button><button
+                    id="menu-toggle"><span></span><span></span><span></span></button>
             </div>
         </div>
     </header>
-
     <main>
-        <!-- SEO: 7. ADDED A HERO SECTION WITH A CLEAR H1 TAG -->
-        <!--  <section class="hero-section">
-            <div class="container">
-                <h1 data-key="main_headline">Play Odia Games: ଗଣିତ ବିଜ୍ଞ</h1>
-                <p data-key="main_subheadline">The best collection of fun and educational Odia games like Math Wizard to challenge your mind and help you learn.</p>
-            </div>
-        </section> -->
-
         <section class="games-grid">
             <div class="container">
                 <h2 data-key="games_title">ଆମର ଖେଳ</h2>
                 <div class="grid-container">
-                       <div class="game-card new-game" data-new-badge>
-                        <div>
-                            <img src="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/gk.png" alt="More Odia games are coming soon" class="game-icon">
+                    <div class="game-card new-game" data-new-badge>
+                        <div><img src="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/gk.png"
+                                alt="More Odia games are coming soon" class="game-icon">
                             <h3 data-key="game4_title">ଜ୍ଞାନ ପରୀକ୍ଷା</h3>
                             <p data-key="game4_desc">ସାଧାରଣ ଜ୍ଞାନ ପରୀକ୍ଷା କରନ୍ତୁ । </p>
-                        </div>
-                        <a href="/gk" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
+                        </div><a href="/gk" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
                     </div>
                     <div class="game-card">
-                        <div>
-                            <!-- SEO: 8. DESCRIPTIVE ALT TEXT FOR IMAGES -->
-                            <img src="https://imsbg.github.io/odiagames/icon/mo.png" alt="Icon for ଗଣିତ ବିଜ୍ଞ - Math Wizard Odia Game" class="game-icon">
+                        <div><img src="https://imsbg.github.io/odiagames/icon/mo.png"
+                                alt="Icon for ଗଣିତ ବିଜ୍ଞ - Math Wizard Odia Game" class="game-icon">
                             <h3 data-key="game1_title">ଗଣିତ ବିଜ୍ଞ</h3>
                             <p data-key="game1_desc">ମଜାଦାର ଗଣିତ ପଜଲ୍ ସହିତ ଆପଣଙ୍କର ମସ୍ତିଷ୍କକୁ ଚ୍ୟାଲେଞ୍ଜ କରନ୍ତୁ |</p>
-                        </div>
-                        <a href="/ଗଣିତ%20ବିଜ୍ଞ" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
+                        </div><a href="/ଗଣିତ%20ବିଜ୍ଞ" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
                     </div>
-                    
                     <div class="game-card">
-                        <div>
-                            <img src="https://imsbg.github.io/odiagames/icon/ml.png" alt="Icon for ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍ - Math Wiz Game Room" class="game-icon">
+                        <div><img src="https://imsbg.github.io/odiagames/icon/ml.png"
+                                alt="Icon for ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍ - Math Wiz Game Room" class="game-icon">
                             <h3 data-key="game2_title">ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍</h3>
                             <p data-key="game2_desc">ଅଧିକ ରୋମାଞ୍ଚକର ସ୍ତର ଏବଂ ନୂତନ ଗାଣିତିକ ସମସ୍ୟା |</p>
-                        </div>
-                        <a href="/ଗଣିତ%20ବିଜ୍ଞ/live" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
+                        </div><a href="/ଗଣିତ%20ବିଜ୍ଞ/live" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
                     </div>
-
-                    <!-- ADDED: The `new-game` class and `data-new-badge` attribute for the symbol -->
-                 
-                         <div class="game-card">
-                        <div>
-                            <img src="https://i.ibb.co/6RkCPyjz/deafc4b6-ed6e-49b5-9496-670689cf4b57.jpg" alt="More Odia games are coming soon" class="game-icon">
+                    <div class="game-card">
+                        <div><img src="https://i.ibb.co/6RkCPyjz/deafc4b6-ed6e-49b5-9496-670689cf4b57.jpg"
+                                alt="More Odia games are coming soon" class="game-icon">
                             <h3 data-key="game3_title">ଆଗକୁ ଆସିବ</h3>
                             <p data-key="game3_desc">କିଛି ନୂତନ ଖେଳ ଆସିଲେ ଏଠାରେ ଯୋଗ କରାଯିବ |</p>
-                        </div>
-                        <a href="#" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
+                        </div><a href="#" class="btn-play" data-key="play_now_btn">ଏବେ ଖେଳନ୍ତୁ</a>
                     </div>
                 </div>
             </div>
-        </div>
         </section>
     </main>
-
     <footer>
         <div class="container">
             <p data-key="footer_copyright">© 2025 SB ମୋ ଓଡ଼ିଆ ଖେଳ | ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ</p>
-            <div class="footer-links">
-                <a id="footer-terms-link" data-key="nav_terms">ସର୍ତ୍ତାବଳୀ</a>
-                <a id="footer-privacy-link" data-key="nav_privacy">ଗୋପନୀୟତା ନୀତି</a>
-            </div>
+            <p style="margin-top: 0.75rem; opacity: 0.9;"><span data-key="total_visits_text"></span><span
+                    id="visit-count">...</span></p>
+            <!--<div class="footer-links"><a id="footer-terms-link" data-key="nav_terms">ସର୍ତ୍ତାବଳୀ</a><a id="footer-privacy-link" data-key="nav_privacy">ଗୋପନୀୟତା ନୀତି</a></div>-->
         </div>
     </footer>
-
-
-    <!-- ======== MODAL POP-UPS (Hidden by default) ======== -->
     <div id="terms-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" id="close-terms">×</span>
+        <div class="modal-content"><span class="close-button" id="close-terms">×</span>
             <h1 data-key="terms_title"></h1>
             <p data-key="terms_p1"></p>
             <h3 data-key="terms_h_license"></h3>
@@ -596,8 +640,7 @@
         </div>
     </div>
     <div id="privacy-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" id="close-privacy">×</span>
+        <div class="modal-content"><span class="close-button" id="close-privacy">×</span>
             <h1 data-key="privacy_title"></h1>
             <p data-key="privacy_p1"></p>
             <h3 data-key="privacy_h_info"></h3>
@@ -611,223 +654,129 @@
         </div>
     </div>
 
+    <!-- ======== FIREBASE SDK SCRIPTS (ADD THESE) ======== -->
+    <!-- ======== FIREBASE SDK SCRIPTS (No change here) ======== -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
-    <!-- ======== JAVASCRIPT LOGIC ======== -->
+    <!-- ======== JAVASCRIPT LOGIC (UPDATED FOR LIVE COUNTER) ======== -->
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
+        document.addEventListener('DOMContentLoaded', () => {
 
-        // --- 1. DEFINE TRANSLATIONS ---
-        const translations = {
-            or: {
-                logo_text: "ମୋ ଓଡ଼ିଆ ଖେଳ", 
-                nav_terms: "ସର୍ତ୍ତାବଳୀ", 
-                nav_privacy: "ଗୋପନୀୟତା ନୀତି", 
-                nav_instagram: "ଇନଷ୍ଟାଗ୍ରାମ",
-                
-                main_headline: "ଓଡ଼ିଆ ଖେଳ ଖେଳନ୍ତୁ: ଗଣିତ ବିଜ୍ଞ",
-                main_subheadline: "ମନକୁ ଚ୍ୟାଲେଞ୍ଜ କରିବା ଏବଂ ଶିଖିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ ଗଣିତ ବିଜ୍ଞ ଭଳି ମଜାଦାର ଏବଂ ଶିକ୍ଷଣୀୟ ଓଡ଼ିଆ ଖେଳର ସର୍ବୋତ୍ତମ ସଂଗ୍ରହ।",
-                
-                games_title: "ଆମର ଖେଳ", 
-                play_now_btn: "ଏବେ ଖେଳନ୍ତୁ", 
-                game1_title: "ଗଣିତ ବିଜ୍ଞ", 
-                game1_desc: "ମଜାଦାର ଗଣିତ ପଜଲ୍ ସହିତ ଆପଣଙ୍କର ମସ୍ତିଷ୍କକୁ ଚ୍ୟାଲେଞ୍ଜ କରନ୍ତୁ |", 
-                game2_title: "ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍", 
-                game2_desc: "ନିଜ ସାଙ୍ଗସାଥି ମାନଙ୍କ ସହ ସମାନ ପ୍ରଶ୍ନ ଓ ସମୟ ନିର୍ଦ୍ଧାରିତ ଖେଳ ଏକାଠି ଖେଳିପାରିବେ ଓ ଫଳାଫଳ ମଧ୍ୟ ଦେଖିପାରିବେ |", 
-                game3_title: "ଆଗକୁ ଆସିବ", 
-                game3_desc: "କିଛି ନୂତନ ଖେଳ ଆସିଲେ ଏଠାରେ ଯୋଗ କରାଯିବ |", 
-                game4_title: "ଜ୍ଞାନ ପରୀକ୍ଷା", 
-                game4_desc: "ସାଧାରଣ ଜ୍ଞାନ ପରୀକ୍ଷା କରନ୍ତୁ । ", 
-                footer_copyright: "© ୨୦୨୫ ମୋ ଓଡ଼ିଆ ଖେଳ | ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ",
-
-                terms_title: "ସେବା ସର୍ତ୍ତାବଳୀ",
-                terms_p1: "ଆମର ଖେଳକୁ ବ୍ୟବହାର କରିବାକୁ ସ୍ୱାଗତ! ଏହି ଆପ୍ଲିକେଶନକୁ ଡାଉନଲୋଡ୍ କରି କିମ୍ବା ବ୍ୟବହାର କରି, ଆପଣ ଏହି ସେବା ସର୍ତ୍ତାବଳୀକୁ ମାନିବାକୁ ରାଜି ହେଉଛନ୍ତି।",
-                terms_h_license: "ବ୍ୟବହାର ଲାଇସେନ୍ସ",
-                terms_p_license: "ଆମେ ଆପଣଙ୍କୁ ଆମର ଖେଳଗୁଡ଼ିକୁ କେବଳ ଆପଣଙ୍କ ବ୍ୟକ୍ତିଗତ, ଅଣ-ବାଣିଜ୍ୟିକ ବ୍ୟବହାର ପାଇଁ ଏକ ସୀମିତ, ଅଣ-ବିଶେଷ, ଏବଂ ଅଣ-ହସ୍ତାନ୍ତରଣୀୟ ଲାଇସେନ୍ସ ପ୍ରଦାନ କରୁଛୁ।",
-                terms_h_conduct: "ବ୍ୟବହାରକାରୀ ଆଚରଣ",
-                terms_p_conduct: "ଆପଣ କୌଣସି ବେଆଇନ ଉଦ୍ଦେଶ୍ୟରେ ଆପ୍ ବ୍ୟବହାର ନକରିବାକୁ, କୌଣସି ପ୍ରକାରର ଠକେଇ ନକରିବାକୁ, କିମ୍ବା ଆପ୍ ର କାର୍ଯ୍ୟକାରିତାରେ ବାଧା ସୃଷ୍ଟି ନକରିବାକୁ ରାଜି ହେଉଛନ୍ତି।",
-                terms_h_ip: "ବୌଦ୍ଧିକ ସମ୍ପତ୍ତି",
-                terms_p_ip: "ସମସ୍ତ ଖେଳ, ଗ୍ରାଫିକ୍ସ, କୋଡ୍, ଏବଂ ବିଷୟବସ୍ତୁ ହେଉଛି SB ମୋ ଓଡ଼ିଆ ଖେଳର ସମ୍ପତ୍ତି ଏବଂ କପିରାଇଟ୍ ଆଇନ ଦ୍ୱାରା ସୁରକ୍ଷିତ।",
-                terms_h_changes: "ସର୍ତ୍ତାବଳୀରେ ପରିବର୍ତ୍ତନ",
-                terms_p_changes: "ଆମେ ଯେକୌଣସି ସମୟରେ ଏହି ସର୍ତ୍ତାବଳୀକୁ ପରିବର୍ତ୍ତନ କରିବାର ଅଧିକାର ସଂରକ୍ଷିତ ରଖୁଛୁ। ପରିବର୍ତ୍ତନଗୁଡିକ ଏହି ପୃଷ୍ଠାରେ ପୋଷ୍ଟ କରାଯିବ।",
-
-                privacy_title: "ଗୋପନୀୟତା ନୀତି",
-                privacy_p1: "ଆପଣଙ୍କ ଗୋପନୀୟତା ଆମ ପାଇଁ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ। ଏହି ନୀତି ବର୍ଣ୍ଣନା କରେ ଯେ ଆମେ କିପରି ଆପଣଙ୍କ ତଥ୍ୟ ସଂଗ୍ରହ, ବ୍ୟବହାର, ଏବଂ ସୁରକ୍ଷା କରୁ।",
-                privacy_h_info: "ଆମେ ସଂଗ୍ରହ କରୁଥିବା ତଥ୍ୟ",
-                privacy_p_info: "ଆମେ ଅଣ-ବ୍ୟକ୍ତିଗତ ତଥ୍ୟ ସଂଗ୍ରହ କରୁ, ଯେପରିକି ଡିଭାଇସ୍ ପ୍ରକାର, ଗେମ୍ପ୍ଲେ ତଥ୍ୟ (ସ୍କୋର୍, ସ୍ତର), ଏବଂ କ୍ରାସ୍ ରିପୋର୍ଟ। ଆମେ ଆପଣଙ୍କ ନାମ, ଇମେଲ୍ କିମ୍ବା ଠିକଣା ପରି ବ୍ୟକ୍ତିଗତ ପରିଚୟ ତଥ୍ୟ ସଂଗ୍ରହ କରୁନାହୁଁ।",
-                privacy_h_usage: "ତଥ୍ୟର ବ୍ୟବହାର",
-                privacy_p_usage: "ସଂଗୃହିତ ତଥ୍ୟ ଆମକୁ ଗେମ୍ ଅନୁଭୂତିରେ ସୁଧାର ଆଣିବା, ତ୍ରୁଟି ସୁଧାରିବା, ଏବଂ ଖେଳାଳିଙ୍କ ପସନ୍ଦକୁ ବୁଝିବାରେ ସାହାଯ୍ୟ କରେ।",
-                privacy_h_security: "ତଥ୍ୟ ସୁରକ୍ଷା",
-                privacy_p_security: "ଆମେ ଆପଣଙ୍କ ତଥ୍ୟକୁ ଅନଧିକୃତ ପ୍ରବେଶରୁ ରକ୍ଷା କରିବା ପାଇଁ ଯୁକ୍ତିଯୁକ୍ତ ପଦକ୍ଷେପ ଗ୍ରହଣ କରୁ।",
-                privacy_h_contact: "ଯୋଗାଯୋଗ",
-                privacy_p_contact: "ଯଦି ଆପଣଙ୍କର ଏହି ଗୋପନୀୟତା ନୀତି ବିଷୟରେ କୌଣସି ପ୍ରଶ୍ନ ଅଛି, ଦୟାକରି ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
-                new_badge_text: "ନୂଆ" // ADDED: Odia translation for the new badge
-            },
-            en: {
-                logo_text: "My Odia Games", 
-                nav_terms: "Terms", 
-                nav_privacy: "Privacy Policy", 
-                nav_instagram: "Instagram",
-
-                main_headline: "Play Odia Games: Math Wizard",
-                main_subheadline: "The best collection of fun and educational Odia games like Math Wizard to challenge your mind and help you learn.",
-
-                games_title: "Our Games", 
-                play_now_btn: "Play Now", 
-                game1_title: "Math Wizard", 
-                game1_desc: "Challenge your brain with fun math puzzles.", 
-                game2_title: "Math Wiz Game Room", 
-                game2_desc: "You can play the same question and time-bound game together with your friends and also see the results.", 
-                game3_title: "Coming Soon", 
-                game4_title: "Knowledge Test", 
-                game4_desc: "Take a general knowledge test.", 
-                footer_copyright: "© ୨୦୨୫ ମୋ ଓଡ଼ିଆ ଖେଳ | ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ",
-                game3_desc: "If any new games come up, they will be added here.", 
-                footer_copyright: "© 2025 My Odia Games | All Rights Reserved",
-                
-                terms_title: "Terms of Service",
-                terms_p1: "Welcome to our games! By downloading or using this application, you agree to be bound by these Terms of Service.",
-                terms_h_license: "Use License",
-                terms_p_license: "We grant you a limited, non-exclusive, non-transferable license to use our games for your personal, non-commercial use only.",
-                terms_h_conduct: "User Conduct",
-                terms_p_conduct: "You agree not to use the app for any unlawful purpose, engage in any form of cheating, or disrupt the functionality of the app.",
-                terms_h_ip: "Intellectual Property",
-                terms_p_ip: "All games, graphics, code, and content are the property of SB My Odia Games and are protected by copyright laws.",
-                terms_h_changes: "Changes to Terms",
-                terms_p_changes: "We reserve the right to modify these terms at any time. Changes will be posted on this page.",
-
-                privacy_title: "Privacy Policy",
-                privacy_p1: "Your privacy is important to us. This policy explains how we collect, use, and protect your information.",
-                privacy_h_info: "Information We Collect",
-                privacy_p_info: "We collect non-personal information, such as device type, gameplay data (scores, levels), and crash reports. We do not collect personally identifiable information like your name, email, or address.",
-                privacy_h_usage: "How We Use Information",
-                privacy_p_usage: "The data collected helps us improve the game experience, fix bugs, and understand player preferences.",
-                privacy_h_security: "Data Security",
-                privacy_p_security: "We take reasonable measures to protect your information from unauthorized access.",
-                privacy_h_contact: "Contact Us",
-                privacy_p_contact: "If you have any questions about this Privacy Policy, please contact us.",
-                new_badge_text: "New" // ADDED: English translation for the new badge
-            }
-        };
-
-        // --- 2. LANGUAGE SWITCHING LOGIC (Updated for single button) ---
-        const langToggleBtn = document.getElementById('lang-toggle-btn');
-        let currentLang; // This will hold the current language state ('or' or 'en')
-        
-        const setLanguage = (lang) => {
-            if (!translations[lang]) lang = 'or'; // Fallback to Odia
-            currentLang = lang; // Update the current language state
-
-            // Apply translations to all elements with a data-key
-            document.querySelectorAll('[data-key]').forEach(elem => {
-                const key = elem.getAttribute('data-key');
-                if (translations[lang][key] !== undefined) {
-                    elem.innerHTML = translations[lang][key];
-                }
-            });
-
-            // ADDED: Apply translation to the "new" badge attribute
-            document.querySelectorAll('[data-new-badge]').forEach(elem => {
-                if (translations[lang]['new_badge_text']) {
-                    elem.setAttribute('data-new-badge', translations[lang]['new_badge_text']);
-                }
-            });
-
-            // Update the lang attribute of the HTML tag and the class of the body
-            document.documentElement.lang = lang;
-            document.body.className = `${lang}-lang`;
-            
-            // Update the text of the toggle button to show the *other* language option
-            if (lang === 'or') {
-                langToggleBtn.textContent = 'E'; // Show 'E' for English
-            } else {
-                langToggleBtn.textContent = 'ଓ'; // Show 'ଓ' for Odia
-            }
-
-            // Save the user's preference
-            localStorage.setItem('userLanguage', lang);
-        };
-
-        // Add a click event listener to the single toggle button
-        langToggleBtn.addEventListener('click', () => {
-            // Determine the new language by checking the current one, then switch
-            const newLang = currentLang === 'or' ? 'en' : 'or';
-            setLanguage(newLang);
-        });
-        
-        // --- 3. MODAL (POP-UP) LOGIC ---
-        const termsModal = document.getElementById('terms-modal');
-        const privacyModal = document.getElementById('privacy-modal');
-        const openModalLinks = [
-            document.getElementById('terms-link'), 
-            document.getElementById('privacy-link'), 
-            document.getElementById('footer-terms-link'), 
-            document.getElementById('footer-privacy-link')
-        ];
-        const closeModalButtons = [
-            document.getElementById('close-terms'), 
-            document.getElementById('close-privacy')
-        ];
-
-        openModalLinks.forEach(link => {
-            if (!link) return;
-            link.onclick = (e) => {
-                e.preventDefault();
-                const modalId = e.target.id.includes('terms') ? 'terms-modal' : 'privacy-modal';
-                document.getElementById(modalId).style.display = "block";
+            // --- 1. TRANSLATIONS AND GLOBAL STATE (No change here) ---
+            const translations = {
+                or: { logo_text: "ମୋ ଓଡ଼ିଆ ଖେଳ", nav_terms: "ସର୍ତ୍ତାବଳୀ", nav_privacy: "ଗୋପନୀୟତା ନୀତି", nav_instagram: "ଇନଷ୍ଟାଗ୍ରାମ", main_headline: "ଓଡ଼ିଆ ଖେଳ ଖେଳନ୍ତୁ: ଗଣିତ ବିଜ୍ଞ", main_subheadline: "ମନକୁ ଚ୍ୟାଲେଞ୍ଜ କରିବା ଏବଂ ଶିଖିବାରେ ସାହାଯ୍ୟ କରିବା ପାଇଁ ଗଣିତ ବିଜ୍ଞ ଭଳି ମଜାଦାର ଏବଂ ଶିକ୍ଷଣୀୟ ଓଡ଼ିଆ ଖେଳର ସର୍ବୋତ୍ତମ ସଂଗ୍ରହ।", games_title: "ଆମର ଖେଳ", play_now_btn: "ଏବେ ଖେଳନ୍ତୁ", game1_title: "ଗଣିତ ବିଜ୍ଞ", game1_desc: "ମଜାଦାର ଗଣିତ ପଜଲ୍ ସହିତ ଆପଣଙ୍କର ମସ୍ତିଷ୍କକୁ ଚ୍ୟାଲେଞ୍ଜ କରନ୍ତୁ |", game2_title: "ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍", game2_desc: "ନିଜ ସାଙ୍ଗସାଥି ମାନଙ୍କ ସହ ସମାନ ପ୍ରଶ୍ନ ଓ ସମୟ ନିର୍ଦ୍ଧାରିତ ଖେଳ ଏକାଠି ଖେଳିପାରିବେ ଓ ଫଳାଫଳ ମଧ୍ୟ ଦେଖିପାରିବେ |", game3_title: "ଆଗକୁ ଆସିବ", game3_desc: "କିଛି ନୂତନ ଖେଳ ଆସିଲେ ଏଠାରେ ଯୋଗ କରାଯିବ |", game4_title: "ଜ୍ଞାନ ପରୀକ୍ଷା", game4_desc: "ସାଧାରଣ ଜ୍ଞାନ ପରୀକ୍ଷା କରନ୍ତୁ । ", footer_copyright: "© ୨୦୨୫ ମୋ ଓଡ଼ିଆ ଖେଳ | ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ", terms_title: "ସେବା ସର୍ତ୍ତାବଳୀ", terms_p1: "ଆମର ଖେଳକୁ ବ୍ୟବହାର କରିବାକୁ ସ୍ୱାଗତ! ଏହି ଆପ୍ଲିକେଶନକୁ ଡାଉନଲୋଡ୍ କରି କିମ୍ବା ବ୍ୟବହାର କରି, ଆପଣ ଏହି ସେବା ସର୍ତ୍ତାବଳୀକୁ ମାନିବାକୁ ରାଜି ହେଉଛନ୍ତି।", terms_h_license: "ବ୍ୟବହାର ଲାଇସେନ୍ସ", terms_p_license: "ଆମେ ଆପଣଙ୍କୁ ଆମର ଖେଳଗୁଡ଼ିକୁ କେବଳ ଆପଣଙ୍କ ବ୍ୟକ୍ତିଗତ, ଅଣ-ବାଣିଜ୍ୟିକ ବ୍ୟବହାର ପାଇଁ ଏକ ସୀମିତ, ଅଣ-ବିଶେଷ, ଏବଂ ଅଣ-ହସ୍ତାନ୍ତରଣୀୟ ଲାଇସେନ୍ସ ପ୍ରଦାନ କରୁଛୁ।", terms_h_conduct: "ବ୍ୟବହାରକାରୀ ଆଚରଣ", terms_p_conduct: "ଆପଣ କୌଣସି ବେଆଇନ ଉଦ୍ଦେଶ୍ୟରେ ଆପ୍ ବ୍ୟବହାର ନକରିବାକୁ, କୌଣସି ପ୍ରକାରର ଠକେଇ ନକରିବାକୁ, କିମ୍ବା ଆପ୍ ର କାର୍ଯ୍ୟକାରିତାରେ ବାଧା ସୃଷ୍ଟି ନକରିବାକୁ ରାଜି ହେଉଛନ୍ତି।", terms_h_ip: "ବୌଦ୍ଧିକ ସମ୍ପତ୍ତି", terms_p_ip: "ସମସ୍ତ ଖେଳ, ଗ୍ରାଫିକ୍ସ, କୋଡ୍, ଏବଂ ବିଷୟବସ୍ତୁ ହେଉଛି SB ମୋ ଓଡ଼ିଆ ଖେଳର ସମ୍ପତ୍ତି ଏବଂ କପିରାଇଟ୍ ଆଇନ ଦ୍ୱାରା ସୁରକ୍ଷିତ।", terms_h_changes: "ସର୍ତ୍ତାବଳୀରେ ପରିବର୍ତ୍ତନ", terms_p_changes: "ଆମେ ଯେକୌଣସି ସମୟରେ ଏହି ସର୍ତ୍ତାବଳୀକୁ ପରିବର୍ତ୍ତନ କରିବାର ଅଧିକାର ସଂରକ୍ଷିତ ରଖୁଛୁ। ପରିବର୍ତ୍ତନଗୁଡିକ ଏହି ପୃଷ୍ଠାରେ ପୋଷ୍ଟ କରାଯିବ।", privacy_title: "ଗୋପନୀୟତା ନୀତି", privacy_p1: "ଆପଣଙ୍କ ଗୋପନୀୟତା ଆମ ପାଇଁ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ। ଏହି ନୀତି ବର୍ଣ୍ଣନା କରେ ଯେ ଆମେ କିପରି ଆପଣଙ୍କ ତଥ୍ୟ ସଂଗ୍ରହ, ବ୍ୟବହାର, ଏବଂ ସୁରକ୍ଷା କରୁ।", privacy_h_info: "ଆମେ ସଂଗ୍ରହ କରୁଥିବା ତଥ୍ୟ", privacy_p_info: "ଆମେ ଅଣ-ବ୍ୟକ୍ତିଗତ ତଥ୍ୟ ସଂଗ୍ରହ କରୁ, ଯେପରିକି ଡିଭାଇସ୍ ପ୍ରକାର, ଗେମ୍ପ୍ଲେ ତଥ୍ୟ (ସ୍କୋର୍, ସ୍ତର), ଏବଂ କ୍ରାସ୍ ରିପୋର୍ଟ। ଆମେ ଆପଣଙ୍କ ନାମ, ଇମେଲ୍ କିମ୍ବା ଠିକଣା ପରି ବ୍ୟକ୍ତିଗତ ପରିଚୟ ତଥ୍ୟ ସଂଗ୍ରହ କରୁନାହୁଁ।", privacy_h_usage: "ତଥ୍ୟର ବ୍ୟବହାର", privacy_p_usage: "ସଂଗୃହିତ ତଥ୍ୟ ଆମକୁ ଗେମ୍ ଅନୁଭୂତିରେ ସୁଧାର ଆଣିବା, ତ୍ରୁଟି ସୁଧାରିବା, ଏବଂ ଖେଳାଳିଙ୍କ ପସନ୍ଦକୁ ବୁଝିବାରେ ସାହାଯ୍ୟ କରେ।", privacy_h_security: "ତଥ୍ୟ ସୁରକ୍ଷା", privacy_p_security: "ଆମେ ଆପଣଙ୍କ ତଥ୍ୟକୁ ଅନଧିକୃତ ପ୍ରବେଶରୁ ରକ୍ଷା କରିବା ପାଇଁ ଯୁକ୍ତିଯୁକ୍ତ ପଦକ୍ଷେପ ଗ୍ରହଣ କରୁ।", privacy_h_contact: "ଯୋଗାଯୋଗ", privacy_p_contact: "ଯଦି ଆପଣଙ୍କର ଏହି ଗୋପନୀୟତା ନୀତି ବିଷୟରେ କୌଣସି ପ୍ରଶ୍ନ ଅଛି, ଦୟାକରି ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ।", new_badge_text: "ନୂଆ", total_visits_text: "ମୋଟ ପରିଦର୍ଶନ: " },
+                en: { logo_text: "My Odia Games", nav_terms: "Terms", nav_privacy: "Privacy Policy", nav_instagram: "Instagram", main_headline: "Play Odia Games: Math Wizard", main_subheadline: "The best collection of fun and educational Odia games like Math Wizard to challenge your mind and help you learn.", games_title: "Our Games", play_now_btn: "Play Now", game1_title: "Math Wizard", game1_desc: "Challenge your brain with fun math puzzles.", game2_title: "Math Wiz Game Room", game2_desc: "You can play the same question and time-bound game together with your friends and also see the results.", game3_title: "Coming Soon", game4_title: "Knowledge Test", game4_desc: "Take a general knowledge test.", game3_desc: "If any new games come up, they will be added here.", footer_copyright: "© 2025 My Odia Games | All Rights Reserved", terms_title: "Terms of Service", terms_p1: "Welcome to our games! By downloading or using this application, you agree to be bound by these Terms of Service.", terms_h_license: "Use License", terms_p_license: "We grant you a limited, non-exclusive, non-transferable license to use our games for your personal, non-commercial use only.", terms_h_conduct: "User Conduct", terms_p_conduct: "You agree not to use the app for any unlawful purpose, engage in any form of cheating, or disrupt the functionality of the app.", terms_h_ip: "Intellectual Property", terms_p_ip: "All games, graphics, code, and content are the property of SB My Odia Games and are protected by copyright laws.", terms_h_changes: "Changes to Terms", terms_p_changes: "We reserve the right to modify these terms at any time. Changes will be posted on this page.", privacy_title: "Privacy Policy", privacy_p1: "Your privacy is important to us. This policy explains how we collect, use, and protect your information.", privacy_h_info: "Information We Collect", privacy_p_info: "We collect non-personal information, such as device type, gameplay data (scores, levels), and crash reports. We do not collect personally identifiable information like your name, email, or address.", privacy_h_usage: "How We Use Information", privacy_p_usage: "The data collected helps us improve the game experience, fix bugs, and understand player preferences.", privacy_h_security: "Data Security", privacy_p_security: "We take reasonable measures to protect your information from unauthorized access.", privacy_h_contact: "Contact Us", privacy_p_contact: "If you have any questions about this Privacy Policy, please contact us.", new_badge_text: "New", total_visits_text: "Total Visits: " }
             };
+            // --- GLOBAL STATE VARIABLES ---
+            let currentLang; // Holds the current language ('or' or 'en')
+            let latestVisitCount = 0; // Holds the latest count to redisplay on 
+            const firebaseConfig = {
+                apiKey: "AIzaSyCI8CEVsIm04yshvJVAZqQcElE_G-VaduQ",
+                authDomain: "odia-games-visitor-counter.firebaseapp.com",
+                projectId: "odia-games-visitor-counter",
+                storageBucket: "odia-games-visitor-counter.firebasestorage.app",
+                messagingSenderId: "485616496841",
+                appId: "1:485616496841:web:554cb48f6ec2182caa1d18"
+            };
+
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+
+            // --- 3. HELPER FUNCTIONS (No change here) ---
+            const toOdiaNumerals = (num) => {
+                const odiaDigits = ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'];
+                return String(num).split('').map(digit => odiaDigits[digit] || digit).join('');
+            };
+
+            const displayCount = (count) => {
+                const countElement = document.getElementById('visit-count');
+                if (!countElement) return;
+
+                if (currentLang === 'or') {
+                    countElement.textContent = toOdiaNumerals(count);
+                } else {
+                    countElement.textContent = count.toLocaleString('en-US');
+                }
+            };
+
+            // --- 4. CORE LOGIC (UPDATED WITH LIVE LISTENER) ---
+            const setLanguage = (lang) => {
+                if (!translations[lang]) lang = 'or';
+                currentLang = lang;
+                document.querySelectorAll('[data-key]').forEach(elem => { const key = elem.getAttribute('data-key'); if (translations[lang][key] !== undefined) { elem.innerHTML = translations[lang][key]; } });
+                document.querySelectorAll('[data-new-badge]').forEach(elem => { if (translations[lang]['new_badge_text']) { elem.setAttribute('data-new-badge', translations[lang]['new_badge_text']); } });
+                document.documentElement.lang = lang;
+                document.body.className = `${lang}-lang`;
+                langToggleBtn.textContent = (lang === 'or') ? 'E' : 'ଓ';
+                localStorage.setItem('userLanguage', lang);
+                if (latestVisitCount > 0) {
+                    displayCount(latestVisitCount);
+                }
+            };
+
+            // NEW FUNCTION: Listens for live updates
+            const listenForCountChanges = () => {
+                const counterRef = db.collection('counters').doc('pageVisits');
+
+                counterRef.onSnapshot((doc) => {
+                    if (doc.exists) {
+                        const count = doc.data().count;
+                        console.log("Live update received. New count:", count);
+                        latestVisitCount = count; // Store the new count
+                        displayCount(count); // Display it live
+                    } else {
+                        console.log("Counter document does not exist.");
+                    }
+                }, (error) => {
+                    console.error("Error listening for count changes: ", error);
+                });
+            };
+
+            // NEW FUNCTION: Increments the count once per visit
+            const incrementCount = () => {
+                const counterRef = db.collection('counters').doc('pageVisits');
+
+                db.runTransaction((transaction) => {
+                    return transaction.get(counterRef).then((doc) => {
+                        if (!doc.exists) {
+                            transaction.set(counterRef, { count: 1 });
+                            return;
+                        }
+                        const newCount = doc.data().count + 1;
+                        transaction.update(counterRef, { count: newCount });
+                    });
+                }).then(() => {
+                    console.log("Your visit has been counted!");
+                }).catch((error) => {
+                    console.error("Failed to count your visit: ", error);
+                });
+            };
+
+            // --- 5. EVENT LISTENERS AND INITIALIZATION (No change here) ---
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+            langToggleBtn.addEventListener('click', () => {
+                const newLang = currentLang === 'or' ? 'en' : 'or';
+                setLanguage(newLang);
+            });
+            const termsModal = document.getElementById('terms-modal'); const privacyModal = document.getElementById('privacy-modal'); const openModalLinks = [document.getElementById('terms-link'), document.getElementById('privacy-link'), document.getElementById('footer-terms-link'), document.getElementById('footer-privacy-link')]; const closeModalButtons = [document.getElementById('close-terms'), document.getElementById('close-privacy')]; openModalLinks.forEach(link => { if (!link) return; link.onclick = (e) => { e.preventDefault(); const modalId = e.target.id.includes('terms') ? 'terms-modal' : 'privacy-modal'; document.getElementById(modalId).style.display = "block"; }; }); closeModalButtons.forEach(btn => { if (!btn) return; btn.onclick = () => { btn.closest('.modal').style.display = "none"; }; }); window.onclick = (event) => { if (event.target.classList.contains('modal')) { event.target.style.display = "none"; } }; const header = document.getElementById('main-header'); window.addEventListener('scroll', () => { if (window.scrollY > 50) { header.classList.add('scrolled'); } else { header.classList.remove('scrolled'); } }); const menuToggle = document.getElementById('menu-toggle'); const mainNav = document.querySelector('.main-nav'); menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); mainNav.classList.toggle('active'); }); document.addEventListener('click', (event) => { const isMenuOpen = mainNav.classList.contains('active'); const isClickOutside = !mainNav.contains(event.target) && !menuToggle.contains(event.target); if (isMenuOpen && isClickOutside) { mainNav.classList.remove('active'); menuToggle.classList.remove('active'); } });
+
+            // --- 6. INITIAL PAGE LOAD (UPDATED) ---
+            const getInitialLanguage = () => {
+                const langFromUrl = new URLSearchParams(window.location.search).get('lang');
+                if (langFromUrl === 'en' || langFromUrl === 'or') return langFromUrl;
+                return localStorage.getItem('userLanguage') || 'or';
+            };
+
+            setLanguage(getInitialLanguage());
+
+            // This function now just adds your visit
+            incrementCount();
+
+            // This new function listens for all future changes
+            listenForCountChanges();
         });
-
-        closeModalButtons.forEach(btn => {
-            if (!btn) return;
-            btn.onclick = () => { btn.closest('.modal').style.display = "none"; };
-        });
-
-        window.onclick = (event) => {
-            if (event.target.classList.contains('modal')) {
-                event.target.style.display = "none";
-            }
-        };
-
-        // --- 4. HEADER SCROLL EFFECT ---
-        const header = document.getElementById('main-header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-
-        // --- 5. MOBILE MENU TOGGLE ---
-        const menuToggle = document.getElementById('menu-toggle');
-        const mainNav = document.querySelector('.main-nav');
-        menuToggle.addEventListener('click', () => {
-            menuToggle.classList.toggle('active');
-            mainNav.classList.toggle('active');
-        });
-        
-        document.addEventListener('click', (event) => {
-            const isMenuOpen = mainNav.classList.contains('active');
-            const isClickOutside = !mainNav.contains(event.target) && !menuToggle.contains(event.target);
-
-            if (isMenuOpen && isClickOutside) {
-                mainNav.classList.remove('active');
-                menuToggle.classList.remove('active');
-            }
-        });
-
-        // --- 6. INITIAL LANGUAGE SET ---
-        const getInitialLanguage = () => {
-            const langFromUrl = new URLSearchParams(window.location.search).get('lang');
-            if (langFromUrl === 'en' || langFromUrl === 'or') {
-                return langFromUrl;
-            }
-            return localStorage.getItem('userLanguage') || 'or';
-        };
-
-        // Set the language on page load
-        setLanguage(getInitialLanguage());
-    });
     </script>
 </body>
+
 </html>
