@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://odiagames.netlify.app/sitemap.xml
