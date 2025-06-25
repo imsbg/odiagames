@@ -1,44 +1,24 @@
 <!DOCTYPE html>
 <html lang="or">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0a2463" />
-    <link rel="icon" type="image/png"
-        href="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/my.png">
+    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/my.png">
     <meta name="google-site-verification" content="v7INdzQkoYePfC4seL2T4Qiyrcew4xft_VirQpB1aGU" />
     <link rel="manifest" href="/manifest.json">
-
     <title>ମୋ ଓଡ଼ିଆ ଖେଳ, My Odia Games - Play Fun Odia Games | SB ମୋ ଓଡ଼ିଆ ଖେଳ</title>
-    <meta name="description"
-        content="Play ଗଣିତ ବିଜ୍ଞ (Math Wizard) and other fun Odia games. Challenge your mind with our educational math puzzles. The best collection of Odia games for learning and fun!">
+    <meta name="description" content="Play ଗଣିତ ବିଜ୍ଞ (Math Wizard) and other fun Odia games. Challenge your mind with our educational math puzzles. The best collection of Odia games for learning and fun!">
     <link rel="canonical" href="https://imsbg.github.io/odiagames/">
-    <meta name="keywords"
-        content="ଗଣିତ ବିଜ୍ଞ, Math Wizard, Odia Games, ଓଡ଼ିଆ ଖେଳ, Odia educational games, math puzzles, odia learning games, SB Odia Games, ସନ୍ଦୀପ ବିଶ୍ଵାଳ ଗେମ୍, push notifications, firebase">
-
+    <meta name="keywords" content="ଗଣିତ ବିଜ୍ଞ, Math Wizard, Odia Games, ଓଡ଼ିଆ ଖେଳ, Odia educational games, math puzzles, odia learning games, SB Odia Games, ସନ୍ଦୀପ ବିଶ୍ଵାଳ ଗେମ୍, push notifications, firebase, notification inbox">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary-color: #0A2463;
-            --secondary-color: #00693f;
-            --accent-color: #FF9F1C;
-            --danger-color: #d9534f;
-            --text-light: #FFFFFF;
-            --text-dark: #121212;
-            --bg-light: #F4F7FC;
-            --card-bg: #FFFFFF;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            /* --- FIXED: Ensured transparency is here --- */
-            --header-bg-scrolled: rgba(255, 255, 255, 0.85); 
-            --header-text-scrolled: var(--primary-color);
+            --primary-color: #0A2463; --secondary-color: #00693f; --accent-color: #FF9F1C; --danger-color: #d9534f; --text-light: #FFFFFF; --text-dark: #121212; --bg-light: #F4F7FC; --card-bg: #FFFFFF; --shadow: 0 4px 15px rgba(0, 0, 0, 0.1); --header-bg-scrolled: rgba(255, 255, 255, 0.85); --header-text-scrolled: var(--primary-color);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { background-color: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
@@ -46,22 +26,13 @@
         body.en-lang { font-family: 'Poppins', sans-serif; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         header { background-color: var(--primary-color); color: var(--text-light); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; transition: background-color 0.5s ease, backdrop-filter 0.5s ease, padding 0.5s ease; }
-        
-        header.scrolled {
-            background-color: var(--header-bg-scrolled);
-            color: var(--header-text-scrolled);
-            /* --- FIXED: These lines create the blur effect --- */
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
+        header.scrolled { background-color: var(--header-bg-scrolled); color: var(--header-text-scrolled); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); }
         header .container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.8rem; font-weight: 700; color: inherit; text-decoration: none; }
         .header-right-group { display: flex; align-items: center; gap: 1.5rem; }
-        nav ul { list-style: none; display: flex; align-items: center; gap: 2rem; }
-        nav a { color: inherit; text-decoration: none; font-size: 1rem; font-weight: 600; cursor: pointer; transition: color 0.3s ease; }
-        nav a:hover { color: var(--accent-color); }
+        nav ul { list-style: none; display: flex; align-items: center; gap: 1rem; }
+        nav a, .nav-btn { color: inherit; text-decoration: none; font-size: 1rem; font-weight: 600; transition: color 0.3s ease; cursor: pointer; }
+        nav a:hover, .nav-btn:hover { color: var(--accent-color); }
         .instagram-link { display: flex; align-items: center; gap: 8px; }
         .instagram-link svg { width: 24px; height: 24px; fill: currentColor; }
         .lang-toggle-btn { background-color: var(--secondary-color); color: var(--text-light); border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; font-size: 1.2rem; font-weight: 700; display: flex; justify-content: center; align-items: center; line-height: 1; transition: background-color 0.3s ease, transform 0.2s ease; }
@@ -72,8 +43,10 @@
         #menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(7px, 7px); }
         #menu-toggle.active span:nth-child(2) { opacity: 0; }
         #menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
-        
-        /* (Other styles like game cards, footer, etc., are unchanged) */
+        #notification-inbox-btn { position: relative; background: none; border: none; color: inherit; cursor: pointer; padding: 0.5rem; }
+        #notification-inbox-btn svg { width: 26px; height: 26px; fill: currentColor; }
+        #notification-badge { position: absolute; top: 0; right: 0; background-color: var(--danger-color); color: white; border-radius: 50%; width: 18px; height: 18px; font-size: 11px; font-weight: bold; display: flex; align-items: center; justify-content: center; transform: scale(0); transition: transform 0.3s ease; }
+        #notification-badge.show { transform: scale(1); }
         .games-grid { padding: 4rem 0; }
         .games-grid h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--primary-color); }
         .grid-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
@@ -87,18 +60,26 @@
         .btn-play:hover { background-color: #e68a00; }
         footer { background-color: var(--primary-color); color: var(--text-light); padding: 2rem 0; text-align: center; margin-top: 2rem; }
         footer p { font-weight: bold; }
-        
-        /* (Notification and Modal styles are unchanged) */
         #notification-fab { position: fixed; bottom: 25px; right: 25px; width: 60px; height: 60px; background-color: var(--secondary-color); color: white; border: none; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); cursor: pointer; z-index: 1010; transition: transform 0.2s ease, background-color 0.3s ease; }
         #notification-fab:hover { transform: scale(1.1); }
         #notification-fab svg { width: 28px; height: 28px; fill: white; }
         #notification-fab.disabled { background-color: #757575; cursor: not-allowed; }
         #notification-status { position: fixed; bottom: 95px; right: 25px; background-color: #333; color: white; padding: 10px 15px; border-radius: 8px; font-size: 0.9rem; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; z-index: 1009; font-family: 'Poppins', 'Noto Sans Oriya', sans-serif; text-align: center; }
         #notification-status.show { opacity: 1; visibility: visible; }
-        
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.6); animation: fadeIn 0.3s; }
         .modal-content { background-color: #fefefe; margin: 10% auto; padding: 2rem 3rem; border: 1px solid #888; width: 80%; max-width: 800px; border-radius: 10px; position: relative; animation: slideIn 0.4s; }
-        #subscribe-modal .modal-content, #unsubscribe-modal .modal-content { max-width: 500px; text-align: center; padding: 2rem; }
+        #subscribe-modal .modal-content, #unsubscribe-modal .modal-content, #notification-inbox-modal .modal-content { max-width: 500px; text-align: center; padding: 2rem; }
+        #notification-inbox-modal .modal-content { padding: 0; text-align: left; }
+        .inbox-header { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 1px solid #eee; }
+        .inbox-header h2 { margin: 0; font-size: 1.5rem; }
+        #clear-notifications-btn { background: none; border: none; color: var(--danger-color); font-weight: bold; cursor: pointer; font-size: 0.9rem; }
+        .notifications-list { list-style: none; padding: 0; margin: 0; max-height: 60vh; overflow-y: auto; }
+        .notifications-list li { padding: 1.5rem; border-bottom: 1px solid #eee; }
+        .notifications-list li:last-child { border-bottom: none; }
+        .notification-item-title { font-weight: bold; margin-bottom: 0.5rem; }
+        .notification-item-body { color: #555; margin-bottom: 0.5rem; }
+        .notification-item-date { font-size: 0.8rem; color: #999; }
+        #no-notifications-message { padding: 3rem 1.5rem; text-align: center; color: #777; }
         #subscribe-modal h2, #unsubscribe-modal h2 { font-size: 1.8rem; color: var(--primary-color); margin-bottom: 1rem; }
         #subscribe-modal p, #unsubscribe-modal p { margin-bottom: 1.5rem; font-size: 1rem; line-height: 1.7; }
         .modal-buttons { display: flex; justify-content: center; gap: 1rem; }
@@ -117,55 +98,43 @@
         .close-button:hover, .close-button:focus { color: black; text-decoration: none; cursor: pointer; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideIn { from { transform: translateY(-50px); } to { transform: translateY(0); } }
-
         @media (max-width: 768px) {
             .logo { font-size: 1.5rem; }
             #menu-toggle { display: flex; }
-            
-            .main-nav {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                /* --- FIXED: Added the blur effect to the mobile menu dropdown --- */
-                background-color: var(--header-bg-scrolled);
-                -webkit-backdrop-filter: blur(10px);
-                backdrop-filter: blur(10px);
-                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-                padding: 1rem 0;
-            }
-
+            .main-nav { display: none; position: absolute; top: 100%; left: 0; width: 100%; background-color: var(--header-bg-scrolled); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); padding: 1rem 0; }
             .main-nav.active { display: block; }
             .main-nav ul { flex-direction: column; align-items: center; gap: 0; }
             .main-nav li { width: 100%; text-align: center; }
-            .main-nav a { color: var(--text-dark); padding: 1rem; display: block; width: 100%; }
-            .main-nav a:hover { background-color: rgba(244, 247, 252, 0.7); } /* slight transparency on hover */
+            .main-nav a, .main-nav .nav-btn { color: var(--text-dark); padding: 1rem; display: block; width: 100%; }
             .main-nav a.instagram-link { display: inline-flex; justify-content: center; width: auto; }
+            .main-nav a:hover, .main-nav .nav-btn:hover { background-color: rgba(244, 247, 252, 0.7); }
             .main-nav a.instagram-link:hover { background-color: transparent; }
             .modal-content { width: 90%; margin: 20% auto; padding: 1.5rem; max-height: 70vh; overflow-y: auto; }
             .modal-buttons { flex-wrap: wrap; }
         }
     </style>
-
-    <script type="application/ld+json">{/* (JSON-LD scripts are unchanged) */}</script>
 </head>
 
 <body class="or-lang">
-    <!-- (The entire HTML body section is unchanged from the last correct version) -->
     <header id="main-header">
         <div class="container">
-            <a href="#ଓଡ଼ିଆ" class="logo" data-key="logo_text"></a>
+            <a href="#" class="logo" data-key="logo_text"></a>
             <div class="header-right-group">
                 <nav class="main-nav">
                     <ul>
-                        <li><a id="terms-link" data-key="nav_terms"></a></li>
-                        <li><a id="privacy-link" data-key="nav_privacy"></a></li>
+                        <li><a id="terms-link" class="nav-btn" data-key="nav_terms"></a></li>
+                        <li><a id="privacy-link" class="nav-btn" data-key="nav_privacy"></a></li>
                         <li>
                             <a href="https://www.instagram.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer" class="instagram-link">
-                                <svg role="img" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.314 1.65 20.644 1.237 19.854.93c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.056 1.17-.249 1.805-.413 2.227-.217.562-.477.96-.896 1.381-.42.419-.82.679-1.382.896-.421.164-1.057.36-2.227.413-1.266.057-1.646.07-4.85.07s-3.585-.015-4.85-.074c-1.17-.056-1.805-.249-2.227-.413-.562-.217-.96-.477-1.381-.896-.42-.42-.68-.82-.896-1.381-.165-.422-.36-1.057-.413-2.227-.055-1.266-.07-1.646-.07-4.85s.015-3.585.07-4.85c.055-1.17.249-1.805.413-2.227.217-.562.477.96.896-1.381.42-.42.819-.68 1.381-.896.422-.165 1.057-.36 2.227-.413C8.415 2.175 8.797 2.16 12 2.16zm0 5.482A4.357 4.357 0 1016.357 12 4.357 4.357 0 0012 7.642zm0 7.21a2.853 2.853 0 112.853-2.853A2.856 2.856 0 0112 14.852zm5.76-7.167a1.03 1.03 0 11-1.03-1.03 1.03 1.03 0 011.03 1.03z"></path></svg>
+                                <svg role="img" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.314 1.65 20.644 1.237 19.854.93c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.056 1.17-.249 1.805-.413 2.227-.217.562-.477.96-.896 1.381-.42.419-.82.679-1.382.896-.421.164-1.057.36-2.227.413-1.266.057-1.646.07-4.85.07s-3.585-.015-4.85-.074c-1.17-.056-1.805-.249-2.227-.413-.562-.217-.96-.477-1.381-.896-.42-.42-.68-.82-.896-1.381-.165-.422-.36-1.057-.413-2.227-.055-1.266-.07-1.646-.07-4.85s.015-3.585.07-4.85c.055-1.17.249-1.805.413-2.227.217-.562.477.96.896-1.381.42-.42.819-.68 1.381-.896.422-.165 1.057-.36 2.227-.413C8.415 2.175 8.797 2.16 12 2.16zm0 5.482A4.357 4.357 0 1016.357 12 4.357 4.357 0 0012 7.642zm0 7.21a2.853 2.853 0 112.853-2.853A2.856 2.856 0 0112 14.852zm5.76-7.167a1.03 1.03 0 11-1.03-1.03 1.03 1.03 0 011.03 1.03z"></path></svg>
                                 <span data-key="nav_instagram"></span>
                             </a>
+                        </li>
+                        <li>
+                            <button id="notification-inbox-btn" class="nav-btn" aria-label="Show Notifications">
+                                <svg fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,18H4V8H20M20,6H4A2,2 0 0,0 2,8V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8A2,2 0 0,0 20,6M12,15L4,10V12L12,17L20,12V10L12,15Z" /></svg>
+                                <span id="notification-badge">0</span>
+                            </button>
                         </li>
                     </ul>
                 </nav>
@@ -176,27 +145,31 @@
     </header>
 
     <main>
-         <section class="games-grid">
+        <section class="games-grid">
             <div class="container">
                 <h2 data-key="games_title"></h2>
                 <div class="grid-container">
                     <div class="game-card new-game" data-new-badge>
-                        <div><img src="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/gk.png" alt="More Odia games are coming soon" class="game-icon">
+                        <div>
+                            <img src="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/gk.png" alt="Icon for GK Test" class="game-icon" data-alt-key="alt_game4">
                             <h3 data-key="game4_title"></h3><p data-key="game4_desc"></p>
                         </div><a href="/gk" class="btn-play" data-key="play_now_btn"></a>
                     </div>
                     <div class="game-card">
-                        <div><img src="https://imsbg.github.io/odiagames/icon/mo.png" alt="Icon" class="game-icon">
+                        <div>
+                            <img src="https://imsbg.github.io/odiagames/icon/mo.png" alt="Icon for Math Wizard" class="game-icon" data-alt-key="alt_game1">
                             <h3 data-key="game1_title"></h3><p data-key="game1_desc"></p>
                         </div><a href="/ଗଣିତ%20ବିଜ୍ଞ" class="btn-play" data-key="play_now_btn"></a>
                     </div>
                     <div class="game-card">
-                        <div><img src="https://imsbg.github.io/odiagames/icon/ml.png" alt="Icon" class="game-icon">
+                        <div>
+                            <img src="https://imsbg.github.io/odiagames/icon/ml.png" alt="Icon for Math Wiz Game Room" class="game-icon" data-alt-key="alt_game2">
                             <h3 data-key="game2_title"></h3><p data-key="game2_desc"></p>
                         </div><a href="/ଗଣିତ%20ବିଜ୍ଞ/live" class="btn-play" data-key="play_now_btn"></a>
                     </div>
                     <div class="game-card">
-                        <div><img src="https://i.ibb.co/6RkCPyjz/deafc4b6-ed6e-49b5-9496-670689cf4b57.jpg" alt="Icon" class="game-icon">
+                        <div>
+                            <img src="https://i.ibb.co/6RkCPyjz/deafc4b6-ed6e-49b5-9496-670689cf4b57.jpg" alt="More games coming soon" class="game-icon" data-alt-key="alt_game3">
                             <h3 data-key="game3_title"></h3><p data-key="game3_desc"></p>
                         </div><a href="#" class="btn-play" data-key="play_now_btn"></a>
                     </div>
@@ -212,53 +185,41 @@
         </div>
     </footer>
 
-    <div id="terms-modal" class="modal"><div class="modal-content"><span class="close-button" data-close-std>×</span><h1 data-key="terms_title"></h1><p data-key="terms_p1"></p><h3 data-key="terms_h_license"></h3><p data-key="terms_p_license"></p><h3 data-key="terms_h_conduct"></h3><p data-key="terms_p_conduct"></p><h3 data-key="terms_h_ip"></h3><p data-key="terms_p_ip"></p><h3 data-key="terms_h_changes"></h3><p data-key="terms_p_changes"></p></div></div>
-    <div id="privacy-modal" class="modal"><div class="modal-content"><span class="close-button" data-close-std>×</span><h1 data-key="privacy_title"></h1><p data-key="privacy_p1"></p><h3 data-key="privacy_h_info"></h3><p data-key="privacy_p_info"></p><h3 data-key="privacy_h_usage"></h3><p data-key="privacy_p_usage"></p><h3 data-key="privacy_h_security"></h3><p data-key="privacy_p_security"></p><h3 data-key="privacy_h_contact"></h3><p data-key="privacy_p_contact"></p></div></div>
+    <div id="terms-modal" class="modal"><div class="modal-content"><span class="close-button" data-close-std>×</span><h1 data-key="terms_title"></h1><p data-key="terms_p1"></p></div></div>
+    <div id="privacy-modal" class="modal"><div class="modal-content"><span class="close-button" data-close-std>×</span><h1 data-key="privacy_title"></h1><p data-key="privacy_p1"></p></div></div>
     <div id="subscribe-modal" class="modal"><div class="modal-content"><span class="close-button" data-close-notif>×</span><h2 data-key="subscribe_modal_title"></h2><p data-key="subscribe_modal_desc"></p><div class="modal-buttons"><button id="deny-subscribe" class="modal-btn btn-secondary" data-key="subscribe_modal_deny_btn"></button><button id="confirm-subscribe" class="modal-btn btn-primary" data-key="subscribe_modal_allow_btn"></button></div></div></div>
     <div id="unsubscribe-modal" class="modal"><div class="modal-content"><span class="close-button" data-close-notif>×</span><h2 data-key="unsubscribe_modal_title"></h2><p data-key="unsubscribe_modal_desc"></p><div class="modal-buttons"><button id="confirm-unsubscribe" class="modal-btn btn-danger" data-key="unsubscribe_modal_disable_btn"></button></div></div></div>
+    <div id="notification-inbox-modal" class="modal"><div class="modal-content"><span class="close-button" data-close-inbox>×</span><div class="inbox-header"><h2 data-key="inbox_title"></h2><button id="clear-notifications-btn" data-key="inbox_clear_all"></button></div><ul class="notifications-list"></ul><p id="no-notifications-message" data-key="inbox_empty"></p></div></div>
+    
     <div id="notification-status"></div>
+    <!-- FIXED: Added the notification FAB back into the HTML body -->
     <button id="notification-fab" title="Manage Notifications"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="currentColor" d="M21,19V20H3V19L5,17V11C5,7.9 7.03,5.17 10,4.29V4A2,2 0 0,1 12,2A2,2 0 0,1 14,4V4.29C16.97,5.17 19,7.9 19,11V17L21,19M12,22A3,3 0 0,1 9,19H15A3,3 0 0,1 12,22Z" /></svg></button>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-messaging.js"></script>
-    
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const translations = {
                 or: { 
-                    logo_text: "ମୋ ଓଡ଼ିଆ ଖେଳ", nav_terms: "ସର୍ତ୍ତାବଳୀ", nav_privacy: "ଗୋପନୀୟତା ନୀତି", nav_instagram: "ଇନଷ୍ଟାଗ୍ରାମ", games_title: "ଆମର ଖେଳ", play_now_btn: "ଏବେ ଖେଳନ୍ତୁ", game1_title: "ଗଣିତ ବିଜ୍ଞ", game1_desc: "ମଜାଦାର ଗଣିତ ପଜଲ୍ ସହିତ ଆପଣଙ୍କର ମସ୍ତିଷ୍କକୁ ଚ୍ୟାଲେଞ୍ଜ କରନ୍ତୁ |", game2_title: "ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍", game2_desc: "ନିଜ ସାଙ୍ଗସାଥି ମାନଙ୍କ ସହ ସମାନ ପ୍ରଶ୍ନ ଓ ସମୟ ନିର୍ଦ୍ଧାରିତ ଖେଳ ଏକାଠି ଖେଳିପାରିବେ ଓ ଫଳାଫଳ ମଧ୍ୟ ଦେଖିପାରିବେ |", game3_title: "ଆଗକୁ ଆସିବ", game3_desc: "କିଛି ନୂତନ ଖେଳ ଆସିଲେ ଏଠାରେ ଯୋଗ କରାଯିବ |", game4_title: "ଜ୍ଞାନ ପରୀକ୍ଷା", game4_desc: "ସାଧାରଣ ଜ୍ଞାନ ପରୀକ୍ଷା କରନ୍ତୁ । ", footer_copyright: "© ୨୦୨୫ ମୋ ଓଡ଼ିଆ ଖେଳ | ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ", terms_title: "ସେବା ସର୍ତ୍ତାବଳୀ", /* Other Odia text */
-                    notif_status_subscribed: "ନୋଟିଫିକେସନ୍ ସକ୍ଷମ ଅଛି", notif_status_unsubscribed: "ନୋଟିଫିକେସନ୍ ବନ୍ଦ କରାଗଲା", notif_status_blocked: "ବ୍ରାଉଜର ସେଟିଂସରେ ବ୍ଲକ୍ ହୋଇଛି", notif_status_error: "କିଛି ତ୍ରୁଟି ହେଲା",
-                    subscribe_modal_title: "ଅପଡେଟ୍ ପାଆନ୍ତୁ!", subscribe_modal_desc: "ଆମେ ନୂଆ ଖେଳ ଯୋଗ କଲେ ତୁରନ୍ତ ନୋଟିଫିକେସନ୍ ପାଇବାକୁ ଚାହୁଁଛନ୍ତି କି? ଆମେ କେବେବି ସ୍ପାମ୍ କରିବୁ ନାହିଁ।", subscribe_modal_allow_btn: "ହଁ, ପଠାନ୍ତୁ", subscribe_modal_deny_btn: "ନା, ଥାଉ",
-                    unsubscribe_modal_title: "ଆପଣ ନିଶ୍ଚିତ କି?", unsubscribe_modal_desc: "ଆପଣ ଆଉ ନୂଆ ଖେଳ ବିଷୟରେ କୌଣସି ଅପଡେଟ୍ ପାଇବେ ନାହିଁ।", unsubscribe_modal_disable_btn: "ହଁ, ବନ୍ଦ କରନ୍ତୁ", total_visits_text: "ମୋଟ ପରିଦର୍ଶନ: ", visit_count_loading: "ଅପେକ୍ଷା କରନ୍ତୁ",
-                    new_badge_text: "ନୂଆ",
-                },
+                    logo_text: "ମୋ ଓଡ଼ିଆ ଖେଳ", nav_terms: "ସର୍ତ୍ତାବଳୀ", nav_privacy: "ଗୋପନୀୟତା ନୀତି", nav_instagram: "ଇନଷ୍ଟାଗ୍ରାମ", games_title: "ଆମର ଖେଳ", play_now_btn: "ଏବେ ଖେଳନ୍ତୁ", game1_title: "ଗଣିତ ବିଜ୍ଞ", alt_game1: "ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ଆଇକନ୍", game1_desc: "ମଜାଦାର ଗଣିତ ପଜଲ୍ ସହିତ ଆପଣଙ୍କର ମସ୍ତିଷ୍କକୁ ଚ୍ୟାଲେଞ୍ଜ କରନ୍ତୁ |", game2_title: "ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍", alt_game2: "ଗଣିତ ବିଜ୍ଞ ଗେମ୍ ରୁମ୍ ଆଇକନ୍", game2_desc: "ନିଜ ସାଙ୍ଗସାଥି ମାନଙ୍କ ସହ ସମାନ ପ୍ରଶ୍ନ ଓ ସମୟ ନିର୍ଦ୍ଧାରିତ ଖେଳ ଏକାଠି ଖେଳିପାରିବେ ଓ ଫଳାଫଳ ମଧ୍ୟ ଦେଖିପାରିବେ |", game3_title: "ଆଗକୁ ଆସିବ", alt_game3: "ଅଧିକ ଖେଳ ଆସୁଅଛି", game3_desc: "କିଛି ନୂତନ ଖେଳ ଆସିଲେ ଏଠାରେ ଯୋଗ କରାଯିବ |", game4_title: "ଜ୍ଞାନ ପରୀକ୍ଷା", alt_game4: "ଜ୍ଞାନ ପରୀକ୍ଷା ଗେମ୍ ଆଇକନ୍", game4_desc: "ସାଧାରଣ ଜ୍ଞାନ ପରୀକ୍ଷା କରନ୍ତୁ । ", footer_copyright: "© ୨୦୨୫ ମୋ ଓଡ଼ିଆ ଖେଳ | ସମସ୍ତ ଅଧିକାର ସଂରକ୍ଷିତ", terms_title: "ସେବା ସର୍ତ୍ତାବଳୀ", notif_status_subscribed: "ନୋଟିଫିକେସନ୍ ସକ୍ଷମ ଅଛି", notif_status_unsubscribed: "ନୋଟିଫିକେସନ୍ ବନ୍ଦ କରାଗଲା", notif_status_blocked: "ବ୍ରାଉଜର ସେଟିଂସରେ ବ୍ଲକ୍ ହୋଇଛି", notif_status_error: "କିଛି ତ୍ରୁଟି ହେଲା", subscribe_modal_title: "ଅପଡେଟ୍ ପାଆନ୍ତୁ!", subscribe_modal_desc: "ଆମେ ନୂଆ ଖେଳ ଯୋଗ କଲେ ତୁରନ୍ତ ନୋଟିଫିକେସନ୍ ପାଇବାକୁ ଚାହୁଁଛନ୍ତି କି? ଆମେ କେବେବି ସ୍ପାମ୍ କରିବୁ ନାହିଁ।", subscribe_modal_allow_btn: "ହଁ, ପଠାନ୍ତୁ", subscribe_modal_deny_btn: "ନା, ଥାଉ", unsubscribe_modal_title: "ଆପଣ ନିଶ୍ଚିତ କି?", unsubscribe_modal_desc: "ଆପଣ ଆଉ ନୂଆ ଖେଳ ବିଷୟରେ କୌଣସି ଅପଡେଟ୍ ପାଇବେ ନାହିଁ।", unsubscribe_modal_disable_btn: "ହଁ, ବନ୍ଦ କରନ୍ତୁ", total_visits_text: "ମୋଟ ପରିଦର୍ଶନ: ", visit_count_loading: "ଅପେକ୍ଷା କରନ୍ତୁ", new_badge_text: "ନୂଆ", inbox_title: "ନୋଟିଫିକେସନ୍‌ସ", inbox_clear_all: "ସବୁ ହଟାନ୍ତୁ", inbox_empty: "ଏଠାରେ କୌଣସି ନୋଟିଫିକେସନ୍ ନାହିଁ।"},
                 en: { 
-                    logo_text: "My Odia Games", nav_terms: "Terms", nav_privacy: "Privacy Policy", nav_instagram: "Instagram", games_title: "Our Games", play_now_btn: "Play Now", game1_title: "Math Wizard", game1_desc: "Challenge your brain with fun math puzzles.", game2_title: "Math Wiz Game Room", game2_desc: "You can play the same question and time-bound game together with your friends and also see the results.", game3_title: "Coming Soon", game4_title: "Knowledge Test", game4_desc: "Take a general knowledge test.", game3_desc: "If any new games come up, they will be added here.", footer_copyright: "© 2025 My Odia Games | All Rights Reserved", terms_title: "Terms of Service", /* Other English text */
-                    notif_status_subscribed: "Notifications are enabled", notif_status_unsubscribed: "Notifications disabled", notif_status_blocked: "Notifications blocked in browser settings", notif_status_error: "Something went wrong",
-                    subscribe_modal_title: "Get Updates!", subscribe_modal_desc: "Want to get notified instantly when we add new games? We promise never to spam you.", subscribe_modal_allow_btn: "Yes, notify me", subscribe_modal_deny_btn: "No, thanks",
-                    unsubscribe_modal_title: "Are you sure?", unsubscribe_modal_desc: "You will no longer receive updates about new games.", unsubscribe_modal_disable_btn: "Yes, disable", total_visits_text: "Total Visits: ", visit_count_loading: "Loading...",
-                    new_badge_text: "New",
-                }
+                    logo_text: "My Odia Games", nav_terms: "Terms", nav_privacy: "Privacy Policy", nav_instagram: "Instagram", games_title: "Our Games", play_now_btn: "Play Now", game1_title: "Math Wizard", alt_game1: "Math Wizard Game Icon", game1_desc: "Challenge your brain with fun math puzzles.", game2_title: "Math Wiz Game Room", alt_game2: "Math Wiz Game Room Icon", game2_desc: "You can play the same question and time-bound game together with your friends and also see the results.", game3_title: "Coming Soon", alt_game3: "More games coming soon", game3_desc: "If any new games come up, they will be added here.", game4_title: "Knowledge Test", alt_game4: "Knowledge Test Game Icon", game4_desc: "Take a general knowledge test.", footer_copyright: "© 2025 My Odia Games | All Rights Reserved", terms_title: "Terms of Service", notif_status_subscribed: "Notifications are enabled", notif_status_unsubscribed: "Notifications disabled", notif_status_blocked: "Notifications blocked in browser settings", notif_status_error: "Something went wrong", subscribe_modal_title: "Get Updates!", subscribe_modal_desc: "Want to get notified instantly when we add new games? We promise never to spam you.", subscribe_modal_allow_btn: "Yes, notify me", subscribe_modal_deny_btn: "No, thanks", unsubscribe_modal_title: "Are you sure?", unsubscribe_modal_desc: "You will no longer receive updates about new games.", unsubscribe_modal_disable_btn: "Yes, disable", total_visits_text: "Total Visits: ", visit_count_loading: "Loading...", new_badge_text: "New", inbox_title: "Notifications", inbox_clear_all: "Clear All", inbox_empty: "You have no notifications."}
             };
             
             let currentLang;
             let latestVisitCount = 0;
-            const firebaseConfig = {
-                apiKey: "AIzaSyCI8CEVsIm04yshvJVAZqQcElE_G-VaduQ",
-                authDomain: "odia-games-visitor-counter.firebaseapp.com",
-                projectId: "odia-games-visitor-counter",
-                storageBucket: "odia-games-visitor-counter.firebasestorage.app",
-                messagingSenderId: "485616496841",
-                appId: "1:485616496841:web:554cb48f6ec2182caa1d18"
-            };
+            let db;
+            const firebaseConfig = { apiKey: "AIzaSyCI8CEVsIm04yshvJVAZqQcElE_G-VaduQ", authDomain: "odia-games-visitor-counter.firebaseapp.com", projectId: "odia-games-visitor-counter", storageBucket: "odia-games-visitor-counter.firebasestorage.app", messagingSenderId: "485616496841", appId: "1:485616496841:web:554cb48f6ec2182caa1d18"};
 
             firebase.initializeApp(firebaseConfig);
-            const db = firebase.firestore();
+            const firestore = firebase.firestore();
             const messaging = firebase.messaging();
 
-            const VAPID_KEY = "BCZNevbA1DoKwBlThWacoTSijmpSy-JlGDQ4Ioym8Bh39x7B6PIM9ssVx9rr3LRr3hhANjJAWvzfhtZAVE-43lc";
+            const VAPID_KEY = "YOUR_PUBLIC_VAPID_KEY_FROM_FIREBASE";
 
+            // --- ALL DOM Element Selectors ---
             const notificationFab = document.getElementById('notification-fab');
             const notificationStatus = document.getElementById('notification-status');
             const subscribeModal = document.getElementById('subscribe-modal');
@@ -270,112 +231,63 @@
             const menuToggle = document.getElementById('menu-toggle');
             const mainNav = document.querySelector('.main-nav');
             const visitCountEl = document.getElementById('visit-count');
+            const notificationInboxBtn = document.getElementById('notification-inbox-btn');
+            const notificationBadge = document.getElementById('notification-badge');
+            const notificationInboxModal = document.getElementById('notification-inbox-modal');
+            const notificationsList = document.querySelector('.notifications-list');
+            const noNotificationsMessage = document.getElementById('no-notifications-message');
+            const clearNotificationsBtn = document.getElementById('clear-notifications-btn');
 
-            const toOdiaNumerals = (num) => {
-                const odiaDigits = ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'];
-                return String(num).split('').map(digit => odiaDigits[digit] || digit).join('');
-            };
-
-            const displayCount = (count) => {
-                if (currentLang === 'or') { visitCountEl.textContent = toOdiaNumerals(count); }
-                else { visitCountEl.textContent = count.toLocaleString('en-US'); }
-            };
-
+            // --- Helper Functions ---
             const setLanguage = (lang) => {
                 if (!translations[lang]) lang = 'or';
                 currentLang = lang;
-                document.querySelectorAll('[data-key]').forEach(elem => {
-                    const key = elem.getAttribute('data-key');
-                    if (translations[lang] && translations[lang][key]) { elem.innerHTML = translations[lang][key]; }
-                });
-                document.querySelectorAll('[data-new-badge]').forEach(elem => {
-                    if (translations[lang]['new_badge_text']) { elem.setAttribute('data-new-badge', translations[lang]['new_badge_text']); }
-                });
-                document.documentElement.lang = lang;
-                document.body.className = `${lang}-lang`;
-                langToggleBtn.textContent = (lang === 'or') ? 'E' : 'ଓ';
+                document.querySelectorAll('[data-key]').forEach(elem => { const key = elem.getAttribute('data-key'); if (translations[lang] && translations[lang][key]) { elem.innerHTML = translations[lang][key]; }});
+                document.querySelectorAll('[data-new-badge]').forEach(elem => { if (translations[lang]['new_badge_text']) { elem.setAttribute('data-new-badge', translations[lang]['new_badge_text']); }});
+                document.querySelectorAll('[data-alt-key]').forEach(elem => { const key = elem.getAttribute('data-alt-key'); if (translations[lang] && translations[lang][key]) { elem.alt = translations[lang][key]; }});
+                document.documentElement.lang = lang; document.body.className = `${lang}-lang`; langToggleBtn.textContent = (lang === 'or') ? 'E' : 'ଓ';
                 localStorage.setItem('userLanguage', lang);
-                if (latestVisitCount > 0) { displayCount(latestVisitCount); }
-                else { visitCountEl.textContent = translations[lang].visit_count_loading || '...'; }
+                if (latestVisitCount > 0) { displayCount(latestVisitCount); } else { visitCountEl.textContent = translations[lang].visit_count_loading || '...'; }
                 if ('Notification' in window) { updateFabUI(Notification.permission); }
             };
-
-            const updateFabUI = (permission) => {
-                if (permission === 'granted') { notificationFab.style.backgroundColor = 'var(--secondary-color)'; notificationFab.classList.remove('disabled'); }
-                else if (permission === 'denied') { notificationFab.style.backgroundColor = '#757575'; notificationFab.classList.add('disabled'); }
-                else { notificationFab.style.backgroundColor = 'var(--accent-color)'; notificationFab.classList.remove('disabled'); }
-            };
-
-            const showStatusMessage = (key, duration = 3000) => {
-                notificationStatus.textContent = translations[currentLang][key] || key;
-                notificationStatus.classList.add('show');
-                setTimeout(() => notificationStatus.classList.remove('show'), duration);
-            };
-            
             const openModal = (modalElement) => { modalElement.style.display = "block"; };
             const closeModal = (modalElement) => { modalElement.style.display = "none"; };
             
-            notificationFab.addEventListener('click', () => {
-                if (!('Notification' in window) || !('serviceWorker' in navigator)) { return; }
-                const permission = Notification.permission;
-                if (permission === 'granted') openModal(unsubscribeModal);
-                else if (permission === 'denied') showStatusMessage('notif_status_blocked');
-                else openModal(subscribeModal);
-            });
+            // --- Notification Inbox DB & UI ---
+            function initDB() {
+                const request = indexedDB.open('notificationsDB', 1);
+                request.onupgradeneeded = event => { const db = event.target.result; if (!db.objectStoreNames.contains('notifications')) { db.createObjectStore('notifications', { keyPath: 'id', autoIncrement: true }); }};
+                request.onsuccess = event => { db = event.target.result; renderNotifications(); };
+                request.onerror = event => console.error("DB error: ", event.target.errorCode);
+            }
+            function saveNotification(message) { if (!db) return; const transaction = db.transaction(['notifications'], 'readwrite'); const store = transaction.objectStore('notifications'); store.add(message); transaction.oncomplete = () => renderNotifications(); }
+            function getNotifications(callback) { if (!db) return callback([]); const transaction = db.transaction(['notifications'], 'readonly'); const store = transaction.objectStore('notifications'); const request = store.getAll(); request.onsuccess = () => callback(request.result); request.onerror = () => callback([]); }
+            function clearAllNotifications() { if (!db) return; const transaction = db.transaction(['notifications'], 'readwrite'); const store = transaction.objectStore('notifications'); store.clear(); transaction.oncomplete = () => renderNotifications(); }
+            function renderNotifications() { getNotifications(messages => { notificationsList.innerHTML = ''; if (messages && messages.length > 0) { noNotificationsMessage.style.display = 'none'; clearNotificationsBtn.style.display = 'block'; messages.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)); messages.forEach(msg => { const li = document.createElement('li'); const date = new Date(msg.timestamp).toLocaleString(currentLang === 'or' ? 'or-IN' : 'en-US'); li.innerHTML = `<div class="notification-item-title">${msg.title}</div><div class="notification-item-body">${msg.body}</div><div class="notification-item-date">${date}</div>`; notificationsList.appendChild(li); }); } else { noNotificationsMessage.style.display = 'block'; clearNotificationsBtn.style.display = 'none'; } updateBadge(messages ? messages.length : 0); }); }
+            function updateBadge(count) { if (count > 0) { notificationBadge.textContent = count; notificationBadge.classList.add('show'); } else { notificationBadge.classList.remove('show'); } }
 
-            confirmSubscribeBtn.addEventListener('click', () => {
-                closeModal(subscribeModal);
-                messaging.requestPermission().then(() => messaging.getToken({ vapidKey: VAPID_KEY }))
-                .then(token => {
-                    if (token) {
-                        saveTokenToFirestore(token);
-                        updateFabUI('granted');
-                        showStatusMessage('notif_status_subscribed');
-                    }
-                }).catch((err) => {
-                    updateFabUI(Notification.permission);
-                    showStatusMessage('notif_status_error');
-                });
-            });
+            // --- Core Logic & Event Listeners ---
+            notificationFab.addEventListener('click', () => { if (!('Notification' in window) || !('serviceWorker' in navigator)) return; const permission = Notification.permission; if (permission === 'granted') openModal(unsubscribeModal); else if (permission === 'denied') showStatusMessage('notif_status_blocked'); else openModal(subscribeModal); });
+            confirmSubscribeBtn.addEventListener('click', () => { closeModal(subscribeModal); messaging.requestPermission().then(() => messaging.getToken({ vapidKey: VAPID_KEY })).then(token => { if (token) { saveTokenToFirestore(token); updateFabUI('granted'); showStatusMessage('notif_status_subscribed'); } }).catch((err) => { updateFabUI(Notification.permission); showStatusMessage('notif_status_error'); }); });
+            confirmUnsubscribeBtn.addEventListener('click', () => { messaging.getToken().then(currentToken => { if (currentToken) { return messaging.deleteToken(currentToken).then(() => deleteTokenFromFirestore(currentToken)); } }).then(() => { updateFabUI('default'); showStatusMessage('notif_status_unsubscribed'); }).catch(() => showStatusMessage('notif_status_error')).finally(() => closeModal(unsubscribeModal)); });
+            notificationInboxBtn.addEventListener('click', () => { openModal(notificationInboxModal); renderNotifications(); });
+            clearNotificationsBtn.addEventListener('click', () => { const confirmText = currentLang === 'or' ? 'ଆପଣ ସବୁ ନୋଟିଫିକେସନ୍ ହଟାଇବାକୁ ନିଶ୍ଚିତ କି?' : 'Are you sure you want to clear all notifications?'; if (confirm(confirmText)) { clearAllNotifications(); } });
+            
+            messaging.onMessage(payload => { console.log('Foreground message received.', payload); const messageToStore = { title: payload.notification.title, body: payload.notification.body, timestamp: new Date().toISOString(), read: false }; saveNotification(messageToStore); showStatusMessage(`${payload.notification.title}`, 3000); });
+            function saveTokenToFirestore(token) { firestore.collection('fcmTokens').doc(token).set({ createdAt: firebase.firestore.FieldValue.serverTimestamp() }); }
+            function deleteTokenFromFirestore(token) { firestore.collection('fcmTokens').doc(token).delete(); }
 
-            confirmUnsubscribeBtn.addEventListener('click', () => {
-                messaging.getToken().then(currentToken => {
-                    if (currentToken) {
-                        return messaging.deleteToken(currentToken).then(() => deleteTokenFromFirestore(currentToken));
-                    }
-                }).then(() => {
-                    updateFabUI('default');
-                    showStatusMessage('notif_status_unsubscribed');
-                }).catch((err) => {
-                    showStatusMessage('notif_status_error');
-                }).finally(() => {
-                    closeModal(unsubscribeModal);
-                });
-            });
-
-            denySubscribeBtn.addEventListener('click', () => closeModal(subscribeModal));
-            document.querySelectorAll('[data-close-std], [data-close-notif]').forEach(btn => btn.onclick = () => { btn.closest('.modal').style.display = "none"; });
-
+            // --- Init & Other Listeners ---
+            document.querySelectorAll('[data-close-std], [data-close-notif], [data-close-inbox]').forEach(btn => btn.onclick = () => btn.closest('.modal').style.display = "none");
             window.onclick = (event) => { if (event.target.classList.contains('modal')) { event.target.style.display = "none"; } };
-            
-            const saveTokenToFirestore = (token) => db.collection('fcmTokens').doc(token).set({ createdAt: firebase.firestore.FieldValue.serverTimestamp() });
-            const deleteTokenFromFirestore = (token) => db.collection('fcmTokens').doc(token).delete();
-            
-            messaging.onMessage(payload => {
-                const title = payload.notification.title || '';
-                const body = payload.notification.body || '';
-                alert(`-- ${title} --\n\n${body}`);
-            });
-            
-            const listenForCountChanges = () => { db.collection('counters').doc('pageVisits').onSnapshot(doc => { if (doc.exists) { latestVisitCount = doc.data().count; displayCount(latestVisitCount); } }); };
-            const incrementCount = () => { const ref = db.collection('counters').doc('pageVisits'); db.runTransaction(t => t.get(ref).then(doc => t.set(ref, { count: (doc.exists ? doc.data().count : 0) + 1 }))); };
-
+            const listenForCountChanges = () => { firestore.collection('counters').doc('pageVisits').onSnapshot(doc => { if (doc.exists) { latestVisitCount = doc.data().count; displayCount(latestVisitCount); } }); };
+            const incrementCount = () => { const ref = firestore.collection('counters').doc('pageVisits'); firestore.runTransaction(t => t.get(ref).then(doc => t.set(ref, { count: (doc.exists ? doc.data().count : 0) + 1 }))); };
             langToggleBtn.addEventListener('click', () => setLanguage(currentLang === 'or' ? 'en' : 'or'));
             menuToggle.addEventListener('click', () => { menuToggle.classList.toggle('active'); mainNav.classList.toggle('active'); });
-            
             document.getElementById('terms-link').onclick = () => openModal(document.getElementById('terms-modal'));
             document.getElementById('privacy-link').onclick = () => openModal(document.getElementById('privacy-modal'));
             
+            initDB();
             setLanguage(localStorage.getItem('userLanguage') || 'or');
             incrementCount();
             listenForCountChanges();
