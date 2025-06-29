@@ -1,4 +1,3 @@
-<!-- admin.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,25 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - My Odia Games</title>
     <style>
-        body { font-family: sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f4f4f9; color: #333; margin: 0; padding: 20px; }
         .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
         h1, h2 { color: #0A2463; }
         #login-section, #admin-section { display: none; }
-        input, textarea, button { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; }
-        button { background-color: #00693f; color: white; border: none; cursor: pointer; font-weight: bold; }
+        input, textarea, button { width: 100%; padding: 12px; margin-bottom: 12px; border-radius: 5px; border: 1px solid #ccc; box-sizing: border-box; font-size: 1rem; }
+        textarea { min-height: 80px; resize: vertical; }
+        button { background-color: #00693f; color: white; border: none; cursor: pointer; font-weight: bold; transition: background-color 0.2s; }
         button:hover { background-color: #004d2b; }
-        #logout-btn { background-color: #d9534f; }
+        #logout-btn { background-color: #d9534f; width: auto; display: inline-block; padding: 8px 15px; margin-left: 15px; }
         #logout-btn:hover { background-color: #c9302c; }
-        .game-list-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; }
-        .game-list-item button { width: auto; padding: 5px 10px; background-color: #e68a00;}
+        #cancel-edit-btn { background-color: #6c757d; }
+        #cancel-edit-btn:hover { background-color: #5a6268; }
+        .game-list-item { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-bottom: 1px solid #eee; flex-wrap: wrap; gap: 10px;}
+        .game-list-item:last-child { border-bottom: none; }
+        .game-list-item-name { font-weight: bold; }
+        .game-list-buttons button { width: auto; padding: 5px 10px; font-size: 0.9rem; }
+        .edit-btn { background-color: #ffc107; color: #212529; }
+        .edit-btn:hover { background-color: #e0a800; }
+        .delete-btn { background-color: #dc3545; }
+        .delete-btn:hover { background-color: #c82333; }
+        label { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+        label input { width: auto; margin-bottom: 0; }
     </style>
 </head>
 <body>
-
     <div class="container">
         <h1>Admin Panel</h1>
 
-        <!-- Login Form -->
+        <!-- Login Form (remains the same) -->
         <div id="login-section">
             <h2>Login</h2>
             <input type="email" id="email" placeholder="Email">
@@ -33,14 +42,16 @@
             <p id="login-error" style="color: red;"></p>
         </div>
 
-        <!-- Admin Content (Add/List Games) -->
+        <!-- Admin Content (Form now handles Add and Edit) -->
         <div id="admin-section">
-            <p>Welcome, <span id="admin-email"></span>! <button id="logout-btn">Logout</button></p>
-            
+            <p>Welcome, <strong id="admin-email"></strong>! <button id="logout-btn">Logout</button></p>
             <hr>
 
-            <h2>Add New Game</h2>
-            <form id="add-game-form">
+            <h2 id="form-title">Add New Game</h2>
+            <form id="game-form">
+                <!-- Hidden input to store the ID of the game being edited -->
+                <input type="hidden" id="game-id">
+                
                 <input type="text" id="title_en" placeholder="Game Title (English)" required>
                 <input type="text" id="title_or" placeholder="Game Title (Odia)" required>
                 <textarea id="desc_en" placeholder="Description (English)" required></textarea>
@@ -48,73 +59,70 @@
                 <input type="url" id="iconUrl" placeholder="Icon Image URL" required>
                 <input type="url" id="gameUrl" placeholder="Game Link URL (e.g., /bingo)" required>
                 <input type="number" id="order" placeholder="Display Order (e.g., 1, 2, 3)" required>
-                <label><input type="checkbox" id="isNew" style="width: auto;"> Mark as "New"?</label>
-                <button type="submit">Add Game</button>
+                <label><input type="checkbox" id="isNew"> Mark as "New"?</label>
+                
+                <button type="submit" id="submit-btn">Add Game</button>
+                <button type="button" id="cancel-edit-btn" style="display:none;">Cancel Edit</button>
             </form>
-
             <hr>
 
             <h2>Existing Games</h2>
-            <div id="game-list"></div>
+            <div id="game-list">Loading...</div>
         </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-
     <script>
-        // Use the same config as your index.html
         const firebaseConfig = { apiKey: "AIzaSyCI8CEVsIm04yshvJVAZqQcElE_G-VaduQ", authDomain: "odia-games-visitor-counter.firebaseapp.com", projectId: "odia-games-visitor-counter", storageBucket: "odia-games-visitor-counter.firebasestorage.app", messagingSenderId: "485616496841", appId: "1:485616496841:web:554cb48f6ec2182caa1d18"};
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
 
+        // DOM Elements
         const loginSection = document.getElementById('login-section');
         const adminSection = document.getElementById('admin-section');
         const loginBtn = document.getElementById('login-btn');
         const logoutBtn = document.getElementById('logout-btn');
-        const addGameForm = document.getElementById('add-game-form');
+        const gameForm = document.getElementById('game-form');
         const gameList = document.getElementById('game-list');
         const adminEmail = document.getElementById('admin-email');
         const loginError = document.getElementById('login-error');
+        const formTitle = document.getElementById('form-title');
+        const submitBtn = document.getElementById('submit-btn');
+        const cancelEditBtn = document.getElementById('cancel-edit-btn');
+        const gameIdInput = document.getElementById('game-id');
+        
+        let allGamesData = {}; // Cache to store game data for editing
 
         // Check user's auth state
         auth.onAuthStateChanged(user => {
             if (user) {
-                // User is signed in
                 loginSection.style.display = 'none';
                 adminSection.style.display = 'block';
                 adminEmail.textContent = user.email;
                 loadGames();
             } else {
-                // User is signed out
                 loginSection.style.display = 'block';
                 adminSection.style.display = 'none';
             }
         });
 
-        // Login
+        // Login/Logout Handlers
         loginBtn.addEventListener('click', () => {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
-            auth.signInWithEmailAndPassword(email, password)
-                .catch(error => {
-                    console.error("Login Error:", error);
-                    loginError.textContent = error.message;
-                });
+            auth.signInWithEmailAndPassword(email, password).catch(error => { loginError.textContent = error.message; });
         });
+        logoutBtn.addEventListener('click', () => { auth.signOut(); });
 
-        // Logout
-        logoutBtn.addEventListener('click', () => {
-            auth.signOut();
-        });
-
-        // Add a new game
-        addGameForm.addEventListener('submit', async (e) => {
+        // Form submission (handles both ADD and UPDATE)
+        gameForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            const gameId = gameIdInput.value;
             
-            const newGame = {
+            const gameData = {
                 title_en: document.getElementById('title_en').value,
                 title_or: document.getElementById('title_or').value,
                 desc_en: document.getElementById('desc_en').value,
@@ -122,42 +130,68 @@
                 iconUrl: document.getElementById('iconUrl').value,
                 gameUrl: document.getElementById('gameUrl').value,
                 order: Number(document.getElementById('order').value),
-                isNew: document.getElementById('isNew').checked,
-                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                isNew: document.getElementById('isNew').checked
             };
 
             try {
-                await db.collection('games').add(newGame);
-                addGameForm.reset();
-                alert('Game added successfully!');
+                if (gameId) {
+                    // UPDATE existing game
+                    await db.collection('games').doc(gameId).update(gameData);
+                    alert('Game updated successfully!');
+                } else {
+                    // ADD new game
+                    gameData.createdAt = firebase.firestore.FieldValue.serverTimestamp();
+                    await db.collection('games').add(gameData);
+                    alert('Game added successfully!');
+                }
+                resetForm();
                 loadGames(); // Refresh the list
             } catch (error) {
-                console.error("Error adding game: ", error);
-                alert('Error adding game. Check console for details.');
+                console.error("Error saving game: ", error);
+                alert('Error saving game. Check console for details.');
             }
         });
 
-        // Load and display existing games
+        // Load and display games in the list
         async function loadGames() {
             gameList.innerHTML = 'Loading...';
             const snapshot = await db.collection('games').orderBy('order', 'asc').get();
             gameList.innerHTML = '';
+            allGamesData = {}; // Clear and rebuild cache
             snapshot.forEach(doc => {
                 const game = doc.data();
+                allGamesData[doc.id] = game; // Store game data by its ID
+                
                 const item = document.createElement('div');
                 item.className = 'game-list-item';
                 item.innerHTML = `
-                    <span><strong>${game.order}. ${game.title_en}</strong> (${game.title_or})</span>
-                    <button data-id="${doc.id}">Delete</button>
+                    <span class="game-list-item-name">${game.order}. ${game.title_en}</span>
+                    <div class="game-list-buttons">
+                        <button class="edit-btn" data-id="${doc.id}">Edit</button>
+                        <button class="delete-btn" data-id="${doc.id}">Delete</button>
+                    </div>
                 `;
                 gameList.appendChild(item);
             });
         }
+        
+        // Reset form to "Add" mode
+        function resetForm() {
+            gameForm.reset();
+            gameIdInput.value = '';
+            formTitle.textContent = 'Add New Game';
+            submitBtn.textContent = 'Add Game';
+            cancelEditBtn.style.display = 'none';
+        }
 
-        // Delete a game
+        cancelEditBtn.addEventListener('click', resetForm);
+
+        // Handle clicks on "Edit" and "Delete" buttons
         gameList.addEventListener('click', async (e) => {
-            if (e.target.tagName === 'BUTTON' && e.target.dataset.id) {
-                const gameId = e.target.dataset.id;
+            const gameId = e.target.dataset.id;
+            if (!gameId) return; // Exit if the click was not on a button with a data-id
+
+            if (e.target.classList.contains('delete-btn')) {
                 if (confirm('Are you sure you want to delete this game?')) {
                     try {
                         await db.collection('games').doc(gameId).delete();
@@ -165,12 +199,33 @@
                         loadGames(); // Refresh list
                     } catch (error) {
                         console.error("Error deleting game: ", error);
-                        alert('Error deleting game. Check console.');
+                        alert('Error deleting game.');
                     }
                 }
+            } else if (e.target.classList.contains('edit-btn')) {
+                const gameToEdit = allGamesData[gameId];
+                if (!gameToEdit) return;
+
+                // Populate the form with the selected game's data
+                gameIdInput.value = gameId;
+                document.getElementById('title_en').value = gameToEdit.title_en;
+                document.getElementById('title_or').value = gameToEdit.title_or;
+                document.getElementById('desc_en').value = gameToEdit.desc_en;
+                document.getElementById('desc_or').value = gameToEdit.desc_or;
+                document.getElementById('iconUrl').value = gameToEdit.iconUrl;
+                document.getElementById('gameUrl').value = gameToEdit.gameUrl;
+                document.getElementById('order').value = gameToEdit.order;
+                document.getElementById('isNew').checked = gameToEdit.isNew;
+                
+                // Switch form to "Edit" mode
+                formTitle.textContent = 'Edit Game';
+                submitBtn.textContent = 'Update Game';
+                cancelEditBtn.style.display = 'block';
+
+                // Scroll to the top to see the form
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
-
     </script>
 </body>
 </html>
