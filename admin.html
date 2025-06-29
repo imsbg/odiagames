@@ -197,15 +197,16 @@
                 const gameToEdit = allGamesData[gameId];
                 if (!gameToEdit) return;
 
+                // ** THIS IS THE CORRECTED PART **
                 gameIdInput.value = gameId;
                 document.getElementById('title_en').value = gameToEdit.title_en;
                 document.getElementById('title_or').value = gameToEdit.title_or;
                 document.getElementById('desc_en').value = gameToEdit.desc_en;
-                document.getElementById('desc_or').value = gameToRead.desc_or;
+                document.getElementById('desc_or').value = gameToEdit.desc_or;
                 document.getElementById('iconUrl').value = gameToEdit.iconUrl;
                 document.getElementById('gameUrl').value = gameToEdit.gameUrl;
                 document.getElementById('order').value = gameToEdit.order;
-                document.getElementById('isNew').checked = gameToEdit.isNew;
+                document.getElementById('isNew').checked = gameToEdit.isNew || false;
                 document.getElementById('isMultiplayer').checked = gameToEdit.isMultiplayer || false;
                 
                 formTitle.textContent = 'Edit Game';
