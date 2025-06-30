@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="or">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+    <title>ଛେକ ଶୂନ - ଓଡ଼ିଆ ଗେମ୍ସ</title>
+    <meta name="theme-color" content="#4F3A9A"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --bg-gradient-start: #403285;
+        --bg-gradient-end: #403285;
+        --container-bg: #403285;
+        --input-bg: rgba(0, 0, 0, 0.15);
+        --action-primary: #00f2a9;
+        --action-secondary: #00d4d4;
+        --text-light: #ffffff;
+        --text-dark: #1e1e1e;
+        --danger-red: #ff4d4d;
+        --light-grey: rgba(255, 255, 255, 0.1);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      html {
+        font-size: 16px;
+      }
+      body {
+        font-family: "Poppins", "Noto Sans Oriya", sans-serif;
+        background: linear-gradient(
+          180deg,
+          var(--bg-gradient-start),
+          var(--bg-gradient-end)
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 15px;
+      }
+
+      .app-container {
+        width: 100%;
+        max-width: 400px;
+        height: 850px;
+        max-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        background: var(--container-bg);
+        transition: filter 0.3s ease-in-out;
+      }
+      .app-container.blurred {
+        filter: blur(8px);
+        transform: scale(0.98);
+      }
+
+      .card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        padding: 25px 35px;
+        display: none;
+        flex-direction: column;
+      }
+      .card.active {
+        display: flex;
+      }
+
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: var(--text-light);
+        flex-shrink: 0;
+        height: 40px;
+      }
+      .icon {
+        width: 28px;
+        height: 28px;
+        fill: var(--text-light);
+      }
+      .back-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        margin: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+      }
+      .back-btn:hover {
+        opacity: 1;
+      }
+      .lang-switch {
+        width: 90px;
+        height: 40px;
+        background: var(--input-bg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+        font-size: 16px;
+        cursor: pointer;
+        user-select: none;
+        color: var(--text-light);
+        font-family: "Poppins", "Noto Sans Oriya", sans-serif;
+        transition: background-color 0.2s;
+      }
+      .lang-switch:hover {
+        background-color: rgba(0, 0, 0, 0.25);
+      }
+
+      .card-body {
+        text-align: center;
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      #home-card .card-body {
+        justify-content: center;
+      }
+      #home-card h1 {
+        font-size: 3rem;
+        margin-bottom: 50px;
+        font-weight: 700;
+      }
+      .card-body h1,
+      .card-body h2 {
+        color: var(--text-light);
+        font-weight: 700;
+      }
+      h2.card-title {
+        font-size: 1.5rem;
+        flex-grow: 1;
+        text-align: center;
+      }
+
+      button,
+      input[type="text"].modal-input {
+        width: 100%;
+        padding: 18px 20px;
+        border: none;
+        border-radius: 15px;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        font-family: "Poppins", "Noto Sans Oriya", sans-serif;
+        margin-bottom: 15px;
+        transition: all 0.2s ease;
+        letter-spacing: 0.5px;
+      }
+      button:active {
+        transform: scale(0.97);
+      }
+      button:disabled {
+        background-color: #888 !important;
+        color: #ccc !important;
+        cursor: not-allowed;
+        box-shadow: none;
+      }
+      input[type="text"].modal-input {
+        background: var(--input-bg);
+        color: var(--text-light);
+        text-align: center;
+      }
+      input[type="text"].modal-input::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      .btn-primary {
+        background: var(--action-primary);
+        color: var(--text-dark);
+        box-shadow: 0 5px 20px -5px var(--action-primary);
+      }
+      .btn-secondary {
+        background: var(--action-secondary);
+        color: var(--text-dark);
+        box-shadow: 0 5px 20px -5px var(--action-secondary);
+      }
+      .btn-tertiary {
+        background: var(--input-bg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+      }
+
+      #lobby-card .card-body {
+        justify-content: space-between;
+      }
+      #lobby-room-id-display {
+        color: var(--text-light);
+        font-size: 20px;
+        margin: 20px 0;
+      }
+      #lobby-room-id-display span {
+        color: var(--accent-yellow);
+        font-weight: bold;
+        user-select: all;
+      }
+      #player-list {
+        margin: 20px 0;
+        text-align: left;
+        color: var(--text-light);
+      }
+      .player-item {
+        display: flex;
+        align-items: center;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        background: var(--input-bg);
+        padding: 15px;
+        border-radius: 10px;
+      }
+      .kick-btn {
+        margin-left: auto;
+        width: auto;
+        padding: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      #game-card .card-body {
+        justify-content: space-between;
+        padding: 15px 15px 80px 15px;
+      }
+      .game-header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-shrink: 0;
+      }
+      .player-pod {
+        width: 48%;
+        background: var(--input-bg);
+        border-radius: 15px;
+        padding: 15px;
+        text-align: center;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .player-pod.active {
+        transform: scale(1.05);
+        box-shadow: 0 0 25px -5px var(--action-primary);
+        border-color: var(--action-primary);
+      }
+      .player-pod .player-name {
+        font-size: 1rem;
+        font-weight: 600;
+        opacity: 0.8;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .player-pod .player-score {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+      .player-pod.p2.active {
+        box-shadow: 0 0 25px -5px var(--action-secondary);
+        border-color: var(--action-secondary);
+      }
+
+      .tic-tac-toe-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 15px;
+        width: 100%;
+        max-width: 350px;
+        margin: 20px auto;
+        aspect-ratio: 1 / 1;
+      }
+      .cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: var(--input-bg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.2);
+        border-radius: 20px;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: var(--text-light);
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+      .cell.win {
+        background: var(--action-primary);
+        color: var(--text-dark);
+        transform: scale(1.1);
+        box-shadow: 0 0 30px var(--action-primary);
+      }
+      .cell:not(.win):hover {
+        background-color: rgba(0, 0, 0, 0.25);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      #game-result-text {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--text-light);
+        height: 40px;
+      }
+
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 200;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(5px);
+      }
+      .modal-overlay.active {
+        display: flex;
+      }
+      .modal-content {
+        background: var(--secondary-bg);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+        padding: 30px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        width: 90%;
+        max-width: 350px;
+      }
+      .modal-content h2 {
+        margin-bottom: 15px;
+      }
+      .modal-content .modal-body li {
+        margin-left: 20px;
+        margin-bottom: 10px;
+      }
+      .modal-content .close-btn,
+      .modal-content .action-btn {
+        margin-top: 20px;
+      }
+
+      .join-id-wrapper {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .join-id-prefix {
+        padding: 18px 20px;
+        background: var(--input-bg);
+        color: var(--action-primary);
+        font-weight: bold;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+        font-size: 16px;
+      }
+      #join-room-input {
+        width: 100%;
+        background: var(--input-bg);
+        border: none;
+        border-radius: 0 15px 15px 0;
+        padding: 18px 20px;
+        font-size: 16px;
+        color: var(--text-light);
+        margin-bottom: 0;
+        letter-spacing: 4px;
+        font-weight: bold;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      input[type="number"] {
+        -moz-appearance: textfield;
+      }
+
+      .help-btn {
+        position: absolute;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--secondary-bg);
+        z-index: 100;
+        border: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        font-size: 28px;
+        font-weight: bold;
+        color: var(--text-light);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <svg style="display: none">
+      <symbol id="svg-back" viewBox="0 0 24 24">
+        <path
+          class="svg-path"
+          d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+        ></path>
+      </symbol>
+      <symbol id="svg-home" viewBox="0 0 24 24">
+        <path class="svg-path" d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"></path>
+      </symbol>
+      <symbol id="svg-kick" viewBox="0 0 24 24">
+        <path
+          class="svg-path"
+          d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+        ></path>
+      </symbol>
+    </svg>
+
+    <div id="app-container" class="app-container">
+      <div id="home-card" class="card active">
+        <header class="card-header">
+          <a href="https://odiagames.netlify.app/" class="back-btn"
+            ><svg class="icon"><use xlink:href="#svg-back"></use></svg></a
+          ><button id="lang-switch-home" class="lang-switch"></button>
+        </header>
+        <main class="card-body">
+          <h1 data-lang-key="game_title"></h1>
+          <button id="single-phone-btn" class="btn-tertiary" data-lang-key="single_phone_play"></button
+          ><button
+            id="create-room-btn"
+            class="btn-primary"
+            data-lang-key="create_room"
+          ></button
+          ><button
+            id="join-room-btn"
+            class="btn-secondary"
+            data-lang-key="join_room"
+          ></button>
+        </main>
+      </div>
+      <div id="lobby-card" class="card">
+        <header class="card-header">
+          <a href="https://odiagames.netlify.app/" class="back-btn"
+            ><svg class="icon"><use xlink:href="#svg-back"></use></svg
+          ></a>
+          <h2 class="card-title" data-lang-key="lobby"></h2>
+        </header>
+        <main class="card-body">
+          <div id="lobby-room-id-display">
+            <span data-lang-key="room_id"></span>:
+            <span id="room-id-text"></span>
+          </div>
+          <div id="player-list"></div>
+          <div class="lobby-buttons">
+            <button
+              id="invite-btn"
+              class="btn-primary"
+              data-lang-key="invite_friends"
+            ></button
+            ><button
+              id="start-game-btn"
+              class="btn-secondary"
+              data-lang-key="start_game"
+            ></button>
+          </div>
+        </main>
+      </div>
+      <div id="game-card" class="card">
+        <main class="card-body">
+          <div class="game-header"></div>
+          <div id="game-grid" class="tic-tac-toe-grid"></div>
+          <div id="game-result-text"></div>
+        </main>
+      </div>
+      <button id="help-btn" class="help-btn">?</button>
+    </div>
+
+    <div id="how-to-play-modal" class="modal-overlay">
+      <div class="modal-content">
+        <h2 data-lang-key="how_to_play_title"></h2>
+        <div id="how-to-play-content" class="modal-body"></div>
+        <button
+          id="close-help-modal-btn"
+          class="close-btn btn-primary"
+          data-lang-key="close"
+        ></button>
+      </div>
+    </div>
+    <div id="join-room-modal" class="modal-overlay">
+      <div class="modal-content">
+        <h2 data-lang-key="join_room_title"></h2>
+        <div class="join-id-wrapper">
+          <span class="join-id-prefix">SB</span
+          ><input
+            type="number"
+            id="join-room-input"
+            placeholder="0000"
+            maxlength="4"
+          />
+        </div>
+        <button
+          id="confirm-join-btn"
+          class="action-btn btn-primary"
+          data-lang-key="join"
+        ></button
+        ><button
+          id="cancel-join-btn"
+          class="action-btn btn-tertiary"
+          data-lang-key="cancel"
+        ></button>
+      </div>
+    </div>
+    <div id="enter-name-modal" class="modal-overlay">
+      <div class="modal-content">
+        <h2 data-lang-key="enter_name_title"></h2>
+        <input
+          type="text"
+          class="modal-input"
+          id="enter-name-input"
+          data-lang-placeholder="your_name"
+        /><button
+          id="confirm-name-btn"
+          class="action-btn btn-primary"
+          data-lang-key="confirm"
+        ></button>
+      </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script>
+      // --- CORRECTED FIREBASE CONFIG ---
+      const firebaseConfig = {
+        apiKey: "AIzaSyBA84lL5-sP2ZUyijHtr42GIPQa5PA3paI",
+        authDomain: "odia-tic-tac-toe.firebaseapp.com",
+        databaseURL:
+          "https://odia-tic-tac-toe-default-rtdb.asia-southeast1.firebasedatabase.app", // THE FIX IS HERE
+        projectId: "odia-tic-tac-toe",
+        storageBucket: "odia-tic-tac-toe.appspot.com",
+        messagingSenderId: "803647069044",
+        appId: "1:803647069044:web:79f2b9ad3d10b4eae1ea21",
+      };
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+
+      let currentPlayer = {},
+        currentRoomId = null,
+        roomRef = null,
+        roomListener = null,
+        currentLanguage = "or";
+      let localGame = {
+        active: false,
+        board: [],
+        players: [
+          { name: "Player 1", score: 0 },
+          { name: "Player 2", score: 0 },
+        ],
+        currentPlayerIndex: 0,
+      };
+
+      const translations = {
+        en: {
+          lang_switch_text: "ଓଡ଼ିଆ",
+          game_title: "Tic-Tac-Toe",
+          create_room: "Create Room (Online)",
+          join_room: "Join Room (Online)",
+          lobby: "Lobby",
+          room_id: "Room ID",
+          invite_friends: "Invite Friends",
+          start_game: "Start Game",
+          waiting_for_player: "Waiting for Player 2...",
+          kick: "Kick",
+          you_win: "Wins!",
+          draw: "It's a Draw!",
+          how_to_play_title: "How to Play",
+          close: "Close",
+          join_room_title: "Enter Room ID",
+          enter_name_title: "Enter Your Name",
+          confirm: "Confirm",
+          join: "Join",
+          cancel: "Cancel",
+          single_phone_play: "2 Players (Single Phone)",
+          player_1_name_prompt: "Enter Player 1 Name (X):",
+          player_2_name_prompt: "Enter Player 2 Name (O):",
+          your_name: "Your Name",
+          how_to_play_html: `<p><strong>Objective:</strong> Be the first player to get 3 of your marks in a row.</p><p><strong>Online Play:</strong></p><ol><li>Click 'Create Room', enter your name.</li><li>Share the Room ID with a friend.</li><li>Your friend clicks 'Join Room', enters the ID and their name.</li></ol><p><strong>Single Phone Play:</strong></p><ol><li>Click '2 Players (Single Phone)'.</li><li>Enter names for Player 1 (X) and Player 2 (O).</li><li>The active player's pod will glow. Pass the phone to play.</li></ol>`,
+          invite_message: "Let's play Tic-Tac-Toe! Join my room:",
+        },
+        or: {
+          lang_switch_text: "English",
+          game_title: "ଛେକ ଶୂନ",
+          create_room: "ଅନଲାଇନ୍ ରୁମ୍",
+          join_room: "ରୁମ୍ ଯୋଗ ଦିଅନ୍ତୁ",
+          lobby: "ଲବି",
+          room_id: "ରୁମ୍ ଆଇଡି",
+          invite_friends: "ବନ୍ଧୁଙ୍କୁ ନିମନ୍ତ୍ରଣ କରନ୍ତୁ",
+          start_game: "ଖେଳ ଆରମ୍ଭ କରନ୍ତୁ",
+          waiting_for_player: "ଖେଳାଳି ୨ ପାଇଁ ଅପେକ୍ଷା...",
+          kick: "ବାହାର କରନ୍ତୁ",
+          you_win: "ଜିତିଗଲେ!",
+          draw: "ଏହା ଏକ ଡ୍ର!",
+          how_to_play_title: "କିପରି ଖେଳିବେ",
+          close: "ବନ୍ଦ କରନ୍ତୁ",
+          join_room_title: "ରୁମ୍ ଆଇଡି ଦିଅନ୍ତୁ",
+          enter_name_title: "ଆପଣଙ୍କ ନାମ ଦିଅନ୍ତୁ",
+          confirm: "ନିଶ୍ଚିତ କରନ୍ତୁ",
+          join: "ଯୋଗ ଦିଅନ୍ତୁ",
+          cancel: "ବାତିଲ କରନ୍ତୁ",
+          single_phone_play: "୨ ଖେଳାଳି (ଏକକ ଫୋନ୍)",
+          player_1_name_prompt: "ଖେଳାଳି ୧ ନାମ ଦିଅନ୍ତୁ (X):",
+          player_2_name_prompt: "ଖେଳାଳି ୨ ନାମ ଦିଅନ୍ତୁ (O):",
+          your_name: "ଆପଣଙ୍କ ନାମ",
+          how_to_play_html: `<p><strong>ଉଦ୍ଦେଶ୍ୟ:</strong> ଧାଡ଼ିରେ ୩ଟି ଚିହ୍ନ ପାଇବାରେ ପ୍ରଥମ ଖେଳାଳି ହୁଅନ୍ତୁ।</p><p><strong>ଅନଲାଇନ୍ ଖେଳ:</strong></p><ol><li>'ଅନଲାଇନ୍ ରୁମ୍' କ୍ଲିକ୍ କରି ନିଜ ନାମ ଦିଅନ୍ତୁ।</li><li>ବନ୍ଧୁଙ୍କୁ ରୁମ୍ ଆଇଡି ପଠାନ୍ତୁ।</li><li>ସେ 'ରୁମ୍ ଯୋଗ ଦିଅନ୍ତୁ' କ୍ଲିକ୍ କରି ଆଇଡି ଓ ନିଜ ନାମ ଦେବେ।</li></ol><p><strong>ଏକକ ଫୋନ୍ ଖେଳ:</strong></p><ol><li>'୨ ଖେଳାଳି (ଏକକ ଫୋନ୍)' କ୍ଲିକ୍ କରନ୍ତୁ।</li><li>ଖେଳାଳି ୧ (X) ଏବଂ ଖେଳାଳି ୨ (O)ଙ୍କ ନାମ ଦିଅନ୍ତୁ।</li><li>ସକ୍ରିୟ ଖେଳାଳିଙ୍କ ପଡ୍ ଚମକିବ। ଫୋନ୍ ପାସ୍ କରି ଖେଳନ୍ତୁ।</li></ol>`,
+          invite_message: "ଆସନ୍ତୁ ଛେକ ଶୂନ ଖେଳିବା! ମୋ ରୁମ୍ ରେ ଯୋଗ ଦିଅନ୍ତୁ:",
+        },
+      };
+
+      const appContainer = document.getElementById("app-container"),
+        cards = document.querySelectorAll(".card"),
+        createRoomBtn = document.getElementById("create-room-btn"),
+        joinRoomBtn = document.getElementById("join-room-btn"),
+        lobbyCard = document.getElementById("lobby-card"),
+        roomIdText = document.getElementById("room-id-text"),
+        playerList = document.getElementById("player-list"),
+        inviteBtn = document.getElementById("invite-btn"),
+        startGameBtn = document.getElementById("start-game-btn"),
+        gameGrid = document.getElementById("game-grid"),
+        langSwitches = [document.getElementById("lang-switch-home")],
+        helpBtn = document.getElementById("help-btn"),
+        singlePhoneBtn = document.getElementById("single-phone-btn"),
+        gameHeader = document.querySelector("#game-card .game-header"),
+        gameResultText = document.getElementById("game-result-text");
+      const helpModal = document.getElementById("how-to-play-modal"),
+        closeHelpModalBtn = document.getElementById("close-help-modal-btn"),
+        howToPlayContent = document.getElementById("how-to-play-content");
+      const joinModal = document.getElementById("join-room-modal"),
+        joinRoomInput = document.getElementById("join-room-input"),
+        confirmJoinBtn = document.getElementById("confirm-join-btn"),
+        cancelJoinBtn = document.getElementById("cancel-join-btn");
+      const nameModal = document.getElementById("enter-name-modal"),
+        nameInput = document.getElementById("enter-name-input"),
+        confirmNameBtn = document.getElementById("confirm-name-btn");
+
+      function switchLanguage(lang) {
+        currentLanguage = lang;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-lang-key]").forEach((el) => {
+          const key = el.getAttribute("data-lang-key");
+          if (translations[lang][key]) el.textContent = translations[lang][key];
+        });
+        document.querySelectorAll("[data-lang-placeholder]").forEach((el) => {
+          const key = el.getAttribute("data-lang-placeholder");
+          if (translations[lang][key]) el.placeholder = translations[lang][key];
+        });
+        langSwitches.forEach(
+          (btn) => (btn.textContent = translations[lang].lang_switch_text)
+        );
+      }
+
+      function showCard(cardId) {
+        cards.forEach((c) => c.classList.remove("active"));
+        document.getElementById(cardId).classList.add("active");
+      }
+      function generateId(prefix, length) {
+        const chars = "0123456789";
+        let result = "";
+        for (let i = 0; i < length; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        return prefix + result;
+      }
+
+      async function promptForName(titleKey) {
+        return new Promise((resolve) => {
+          nameModal.querySelector("h2").setAttribute("data-lang-key", titleKey);
+          switchLanguage(currentLanguage);
+          nameModal.classList.add("active");
+          appContainer.classList.add("blurred");
+
+          const onConfirm = () => {
+            const name = nameInput.value.trim();
+            if (name) {
+              confirmNameBtn.removeEventListener("click", onConfirm);
+              nameModal.classList.remove("active");
+              appContainer.classList.remove("blurred");
+              nameInput.value = "";
+              resolve(name);
+            }
+          };
+          confirmNameBtn.addEventListener("click", onConfirm);
+        });
+      }
+
+      async function handleCreateRoom() {
+        try {
+          const name = await promptForName("enter_name_title");
+          if (!name) return;
+
+          currentPlayer = { id: generateId("P", 10), name: name };
+          currentRoomId = generateId("SB", 4);
+          roomRef = database.ref("rooms/" + currentRoomId);
+          const roomData = {
+            adminId: currentPlayer.id,
+            players: {
+              [currentPlayer.id]: { name: currentPlayer.name, symbol: "X" },
+            },
+            gameState: {
+              board: Array(9).fill(""),
+              currentPlayerId: currentPlayer.id,
+              status: "waiting",
+            },
+            scores: { [currentPlayer.id]: 0 },
+          };
+
+          await roomRef.set(roomData);
+          listenToRoomUpdates();
+          showCard("lobby-card");
+        } catch (error) {
+          console.error("CRITICAL ERROR in handleCreateRoom: ", error);
+          alert("Failed to create room. Firebase Error: " + error.message);
+        }
+      }
+
+      async function handleJoinRoom(roomIdToJoin) {
+        const finalRoomId = roomIdToJoin.toUpperCase();
+        try {
+          const roomSnapshot = await database.ref("rooms/" + finalRoomId).get();
+          if (!roomSnapshot.exists()) {
+            alert("Room not found");
+            return;
+          }
+          const roomData = roomSnapshot.val();
+          if (Object.keys(roomData.players || {}).length >= 2) {
+            alert("Room is full");
+            return;
+          }
+
+          const name = await promptForName("enter_name_title");
+          if (!name) return;
+
+          currentPlayer = { id: generateId("P", 10), name: name };
+          currentRoomId = finalRoomId;
+          roomRef = database.ref("rooms/" + currentRoomId);
+          const playerSymbol =
+            Object.keys(roomData.players || {}).length === 0 ? "X" : "O";
+          await roomRef
+            .child("players/" + currentPlayer.id)
+            .set({ name: currentPlayer.name, symbol: playerSymbol });
+          await roomRef.child("scores/" + currentPlayer.id).set(0);
+
+          listenToRoomUpdates();
+          showCard("lobby-card");
+        } catch (error) {
+          console.error("Join Room Failed: ", error);
+          alert("Could not join room. " + error.message);
+        }
+      }
+
+      function listenToRoomUpdates() {
+        if (roomListener) roomRef.off("value", roomListener);
+        roomListener = roomRef.on("value", (snapshot) => {
+          if (!snapshot.exists()) {
+            if (currentRoomId) {
+              cleanUpAndGoHome(true);
+            }
+            return;
+          }
+          const roomData = snapshot.val();
+          if (!roomData.players || !roomData.players[currentPlayer.id]) {
+            cleanUpAndGoHome(true);
+            return;
+          }
+          updateOnlineUI(roomData);
+        });
+      }
+
+      function updateOnlineUI(d) {
+        localGame.active = false;
+        if (
+          d.gameState.status === "playing" ||
+          d.gameState.status === "finished"
+        ) {
+          showCard("game-card");
+          updateOnlineGameScreen(d);
+        } else {
+          showCard("lobby-card");
+          updateLobbyScreen(d);
+        }
+      }
+
+      function updateLobbyScreen(d) {
+        roomIdText.textContent = currentRoomId;
+        const isAdmin = d.adminId === currentPlayer.id;
+        playerList.innerHTML = "";
+        Object.entries(d.players || {}).forEach(([id, p]) => {
+          const li = document.createElement("div");
+          li.className = "player-item";
+          li.innerHTML = `<span>${p.name} ${p.symbol === "X" ? "(X)" : "(O)"} ${
+            d.adminId === id ? "(Admin)" : ""
+          }</span> ${
+            isAdmin && id !== currentPlayer.id
+              ? `<button class="kick-btn" onclick="kickPlayer('${id}')"><svg class="icon" style="fill: #ff4d4d;"><use xlink:href="#svg-kick"></use></svg></button>`
+              : ""
+          }`;
+          playerList.appendChild(li);
+        });
+        if (Object.keys(d.players || {}).length < 2) {
+          const li = document.createElement("div");
+          li.className = "player-item";
+          li.innerHTML = `<span>${translations[currentLanguage].waiting_for_player}</span>`;
+          playerList.appendChild(li);
+        }
+        startGameBtn.disabled = Object.keys(d.players || {}).length < 2;
+      }
+
+      function updateOnlineGameScreen(d) {
+        const oppId = Object.keys(d.players).find(
+          (id) => id !== currentPlayer.id
+        );
+        const me = d.players[currentPlayer.id];
+        const opponent = oppId
+          ? d.players[oppId]
+          : { name: "...", symbol: me.symbol === "X" ? "O" : "X" };
+        const p1 = me.symbol === "X" ? me : opponent;
+        const p2 = me.symbol === "O" ? me : opponent;
+        const p1Id = me.symbol === "X" ? currentPlayer.id : oppId;
+        const p2Id = me.symbol === "O" ? currentPlayer.id : oppId;
+        const p1Score = d.scores[p1Id] || 0;
+        const p2Score = d.scores[p2Id] || 0;
+
+        renderPlayerPods(
+          p1.name,
+          p1Score,
+          p2.name,
+          p2Score,
+          d.gameState.currentPlayerId === p1Id,
+          d.gameState.currentPlayerId === p2Id,
+          d.gameState.status !== "playing"
+        );
+
+        gameGrid.innerHTML = "";
+        d.gameState.board.forEach((cell, idx) => {
+          const el = document.createElement("div");
+          el.classList.add("cell");
+          el.textContent = cell;
+          if (
+            cell === "" &&
+            d.gameState.status === "playing" &&
+            d.gameState.currentPlayerId === currentPlayer.id
+          ) {
+            el.onclick = () => handleOnlineCellClick(idx, d);
+          } else {
+            el.style.cursor = "default";
+          }
+          gameGrid.appendChild(el);
+        });
+
+        if (d.gameState.status === "finished") {
+          const { winner, winningLine } = d.gameState;
+          gameResultText.textContent = winner
+            ? `${d.players[winner].name} ${translations[currentLanguage].you_win}`
+            : translations[currentLanguage].draw;
+          if (winningLine)
+            winningLine.forEach((i) =>
+              gameGrid.children[i].classList.add("win")
+            );
+          if (d.adminId === currentPlayer.id) {
+            setTimeout(() => {
+              if (confirm(`Play again?`))
+                roomRef
+                  .child("gameState")
+                  .set({
+                    board: Array(9).fill(""),
+                    currentPlayerId: d.adminId,
+                    status: "playing",
+                  });
+            }, 2500);
+          }
+        } else {
+          gameResultText.textContent = "";
+        }
+      }
+
+      function handleOnlineCellClick(idx, d) {
+        const sym = d.players[currentPlayer.id].symbol;
+        const board = [...d.gameState.board];
+        board[idx] = sym;
+        const { hasWon, winningLine } = checkWin(board, sym);
+        const isDraw = !hasWon && board.every((c) => c !== "");
+        const oppId = Object.keys(d.players).find(
+          (id) => id !== currentPlayer.id
+        );
+        const gs = {
+          board,
+          currentPlayerId: hasWon || isDraw ? null : oppId,
+          status: hasWon || isDraw ? "finished" : "playing",
+          winner: hasWon ? currentPlayer.id : null,
+          winningLine: hasWon ? winningLine : null,
+        };
+        const updates = { "/gameState": gs };
+        if (hasWon) {
+          updates[`/scores/${currentPlayer.id}`] =
+            (d.scores[currentPlayer.id] || 0) + 1;
+        }
+        roomRef.update(updates);
+      }
+
+      function startLocalGame() {
+        localGame.active = true;
+        const p1Name =
+          prompt(
+            translations[currentLanguage].player_1_name_prompt,
+            "Player 1"
+          ) || "Player 1";
+        const p2Name =
+          prompt(
+            translations[currentLanguage].player_2_name_prompt,
+            "Player 2"
+          ) || "Player 2";
+        localGame.players = [
+          { name: p1Name, score: 0 },
+          { name: p2Name, score: 0 },
+        ];
+        resetLocalBoard(0);
+        showCard("game-card");
+      }
+
+      function renderPlayerPods(
+        p1Name,
+        p1Score,
+        p2Name,
+        p2Score,
+        p1Active,
+        p2Active,
+        isGameOver
+      ) {
+        gameHeader.innerHTML = `<button class="back-btn" id="game-back-btn"><svg class="icon"><use xlink:href="#svg-home"></use></svg></button>`;
+        const p1Pod = document.createElement("div");
+        p1Pod.className = "player-pod p1";
+        const p2Pod = document.createElement("div");
+        p2Pod.className = "player-pod p2";
+        p1Pod.innerHTML = `<div class="player-name">${p1Name} (X)</div><div class="player-score">${p1Score}</div>`;
+        p2Pod.innerHTML = `<div class="player-name">${p2Name} (O)</div><div class="player-score">${p2Score}</div>`;
+        p1Pod.classList.toggle("active", p1Active && !isGameOver);
+        p2Pod.classList.toggle("active", p2Active && !isGameOver);
+        gameHeader.appendChild(p1Pod);
+        gameHeader.appendChild(p2Pod);
+        document.getElementById("game-back-btn").onclick = (e) => {
+          e.preventDefault();
+          cleanUpAndGoHome();
+        };
+      }
+
+      function updateLocalGameUI() {
+        renderPlayerPods(
+          localGame.players[0].name,
+          localGame.players[0].score,
+          localGame.players[1].name,
+          localGame.players[1].score,
+          localGame.currentPlayerIndex === 0,
+          localGame.currentPlayerIndex === 1,
+          localGame.gameOver
+        );
+        gameGrid.innerHTML = "";
+        localGame.board.forEach((cell, idx) => {
+          const el = document.createElement("div");
+          el.classList.add("cell");
+          el.textContent = cell;
+          if (cell === "" && !localGame.gameOver) {
+            el.onclick = () => handleLocalCellClick(idx);
+          } else {
+            el.style.cursor = "default";
+          }
+          gameGrid.appendChild(el);
+        });
+      }
+
+      function handleLocalCellClick(idx) {
+        if (localGame.gameOver) return;
+        const symbol = localGame.currentPlayerIndex === 0 ? "X" : "O";
+        localGame.board[idx] = symbol;
+        const { hasWon, winningLine } = checkWin(localGame.board, symbol);
+        const isDraw = !hasWon && localGame.board.every((c) => c !== "");
+        if (hasWon) {
+          localGame.gameOver = true;
+          const p = localGame.players[localGame.currentPlayerIndex];
+          p.score++;
+          gameResultText.textContent = `${p.name} ${translations[currentLanguage].you_win}`;
+          updateLocalGameUI();
+          if (winningLine)
+            winningLine.forEach((i) =>
+              gameGrid.children[i].classList.add("win")
+            );
+          setTimeout(
+            () => resetLocalBoard(1 - localGame.currentPlayerIndex),
+            2500
+          );
+        } else if (isDraw) {
+          localGame.gameOver = true;
+          gameResultText.textContent = translations[currentLanguage].draw;
+          updateLocalGameUI();
+          setTimeout(
+            () => resetLocalBoard(1 - localGame.currentPlayerIndex),
+            2500
+          );
+        } else {
+          localGame.currentPlayerIndex = 1 - localGame.currentPlayerIndex;
+          updateLocalGameUI();
+        }
+      }
+
+      function resetLocalBoard(startingPlayerIndex) {
+        gameResultText.textContent = "";
+        localGame.board = Array(9).fill("");
+        localGame.gameOver = false;
+        localGame.currentPlayerIndex = startingPlayerIndex;
+        updateLocalGameUI();
+      }
+
+      function checkWin(b, s) {
+        const l = [
+          [0, 1, 2],
+          [3, 4, 5],
+          [6, 7, 8],
+          [0, 3, 6],
+          [1, 4, 7],
+          [2, 5, 8],
+          [0, 4, 8],
+          [2, 4, 6],
+        ];
+        for (let line of l) {
+          const [a, c, d] = line;
+          if (b[a] === s && b[c] === s && b[d] === s)
+            return { hasWon: true, winningLine: line };
+        }
+        return { hasWon: false, winningLine: null };
+      }
+
+      function cleanUpAndGoHome(wasKickedOrClosed = false) {
+        if (wasKickedOrClosed && currentRoomId) {
+          alert("The room was closed or you were kicked.");
+        }
+        if (roomListener && roomRef) {
+          roomRef.off("value", roomListener);
+        }
+        currentRoomId = null;
+        roomRef = null;
+        roomListener = null;
+        localGame.active = false;
+        currentPlayer = {};
+        showCard("home-card");
+      }
+
+      function kickPlayer(pId) {
+        if (
+          !confirm(
+            currentLanguage === "or"
+              ? "ଆପଣ ଏହି ଖେଳାଳିଙ୍କୁ ବାହାର କରିବାକୁ ନିଶ୍ଚିତ କି?"
+              : "Are you sure?"
+          )
+        )
+          return;
+        roomRef.update({ [`/players/${pId}`]: null, [`/scores/${pId}`]: null });
+      }
+
+      window.addEventListener("DOMContentLoaded", () => {
+        switchLanguage("or");
+        const urlParams = new URLSearchParams(window.location.search);
+        const roomFromUrl = urlParams.get("room");
+        if (
+          roomFromUrl &&
+          roomFromUrl.startsWith("SB") &&
+          roomFromUrl.length === 6
+        ) {
+          joinModal.classList.add("active");
+          appContainer.classList.add("blurred");
+          joinRoomInput.value = roomFromUrl.slice(2);
+        }
+      });
+
+      langSwitches.forEach(
+        (b) =>
+          (b.onclick = () =>
+            switchLanguage(currentLanguage === "or" ? "en" : "or"))
+      );
+      createRoomBtn.onclick = handleCreateRoom;
+      singlePhoneBtn.onclick = startLocalGame;
+      inviteBtn.onclick = () => {
+        const m = `${translations[currentLanguage].invite_message}\nhttps://odiagames.netlify.app/ttt/?room=${currentRoomId}`;
+        window.open(
+          `https://api.whatsapp.com/send?text=${encodeURIComponent(m)}`,
+          "_blank"
+        );
+      };
+      startGameBtn.onclick = () =>
+        roomRef.child("gameState/status").set("playing");
+
+      helpBtn.onclick = () => {
+        howToPlayContent.innerHTML =
+          translations[currentLanguage].how_to_play_html;
+        helpModal.classList.add("active");
+        appContainer.classList.add("blurred");
+      };
+      closeHelpModalBtn.onclick = () => {
+        helpModal.classList.remove("active");
+        appContainer.classList.remove("blurred");
+      };
+
+      joinRoomBtn.onclick = () => {
+        joinModal.classList.add("active");
+        appContainer.classList.add("blurred");
+      };
+      cancelJoinBtn.onclick = () => {
+        joinModal.classList.remove("active");
+        appContainer.classList.remove("blurred");
+        joinRoomInput.value = "";
+      };
+      confirmJoinBtn.onclick = () => {
+        const roomId = "SB" + joinRoomInput.value;
+        if (joinRoomInput.value.length === 4) {
+          cancelJoinBtn.click();
+          handleJoinRoom(roomId);
+        } else {
+          alert("Please enter a 4-digit room code.");
+        }
+      };
+    </script>
+  </body>
+</html>
