@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <title>ଛେକ ଶୂନ - Tic Tac Toe</title>
     <meta name="theme-color" content="#403285"/>
-    <link rel="icon" href="https://raw.githubusercontent.com/imsbg/odiagames/refs/heads/main/icon/ttt.png" type="image/png">
-
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -241,20 +239,43 @@
         border: none;
         cursor: pointer;
       }
-
+      
+      /* *** FINAL UI LAYOUT FIX *** */
+      #game-card {
+        padding: 0;
+      }
       #game-card .card-body {
-        justify-content: space-between;
-        padding: 15px 15px 80px 15px;
+        padding: 0;
+        height: 100%; /* Make card body take full height of its container */
       }
       .game-header {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 40px;
+        flex-shrink: 0;
+        padding: 25px 35px 0 35px;
+      }
+      .game-main-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 0;
+        padding: 0 35px;
+      }
+      .game-footer {
         width: 100%;
         display: flex;
-        justify-content: space-between;
-        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        padding: 25px 35px;
+        margin-bottom: 60px;
         flex-shrink: 0;
       }
       .player-pod {
-        width: 48%;
+        width: 140px; 
+        flex-shrink: 0;
         background: var(--input-bg);
         border-radius: 15px;
         padding: 15px;
@@ -290,8 +311,9 @@
         gap: 15px;
         width: 100%;
         max-width: 350px;
-        margin: 20px auto;
+        margin: 0 auto;
         aspect-ratio: 1 / 1;
+        position: relative;
       }
       .cell {
         display: flex;
@@ -322,7 +344,40 @@
         font-weight: 700;
         color: var(--text-light);
         height: 40px;
+        flex-shrink: 0;
+        margin-top: 20px;
       }
+      
+      #strike-line {
+        position: absolute;
+        background-color: var(--danger-red);
+        height: 8px;
+        border-radius: 4px;
+        box-shadow: 0 0 10px 2px var(--danger-red);
+        z-index: 5;
+        opacity: 0;
+      }
+      #strike-line.visible {
+        opacity: 1;
+        transition: width 0.4s ease-out, height 0.4s ease-out;
+      }
+      .strike-row-1 { top: 16.6%; left: 5%; width: 0; height: 8px; transform-origin: left center; }
+      #strike-line.visible.strike-row-1 { width: 90%; }
+      .strike-row-2 { top: 50%; left: 5%; transform: translateY(-50%); width: 0; height: 8px; transform-origin: left center; }
+      #strike-line.visible.strike-row-2 { width: 90%; }
+      .strike-row-3 { top: 83.3%; left: 5%; transform: translateY(-50%); width: 0; height: 8px; transform-origin: left center; }
+      #strike-line.visible.strike-row-3 { width: 90%; }
+      .strike-col-1 { top: 5%; left: 16.6%; width: 8px; height: 0; transform-origin: top center; }
+      #strike-line.visible.strike-col-1 { height: 90%; }
+      .strike-col-2 { top: 5%; left: 50%; transform: translateX(-50%); width: 8px; height: 0; transform-origin: top center; }
+      #strike-line.visible.strike-col-2 { height: 90%; }
+      .strike-col-3 { top: 5%; left: 83.3%; transform: translateX(-50%); width: 8px; height: 0; transform-origin: top center; }
+      #strike-line.visible.strike-col-3 { height: 90%; }
+      .strike-diag-1 { top: 0; left: 0; width: 0; height: 8px; transform: rotate(45deg); transform-origin: 0 0; }
+      #strike-line.visible.strike-diag-1 { width: 141.4%; }
+      .strike-diag-2 { top: 0; right: 0; width: 0; height: 8px; transform: rotate(-45deg); transform-origin: 100% 0; }
+      #strike-line.visible.strike-diag-2 { width: 141.4%; }
+
 
       .modal-overlay {
         position: fixed;
@@ -341,7 +396,7 @@
         display: flex;
       }
       .modal-content {
-        background: var(--secondary-bg);
+        background: var(--container-bg);
         border: 1px solid rgba(255, 255, 255, 0.1);
         color: var(--text-light);
         padding: 30px;
@@ -350,7 +405,32 @@
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         width: 90%;
         max-width: 350px;
+        position: relative; 
       }
+      
+      .modal-close-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        margin: 0;
+        background: none;
+        border: none;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: opacity 0.2s;
+      }
+      .modal-close-icon:hover {
+        opacity: 1;
+      }
+      .modal-close-icon .icon {
+        width: 24px;
+        height: 24px;
+        fill: var(--text-light);
+      }
+      
       .modal-content h2 {
         margin-bottom: 15px;
       }
@@ -436,6 +516,9 @@
           d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
         ></path>
       </symbol>
+      <symbol id="svg-close" viewBox="0 0 24 24">
+        <path class="svg-path" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path>
+      </symbol>
     </svg>
 
     <div id="app-container" class="app-container">
@@ -490,8 +573,11 @@
       <div id="game-card" class="card">
         <main class="card-body">
           <div class="game-header"></div>
-          <div id="game-grid" class="tic-tac-toe-grid"></div>
-          <div id="game-result-text"></div>
+          <div class="game-main-content">
+            <div id="game-grid" class="tic-tac-toe-grid"></div>
+            <div id="game-result-text"></div>
+          </div>
+          <div class="game-footer"></div>
         </main>
       </div>
       <button id="help-btn" class="help-btn">?</button>
@@ -499,6 +585,9 @@
 
     <div id="how-to-play-modal" class="modal-overlay">
       <div class="modal-content">
+        <button class="modal-close-icon">
+            <svg class="icon"><use xlink:href="#svg-close"></use></svg>
+        </button>
         <h2 data-lang-key="how_to_play_title"></h2>
         <div id="how-to-play-content" class="modal-body"></div>
         <button
@@ -510,6 +599,9 @@
     </div>
     <div id="join-room-modal" class="modal-overlay">
       <div class="modal-content">
+        <button class="modal-close-icon">
+            <svg class="icon"><use xlink:href="#svg-close"></use></svg>
+        </button>
         <h2 data-lang-key="join_room_title"></h2>
         <div class="join-id-wrapper">
           <span class="join-id-prefix">SB</span
@@ -534,6 +626,9 @@
     </div>
     <div id="enter-name-modal" class="modal-overlay">
       <div class="modal-content">
+        <button class="modal-close-icon">
+            <svg class="icon"><use xlink:href="#svg-close"></use></svg>
+        </button>
         <h2 data-lang-key="enter_name_title"></h2>
         <input
           type="text"
@@ -552,12 +647,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
     <script>
-      // --- CORRECTED FIREBASE CONFIG ---
       const firebaseConfig = {
         apiKey: "AIzaSyBA84lL5-sP2ZUyijHtr42GIPQa5PA3paI",
         authDomain: "odia-tic-tac-toe.firebaseapp.com",
         databaseURL:
-          "https://odia-tic-tac-toe-default-rtdb.asia-southeast1.firebasedatabase.app", // THE FIX IS HERE
+          "https://odia-tic-tac-toe-default-rtdb.asia-southeast1.firebasedatabase.app", 
         projectId: "odia-tic-tac-toe",
         storageBucket: "odia-tic-tac-toe.appspot.com",
         messagingSenderId: "803647069044",
@@ -574,11 +668,9 @@
       let localGame = {
         active: false,
         board: [],
-        players: [
-          { name: "Player 1", score: 0 },
-          { name: "Player 2", score: 0 },
-        ],
+        players: [],
         currentPlayerIndex: 0,
+        nextStarterOriginalIndex: 0 
       };
 
       const translations = {
@@ -692,7 +784,7 @@
         }
         return prefix + result;
       }
-
+      
       async function promptForName(titleKey) {
         return new Promise((resolve) => {
           nameModal.querySelector("h2").setAttribute("data-lang-key", titleKey);
@@ -700,17 +792,31 @@
           nameModal.classList.add("active");
           appContainer.classList.add("blurred");
 
+          const closeIconBtn = nameModal.querySelector('.modal-close-icon');
+
+          const cleanup = () => {
+            confirmNameBtn.removeEventListener('click', onConfirm);
+            closeIconBtn.removeEventListener('click', onCancel);
+            nameModal.classList.remove("active");
+            appContainer.classList.remove("blurred");
+            nameInput.value = "";
+          }
+
           const onConfirm = () => {
             const name = nameInput.value.trim();
             if (name) {
-              confirmNameBtn.removeEventListener("click", onConfirm);
-              nameModal.classList.remove("active");
-              appContainer.classList.remove("blurred");
-              nameInput.value = "";
+              cleanup();
               resolve(name);
             }
           };
-          confirmNameBtn.addEventListener("click", onConfirm);
+          
+          const onCancel = () => {
+            cleanup();
+            resolve(null); 
+          }
+
+          confirmNameBtn.addEventListener('click', onConfirm);
+          closeIconBtn.addEventListener('click', onCancel);
         });
       }
 
@@ -733,6 +839,7 @@
               status: "waiting",
             },
             scores: { [currentPlayer.id]: 0 },
+            starterOfTheRoundId: currentPlayer.id,
           };
 
           await roomRef.set(roomData);
@@ -835,33 +942,57 @@
         }
         startGameBtn.disabled = Object.keys(d.players || {}).length < 2;
       }
+      
+      function renderPlayerPods(p1Name, p1Score, p2Name, p2Score, p1Active, p2Active, isGameOver) {
+        const gameFooter = document.querySelector('#game-card .game-footer');
+        
+        gameHeader.innerHTML = '';
+        if(gameFooter) gameFooter.innerHTML = '';
+
+        const homeBtn = document.createElement('button');
+        homeBtn.className = 'back-btn';
+        homeBtn.id = 'game-back-btn';
+        homeBtn.innerHTML = `<svg class="icon"><use xlink:href="#svg-home"></use></svg>`;
+        homeBtn.onclick = (e) => {
+            e.preventDefault();
+            cleanUpAndGoHome();
+        };
+        gameHeader.appendChild(homeBtn);
+
+        if(gameFooter){
+            const p1Pod = document.createElement("div");
+            p1Pod.className = "player-pod p1";
+            const p2Pod = document.createElement("div");
+            p2Pod.className = "player-pod p2";
+            
+            p1Pod.innerHTML = `<div class="player-name">${p1Name} (X)</div><div class="player-score">${p1Score}</div>`;
+            p2Pod.innerHTML = `<div class="player-name">${p2Name} (O)</div><div class="player-score">${p2Score}</div>`;
+            
+            p1Pod.classList.toggle("active", p1Active && !isGameOver);
+            p2Pod.classList.toggle("active", p2Active && !isGameOver);
+            
+            gameFooter.appendChild(p1Pod);
+            gameFooter.appendChild(p2Pod);
+        }
+      }
 
       function updateOnlineGameScreen(d) {
-        const oppId = Object.keys(d.players).find(
-          (id) => id !== currentPlayer.id
-        );
-        const me = d.players[currentPlayer.id];
-        const opponent = oppId
-          ? d.players[oppId]
-          : { name: "...", symbol: me.symbol === "X" ? "O" : "X" };
-        const p1 = me.symbol === "X" ? me : opponent;
-        const p2 = me.symbol === "O" ? me : opponent;
-        const p1Id = me.symbol === "X" ? currentPlayer.id : oppId;
-        const p2Id = me.symbol === "O" ? currentPlayer.id : oppId;
-        const p1Score = d.scores[p1Id] || 0;
-        const p2Score = d.scores[p2Id] || 0;
+        const playerX = Object.values(d.players).find(p => p.symbol === 'X') || {name: 'Player X', score: 0};
+        const playerO = Object.values(d.players).find(p => p.symbol === 'O') || {name: 'Player O', score: 0};
+        const playerXId = Object.keys(d.players).find(id => d.players[id].symbol === 'X');
+        const playerOId = Object.keys(d.players).find(id => d.players[id].symbol === 'O');
 
         renderPlayerPods(
-          p1.name,
-          p1Score,
-          p2.name,
-          p2Score,
-          d.gameState.currentPlayerId === p1Id,
-          d.gameState.currentPlayerId === p2Id,
+          playerX.name,
+          d.scores[playerXId] || 0,
+          playerO.name,
+          d.scores[playerOId] || 0,
+          d.gameState.currentPlayerId === playerXId,
+          d.gameState.currentPlayerId === playerOId,
           d.gameState.status !== "playing"
         );
-
-        gameGrid.innerHTML = "";
+        
+        gameGrid.innerHTML = ``;
         d.gameState.board.forEach((cell, idx) => {
           const el = document.createElement("div");
           el.classList.add("cell");
@@ -877,26 +1008,46 @@
           }
           gameGrid.appendChild(el);
         });
-
+        const strikeLineDiv = document.createElement('div');
+        strikeLineDiv.id = 'strike-line';
+        gameGrid.appendChild(strikeLineDiv);
+        
         if (d.gameState.status === "finished") {
-          const { winner, winningLine } = d.gameState;
+          const { winner, winningLine, lineClass } = d.gameState;
           gameResultText.textContent = winner
             ? `${d.players[winner].name} ${translations[currentLanguage].you_win}`
             : translations[currentLanguage].draw;
-          if (winningLine)
+          if (winningLine) {
             winningLine.forEach((i) =>
               gameGrid.children[i].classList.add("win")
             );
+            strikeLineDiv.className = lineClass;
+            setTimeout(() => { strikeLineDiv.classList.add('visible'); }, 50);
+          }
+          
           if (d.adminId === currentPlayer.id) {
             setTimeout(() => {
-              if (confirm(`Play again?`))
-                roomRef
-                  .child("gameState")
-                  .set({
-                    board: Array(9).fill(""),
-                    currentPlayerId: d.adminId,
-                    status: "playing",
-                  });
+                const lastStarterId = d.starterOfTheRoundId || d.adminId;
+                const otherPlayerId = Object.keys(d.players).find(id => id !== lastStarterId);
+                
+                if (!otherPlayerId || Object.keys(d.players).length < 2) return;
+                
+                const nextStarterId = otherPlayerId;
+
+                if (confirm(`Play again?`)) {
+                    const updates = {
+                        '/gameState': {
+                            board: Array(9).fill(""),
+                            currentPlayerId: nextStarterId,
+                            status: "playing",
+                            winner: null, winningLine: null, lineClass: null
+                        },
+                        '/starterOfTheRoundId': nextStarterId,
+                        [`/players/${nextStarterId}/symbol`]: 'X',
+                        [`/players/${lastStarterId}/symbol`]: 'O'
+                    };
+                    roomRef.update(updates);
+                }
             }, 2500);
           }
         } else {
@@ -908,7 +1059,7 @@
         const sym = d.players[currentPlayer.id].symbol;
         const board = [...d.gameState.board];
         board[idx] = sym;
-        const { hasWon, winningLine } = checkWin(board, sym);
+        const { hasWon, winningLine, lineClass } = checkWin(board, sym);
         const isDraw = !hasWon && board.every((c) => c !== "");
         const oppId = Object.keys(d.players).find(
           (id) => id !== currentPlayer.id
@@ -919,6 +1070,7 @@
           status: hasWon || isDraw ? "finished" : "playing",
           winner: hasWon ? currentPlayer.id : null,
           winningLine: hasWon ? winningLine : null,
+          lineClass: hasWon ? lineClass : null,
         };
         const updates = { "/gameState": gs };
         if (hasWon) {
@@ -940,40 +1092,17 @@
             translations[currentLanguage].player_2_name_prompt,
             "Player 2"
           ) || "Player 2";
+        
         localGame.players = [
-          { name: p1Name, score: 0 },
-          { name: p2Name, score: 0 },
+          { name: p1Name, score: 0, originalIndex: 0 },
+          { name: p2Name, score: 0, originalIndex: 1 },
         ];
-        resetLocalBoard(0);
+        localGame.nextStarterOriginalIndex = 0;
+        
+        resetLocalBoard(localGame.nextStarterOriginalIndex);
         showCard("game-card");
       }
-
-      function renderPlayerPods(
-        p1Name,
-        p1Score,
-        p2Name,
-        p2Score,
-        p1Active,
-        p2Active,
-        isGameOver
-      ) {
-        gameHeader.innerHTML = `<button class="back-btn" id="game-back-btn"><svg class="icon"><use xlink:href="#svg-home"></use></svg></button>`;
-        const p1Pod = document.createElement("div");
-        p1Pod.className = "player-pod p1";
-        const p2Pod = document.createElement("div");
-        p2Pod.className = "player-pod p2";
-        p1Pod.innerHTML = `<div class="player-name">${p1Name} (X)</div><div class="player-score">${p1Score}</div>`;
-        p2Pod.innerHTML = `<div class="player-name">${p2Name} (O)</div><div class="player-score">${p2Score}</div>`;
-        p1Pod.classList.toggle("active", p1Active && !isGameOver);
-        p2Pod.classList.toggle("active", p2Active && !isGameOver);
-        gameHeader.appendChild(p1Pod);
-        gameHeader.appendChild(p2Pod);
-        document.getElementById("game-back-btn").onclick = (e) => {
-          e.preventDefault();
-          cleanUpAndGoHome();
-        };
-      }
-
+      
       function updateLocalGameUI() {
         renderPlayerPods(
           localGame.players[0].name,
@@ -984,7 +1113,8 @@
           localGame.currentPlayerIndex === 1,
           localGame.gameOver
         );
-        gameGrid.innerHTML = "";
+        
+        gameGrid.innerHTML = ``;
         localGame.board.forEach((cell, idx) => {
           const el = document.createElement("div");
           el.classList.add("cell");
@@ -996,67 +1126,86 @@
           }
           gameGrid.appendChild(el);
         });
+        const strikeLineDiv = document.createElement('div');
+        strikeLineDiv.id = 'strike-line';
+        gameGrid.appendChild(strikeLineDiv);
       }
-
+      
       function handleLocalCellClick(idx) {
-        if (localGame.gameOver) return;
+        if (localGame.gameOver || localGame.board[idx] !== '') return;
+
         const symbol = localGame.currentPlayerIndex === 0 ? "X" : "O";
         localGame.board[idx] = symbol;
-        const { hasWon, winningLine } = checkWin(localGame.board, symbol);
+        gameGrid.children[idx].textContent = symbol;
+        
+        const { hasWon, winningLine, lineClass } = checkWin(localGame.board, symbol);
         const isDraw = !hasWon && localGame.board.every((c) => c !== "");
+        
         if (hasWon) {
           localGame.gameOver = true;
           const p = localGame.players[localGame.currentPlayerIndex];
           p.score++;
           gameResultText.textContent = `${p.name} ${translations[currentLanguage].you_win}`;
-          updateLocalGameUI();
-          if (winningLine)
+          
+          const strikeLine = gameGrid.querySelector('#strike-line');
+          if (winningLine) {
             winningLine.forEach((i) =>
               gameGrid.children[i].classList.add("win")
             );
-          setTimeout(
-            () => resetLocalBoard(1 - localGame.currentPlayerIndex),
-            2500
-          );
+            strikeLine.className = lineClass;
+            setTimeout(() => { strikeLine.classList.add('visible'); }, 50);
+          }
+          
+          renderPlayerPods(localGame.players[0].name, localGame.players[0].score, localGame.players[1].name, localGame.players[1].score, false, false, true);
+
+          setTimeout(() => {
+            localGame.nextStarterOriginalIndex = 1 - localGame.nextStarterOriginalIndex;
+            resetLocalBoard(localGame.nextStarterOriginalIndex);
+          }, 2500);
+
         } else if (isDraw) {
           localGame.gameOver = true;
           gameResultText.textContent = translations[currentLanguage].draw;
-          updateLocalGameUI();
-          setTimeout(
-            () => resetLocalBoard(1 - localGame.currentPlayerIndex),
-            2500
-          );
+          setTimeout(() => {
+             localGame.nextStarterOriginalIndex = 1 - localGame.nextStarterOriginalIndex;
+             resetLocalBoard(localGame.nextStarterOriginalIndex);
+          }, 2500);
+
         } else {
           localGame.currentPlayerIndex = 1 - localGame.currentPlayerIndex;
-          updateLocalGameUI();
+          renderPlayerPods(localGame.players[0].name, localGame.players[0].score, localGame.players[1].name, localGame.players[1].score, localGame.currentPlayerIndex === 0, localGame.currentPlayerIndex === 1, false);
         }
       }
 
-      function resetLocalBoard(startingPlayerIndex) {
+      function resetLocalBoard(startingPlayerOriginalIndex) {
+        if (localGame.players.length > 0 && localGame.players[0].originalIndex !== startingPlayerOriginalIndex) {
+            [localGame.players[0], localGame.players[1]] = [localGame.players[1], localGame.players[0]];
+        }
+        
         gameResultText.textContent = "";
         localGame.board = Array(9).fill("");
         localGame.gameOver = false;
-        localGame.currentPlayerIndex = startingPlayerIndex;
+        localGame.currentPlayerIndex = 0;
         updateLocalGameUI();
       }
-
+      
       function checkWin(b, s) {
-        const l = [
-          [0, 1, 2],
-          [3, 4, 5],
-          [6, 7, 8],
-          [0, 3, 6],
-          [1, 4, 7],
-          [2, 5, 8],
-          [0, 4, 8],
-          [2, 4, 6],
+        const lines = [
+          [0, 1, 2], [3, 4, 5], [6, 7, 8],
+          [0, 3, 6], [1, 4, 7], [2, 5, 8],
+          [0, 4, 8], [2, 4, 6]
         ];
-        for (let line of l) {
-          const [a, c, d] = line;
+        const lineClasses = [
+          "strike-row-1", "strike-row-2", "strike-row-3",
+          "strike-col-1", "strike-col-2", "strike-col-3",
+          "strike-diag-1", "strike-diag-2"
+        ];
+        for (let i = 0; i < lines.length; i++) {
+          const [a, c, d] = lines[i];
           if (b[a] === s && b[c] === s && b[d] === s)
-            return { hasWon: true, winningLine: line };
+            return { hasWon: true, winningLine: lines[i], lineClass: lineClasses[i] };
         }
-        return { hasWon: false, winningLine: null };
+        return { hasWon: false, winningLine: null, lineClass: null };
       }
 
       function cleanUpAndGoHome(wasKickedOrClosed = false) {
@@ -1099,6 +1248,19 @@
           appContainer.classList.add("blurred");
           joinRoomInput.value = roomFromUrl.slice(2);
         }
+
+        document.querySelectorAll('#how-to-play-modal .modal-close-icon, #join-room-modal .modal-close-icon').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const modal = e.currentTarget.closest('.modal-overlay');
+                if (modal) {
+                    modal.classList.remove('active');
+                    appContainer.classList.remove('blurred');
+                    if (modal.id === 'join-room-modal') {
+                        joinRoomInput.value = '';
+                    }
+                }
+            });
+        });
       });
 
       langSwitches.forEach(
