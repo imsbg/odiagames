@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://odiagames.netlify.app/sitemap.xml
+Sitemap: https://odiagames.site/sitemap.xml
