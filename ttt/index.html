@@ -525,7 +525,7 @@
     <div id="app-container" class="app-container">
       <div id="home-card" class="card active">
         <header class="card-header">
-          <a href="https://odiagames.netlify.app/" class="back-btn"
+          <a href="https://odiagames.site/" class="back-btn"
             ><svg class="icon"><use xlink:href="#svg-back"></use></svg></a
           ><button id="lang-switch-home" class="lang-switch"></button>
         </header>
@@ -546,7 +546,7 @@
       </div>
       <div id="lobby-card" class="card">
         <header class="card-header">
-          <a href="https://odiagames.netlify.app/" class="back-btn"
+          <a href="https://odiagames.site/" class="back-btn"
             ><svg class="icon"><use xlink:href="#svg-back"></use></svg
           ></a>
           <h2 class="card-title" data-lang-key="lobby"></h2>
@@ -1272,7 +1272,7 @@
       createRoomBtn.onclick = handleCreateRoom;
       singlePhoneBtn.onclick = startLocalGame;
       inviteBtn.onclick = () => {
-        const m = `${translations[currentLanguage].invite_message}\nhttps://odiagames.netlify.app/ttt/?room=${currentRoomId}`;
+        const m = `${translations[currentLanguage].invite_message}\nhttps://odiagames.site/ttt/?room=${currentRoomId}`;
         window.open(
           `https://api.whatsapp.com/send?text=${encodeURIComponent(m)}`,
           "_blank"
