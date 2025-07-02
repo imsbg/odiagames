@@ -6,42 +6,42 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- Homepage -->
 <url>
-  <loc>https://odiagames.netlify.app/</loc>
+  <loc>https://odiagames.site/</loc>
   <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 
 <!-- Game: Knowledge Test -->
 <url>
-  <loc>https://odiagames.netlify.app/gk/</loc>
+  <loc>https://odiagames.site/gk/</loc>
   <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
 <!-- Game: Math Wizard -->
 <url>
-  <loc>https://odiagames.netlify.app/ଗଣିତ%20ବିଜ୍ଞ/</loc>
+  <loc>https://odiagames.site/ଗଣିତ%20ବିଜ୍ଞ/</loc>
   <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
 <!-- Game: Tic Tac Toe -->
 <url>
-  <loc>https://odiagames.netlify.app/ttt/</loc>
+  <loc>https://odiagames.site/ttt/</loc>
   <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
 <!-- Game: Bingo -->
 <url>
-  <loc>https://odiagames.netlify.app/bingo/</loc>
+  <loc>https://odiagames.site/bingo/</loc>
   <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 
 <!-- Game: Math Wiz Game Room -->
 <url>
-  <loc>https://odiagames.netlify.app/ଗଣିତ%20ବିଜ୍ଞ/live</loc>
+  <loc>https://odiagames.site/ଗଣିତ%20ବିଜ୍ଞ/live</loc>
   <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
 </url>
