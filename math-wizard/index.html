@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ଗଣିତ ବିଜ୍ଞ | Math Wizard</title>
+    <meta name="theme-color" content="#3B82F6"/>
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
+    <!-- Link to Manifest File (Correct Relative Path) -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- ===== SEO and Metadata (Enhanced) ===== -->
+    <meta id="meta-description" name="description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ। An offline-first math game in Odia.">
+    <meta name="keywords" content="Odia math game, ganita bigyan, math for kids, odia learning, ଗଣିତ ଖେଳ, ପିଲାଙ୍କ ପାଇଁ ଗଣିତ, SB Ganita Bigyan, offline math game, PWA game">
+    
+    <link rel="canonical" href="https://odiagames.site/ଗଣିତ%20ବିଜ୍ଞ/" />
+
+    <!-- Open Graph Tags (Using Correct Relative Paths) -->
+    <meta property="og:title" content="SB ଗଣିତ ବିଜ୍ଞ - Odia Math Game" />
+    <meta property="og:description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ।" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://odiagames.site/ଗଣିତ%20ବିଜ୍ଞ/" />
+    <meta property="og:image" content="/icons/icon-512x512.png" /> <!-- CHANGED TO CORRECT PATH -->
+    <meta property="og:site_name" content="SB ଗଣିତ ବିଜ୍ଞ" />
+    <meta property="og:locale" content="or_IN" />
+
+    <!-- Twitter Card Tags (Using Correct Relative Paths) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SB ଗଣିତ ବିଜ୍ଞ - Odia Math Game">
+    <meta name="twitter:description" content="ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ। SB ଗଣିତ ବିଜ୍ଞ ସହିତ ମିଶାଣ, ଫେଡାଣ, ଗୁଣନ ଏବଂ ହରଣ ଶିଖନ୍ତୁ।">
+    <meta name="twitter:image" content="./icons/icon-512x512.png"> <!-- CHANGED TO CORRECT PATH -->
+
+    <!-- Icons for PWA and Browsers (Using Correct Relative Paths) -->
+    <link rel="apple-touch-icon" href="/icons/icon-512x512.png"> <!-- CHANGED TO CORRECT PATH -->
+    
+    <!-- Fonts and Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        :root {
+            --blue-header-light: #3B82F6; --bg-light: #F0F4F8; --card-bg-light: #ffffff; --text-light: #1F2937;
+            --text-muted-light: #6B7280; --primary-btn-light: #EAB308; --secondary-btn-light: #60A5FA;
+            --skip-btn-light: #9CA3AF; --border-light: #E5E7EB; --correct-light: #22C55E; --wrong-light: #EF4444;
+            --live-indicator-light: #EF4444;
+            --blue-header-dark: #1E40AF; --bg-dark: #0F172A; --card-bg-dark: #1E293B; --text-dark: #E2E8F0;
+            --text-muted-dark: #94A3B8; --primary-btn-dark: #F59E0B; --secondary-btn-dark: #3B82F6;
+            --skip-btn-dark: #4B5563; --border-dark: #334155; --correct-dark: #4ADE80; --wrong-dark: #F87171;
+            --live-indicator-dark: #F87171;
+        }
+        [data-theme="light"] {
+            --header-bg: var(--blue-header-light); --bg-color: var(--bg-light); --card-bg: var(--card-bg-light);
+            --text-color: var(--text-light); --text-muted-color: var(--text-muted-light); --primary-btn-bg: var(--primary-btn-light);
+            --secondary-btn-bg: var(--secondary-btn-light); --skip-btn-bg: var(--skip-btn-light); --border-color: var(--border-light);
+            --correct-color: var(--correct-light); --wrong-color: var(--wrong-light); --header-text: white;
+            --live-indicator-color: var(--live-indicator-light);
+        }
+        [data-theme="dark"] {
+            --header-bg: var(--blue-header-dark); --bg-color: var(--bg-dark); --card-bg: var(--card-bg-dark);
+            --text-color: var(--text-dark); --text-muted-color: var(--text-muted-dark); --primary-btn-bg: var(--primary-btn-dark);
+            --secondary-btn-bg: var(--secondary-btn-dark); --skip-btn-bg: var(--skip-btn-dark); --border-color: var(--border-dark);
+            --correct-color: var(--correct-dark); --wrong-color: var(--wrong-dark); --header-text: #E2E8F0;
+            --live-indicator-color: var(--live-indicator-dark);
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(0.9); }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Noto Sans Oriya', 'Poppins', sans-serif; 
+            background-color: var(--bg-color); 
+            color: var(--text-color); 
+            transition: background-color 0.3s, color 0.3s; 
+            padding-bottom: 5rem; 
+            overscroll-behavior-y: contain; /* This disables pull-to-refresh */
+        }
+        /* ... The rest of your CSS remains unchanged ... */
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1rem; }
+        .app-header { background-color: var(--header-bg); color: var(--header-text); padding: 1rem; }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .title-group { display: flex; align-items: center; gap: 0.75rem; }
+        .logo { font-size: 2rem; }
+        .title { font-size: 1.8rem; font-weight: 700; }
+        #back-btn { background: none; border: none; color: var(--header-text); font-size: 1.5rem; cursor: pointer; padding: 0.5rem; margin-right: 0.5rem; text-decoration: none; }
+        .scores-group { display: flex; gap: 1.5rem; text-align: right; }
+        .score-container { font-size: 1.1rem; font-weight: 600; white-space: nowrap;}
+        #score-value { color: #A7F3D0; }
+        #incorrect-score-value { color: #FECACA; }
+        main { padding: 2rem 0; }
+        .controls-panel { background-color: var(--card-bg); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1.5rem; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); }
+        .top-controls, .bottom-controls { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .control-group { display: flex; align-items: center; gap: 1.5rem; }
+        .control-btn, .lang-btn { background: none; border: none; color: var(--text-muted-color); cursor: pointer; font-size: 1.5rem; transition: color 0.2s; text-decoration: none; position: relative; }
+        .control-btn:hover, .lang-btn:hover { color: var(--text-color); }
+        .live-indicator { position: absolute; top: 0px; right: 0px; width: 8px; height: 8px; background-color: var(--live-indicator-color); border-radius: 50%; border: 2px solid var(--card-bg); animation: pulse 1.5s infinite ease-in-out; }
+        .lang-btn { display: flex; align-items: center; gap: 0.5rem; font-size: 1rem; }
+        .lang-btn span { font-weight: 600; }
+        .select-group { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+        .select-group label { color: var(--text-muted-color); font-weight: 600; }
+        .select-group select, .select-group input { background-color: var(--bg-color); color: var(--text-color); border: 1px solid var(--border-color); border-radius: 6px; padding: 0.4rem 0.8rem; font-family: inherit; font-weight: 600; cursor: pointer; }
+        .game-card { background-color: var(--card-bg); border-radius: 16px; padding: 2.5rem; text-align: center; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07); position: relative; overflow: hidden; }
+        #game-timer-display { font-size: 1.5rem; font-weight: 700; color: var(--secondary-btn-bg); margin-bottom: 1rem; display: none; }
+        #game-over-display { display: none; position: absolute; top:0; left:0; right:0; bottom:0; background: rgba(255,255,255,0.9); backdrop-filter: blur(5px); z-index: 10; border-radius: 16px; flex-direction: column; justify-content: center; align-items: center; }
+        [data-theme="dark"] #game-over-display { background: rgba(15, 23, 42, 0.9); }
+        #game-over-display h3 { font-size: 2.5rem; }
+        #game-over-display p { font-size: 1.25rem; margin: 1rem 0 2rem 0; }
+        #instruction { color: var(--text-muted-color); font-size: 1.1rem; margin-bottom: 1.5rem; }
+        #question { font-size: 3.5rem; font-weight: 700; margin-bottom: 3rem; word-wrap: break-word; }
+        .options-container { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2.5rem; }
+        .option-btn { background-color: var(--primary-btn-bg); color: white; border: 3px solid transparent; border-radius: 12px; padding: 1.25rem; font-size: 2.2rem; font-weight: 700; cursor: pointer; transition: all 0.2s ease; font-family: 'Noto Sans Oriya', 'Poppins', sans-serif; }
+        .option-btn:hover:not(.disabled) { transform: translateY(-4px); }
+        .option-btn.disabled { opacity: 0.7; cursor: not-allowed; }
+        .option-btn.selected.correct { background-color: var(--correct-color); border-color: #fff; }
+        .option-btn.selected.wrong { background-color: var(--wrong-color); border-color: #fff; }
+        .option-btn.correct-answer { background-color: var(--correct-color); }
+        .action-buttons { display: flex; justify-content: center; align-items: center; gap: 1rem; flex-wrap: wrap; min-height: 50px; }
+        .action-btn { color: white; border: none; border-radius: 10px; padding: 0.8rem 2rem; font-size: 1.2rem; font-weight: 600; cursor: pointer; transition: background-color 0.2s, transform 0.2s; font-family: inherit; text-decoration: none; display: inline-block; }
+        .action-btn:hover { transform: scale(1.05); }
+        #next-question-btn { background-color: var(--secondary-btn-bg); display: none; }
+        #skip-question-btn { background-color: var(--skip-btn-bg); display: block; }
+        #play-again-btn { background-color: var(--correct-color); }
+        .footer-status-bar { position: fixed; bottom: 0; left: 0; width: 100%; background-color: var(--card-bg); color: var(--text-color); padding: 1rem; box-shadow: 0 -4px 6px -1px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; gap: 1rem; transition: transform 0.3s ease; transform: translateY(100%); z-index: 1000; }
+        .footer-status-bar.visible { transform: translateY(0); }
+        .close-footer-msg { font-size: 1.5rem; line-height: 1; cursor: pointer; color: var(--text-muted-color); }
+        #app-footer { text-align: center; padding: 2rem 1rem; margin-top: 3rem; color: var(--text-muted-color); font-size: 0.9em; border-top: 1px solid var(--border-color); transition: color 0.3s, border-color 0.3s; }
+        #app-footer a { font-weight: 600; color: var(--text-color); text-decoration: none; transition: color 0.2s; }
+        #app-footer a:hover { color: var(--primary-btn-bg); }
+        /* Modal styles */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 2000; display: none; justify-content: center; align-items: center; padding: 1rem; }
+        .modal-content { background-color: var(--card-bg); color: var(--text-color); padding: 2rem; border-radius: 12px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; position: relative; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        .modal-close { position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; font-weight: bold; color: var(--text-muted-color); cursor: pointer; line-height: 1; }
+        .modal-close:hover { color: var(--text-color); }
+        #history-modal-title { margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color); }
+        #history-content-area { max-height: 65vh; overflow-y: auto; padding-right: 1rem; }
+        .history-entry { border-bottom: 1px solid var(--border-color); padding: 1rem 0; }
+        .history-entry:last-child { border-bottom: none; }
+        .history-q { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+        .history-a { font-size: 1rem; }
+        .history-a .user-answer.correct { color: var(--correct-color); font-weight: bold; }
+        .history-a .user-answer.wrong { color: var(--wrong-color); font-weight: bold; text-decoration: line-through; }
+        .history-a .correct-answer { color: var(--correct-color); font-weight: bold; }
+        @media (max-width: 768px) { .header-content { flex-direction: row; gap: 1rem; } .title-group { flex-grow: 1; } .scores-group { flex-grow: 0; } .top-controls, .bottom-controls { flex-direction: column; align-items: stretch; gap: 1.5rem; } .game-card { padding: 1.5rem; } #question { font-size: 2.8rem; } .option-btn { font-size: 1.8rem; } }
+        @media (max-width: 480px) { .header-content { flex-wrap: wrap; } .title-group { width: 100%; margin-bottom: 0.5rem; } .scores-group { width: 100%; justify-content: space-around; } #question { font-size: 2.2rem; } .option-btn { font-size: 1.5rem; } .title { font-size: 1.3rem; } .logo, #back-btn { font-size: 1.3rem; } }
+    </style>
+</head>
+<body data-theme="light">
+    <!-- The rest of your body tag and inline JS is exactly the same -->
+    <header class="app-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="title-group">
+                    <a href=".." id="back-btn"><i class="fa-solid fa-arrow-left"></i></a>
+                    <i class="fa-solid fa-calculator logo"></i>
+                    <h1 class="title">ଗଣିତ ବିଜ୍ଞ</h1>
+                </div>
+                <div class="scores-group">
+                    <div class="score-container">
+                        <span id="score-label"></span>: <span class="score-value" id="score-value"></span>
+                    </div>
+                    <div class="score-container">
+                        <span id="incorrect-score-label"></span>: <span class="score-value" id="incorrect-score-value"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="controls-panel">
+                <div class="top-controls">
+                    <div class="control-group">
+                        <button class="lang-btn" id="lang-switch"><i class="fa-solid fa-language"></i><span id="lang-text"></span></button>
+                        <button class="control-btn" id="theme-switch"><i class="fas fa-moon"></i></button>
+                        <a href="live/" id="play-live-icon-btn" class="control-btn" target="_blank">
+                            <i class="fa-solid fa-tower-broadcast"></i>
+                            <span class="live-indicator"></span>
+                        </a>
+                        <button class="control-btn" id="reset-score-btn"><i class="fa-solid fa-rotate-left"></i></button>
+                        <button class="control-btn" id="history-btn"><i class="fa-solid fa-history"></i></button>
+                    </div>
+                    <div class="select-group">
+                        <label id="operation-label" for="operation-select"></label>
+                        <select id="operation-select"><option value="mix"></option><option value="+"></option><option value="-"></option><option value="×"></option><option value="÷"></option></select>
+                        <label id="difficulty-label" for="difficulty-select"></label>
+                        <select id="difficulty-select"><option value="easy"></option><option value="medium"></option><option value="hard"></option></select>
+                    </div>
+                </div>
+                <div class="bottom-controls">
+                    <div class="select-group">
+                        <input type="checkbox" id="timer-challenge-checkbox">
+                        <label for="timer-challenge-checkbox" id="timer-challenge-label"></label>
+                    </div>
+                    <div class="select-group" id="timer-duration-group" style="display: none;">
+                        <label for="timer-duration-select" id="timer-duration-label"></label>
+                        <select id="timer-duration-select">
+                            <option value="60">1</option><option value="120">2</option><option value="180">3</option><option value="240">4</option><option value="300">5</option>
+                            <option value="600">10</option><option value="900">15</option><option value="1800">30</option><option value="3600">60</option>
+                        </select>
+                    </div>
+                     <div class="select-group" id="next-q-delay-group">
+                        <label for="next-q-delay-select" id="next-q-delay-label"></label>
+                        <select id="next-q-delay-select">
+                            <option value="0">0s</option>
+                            <option value="5">5s</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="game-card">
+                <div id="game-over-display"><h3 id="game-over-title"></h3><p id="game-over-summary"></p><button id="play-again-btn" class="action-btn"></button></div>
+                <div id="game-timer-display"></div>
+                <h2 id="instruction"></h2><div id="question"></div><div class="options-container" id="options-container"></div>
+                <div class="action-buttons">
+                    <button id="skip-question-btn" class="action-btn"></button>
+                    <button id="next-question-btn" class="action-btn"></button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer id="app-footer"></footer>
+    <div class="footer-status-bar" id="footer-bar">
+        <span id="footer-message-text"></span><span class="close-footer-msg" id="close-footer-msg" title="Close">×</span>
+    </div>
+    
+    <div id="history-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span id="history-modal-close" class="modal-close">×</span>
+            <h3 id="history-modal-title"></h3>
+            <div id="history-content-area"></div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dom = {
+                backBtn: document.getElementById('back-btn'), title: document.querySelector('.title'), scoreLabel: document.getElementById('score-label'), scoreValue: document.getElementById('score-value'), incorrectScoreLabel: document.getElementById('incorrect-score-label'), incorrectScoreValue: document.getElementById('incorrect-score-value'), langSwitch: document.getElementById('lang-switch'), langText: document.getElementById('lang-text'), themeSwitch: document.getElementById('theme-switch'), resetBtn: document.getElementById('reset-score-btn'), operationLabel: document.getElementById('operation-label'), operationSelect: document.getElementById('operation-select'), difficultyLabel: document.getElementById('difficulty-label'), difficultySelect: document.getElementById('difficulty-select'), instruction: document.getElementById('instruction'), question: document.getElementById('question'), optionsContainer: document.getElementById('options-container'), nextBtn: document.getElementById('next-question-btn'), skipBtn: document.getElementById('skip-question-btn'), footerBar: document.getElementById('footer-bar'), footerMsgText: document.getElementById('footer-message-text'), closeFooterMsg: document.getElementById('close-footer-msg'), metaDescription: document.getElementById('meta-description'), timerChallengeCheckbox: document.getElementById('timer-challenge-checkbox'), timerChallengeLabel: document.getElementById('timer-challenge-label'), timerDurationGroup: document.getElementById('timer-duration-group'), timerDurationLabel: document.getElementById('timer-duration-label'), timerDurationSelect: document.getElementById('timer-duration-select'), gameTimerDisplay: document.getElementById('game-timer-display'), gameOverDisplay: document.getElementById('game-over-display'), gameOverTitle: document.getElementById('game-over-title'), gameOverSummary: document.getElementById('game-over-summary'), playAgainBtn: document.getElementById('play-again-btn'), appFooter: document.getElementById('app-footer'),
+                playLiveIconBtn: document.getElementById('play-live-icon-btn'),
+                nextQDelayLabel: document.getElementById('next-q-delay-label'), nextQDelaySelect: document.getElementById('next-q-delay-select'),
+                historyBtn: document.getElementById('history-btn'), historyModal: document.getElementById('history-modal'), historyModalClose: document.getElementById('history-modal-close'), historyModalTitle: document.getElementById('history-modal-title'), historyContentArea: document.getElementById('history-content-area'),
+            };
+            
+            let state = { 
+                scores: { normal: { correct: 0, incorrect: 0 }, timed: { correct: 0, incorrect: 0 } },
+                lang: 'odia', theme: 'light', difficulty: 'easy', operation: 'mix', nextQuestionDelay: 0, answerHistory: [] 
+            };
+            
+            let currentQuestion = {}, nextQuestionTimerId = null, gameTimerId = null;
+            let timedSessionCorrect = 0;
+
+            const translations = {
+                odia: {
+                    title: "SB ଗଣିତ ବିଜ୍ଞ", appName: "SB ଗଣିତ ବିଜ୍ଞ", 
+                    scoreLabelNormal: "ସାଧାରଣ ସ୍କୋର୍", incorrectLabelNormal: "ଭୁଲ୍",
+                    scoreLabelTimed: "ସମୟ ସ୍କୋର୍", incorrectLabelTimed: "ଭୁଲ୍",
+                    langText: "English",
+                    opLabel: "ପ୍ରକାର:", ops: { mix: "ମିଶ୍ରଣ", "+": "ମିଶାଣ", "-": "ଫେଡାଣ", "×": "ଗୁଣନ", "÷": "ହରଣ" },
+                    diffLabel: "ସ୍ତର:", diffs: { easy: "ସହଜ", medium: "ମଧ୍ୟମ", hard: "କଠିନ" },
+                    instruction: "ଆପଣଙ୍କର ଉତ୍ତର ବାଛନ୍ତୁ", nextBtn: "ପରବର୍ତ୍ତୀ ପ୍ରଶ୍ନ", skipBtn: "ପ୍ରଶ୍ନ ଛାଡନ୍ତୁ",
+                    metaDesc: "ପିଲାମାନଙ୍କ ପାଇଁ ଏକ ମଜାଦାର ଗଣିତ ଖେଳ।", backBtnTitle: "ପଛକୁ ଯାଆନ୍ତୁ", 
+                    resetBtnTitle: "ସମସ୍ତ ସ୍କୋର୍ ପୁନଃ ସେଟ୍ କରନ୍ତୁ", resetConfirm: "ଆପଣ ନିଶ୍ଚିତ ଯେ ଆପଣ ସମସ୍ତ ସ୍କୋର୍ (ସାଧାରଣ ଓ ସମୟ) ଏବଂ ଇତିହାସ ପୁନଃ ସେଟ୍ କରିବାକୁ ଚାହୁଁଛନ୍ତି?",
+                    timerChallenge: "ସମୟ ଚ୍ୟାଲେଞ୍ଜ", timerDuration: "ସମୟ (ମିନିଟ):", gameOverTitle: "ସମୟ ସମାପ୍ତ!", 
+                    gameOverSummary: (s) => `ଏହି ରାଉଣ୍ଡରେ ଆପଣ ${toOdiaNum(s)} ଟି ଠିକ୍ ଉତ୍ତର ଦେଇଛନ୍ତି।`, playAgain: "ପୁଣି ଖେଳନ୍ତୁ",
+                    playLiveBtnTitle: "ଲାଇଭ୍ ଖେଳନ୍ତୁ",
+                    footerText: (year, name) => `© ${toOdiaNum(year)} <a href="https://imsbg.github.io/odiagames/" target="_blank">${name}</a>. ସର୍ବସ୍ବତ୍ବ ସଂରକ୍ଷିତ.`,
+                    nextQDelayLabel: "ପରବର୍ତ୍ତୀ ବିଳମ୍ବ:", nextQDelayOptions: { "0": "ତୁରନ୍ତ", "5": "୫ ସେକେଣ୍ଡ" },
+                    historyBtnTitle: "ଉତ୍ତର ଇତିହାସ ଦେଖନ୍ତୁ", historyModalTitle: "ଉତ୍ତର ଇତିହାସ", historyUserAnswer: "ଆପଣଙ୍କ ଉତ୍ତର:", historyCorrectAnswer: "ଠିକ୍ ଉତ୍ତର:", historyNoEntries: "କୌଣସି ଇତିହାସ ମିଳିଲା ନାହିଁ।",
+                    offlineMessage: "ଆପଣ ବର୍ତ୍ତମାନ ଅଫଲାଇନ୍ ଅଛନ୍ତି।", onlineMessage: "ଅନଲାଇନ୍ କୁ ଫେରିଆସିଲେ!",
+                },
+                english: {
+                    title: "SB Math Wizard", appName: "SB Math Wizard", 
+                    scoreLabelNormal: "Normal Score", incorrectLabelNormal: "Wrong",
+                    scoreLabelTimed: "Timed Score", incorrectLabelTimed: "Wrong",
+                    langText: "ଓଡ଼ିଆ",
+                    opLabel: "Type:", ops: { mix: "Mix", "+": "Addition", "-": "Subtraction", "×": "Multiplication", "÷": "Division" },
+                    diffLabel: "Level:", diffs: { easy: "Easy", medium: "Medium", hard: "Hard" },
+                    instruction: "Choose your answer", nextBtn: "Next Question", skipBtn: "Skip Question",
+                    metaDesc: "A fun math game for kids.", backBtnTitle: "Go Back", 
+                    resetBtnTitle: "Reset All Scores", resetConfirm: "Are you sure you want to reset ALL scores (Normal and Timed) and your history?",
+                    timerChallenge: "Timer Challenge", timerDuration: "Duration (min):", gameOverTitle: "Time's Up!", 
+                    gameOverSummary: (s) => `You answered ${s} questions correctly in this round.`, playAgain: "Play Again",
+                    playLiveBtnTitle: "Play Live",
+                    footerText: (year, name) => `© ${year} <a href="https://www.instagram.com/sandeepbiswalg" target="_blank">${name}</a>. All rights reserved.`,
+                    nextQDelayLabel: "Next Q Delay:", nextQDelayOptions: { "0": "Instant", "5": "5 Seconds" },
+                    historyBtnTitle: "View Answer History", historyModalTitle: "Answer History", historyUserAnswer: "Your Answer:", historyCorrectAnswer: "Correct Answer:", historyNoEntries: "No history found.",
+                    offlineMessage: "You are currently offline.", onlineMessage: "Back online!",
+                }
+            };
+            const toOdiaNum = num => (state.lang === 'english') ? num.toString() : String(num).split('').map(d => ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'][parseInt(d)] || d).join('');
+            const getRandom = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+            const generateAdvancedTrickyOptions = (answer) => {
+                const options = new Set([answer]);
+                const answerStr = answer.toString();
+                const strategies = [() => answer + (Math.random() < 0.5 ? 1 : -1),() => answer + (Math.random() < 0.5 ? 10 : -10),() => {if (answer < 10) return answer + 2;const lastDigit = answer % 10;let newLastDigit = (lastDigit + getRandom(1, 9)) % 10;return (answer - lastDigit) + newLastDigit;},() => {if (answerStr.length < 2) return answer - 2;const i = getRandom(0, answerStr.length - 1);const newDigit = (parseInt(answerStr[i]) + getRandom(1, 9)) % 10;const newStr = answerStr.substring(0, i) + newDigit + answerStr.substring(i + 1);return parseInt(newStr);},() => {if (answerStr.length < 2) return answer + 3;const i = getRandom(0, answerStr.length - 2);const newStr = answerStr.substring(0, i) + answerStr[i+1] + answerStr[i] + answerStr.substring(i+2);return parseInt(newStr); }];
+                for (let i = strategies.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [strategies[i], strategies[j]] = [strategies[j], strategies[i]]; }
+                let i = 0;
+                while (options.size < 4 && i < strategies.length * 2) { const newOpt = strategies[i % strategies.length](); if (newOpt >= 0 && !options.has(newOpt)) { options.add(newOpt); } i++; }
+                while (options.size < 4) { const randomOffset = getRandom(1, 20) * (options.size % 2 === 0 ? 1 : -1); const newOption = answer + randomOffset; if (newOption >= 0 && !options.has(newOption)) { options.add(newOption); } }
+                return [...options].sort(() => Math.random() - 0.5);
+            };
+            const generateQuestion = () => {
+                if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
+                const op = (state.operation === 'mix') ? ['+', '-', '×', '÷'][getRandom(0, 3)] : state.operation;
+                let num1, num2, answer, text, options;
+                if (state.difficulty === 'hard') {
+                    if (state.operation === 'mix' && Math.random() < 0.6) {
+                        const templates = [{ gen: () => { const c = getRandom(2, 19); const r = getRandom(5, 25); const b = c * r; const a = getRandom(100, 500); return { ans: a + r, txt: `${toOdiaNum(a)} + (${toOdiaNum(b)} ÷ ${toOdiaNum(c)}) = ?` }}},{ gen: () => { const a = getRandom(100, 500); const b = getRandom(100, 300); const c = getRandom(10, b - 1); return { ans: a + (b-c), txt: `${toOdiaNum(a)} + (${toOdiaNum(b)} - ${toOdiaNum(c)}) = ?` }}},{ gen: () => { const a = getRandom(20, 70); const b = getRandom(20, 70); const c = getRandom(2, 9); return { ans: (a+b) * c, txt: `(${toOdiaNum(a)} + ${toOdiaNum(b)}) × ${toOdiaNum(c)} = ?` }}},{ gen: () => { let a,b,c; do { a=getRandom(200,800); b=getRandom(20,99); c=getRandom(20,99) } while(a <= (b+c)); return { ans: a-(b+c), txt: `${toOdiaNum(a)} - (${toOdiaNum(b)} + ${toOdiaNum(c)}) = ?` }}}];
+                        const qData = templates[getRandom(0, templates.length - 1)].gen();
+                        answer = qData.ans;
+                        text = qData.txt;
+                    } else { 
+                        const level = { addSub: [100, 999], mul: [10, 99], divAns: [10, 50], divNum: [2, 19] };
+                        switch (op) {
+                            case '+': num1 = getRandom(level.addSub[0], level.addSub[1]); num2 = getRandom(level.addSub[0], level.addSub[1]); answer = num1+num2; break;
+                            case '-': num1 = getRandom(level.addSub[0], level.addSub[1]); num2 = getRandom(10, num1 - 1); answer = num1-num2; break;
+                            case '×': num1 = getRandom(level.mul[0], level.mul[1]); num2 = getRandom(2, 99); answer = num1*num2; break;
+                            case '÷': const r = getRandom(level.divAns[0], level.divAns[1]); num2=getRandom(level.divNum[0], level.divNum[1]); num1=r*num2; answer=r; break;
+                        }
+                        text = `${toOdiaNum(num1)} ${op} ${toOdiaNum(num2)} = ?`;
+                    }
+                    options = generateAdvancedTrickyOptions(answer);
+                } else { 
+                    const level = { easy: {add:20,sub:20,mul:10,div:5}, medium:{add:100,sub:100,mul:15,div:10} }[state.difficulty];
+                    switch (op) {
+                        case '+': num1 = getRandom(1,level.add); num2 = getRandom(1,level.add); answer = num1+num2; break;
+                        case '-': num1 = getRandom(5,level.sub); num2 = getRandom(1,num1-1); answer = num1-num2; break;
+                        case '×': num1 = getRandom(2,level.mul); num2 = getRandom(1,10); answer = num1*num2; break;
+                        case '÷': const r = getRandom(2,level.div); num2=getRandom(2,9); num1=r*num2; answer=r; break;
+                    }
+                    text = `${toOdiaNum(num1)} ${op} ${toOdiaNum(num2)} = ?`;
+                    const optionSet = new Set([answer]);
+                    while (optionSet.size < 4) { const wrongOption = answer + getRandom(-10, 10); if (wrongOption !== answer && wrongOption >= 0) { optionSet.add(wrongOption); } }
+                    options = [...optionSet].sort(() => Math.random() - 0.5);
+                }
+                currentQuestion = { text, answer, options };
+                displayQuestion();
+            };
+            const displayQuestion = () => {
+                dom.question.textContent = currentQuestion.text;
+                dom.optionsContainer.innerHTML = '';
+                currentQuestion.options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.className = 'option-btn';
+                    button.textContent = toOdiaNum(option);
+                    button.dataset.value = option;
+                    button.addEventListener('click', handleOptionClick);
+                    dom.optionsContainer.appendChild(button);
+                });
+                dom.nextBtn.style.display = 'none';
+                dom.skipBtn.style.display = 'block';
+                dom.nextBtn.textContent = translations[state.lang].nextBtn;
+            };
+            const handleOptionClick = e => {
+                const allBtns = dom.optionsContainer.querySelectorAll('.option-btn');
+                allBtns.forEach(btn => { btn.classList.add('disabled'); btn.removeEventListener('click', handleOptionClick); });
+                const selectedBtn = e.currentTarget;
+                const chosenAnswer = parseInt(selectedBtn.dataset.value);
+                state.answerHistory.push({ questionText: currentQuestion.text, userAnswer: chosenAnswer, correctAnswer: currentQuestion.answer, timestamp: new Date().toISOString() });
+                if (state.answerHistory.length > 1000) { state.answerHistory.shift(); }
+                const currentMode = dom.timerChallengeCheckbox.checked ? 'timed' : 'normal';
+                selectedBtn.classList.add('selected');
+                if (chosenAnswer === currentQuestion.answer) { 
+                    state.scores[currentMode].correct++;
+                    selectedBtn.classList.add('correct');
+                    if (currentMode === 'timed') timedSessionCorrect++;
+                } else { 
+                    state.scores[currentMode].incorrect++;
+                    selectedBtn.classList.add('wrong'); 
+                    allBtns.forEach(btn => { if (parseInt(btn.dataset.value) === currentQuestion.answer) btn.classList.add('correct-answer'); }); 
+                }
+                updateAllScoresDisplay(); 
+                saveState();
+                if (currentMode === 'timed') { setTimeout(generateQuestion, 500); } 
+                else { dom.nextBtn.style.display = 'block'; dom.skipBtn.style.display = 'none'; startNextQuestionTimer(); }
+            };
+            const saveState = () => { try { localStorage.setItem('sbGanita.scores', JSON.stringify(state.scores)); localStorage.setItem('sbGanita.lang', state.lang); localStorage.setItem('sbGanita.theme', state.theme); localStorage.setItem('sbGanita.difficulty', state.difficulty); localStorage.setItem('sbGanita.operation', state.operation); localStorage.setItem('sbGanita.nextQuestionDelay', state.nextQuestionDelay); localStorage.setItem('sbGanita.answerHistory', JSON.stringify(state.answerHistory)); } catch (e) { console.error("Could not save state to localStorage:", e); } };
+            const loadState = () => {
+                const storedScores = localStorage.getItem('sbGanita.scores');
+                if (storedScores) { try { const parsedScores = JSON.parse(storedScores); if(parsedScores.normal && parsedScores.timed) { state.scores = parsedScores; } } catch (e) { console.error("Could not parse stored scores:", e); } }
+                const storedLang = localStorage.getItem('sbGanita.lang');
+                if (storedLang) state.lang = storedLang;
+                const params = new URLSearchParams(window.location.search);
+                if (params.get('lang') === 'en') state.lang = 'english'; else if (params.get('lang') === 'or') state.lang = 'odia';
+                state.theme = localStorage.getItem('sbGanita.theme') || 'light';
+                state.difficulty = localStorage.getItem('sbGanita.difficulty') || 'easy';
+                state.operation = localStorage.getItem('sbGanita.operation') || 'mix';
+                state.nextQuestionDelay = localStorage.getItem('sbGanita.nextQuestionDelay') !== null ? parseInt(localStorage.getItem('sbGanita.nextQuestionDelay')) : 0;
+                try { state.answerHistory = JSON.parse(localStorage.getItem('sbGanita.answerHistory')) || []; } catch(e) { state.answerHistory = []; }
+                dom.difficultySelect.value = state.difficulty;
+                dom.operationSelect.value = state.operation;
+                dom.nextQDelaySelect.value = state.nextQuestionDelay;
+            };
+            const startNextQuestionTimer = () => {
+                if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
+                const baseText = translations[state.lang].nextBtn;
+                if (state.nextQuestionDelay == 0) { dom.nextBtn.textContent = baseText; nextQuestionTimerId = setTimeout(() => { generateQuestion(); }, 200); } else { let countdown = 5; dom.nextBtn.textContent = `${baseText} (${toOdiaNum(countdown)})`; nextQuestionTimerId = setInterval(() => { countdown--; if (countdown >= 0) dom.nextBtn.textContent = `${baseText} (${toOdiaNum(countdown)})`; else { clearInterval(nextQuestionTimerId); generateQuestion(); } }, 1000); }
+            };
+            const resetScores = (confirmReset = true) => { if (confirmReset && !confirm(translations[state.lang].resetConfirm)) return; state.scores.normal = { correct: 0, incorrect: 0 }; state.scores.timed = { correct: 0, incorrect: 0 }; state.answerHistory = []; updateAllScoresDisplay(); saveState(); };
+            const applyLanguage = () => {
+                const T = translations[state.lang];
+                document.documentElement.lang = state.lang === 'odia' ? 'or' : 'en';
+                document.title = T.title; 
+                dom.title.textContent = T.title;
+                dom.langText.textContent = T.langText;
+                dom.operationLabel.textContent = T.opLabel;
+                dom.difficultyLabel.textContent = T.diffLabel;
+                dom.instruction.textContent = T.instruction;
+                dom.nextBtn.textContent = T.nextBtn;
+                dom.skipBtn.textContent = T.skipBtn;
+                dom.metaDescription.setAttribute('content', T.metaDesc);
+                dom.backBtn.title = T.backBtnTitle;
+                dom.resetBtn.title = T.resetBtnTitle;
+                for (const opt of dom.difficultySelect.options) opt.textContent = T.diffs[opt.value];
+                for (const opt of dom.operationSelect.options) opt.textContent = T.ops[opt.value];
+                for (const opt of dom.timerDurationSelect.options) { opt.textContent = toOdiaNum(parseInt(opt.value) / 60); }
+                dom.timerChallengeLabel.textContent = T.timerChallenge;
+                dom.timerDurationLabel.textContent = T.timerDuration;
+                dom.playAgainBtn.textContent = T.playAgain;
+                dom.gameOverTitle.textContent = T.gameOverTitle;
+                dom.playLiveIconBtn.title = T.playLiveBtnTitle; 
+                dom.nextQDelayLabel.textContent = T.nextQDelayLabel;
+                for (const opt of dom.nextQDelaySelect.options) { opt.textContent = T.nextQDelayOptions[opt.value]; }
+                dom.historyBtn.title = T.historyBtnTitle;
+                dom.historyModalTitle.textContent = T.historyModalTitle;
+                const year = new Date().getFullYear();
+                dom.appFooter.innerHTML = T.footerText(year, T.appName);
+                updateAllScoresDisplay();
+                updateOnlineStatus();
+            };
+            const startGame = () => {
+                if (gameTimerId) clearInterval(gameTimerId);
+                if (nextQuestionTimerId) clearInterval(nextQuestionTimerId);
+                const isTimedMode = dom.timerChallengeCheckbox.checked;
+                if (isTimedMode) { timedSessionCorrect = 0; startGameTimer(parseInt(dom.timerDurationSelect.value)); dom.gameTimerDisplay.style.display = 'block'; dom.nextQDelaySelect.parentElement.style.display = 'none'; } else { dom.gameTimerDisplay.style.display = 'none'; dom.nextQDelaySelect.parentElement.style.display = 'flex'; }
+                dom.gameOverDisplay.style.display = 'none';
+                dom.optionsContainer.style.pointerEvents = 'auto';
+                dom.question.style.display = 'block';
+                generateQuestion();
+            };
+            const updateAllScoresDisplay = () => {
+                const isTimedMode = dom.timerChallengeCheckbox.checked;
+                const T = translations[state.lang];
+                const currentMode = isTimedMode ? 'timed' : 'normal';
+                dom.scoreLabel.textContent = isTimedMode ? T.scoreLabelTimed : T.scoreLabelNormal;
+                dom.incorrectScoreLabel.textContent = isTimedMode ? T.incorrectLabelTimed : T.incorrectLabelNormal;
+                dom.scoreValue.textContent = toOdiaNum(state.scores[currentMode].correct);
+                dom.incorrectScoreValue.textContent = toOdiaNum(state.scores[currentMode].incorrect);
+            };
+            const startGameTimer = (duration) => {
+                let timer = duration;
+                const updateDisplay = () => { const minutes = Math.floor(timer / 60); const seconds = timer % 60; dom.gameTimerDisplay.textContent = `${toOdiaNum(String(minutes).padStart(2, '0'))}:${toOdiaNum(String(seconds).padStart(2, '0'))}`; };
+                updateDisplay();
+                gameTimerId = setInterval(() => { timer--; if (timer >= 0) { updateDisplay(); } else { endGame(); } }, 1000);
+            };
+            const endGame = () => { clearInterval(gameTimerId); dom.gameOverSummary.textContent = translations[state.lang].gameOverSummary(timedSessionCorrect); dom.gameOverDisplay.style.display = 'flex'; dom.optionsContainer.style.pointerEvents = 'none'; dom.question.style.display = 'none'; dom.skipBtn.style.display = 'none'; if (nextQuestionTimerId) clearInterval(nextQuestionTimerId); };
+            const displayHistory = () => {
+                const T = translations[state.lang];
+                dom.historyContentArea.innerHTML = '';
+                if (state.answerHistory.length === 0) { dom.historyContentArea.textContent = T.historyNoEntries;
+                } else {
+                    [...state.answerHistory].reverse().forEach(entry => {
+                        const entryDiv = document.createElement('div');
+                        entryDiv.className = 'history-entry';
+                        const isCorrect = entry.userAnswer === entry.correctAnswer;
+                        const resultIcon = isCorrect ? `<i class="fas fa-check-circle" style="color: var(--correct-color);"></i>` : `<i class="fas fa-times-circle" style="color: var(--wrong-color);"></i>`;
+                        let userAnswerHTML = `<span class="user-answer ${isCorrect ? 'correct' : 'wrong'}">${toOdiaNum(entry.userAnswer)}</span>`;
+                        let correctAnswerHTML = !isCorrect ? `<br>${T.historyCorrectAnswer} <span class="correct-answer">${toOdiaNum(entry.correctAnswer)}</span>` : '';
+                        entryDiv.innerHTML = `<p class="history-q">${entry.questionText}</p><p class="history-a">${resultIcon} ${T.historyUserAnswer} ${userAnswerHTML}${correctAnswerHTML}</p>`;
+                        dom.historyContentArea.appendChild(entryDiv);
+                    });
+                }
+                dom.historyModal.style.display = 'flex';
+            };
+            const updateOnlineStatus = () => {
+                const T = translations[state.lang];
+                if (!navigator.onLine) { dom.footerMsgText.textContent = T.offlineMessage; dom.footerBar.classList.add('visible'); dom.closeFooterMsg.style.display = 'none';
+                } else { if (dom.footerBar.classList.contains('visible')) { dom.footerMsgText.textContent = T.onlineMessage; setTimeout(() => dom.footerBar.classList.remove('visible'), 2000); } }
+            };
+            const init = () => {
+                loadState();
+                applyLanguage();
+                document.body.dataset.theme = state.theme;
+                dom.themeSwitch.querySelector('i').className = state.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+                dom.themeSwitch.addEventListener('click', () => { state.theme = (state.theme === 'light' ? 'dark' : 'light'); document.body.dataset.theme = state.theme; dom.themeSwitch.querySelector('i').className = state.theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'; saveState(); });
+                dom.langSwitch.addEventListener('click', () => { state.lang = (state.lang === 'odia' ? 'english' : 'odia'); applyLanguage(); saveState(); generateQuestion(); });
+                dom.resetBtn.addEventListener('click', () => resetScores(true));
+                dom.nextBtn.addEventListener('click', generateQuestion);
+                dom.skipBtn.addEventListener('click', generateQuestion);
+                [dom.difficultySelect, dom.operationSelect].forEach(el => el.addEventListener('change', (e) => { state[el.id.includes('diff') ? 'difficulty' : 'operation'] = e.target.value; saveState(); generateQuestion(); }));
+                dom.timerChallengeCheckbox.addEventListener('change', (e) => { dom.timerDurationGroup.style.display = e.target.checked ? 'flex' : 'none'; updateAllScoresDisplay(); startGame(); });
+                dom.timerDurationSelect.addEventListener('change', startGame);
+                dom.playAgainBtn.addEventListener('click', startGame);
+                dom.nextQDelaySelect.addEventListener('change', (e) => { state.nextQuestionDelay = parseInt(e.target.value); saveState(); });
+                dom.historyBtn.addEventListener('click', displayHistory);
+                dom.historyModalClose.addEventListener('click', () => dom.historyModal.style.display = 'none');
+                dom.historyModal.addEventListener('click', (e) => { if (e.target === dom.historyModal) dom.historyModal.style.display = 'none'; });
+                window.addEventListener('online', updateOnlineStatus);
+                window.addEventListener('offline', updateOnlineStatus);
+                updateAllScoresDisplay();
+                startGame();
+            };
+            init();
+        });
+    </script>
+       <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+    <!-- ======== FIREBASE SDK SCRIPTS (Required) ======== -->
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+
+<!-- ======== JAVASCRIPT FOR VIEWING THE COUNTER ONLY ======== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- 1. TRANSLATIONS AND GLOBAL STATE ---
+    const translations = {
+        or: { total_visits_text: "ମୋଟ ପରିଦର୍ଶନ: " },
+        en: { total_visits_text: "Total Visits: " }
+    };
+    let currentLang;
+    let latestVisitCount = 0;
+
+    // --- 2. FIREBASE SETUP ---
+    const firebaseConfig = {
+        // PASTE YOUR FIREBASE CONFIG OBJECT HERE
+        // (The same one you used on your main page)
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // --- 3. HELPER FUNCTIONS ---
+    const toOdiaNumerals = (num) => {
+        const odiaDigits = ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'];
+        return String(num).split('').map(digit => odiaDigits[digit] || digit).join('');
+    };
+
+    const displayCount = (count) => {
+        const countElement = document.getElementById('visit-count');
+        const textElement = document.querySelector('[data-key="total_visits_text"]');
+
+        if (countElement) {
+            if (currentLang === 'or') {
+                countElement.textContent = toOdiaNumerals(count);
+            } else {
+                countElement.textContent = count.toLocaleString('en-US');
+            }
+        }
+        if (textElement && translations[currentLang]) {
+            textElement.textContent = translations[currentLang].total_visits_text;
+        }
+    };
+
+    // --- 4. CORE LOGIC ---
+    const setLanguage = (lang) => {
+        if (!translations[lang]) lang = 'or';
+        currentLang = lang;
+        
+        const langToggleBtn = document.getElementById('lang-toggle-btn');
+        if(langToggleBtn) {
+            langToggleBtn.textContent = (lang === 'or') ? 'E' : 'ଓ';
+        }
+        
+        localStorage.setItem('userLanguage', lang);
+        if (latestVisitCount > 0) {
+            displayCount(latestVisitCount);
+        }
+    };
+    
+    // This function listens for live updates and displays them.
+    const listenForCountChanges = () => {
+        const counterRef = db.collection('counters').doc('pageVisits');
+        
+        counterRef.onSnapshot((doc) => {
+            if (doc.exists) {
+                const count = doc.data().count;
+                latestVisitCount = count; // Store the new count
+                displayCount(count); // Display it live
+            } else {
+                console.log("Counter document does not exist.");
+            }
+        }, (error) => {
+            console.error("Error listening for count changes: ", error);
+        });
+    };
+
+    // --- 5. EVENT LISTENERS & INITIALIZATION ---
+    const langToggleBtn = document.getElementById('lang-toggle-btn');
+    if(langToggleBtn) {
+        langToggleBtn.addEventListener('click', () => {
+            const newLang = currentLang === 'or' ? 'en' : 'or';
+            setLanguage(newLang);
+        });
+    }
+
+    const getInitialLanguage = () => {
+        // Simplified for portability, defaults to Odia if not set
+        return localStorage.getItem('userLanguage') || 'or';
+    };
+
+    setLanguage(getInitialLanguage());
+    
+    // This starts the live listener. Notice there is no "increment" call.
+    listenForCountChanges();
+});
+</script>
+</body>
+</html>
