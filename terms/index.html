@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f7fc" />
+    <title>Terms of Service - Odia Games</title>
+    <meta name="description" content="Read the Terms of Service for Odia Games. Understand our policies on advertising, data storage, and privacy for our free-to-play online games." />
+    <meta name="keywords" content="Odiagames, terms of service, privacy policy, data, advertising, free games" />
+    <link rel="canonical" href="https://odiagames.site/terms" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg-color: #f4f7fc;
+        --card-color: #ffffff;
+        --text-color: #1c1c1e;
+        --sub-text-color: #6c757d;
+        --primary-color: #0a2463;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      /* Apply Odia font when the 'or-lang' class is present on the body */
+      body.or-lang,
+      body.or-lang h1,
+      body.or-lang h2,
+      body.or-lang h3,
+      body.or-lang p,
+      body.or-lang a,
+      body.or-lang li {
+        font-family: "Noto Sans Oriya", sans-serif;
+      }
+
+      .container {
+        max-width: 800px; /* More suitable for a text-heavy page */
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      main {
+        flex-grow: 1;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+      }
+
+      /* Header Styles */
+      header {
+        padding: 1.25rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: rgba(244, 247, 252, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header-left a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--text-color);
+      }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .main-nav a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        transition: color 0.3s;
+        padding: 0.5rem;
+      }
+      .main-nav a:hover {
+        color: var(--primary-color);
+      }
+      .lang-switch-btn {
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        width: 55px;
+        height: 40px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1;
+        transition: all 0.3s;
+      }
+      .lang-switch-btn:hover {
+        opacity: 0.9;
+      }
+
+      /* Terms Page Specific Styles */
+      .terms-content {
+        background-color: var(--card-color);
+        padding: 2.5rem;
+        border-radius: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+      .terms-content h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+      .terms-content .last-updated {
+        text-align: center;
+        color: var(--sub-text-color);
+        margin-bottom: 2.5rem;
+        font-size: 0.9rem;
+      }
+      .terms-content h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #eee;
+        color: var(--text-color);
+      }
+      .terms-content p, .terms-content ul {
+        margin-bottom: 1rem;
+        color: var(--sub-text-color);
+        line-height: 1.8;
+      }
+      .terms-content ul {
+        list-style-position: inside;
+        padding-left: 1rem;
+      }
+      .terms-content li {
+        margin-bottom: 0.5rem;
+      }
+      .terms-content strong {
+        color: var(--text-color);
+        font-weight: 600;
+      }
+
+      /* Footer Styles */
+      footer {
+        background: var(--bg-color);
+        color: var(--text-color);
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: auto;
+        border-top: 1px solid #e0e0e0;
+      }
+      footer .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .footer-links {
+        margin-bottom: 1rem;
+      }
+      .footer-links a {
+        color: var(--sub-text-color);
+        text-decoration: none;
+        margin: 0 10px;
+      }
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="header-left">
+                <a href="https://odiagames.site/" class="lang-text" data-key="header_title">Odia Games</a>
+            </div>
+            <div class="header-right">
+                <nav class="main-nav">
+                    <a href="https://odiagames.site/" class="lang-text" data-key="nav_home">Home</a>
+                    <a href="https://odiagames.site/privacy-policy" class="lang-text" data-key="nav_about">Privacy Policy</a>
+                    
+                </nav>
+                <button id="lang-switch" class="lang-switch-btn">ଓଡ଼ିଆ</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="terms-content">
+                <h1 class="lang-text" data-key="terms_title">Terms of Service</h1>
+                <p class="last-updated lang-text" data-key="last_updated">Last Updated: July 03, 2025</p>
+
+                <p class="lang-text" data-key="intro_p1">
+                    Welcome to Odia Games! We are a free-to-use game website dedicated to providing entertaining games. By accessing or using our website, you agree to be bound by these Terms of Service and our Privacy Policy. Please read them carefully.
+                </p>
+
+                <h2 class="lang-text" data-key="section1_title">1. Acceptance of Terms</h2>
+                <p class="lang-text" data-key="section1_p1">
+                    By using the services provided on odiagames.site (the "Website"), you agree to comply with and be legally bound by the terms and conditions outlined here. If you do not agree to these terms, please do not use the Website.
+                </p>
+
+                <h2 class="lang-text" data-key="section2_title">2. Use of the Website</h2>
+                <p class="lang-text" data-key="section2_p1">
+                    All games and services on this Website are provided completely free of charge. You are granted a non-exclusive, non-transferable, revocable license to access and use the Website strictly in accordance with these terms.
+                </p>
+
+                <h2 class="lang-text" data-key="section3_title">3. Advertising</h2>
+                <p class="lang-text" data-key="section3_p1">
+                    To support our free services, we display third-party advertisements. We are committed to a non-intrusive user experience and adhere to the following advertising policy:
+                </p>
+                <ul>
+                    <li class="lang-text" data-key="section3_li1">
+                        <strong>Ads are displayed ONLY on the home page</strong> of the Website.
+                    </li>
+                    <li class="lang-text" data-key="section3_li2">
+                        <strong>We will NEVER display ads on any gaming pages or interrupt you while you are playing a game.</strong> Your gaming experience will always be ad-free.
+                    </li>
+                </ul>
+
+                <h2 class="lang-text" data-key="section4_title">4. Data and Privacy</h2>
+                <p class="lang-text" data-key="section4_p1">
+                    Your privacy is critically important to us. We have a transparent data policy:
+                </p>
+                <ul>
+                    <li class="lang-text" data-key="section4_li1">
+                        <strong>What we DO NOT store:</strong> We do not ask for, collect, or store any sensitive personal information. This includes your <strong>email, password, IP address, and physical address.</strong>
+                    </li>
+                    <li class="lang-text" data-key="section4_li2">
+                        <strong>What we DO store:</strong> For our <strong>multiplayer games only</strong>, we store your game play data and game scores. This is necessary to facilitate gameplay between users, create leaderboards, and enhance the competitive experience.
+                    </li>
+                    <li class="lang-text" data-key="section4_li3">
+                        <strong>Single-player game data is NOT stored or shared anywhere.</strong> All progress and scores from single-player games are stored only on your local device and are not transmitted to our servers.
+                    </li>
+                </ul>
+                
+                <h2 class="lang-text" data-key="section5_title">5. User Conduct</h2>
+                <p class="lang-text" data-key="section5_p1">
+                    You agree to use the Website only for lawful purposes. You are prohibited from any use of the Website that would constitute a criminal offense, give rise to civil liability, or otherwise violate any applicable local, state, national, or international law or regulation.
+                </p>
+
+                <h2 class="lang-text" data-key="section6_title">6. Changes to Terms</h2>
+                <p class="lang-text" data-key="section6_p1">
+                    We reserve the right to modify these terms at any time. We will notify users of any changes by updating the "Last Updated" date at the top of this page. Your continued use of the Website after any such changes constitutes your acceptance of the new terms.
+                </p>
+                
+                <h2 class="lang-text" data-key="section7_title">7. Contact Us</h2>
+                <p class="lang-text" data-key="section7_p1">
+                    If you have any questions about these Terms of Service, please feel free to contact us at <a href="mailto:message.sbg@gmail.com">message.sbg@gmail.com</a>.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+             <div class="footer-links">
+                <a href="https://odiagames.site/" class="lang-text" data-key="nav_home">Back to Home</a>
+              
+            </div>
+            <p class="lang-text" data-key="footer_copyright">© 2025 Odia Games. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const langSwitchBtn = document.getElementById('lang-switch');
+        const allLangTextElements = document.querySelectorAll('.lang-text');
+        
+        // Define all language strings in a single object
+        const translations = {
+            en: {
+                header_title: "Odia Games",
+                nav_home: "Home",
+                nav_about: "About",
+                nav_terms: "Terms",
+                terms_title: "Terms of Service",
+                last_updated: "Last Updated: July 03, 2025",
+                intro_p1: "Welcome to Odia Games! We are a free-to-use game website dedicated to providing entertaining games. By accessing or using our website, you agree to be bound by these Terms of Service and our Privacy Policy. Please read them carefully.",
+                section1_title: "1. Acceptance of Terms",
+                section1_p1: "By using the services provided on odiagames.site (the \"Website\"), you agree to comply with and be legally bound by the terms and conditions outlined here. If you do not agree to these terms, please do not use the Website.",
+                section2_title: "2. Use of the Website",
+                section2_p1: "All games and services on this Website are provided completely free of charge. You are granted a non-exclusive, non-transferable, revocable license to access and use the Website strictly in accordance with these terms.",
+                section3_title: "3. Advertising",
+                section3_p1: "To support our free services, we display third-party advertisements. We are committed to a non-intrusive user experience and adhere to the following advertising policy:",
+                section3_li1: "<strong>Ads are displayed ONLY on the home page</strong> of the Website.",
+                section3_li2: "<strong>We will NEVER display ads on any gaming pages or interrupt you while you are playing a game.</strong> Your gaming experience will always be ad-free.",
+                section4_title: "4. Data and Privacy",
+                section4_p1: "Your privacy is critically important to us. We have a transparent data policy:",
+                section4_li1: "<strong>What we DO NOT store:</strong> We do not ask for, collect, or store any sensitive personal information. This includes your <strong>email, password, IP address, and physical address.</strong>",
+                section4_li2: "<strong>What we DO store:</strong> For our <strong>multiplayer games only</strong>, we store your game play data and game scores. This is necessary to facilitate gameplay between users, create leaderboards, and enhance the competitive experience.",
+                section4_li3: "<strong>Single-player game data is NOT stored or shared anywhere.</strong> All progress and scores from single-player games are stored only on your local device and are not transmitted to our servers.",
+                section5_title: "5. User Conduct",
+                section5_p1: "You agree to use the Website only for lawful purposes. You are prohibited from any use of the Website that would constitute a criminal offense, give rise to civil liability, or otherwise violate any applicable local, state, national, or international law or regulation.",
+                section6_title: "6. Changes to Terms",
+                section6_p1: "We reserve the right to modify these terms at any time. We will notify users of any changes by updating the \"Last Updated\" date at the top of this page. Your continued use of the Website after any such changes constitutes your acceptance of the new terms.",
+                section7_title: "7. Contact Us",
+                section7_p1: "If you have any questions about these Terms of Service, please feel free to contact us at <a href=\"mailto:message.sbg@gmail.com\">message.sbg@gmail.com</a>.",
+                footer_copyright: "© 2025 Odia Games. All Rights Reserved.",
+            },
+            or: {
+                header_title: "ଓଡ଼ିଆ ଗେମ୍ସ",
+                nav_home: "ହୋମ୍",
+                nav_about: "ଗୋପନୀୟତା ନୀତି",
+                nav_terms: "ସର୍ତ୍ତାବଳୀ",
+                terms_title: "ସେବା ସର୍ତ୍ତାବଳୀ",
+                last_updated: "ଶେଷ ଅପଡେଟ୍: ଜୁଲାଇ ୦୩, ୨୦୨୫",
+                intro_p1: "ଓଡ଼ିଆ ଗେମ୍ସକୁ ସ୍ୱାଗତ! ଆମେ ଏକ ମାଗଣା ଗେମ୍ ୱେବସାଇଟ୍ ଯାହା ମନୋରଞ୍ଜନକାରୀ ଖେଳ ଯୋଗାଇବା ପାଇଁ ସମର୍ପିତ। ଆମ ୱେବସାଇଟ୍ ବ୍ୟବହାର କରି, ଆପଣ ଏହି ସେବା ସର୍ତ୍ତାବଳୀ ଏବଂ ଆମର ଗୋପନୀୟତା ନୀତି ଦ୍ୱାରା ବାଧ୍ୟ ବୋଲି ସହମତ ଅଟନ୍ତି। ଦୟାକରି ଏହାକୁ ଧ୍ୟାନର ସହ ପଢ଼ନ୍ତୁ।",
+                section1_title: "୧. ସର୍ତ୍ତାବଳୀର ସ୍ବୀକୃତି",
+                section1_p1: "odiagames.site (\"ୱେବସାଇଟ୍\") ରେ ପ୍ରଦାନ କରାଯାଇଥିବା ସେବାଗୁଡ଼ିକୁ ବ୍ୟବହାର କରି, ଆପଣ ଏଠାରେ ଦିଆଯାଇଥିବା ନିୟମ ଏବଂ ସର୍ତ୍ତାବଳୀକୁ ପାଳନ କରିବାକୁ ଆଇନଗତ ଭାବେ ସହମତ ଅଟନ୍ତି। ଯଦି ଆପଣ ଏହି ସର୍ତ୍ତାବଳୀରେ ସହମତ ନୁହଁନ୍ତି, ଦୟାକରି ୱେବସାଇଟ୍ ବ୍ୟବହାର କରନ୍ତୁ ନାହିଁ।",
+                section2_title: "୨. ୱେବସାଇଟର ବ୍ୟବହାର",
+                section2_p1: "ଏହି ୱେବସାଇଟରେ ଥିବା ସମସ୍ତ ଗେମ୍ ଏବଂ ସେବା ସମ୍ପୂର୍ଣ୍ଣ ମାଗଣାରେ ପ୍ରଦାନ କରାଯାଏ। ଆପଣଙ୍କୁ ଏହି ସର୍ତ୍ତାବଳୀ ଅନୁଯାୟୀ ୱେବସାଇଟ୍ ବ୍ୟବହାର କରିବା ପାଇଁ ଏକ ଅଣ-ବିଶେଷ, ଅଣ-ହସ୍ତାନ୍ତରଯୋଗ୍ୟ, ପ୍ରତ୍ୟାହାରଯୋଗ୍ୟ ଲାଇସେନ୍ସ ପ୍ରଦାନ କରାଯାଇଛି।",
+                section3_title: "୩. ବିଜ୍ଞାପନ",
+                section3_p1: "ଆମର ମାଗଣା ସେବାକୁ ସମର୍ଥନ କରିବା ପାଇଁ, ଆମେ ତୃତୀୟ-ପକ୍ଷର ବିଜ୍ଞାପନ ପ୍ରଦର୍ଶନ କରୁ। ଆମେ ଏକ ଅଣ-ଅନୁପ୍ରବେଶକାରୀ ଉପଭୋକ୍ତା ଅନୁଭବ ପାଇଁ ପ୍ରତିବଦ୍ଧ ଏବଂ ନିମ୍ନଲିଖିତ ବିଜ୍ଞାପନ ନୀତି ପାଳନ କରୁ:",
+                section3_li1: "<strong>ବିଜ୍ଞାପନ କେବଳ ୱେବସାଇଟର ହୋମ୍ ପେଜରେ</strong> ପ୍ରଦର୍ଶିତ ହୁଏ।",
+                section3_li2: "<strong>ଆମେ କେବେବି କୌଣସି ଗେମିଂ ପୃଷ୍ଠାରେ କିମ୍ବା ଆପଣ ଖେଳୁଥିବା ସମୟରେ ବିଜ୍ଞାପନ ଦେଖାଇବୁ ନାହିଁ।</strong> ଆପଣଙ୍କର ଗେମିଂ ଅନୁଭବ ସର୍ବଦା ବିଜ୍ଞାପନ-ମୁକ୍ତ ରହିବ।",
+                section4_title: "୪. ତଥ୍ୟ ଏବଂ ଗୋପନୀୟତା",
+                section4_p1: "ଆପଣଙ୍କର ଗୋପନୀୟତା ଆମ ପାଇଁ ଅତ୍ୟନ୍ତ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ। ଆମର ଏକ ସ୍ୱଚ୍ଛ ତଥ୍ୟ ନୀତି ଅଛି:",
+                section4_li1: "<strong>ଆମେ କ’ଣ ସଂରକ୍ଷଣ କରୁନାହୁଁ:</strong> ଆମେ କୌଣସି ସମ୍ବେଦନଶୀଳ ବ୍ୟକ୍ତିଗତ ସୂଚନା ମାଗୁନାହୁଁ, ସଂଗ୍ରହ କରୁନାହୁଁ କିମ୍ବା ସଂରକ୍ଷଣ କରୁନାହୁଁ। ଏଥିରେ ଆପଣଙ୍କର <strong>ଇମେଲ୍, ପାସୱାର୍ଡ, ଆଇପି ଠିକଣା, ଏବଂ ବାସସ୍ଥାନ ଠିକଣା</strong> ଅନ୍ତର୍ଭୁକ୍ତ।",
+                section4_li2: "<strong>ଆମେ କ’ଣ ସଂରକ୍ଷଣ କରୁ:</strong> କେବଳ ଆମର <strong>ମଲ୍ଟିପ୍ଲେୟାର୍ ଗେମ୍</strong> ପାଇଁ, ଆମେ ଆପଣଙ୍କର ଗେମ୍ ପ୍ଲେ ତଥ୍ୟ ଏବଂ ଗେମ୍ ସ୍କୋର୍ ସଂରକ୍ଷଣ କରୁ। ଏହା ଉପଭୋକ୍ତାଙ୍କ ମଧ୍ୟରେ ଖେଳକୁ ସୁଗମ କରିବା, ଲିଡରବୋର୍ଡ ତିଆରି କରିବା, ଏବଂ ପ୍ରତିଯୋଗିତାମୂଳକ ଅନୁଭବକୁ ବଢାଇବା ପାଇଁ ଆବଶ୍ୟକ।",
+                section4_li3: "<strong>ସିଙ୍ଗଲ୍-ପ୍ଲେୟାର୍ ଗେମର ତଥ୍ୟ କୌଣସି ସ୍ଥାନରେ ସଂରକ୍ଷିତ ବା ସେୟାର କରାଯାଏ ନାହିଁ।</strong> ସିଙ୍ଗଲ୍-ପ୍ଲେୟାର୍ ଗେମର ସମସ୍ତ ପ୍ରଗତି ଏବଂ ସ୍କୋର୍ କେବଳ ଆପଣଙ୍କ ସ୍ଥାନୀୟ ଡିଭାଇସରେ ସଂରକ୍ଷିତ ରହେ ଏବଂ ଆମ ସର୍ଭରକୁ ପଠାଯାଏ ନାହିଁ।",
+                section5_title: "୫. ବ୍ୟବହାରକାରୀଙ୍କ ଆଚରଣ",
+                section5_p1: "ଆପଣ ୱେବସାଇଟକୁ କେବଳ ଆଇନଗତ ଉଦ୍ଦେଶ୍ୟରେ ବ୍ୟବହାର କରିବାକୁ ସହମତ। ୱେବସାଇଟର ଯେକୌଣସି ବ୍ୟବହାର ଯାହା ଏକ ଅପରାଧିକ କାର୍ଯ୍ୟ, ଦେୱାନୀ ଦାୟିତ୍ୱ ସୃଷ୍ଟି କିମ୍ବା ଅନ୍ୟ କୌଣସି ସ୍ଥାନୀୟ, ରାଜ୍ୟ, ଜାତୀୟ ବା ଆନ୍ତର୍ଜାତୀୟ ଆଇନର ଉଲ୍ଲଂଘନ କରେ, ତାହା ନିଷେଧ।",
+                section6_title: "୬. ସର୍ତ୍ତାବଳୀରେ ପରିବର୍ତ୍ତନ",
+                section6_p1: "ଆମେ ଯେକୌଣସି ସମୟରେ ଏହି ସର୍ତ୍ତାବଳୀକୁ ସଂଶୋଧନ କରିବାର ଅଧିକାର ସଂରକ୍ଷିତ ରଖୁ। ଏହି ପୃଷ୍ଠାର ଶୀର୍ଷରେ ଥିବା \"ଶେଷ ଅପଡେଟ୍\" ତାରିଖକୁ ଅପଡେଟ୍ କରି ଆମେ ଉପଭୋକ୍ତାମାନଙ୍କୁ କୌଣସି ପରିବର୍ତ୍ତନ ବିଷୟରେ ସୂଚିତ କରିବୁ। ଏପରି ପରିବର୍ତ୍ତନ ପରେ ଆପଣଙ୍କର ୱେବସାଇଟ୍ ବ୍ୟବହାର ନୂତନ ସର୍ତ୍ତାବଳୀକୁ ଆପଣଙ୍କର ସ୍ୱୀକୃତି ଭାବରେ ବିବେଚନା କରାଯିବ।",
+                section7_title: "୭. ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+                section7_p1: "ଯଦି ଏହି ସେବା ସର୍ତ୍ତାବଳୀ ବିଷୟରେ ଆପଣଙ୍କର କୌଣସି ପ୍ରଶ୍ନ ଅଛି, ତେବେ ଦୟାକରି ଆମ ସହିତ <a href=\"mailto:message.sbg@gmail.com\">message.sbg@gmail.com</a> ରେ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+                footer_copyright: "© ୨୦୨୫ ଓଡ଼ିଆ ଗେମ୍ସ। ସର୍ବସ୍ୱତ୍ତ୍ୱ ସଂରକ୍ଷିତ।",
+            }
+        };
+
+        let currentLang = 'en';
+
+        const switchLanguage = () => {
+            // Toggle language
+            currentLang = currentLang === 'en' ? 'or' : 'en';
+
+            // Update all text elements
+            allLangTextElements.forEach(el => {
+                const key = el.dataset.key;
+                if (key && translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            // Update button text and body class for font switching
+            if (currentLang === 'or') {
+                document.body.classList.add('or-lang');
+                langSwitchBtn.textContent = 'EN';
+            } else {
+                document.body.classList.remove('or-lang');
+                langSwitchBtn.textContent = 'ଓଡ଼ିଆ';
+            }
+        };
+        
+        // Add click event listener to the button
+        langSwitchBtn.addEventListener('click', switchLanguage);
+      });
+    </script>
+</body>
+</html>
