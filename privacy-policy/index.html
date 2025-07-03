@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f7fc" />
+    <title>Privacy Policy - Odia Games</title>
+    <meta name="description" content="Read the Privacy Policy for Odia Games. Learn about what data we collect (and what we don't) to provide a safe, free, and fun gaming experience." />
+    <meta name="keywords" content="Odiagames, privacy policy, data collection, cookies, free games, user data" />
+    <link rel="canonical" href="https://odiagames.site/privacy" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg-color: #f4f7fc;
+        --card-color: #ffffff;
+        --text-color: #1c1c1e;
+        --sub-text-color: #6c757d;
+        --primary-color: #0a2463;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      /* Apply Odia font when the 'or-lang' class is present on the body */
+      body.or-lang,
+      body.or-lang h1,
+      body.or-lang h2,
+      body.or-lang h3,
+      body.or-lang p,
+      body.or-lang a,
+      body.or-lang li {
+        font-family: "Noto Sans Oriya", sans-serif;
+      }
+
+      .container {
+        max-width: 800px; /* More suitable for a text-heavy page */
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      main {
+        flex-grow: 1;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+      }
+
+      /* Header Styles */
+      header {
+        padding: 1.25rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: rgba(244, 247, 252, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header-left a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--text-color);
+      }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .main-nav a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        transition: color 0.3s;
+        padding: 0.5rem;
+      }
+      .main-nav a:hover {
+        color: var(--primary-color);
+      }
+      .lang-switch-btn {
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        width: 55px;
+        height: 40px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1;
+        transition: all 0.3s;
+      }
+      .lang-switch-btn:hover {
+        opacity: 0.9;
+      }
+
+      /* Policy Page Specific Styles */
+      .policy-content {
+        background-color: var(--card-color);
+        padding: 2.5rem;
+        border-radius: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+      .policy-content h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+      .policy-content .last-updated {
+        text-align: center;
+        color: var(--sub-text-color);
+        margin-bottom: 2.5rem;
+        font-size: 0.9rem;
+      }
+      .policy-content h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #eee;
+        color: var(--text-color);
+      }
+      .policy-content p, .policy-content ul {
+        margin-bottom: 1rem;
+        color: var(--sub-text-color);
+        line-height: 1.8;
+      }
+      .policy-content ul {
+        list-style-position: inside;
+        padding-left: 1rem;
+      }
+      .policy-content li {
+        margin-bottom: 0.5rem;
+      }
+      .policy-content strong {
+        color: var(--text-color);
+        font-weight: 600;
+      }
+
+      /* Footer Styles */
+      footer {
+        background: var(--bg-color);
+        color: var(--text-color);
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: auto;
+        border-top: 1px solid #e0e0e0;
+      }
+      footer .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .footer-links {
+        margin-bottom: 1rem;
+      }
+      .footer-links a {
+        color: var(--sub-text-color);
+        text-decoration: none;
+        margin: 0 10px;
+      }
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="header-left">
+                <a href="https://odiagames.site/" class="lang-text" data-key="header_title">Odia Games</a>
+            </div>
+            <div class="header-right">
+                <nav class="main-nav">
+                    <a href="https://odiagames.site/" class="lang-text" data-key="nav_home">Home</a>
+                    <a href="https://odiagames.site/terms" class="lang-text" data-key="nav_about">Terms</a>
+                      </nav>
+                <button id="lang-switch" class="lang-switch-btn">ଓଡ଼ିଆ</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="policy-content">
+                <h1 class="lang-text" data-key="privacy_title">Privacy Policy</h1>
+                <p class="last-updated lang-text" data-key="last_updated">Last Updated: July 03, 2025</p>
+
+                <p class="lang-text" data-key="intro_p1">
+                    Your privacy is extremely important to us at Odia Games ('we', 'us', or 'our'). This Privacy Policy document outlines the types of information that is collected and recorded by odiagames.site and how we use it. This policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Odia Games.
+                </p>
+
+                <h2 class="lang-text" data-key="section1_title">1. Information We Absolutely Do Not Collect</h2>
+                <p class="lang-text" data-key="section1_p1">
+                    We have designed our website to be as privacy-friendly as possible. We want you to play with peace of mind. Therefore, we <strong>DO NOT</strong> collect, store, or ask for any of the following personal identification information:
+                </p>
+                <ul>
+                    <li class="lang-text" data-key="section1_li1">Your Email Address</li>
+                    <li class="lang-text" data-key="section1_li2">Your Password</li>
+                    <li class="lang-text" data-key="section1_li3">Your IP Address</li>
+                    <li class="lang-text" data-key="section1_li4">Your Physical Address or Location Data</li>
+                </ul>
+
+                <h2 class="lang-text" data-key="section2_title">2. Information We Do Collect</h2>
+                <p class="lang-text" data-key="section2_p1">
+                    To provide a functional and competitive gaming experience, we collect a very limited amount of non-personal data:
+                </p>
+                 <ul>
+                    <li class="lang-text" data-key="section2_li1">
+                        <strong>Multiplayer Game Data:</strong> For multiplayer games (like Tic Tac Toe, Bingo, etc.), we store your game-related data, such as your chosen username (which is not linked to any personal info), game scores, and match history. This is essential for features like leaderboards and to connect you with other players.
+                    </li>
+                </ul>
+
+                <h2 class="lang-text" data-key="section3_title">3. Single-Player vs. Multiplayer Games</h2>
+                <p class="lang-text" data-key="section3_p1">
+                    There is a clear distinction in how we handle data between game types:
+                </p>
+                <ul>
+                    <li class="lang-text" data-key="section3_li1">
+                        <strong>Single-Player Games:</strong> All data, progress, and scores for single-player games are stored locally on your device (in your browser). This information is <strong>never</strong> sent to our servers, shared, or stored by us.
+                    </li>
+                    <li class="lang-text" data-key="section3_li2">
+                       <strong>Multiplayer Games:</strong> As stated above, only gameplay and score data are stored on our servers to enable the multiplayer functionality.
+                    </li>
+                </ul>
+                
+                <h2 class="lang-text" data-key="section4_title">4. Third-Party Advertising</h2>
+                <p class="lang-text" data-key="section4_p1">
+                    We use third-party advertising to keep our website free. These ads are only displayed on our home page and never during gameplay.
+                </p>
+                 <p class="lang-text" data-key="section4_p2">
+                    Third-party ad servers or ad networks may use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see. Note that Odia Games has no access to or control over these cookies that are used by third-party advertisers.
+                </p>
+
+                <h2 class="lang-text" data-key="section5_title">5. Data Security</h2>
+                <p class="lang-text" data-key="section5_p1">
+                    We take reasonable measures to protect the limited game data we store from unauthorized access, alteration, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure.
+                </p>
+                
+                <h2 class="lang-text" data-key="section6_title">6. Children's Privacy</h2>
+                <p class="lang-text" data-key="section6_p1">
+                    Our website is not intended for children under the age of 13. We do not knowingly collect any personally identifiable information from children under 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.
+                </p>
+                
+                <h2 class="lang-text" data-key="section7_title">7. Changes to This Privacy Policy</h2>
+                <p class="lang-text" data-key="section7_p1">
+                    We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last Updated' date. You are advised to review this Privacy Policy periodically for any changes.
+                </p>
+
+                <h2 class="lang-text" data-key="section8_title">8. Contact Us</h2>
+                <p class="lang-text" data-key="section8_p1">
+                    If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href="mailto:message.sbg@gmail.com">message.sbg@gmail.com</a>.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+             <div class="footer-links">
+                <a href="https://odiagames.site/" class="lang-text" data-key="nav_home">Home</a>
+               </div>
+            <p class="lang-text" data-key="footer_copyright">© 2025 Odia Games. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const langSwitchBtn = document.getElementById('lang-switch');
+        const allLangTextElements = document.querySelectorAll('.lang-text');
+        
+        const translations = {
+            en: {
+                header_title: "Odia Games",
+                nav_home: "Home",
+                nav_about: "Terms",
+                nav_privacy: "Privacy",
+                privacy_title: "Privacy Policy",
+                last_updated: "Last Updated: July 03, 2025",
+                intro_p1: "Your privacy is extremely important to us at Odia Games ('we', 'us', or 'our'). This Privacy Policy document outlines the types of information that is collected and recorded by odiagames.site and how we use it. This policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Odia Games.",
+                section1_title: "1. Information We Absolutely Do Not Collect",
+                section1_p1: "We have designed our website to be as privacy-friendly as possible. We want you to play with peace of mind. Therefore, we <strong>DO NOT</strong> collect, store, or ask for any of the following personal identification information:",
+                section1_li1: "Your Email Address",
+                section1_li2: "Your Password",
+                section1_li3: "Your IP Address",
+                section1_li4: "Your Physical Address or Location Data",
+                section2_title: "2. Information We Do Collect",
+                section2_p1: "To provide a functional and competitive gaming experience, we collect a very limited amount of non-personal data:",
+                section2_li1: "<strong>Multiplayer Game Data:</strong> For multiplayer games (like Tic Tac Toe, Bingo, etc.), we store your game-related data, such as your chosen username (which is not linked to any personal info), game scores, and match history. This is essential for features like leaderboards and to connect you with other players.",
+                section3_title: "3. Single-Player vs. Multiplayer Games",
+                section3_p1: "There is a clear distinction in how we handle data between game types:",
+                section3_li1: "<strong>Single-Player Games:</strong> All data, progress, and scores for single-player games are stored locally on your device (in your browser). This information is <strong>never</strong> sent to our servers, shared, or stored by us.",
+                section3_li2: "<strong>Multiplayer Games:</strong> As stated above, only gameplay and score data are stored on our servers to enable the multiplayer functionality.",
+                section4_title: "4. Third-Party Advertising",
+                section4_p1: "We use third-party advertising to keep our website free. These ads are only displayed on our home page and never during gameplay.",
+                section4_p2: "Third-party ad servers or ad networks may use technologies like cookies, JavaScript, or Web Beacons that are used in their respective advertisements. They automatically receive your IP address when this occurs. These technologies are used to measure the effectiveness of their advertising campaigns and/or to personalize the advertising content that you see. Note that Odia Games has no access to or control over these cookies that are used by third-party advertisers.",
+                section5_title: "5. Data Security",
+                section5_p1: "We take reasonable measures to protect the limited game data we store from unauthorized access, alteration, or destruction. However, no method of transmission over the Internet or electronic storage is 100% secure.",
+                section6_title: "6. Children's Privacy",
+                section6_p1: "Our website is not intended for children under the age of 13. We do not knowingly collect any personally identifiable information from children under 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.",
+                section7_title: "7. Changes to This Privacy Policy",
+                section7_p1: "We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last Updated' date. You are advised to review this Privacy Policy periodically for any changes.",
+                section8_title: "8. Contact Us",
+                section8_p1: "If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us at <a href=\"mailto:message.sbg@gmail.com\">message.sbg@gmail.com</a>.",
+                footer_copyright: "© 2025 Odia Games. All Rights Reserved.",
+            },
+            or: {
+                header_title: "ଓଡ଼ିଆ ଗେମ୍ସ",
+                nav_home: "ହୋମ୍",
+                nav_about: "ସର୍ତ୍ତାବଳୀ",
+                nav_privacy: "ଗୋପନୀୟତା",
+                privacy_title: "ଗୋପନୀୟତା ନୀତି",
+                last_updated: "ଶେଷ ଅପଡେଟ୍: ଜୁଲାଇ ୦୩, ୨୦୨୫",
+                intro_p1: "ଓଡ଼ିଆ ଗେମ୍ସ ('ଆମେ', 'ଆମ୍ଭେମାନେ', କିମ୍ବା 'ଆମର') ରେ ଆପଣଙ୍କର ଗୋପନୀୟତା ଆମ ପାଇଁ ଅତ୍ୟନ୍ତ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ। ଏହି ଗୋପନୀୟତା ନୀତି ଡକ୍ୟୁମେଣ୍ଟରେ odiagames.site ଦ୍ୱାରା ସଂଗୃହିତ ଏବଂ ରେକର୍ଡ କରାଯାଇଥିବା ସୂଚନାର ପ୍ରକାର ଏବଂ ଆମେ ଏହାକୁ କିପରି ବ୍ୟବହାର କରୁ ତାହା ବର୍ଣ୍ଣନା କରାଯାଇଛି। ଏହି ନୀତି କେବଳ ଆମର ଅନଲାଇନ୍ କାର୍ଯ୍ୟକଳାପ ପାଇଁ ପ୍ରଯୁଜ୍ୟ।",
+                section1_title: "୧. ସୂଚନା ଯାହା ଆମେ ଆଦୌ ସଂଗ୍ରହ କରୁନାହୁଁ",
+                section1_p1: "ଆମେ ଆମର ୱେବସାଇଟକୁ ଯଥାସମ୍ଭବ ଗୋପନୀୟତା-ଅନୁକୂଳ ଭାବରେ ଡିଜାଇନ୍ କରିଛୁ। ଆମେ ଚାହୁଁ, ଆପଣ ଶାନ୍ତିରେ ଖେଳନ୍ତୁ। ତେଣୁ, ଆମେ ନିମ୍ନଲିଖିତ କୌଣସି ବ୍ୟକ୍ତିଗତ ପରିଚୟ ସୂଚନା ସଂଗ୍ରହ, ସଂରକ୍ଷଣ କିମ୍ବା ମାଗୁ <strong>ନାହୁଁ</strong>:",
+                section1_li1: "ଆପଣଙ୍କ ଇମେଲ୍ ଠିକଣା",
+                section1_li2: "ଆପଣଙ୍କ ପାସୱାର୍ଡ",
+                section1_li3: "ଆପଣଙ୍କ ଆଇପି ଠିକଣା",
+                section1_li4: "ଆପଣଙ୍କ ବାସସ୍ଥାନ ଠିକଣା କିମ୍ବା ଅବସ୍ଥିତି ତଥ୍ୟ",
+                section2_title: "୨. ସୂଚନା ଯାହା ଆମେ ସଂଗ୍ରହ କରୁ",
+                section2_p1: "ଏକ କାର୍ଯ୍ୟକ୍ଷମ ଏବଂ ପ୍ରତିଯୋଗିତାମୂଳକ ଗେମିଂ ଅଭିଜ୍ଞତା ପ୍ରଦାନ କରିବା ପାଇଁ, ଆମେ ବହୁତ ସୀମିତ ପରିମାଣର ଅଣ-ବ୍ୟକ୍ତିଗତ ତଥ୍ୟ ସଂଗ୍ରହ କରୁ:",
+                section2_li1: "<strong>ମଲ୍ଟିପ୍ଲେୟାର୍ ଗେମ୍ ତଥ୍ୟ:</strong> ମଲ୍ଟିପ୍ଲେୟାର୍ ଗେମ୍ (ଯେପରିକି ଟିକ ଟାକ୍ ଟୋ, ବିଙ୍ଗୋ ଇତ୍ୟାଦି) ପାଇଁ, ଆମେ ଆପଣଙ୍କର ଖେଳ-ସମ୍ବନ୍ଧୀୟ ତଥ୍ୟ, ଯେପରିକି ଆପଣଙ୍କର ମନୋନୀତ ଉପଭୋକ୍ତା ନାମ (ଯାହା କୌଣସି ବ୍ୟକ୍ତିଗତ ସୂଚନା ସହିତ ସଂଯୁକ୍ତ ନୁହେଁ), ଗେମ୍ ସ୍କୋର୍, ଏବଂ ମ୍ୟାଚ୍ ଇତିହାସ ସଂରକ୍ଷଣ କରୁ। ଏହା ଲିଡରବୋର୍ଡ ଭଳି ବୈଶିଷ୍ଟ୍ୟ ପାଇଁ ଏବଂ ଆପଣଙ୍କୁ ଅନ୍ୟ ଖେଳାଳିଙ୍କ ସହ ସଂଯୋଗ କରିବା ପାଇଁ ଅତ୍ୟାବଶ୍ୟକ।",
+                section3_title: "୩. ସିଙ୍ଗଲ୍-ପ୍ଲେୟାର୍ ବନାମ ମଲ୍ଟିପ୍ଲେୟାର୍ ଗେମ୍",
+                section3_p1: "ଆମେ କିପରି ତଥ୍ୟ ପରିଚାଳନା କରୁ, ସେଥିରେ ଖେଳ ପ୍ରକାର ମଧ୍ୟରେ ଏକ ସ୍ପଷ୍ଟ ପାର୍ଥକ୍ୟ ଅଛି:",
+                section3_li1: "<strong>ସିଙ୍ଗଲ୍-ପ୍ଲେୟାର୍ ଗେମ୍:</strong> ସିଙ୍ଗଲ୍-ପ୍ଲେୟାର୍ ଗେମର ସମସ୍ତ ତଥ୍ୟ, ପ୍ରଗତି ଏବଂ ସ୍କୋର୍ ଆପଣଙ୍କ ଡିଭାଇସରେ (ଆପଣଙ୍କ ବ୍ରାଉଜରରେ) ସ୍ଥାନୀୟ ଭାବରେ ସଂରକ୍ଷିତ ହୁଏ। ଏହି ସୂଚନା ଆମ ସର୍ଭରକୁ <strong>କେବେବି</strong> ପଠାଯାଏ ନାହିଁ, ସେୟାର କରାଯାଏ ନାହିଁ କିମ୍ବା ଆମ ଦ୍ୱାରା ସଂରକ୍ଷିତ ହୁଏ ନାହିଁ।",
+                section3_li2: "<strong>ମଲ୍ଟିପ୍ଲେୟାର୍ ଗେମ୍:</strong> ଉପରେ କୁହାଯାଇଥିବା ପରି, କେବଳ ଗେମପ୍ଲେ ଏବଂ ସ୍କୋର୍ ତଥ୍ୟ ମଲ୍ଟିପ୍ଲେୟାର୍ କାର୍ଯ୍ୟକାରିତାକୁ ସକ୍ଷମ କରିବା ପାଇଁ ଆମ ସର୍ଭରରେ ସଂରକ୍ଷିତ ହୁଏ।",
+                section4_title: "୪. ତୃତୀୟ-ପକ୍ଷ ବିଜ୍ଞାପନ",
+                section4_p1: "ଆମ ୱେବସାଇଟକୁ ମାଗଣା ରଖିବା ପାଇଁ ଆମେ ତୃତୀୟ-ପକ୍ଷର ବିଜ୍ଞାପନ ବ୍ୟବହାର କରୁ। ଏହି ବିଜ୍ଞାପନଗୁଡ଼ିକ କେବଳ ଆମର ହୋମ୍ ପେଜରେ ପ୍ରଦର୍ଶିତ ହୁଏ ଏବଂ ଗେମପ୍ଲେ ସମୟରେ କଦାପି ନୁହେଁ।",
+                section4_p2: "ତୃତୀୟ-ପକ୍ଷର ବିଜ୍ଞାପନ ସର୍ଭର କିମ୍ବା ନେଟୱାର୍କଗୁଡ଼ିକ କୁକିଜ୍, ଜାଭାସ୍କ୍ରିପ୍ଟ କିମ୍ବା ୱେବ୍ ବିକନ୍ ଭଳି ପ୍ରଯୁକ୍ତିବିଦ୍ୟା ବ୍ୟବହାର କରିପାରନ୍ତି। ଯେତେବେଳେ ଏହା ଘଟେ ସେମାନେ ସ୍ୱୟଂଚାଳିତ ଭାବରେ ଆପଣଙ୍କର ଆଇପି ଠିକଣା ପାଇଥାନ୍ତି। ଧ୍ୟାନ ଦିଅନ୍ତୁ ଯେ ଓଡ଼ିଆ ଗେମ୍ସର ତୃତୀୟ-ପକ୍ଷ ବିଜ୍ଞାପନଦାତାଙ୍କ ଦ୍ୱାରା ବ୍ୟବହୃତ ଏହି କୁକିଜ୍ ଉପରେ କୌଣସି ପ୍ରବେଶ କିମ୍ବା ନିୟନ୍ତ୍ରଣ ନାହିଁ।",
+                section5_title: "୫. ତଥ୍ୟ ସୁରକ୍ଷା",
+                section5_p1: "ଆମେ ସଂରକ୍ଷଣ କରୁଥିବା ସୀମିତ ଗେମ୍ ତଥ୍ୟକୁ ଅନଧିକୃତ ପ୍ରବେଶ, ପରିବର୍ତ୍ତନ କିମ୍ବା ବିନାଶରୁ ରକ୍ଷା କରିବା ପାଇଁ ଯୁକ୍ତିଯୁକ୍ତ ପଦକ୍ଷେପ ନେଉ। ତଥାପି, ଇଣ୍ଟରନେଟ୍ କିମ୍ବା ଇଲେକ୍ଟ୍ରୋନିକ୍ ଷ୍ଟୋରେଜ୍ ଉପରେ କୌଣସି ପଦ୍ଧତି ୧୦୦% ସୁରକ୍ଷିତ ନୁହେଁ।",
+                section6_title: "୬. ଶିଶୁଙ୍କ ଗୋପନୀୟତା",
+                section6_p1: "ଆମର ୱେବସାଇଟ୍ ୧୩ ବର୍ଷରୁ କମ୍ ବୟସର ପିଲାମାନଙ୍କ ପାଇଁ ଉଦ୍ଦିଷ୍ଟ ନୁହେଁ। ଆମେ ଜାଣିଶୁଣି ୧୩ ବର୍ଷରୁ କମ୍ ପିଲାଙ୍କଠାରୁ କୌଣସି ବ୍ୟକ୍ତିଗତ ପରିଚୟ ସୂଚନା ସଂଗ୍ରହ କରୁନାହୁଁ। ଯଦି ଆପଣ ଭାବୁଛନ୍ତି ଯେ ଆପଣଙ୍କ ପିଲା ଆମ ୱେବସାଇଟରେ ଏହି ପ୍ରକାରର ସୂଚନା ପ୍ରଦାନ କରିଛନ୍ତି, ଆମେ ଆପଣଙ୍କୁ ତୁରନ୍ତ ଆମ ସହିତ ଯୋଗାଯୋଗ କରିବାକୁ ଦୃଢ଼ ଭାବରେ ଅନୁରୋଧ କରୁଛୁ।",
+                section7_title: "୭. ଏହି ଗୋପନୀୟତା ନୀତିରେ ପରିବର୍ତ୍ତନ",
+                section7_p1: "ଆମେ ସମୟ ସମୟରେ ଆମର ଗୋପନୀୟତା ନୀତି ଅପଡେଟ୍ କରିପାରୁ। ଆମେ ଏହି ପୃଷ୍ଠାରେ ନୂତନ ଗୋପନୀୟତା ନୀତି ପୋଷ୍ଟ କରି ଏବଂ 'ଶେଷ ଅପଡେଟ୍' ତାରିଖକୁ ଅପଡେଟ୍ କରି ଆପଣଙ୍କୁ କୌଣସି ପରିବର୍ତ୍ତନ ବିଷୟରେ ସୂଚିତ କରିବୁ।",
+                section8_title: "୮. ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ",
+                section8_p1: "ଯଦି ଆମର ଗୋପନୀୟତା ନୀତି ବିଷୟରେ ଆପଣଙ୍କର କୌଣସି ପ୍ରଶ୍ନ କିମ୍ବା ପରାମର୍ଶ ଅଛି, ତେବେ <a href=\"mailto:message.sbg@gmail.com\">message.sbg@gmail.com</a> ରେ ଆମ ସହିତ ଯୋଗାଯୋଗ କରିବାକୁ କୁଣ୍ଠାବୋଧ କରନ୍ତୁ ନାହିଁ।",
+                footer_copyright: "© ୨୦୨୫ ଓଡ଼ିଆ ଗେମ୍ସ। ସର୍ବସ୍ୱତ୍ତ୍ୱ ସଂରକ୍ଷିତ।",
+            }
+        };
+
+        let currentLang = 'en';
+
+        const switchLanguage = () => {
+            currentLang = currentLang === 'en' ? 'or' : 'en';
+
+            allLangTextElements.forEach(el => {
+                const key = el.dataset.key;
+                if (key && translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            if (currentLang === 'or') {
+                document.body.classList.add('or-lang');
+                langSwitchBtn.textContent = 'EN';
+            } else {
+                document.body.classList.remove('or-lang');
+                langSwitchBtn.textContent = 'ଓଡ଼ିଆ';
+            }
+        };
+        
+        langSwitchBtn.addEventListener('click', switchLanguage);
+      });
+    </script>
+</body>
+</html>
