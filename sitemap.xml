@@ -15,7 +15,7 @@
 <url>
   <loc>https://odiagames.site/gk/</loc>
   <lastmod>2025-07-01T00:00:00+00:00</lastmod>
-  <priority>0.80</priority>
+  <priority>0.90</priority>
 </url>
 
 <!-- Game: Math Wizard -->
@@ -29,7 +29,7 @@
 <url>
   <loc>https://odiagames.site/ttt/</loc>
   <lastmod>2025-07-01T00:00:00+00:00</lastmod>
-  <priority>0.80</priority>
+  <priority>0.90</priority>
 </url>
 
 <!-- Game: Bingo -->
@@ -44,6 +44,18 @@
   <loc>https://odiagames.site/math-wizard/live/</loc>
   <lastmod>2025-07-01T00:00:00+00:00</lastmod>
   <priority>0.80</priority>
+</url>
+
+      <url>
+  <loc>https://odiagames.site/privacy-policy/</loc>
+  <lastmod>2025-07-01T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
+</url>
+
+      <url>
+  <loc>https://odiagames.site/terms/</loc>
+  <lastmod>2025-07-01T00:00:00+00:00</lastmod>
+  <priority>0.50</priority>
 </url>
 
 </urlset>
