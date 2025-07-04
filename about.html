@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f4f7fc" />
+    <title>About Us - Odia Games</title>
+    <meta name="description" content="Learn about Odia Games, the first website to bring classic Odia childhood games to the digital world. Our mission is to preserve and share our culture." />
+    <meta name="keywords" content="Odiagames, about us, odia culture, odisha games, Sandeep Biswal G" />
+    <link rel="canonical" href="https://odiagames.site/about" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      :root {
+        --bg-color: #f4f7fc;
+        --card-color: #ffffff;
+        --text-color: #1c1c1e;
+        --sub-text-color: #6c757d;
+        --primary-color: #0a2463;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+      }
+      /* Apply Odia font when the 'or-lang' class is present on the body */
+      body.or-lang,
+      body.or-lang h1,
+      body.or-lang h2,
+      body.or-lang h3,
+      body.or-lang p,
+      body.or-lang a,
+      body.or-lang li,
+      body.or-lang strong {
+        font-family: "Noto Sans Oriya", sans-serif;
+      }
+
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      main {
+        flex-grow: 1;
+        padding-top: 2rem;
+        padding-bottom: 4rem;
+      }
+
+      /* Header Styles */
+      header {
+        padding: 1.25rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: rgba(244, 247, 252, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .header-left a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-decoration: none;
+        color: var(--text-color);
+      }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .main-nav a {
+        text-decoration: none;
+        color: var(--text-color);
+        font-weight: 500;
+        transition: color 0.3s;
+        padding: 0.5rem;
+      }
+      .main-nav a:hover {
+        color: var(--primary-color);
+      }
+      .lang-switch-btn {
+        background-color: var(--primary-color);
+        color: #fff;
+        border: none;
+        width: 55px;
+        height: 40px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 1;
+        transition: all 0.3s;
+      }
+      .lang-switch-btn:hover {
+        opacity: 0.9;
+      }
+
+      /* About Page Specific Styles */
+      .about-content {
+        background-color: var(--card-color);
+        padding: 2.5rem;
+        border-radius: 1.5rem;
+        box-shadow: var(--shadow);
+      }
+      .about-content h1 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 2.5rem;
+        text-align: center;
+      }
+      .about-content h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #eee;
+        color: var(--text-color);
+      }
+      .about-content p {
+        margin-bottom: 1rem;
+        color: var(--sub-text-color);
+        line-height: 1.8;
+      }
+      .about-content strong {
+        color: var(--text-color);
+        font-weight: 600;
+      }
+       .about-content a {
+        color: var(--primary-color);
+        text-decoration: none;
+       }
+       .about-content a:hover {
+        text-decoration: underline;
+       }
+
+      /* Footer Styles */
+      footer {
+        background: var(--bg-color);
+        color: var(--text-color);
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: auto;
+        border-top: 1px solid #e0e0e0;
+      }
+      footer .footer-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      .footer-links {
+        margin-bottom: 1rem;
+      }
+      .footer-links a {
+        color: var(--sub-text-color);
+        text-decoration: none;
+        margin: 0 10px;
+      }
+      .footer-links a:hover {
+        color: var(--primary-color);
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="header-left">
+                <a href="https://odiagames.site/" class="lang-text" data-key="header_title">Odia Games</a>
+            </div>
+            <div class="header-right">
+                <nav class="main-nav">
+                    <a href="https://odiagames.site/" class="lang-text" data-key="nav_home">Home</a>
+                    <a href="https://odiagames.site/privacy-policy/" class="lang-text" data-key="nav_privacy">Privacy</a>
+                    <a href="https://odiagames.site/terms" class="lang-text" data-key="nav_terms">Terms</a>
+                </nav>
+                <button id="lang-switch" class="lang-switch-btn">ଓଡ଼ିଆ</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="about-content">
+                <h1 class="lang-text" data-key="about_title">About Us</h1>
+
+                <p class="lang-text" data-key="p1">
+                    Welcome to Odia Games! We are a passionate team based in Dhenkanal, Odisha, dedicated to reviving the cherished games of our childhood. This is a unique game website where you can find and play our traditional games in both Odia and English.
+                </p>
+                <p class="lang-text" data-key="p2">
+                    We are proud to be the first website in Odisha where you can enjoy these nostalgic games in our own mother tongue, connecting our generation and the next with our rich cultural roots.
+                </p>
+
+                <h2 class="lang-text" data-key="mission_title">Our Mission</h2>
+                <p class="lang-text" data-key="mission_p">
+                    Our mission is to preserve, promote, and digitally archive the iconic games of Odisha. In a world of fast-paced digital entertainment, we aim to provide a space where the simplicity and joy of our traditional games can be experienced by anyone, anywhere. We believe that games are a powerful way to keep our culture and language alive.
+                </p>
+                
+                <h2 class="lang-text" data-key="founder_title">Meet the Founder</h2>
+                <p class="lang-text" data-key="founder_p">
+                    Odia Games was founded by <a href="https://www.instagram.com/sandeepbiswalg" target="_blank" rel="noopener noreferrer">Sandeep Biswal G</a>, a tech enthusiast with a deep love for his culture. His vision is to create a high-quality platform that not only entertains but also serves as a bridge to our heritage. You can follow his journey on Instagram.
+                </p>
+
+                <h2 class="lang-text" data-key="future_title">What's Next?</h2>
+                <p class="lang-text" data-key="future_p">
+                    The journey has just begun! In the future, we will be adding more iconic Odia games that we all grew up playing on boards and in the fields. We are constantly working to improve the experience and expand our collection of games.
+                </p>
+
+                <h2 class="lang-text" data-key="contact_title">Contact Us</h2>
+                <p class="lang-text" data-key="contact_p">
+                    We love to hear from our users! If you have any questions, suggestions, or just want to say hello, please feel free to reach out to us.
+                </p>
+                <p class="lang-text" data-key="contact_details">
+                    <strong>Email:</strong> <a href="mailto:message.sbg@gmail.com">message.sbg@gmail.com</a><br>
+                    <strong>Address:</strong> Dhenkanal, Odisha, 759001, India
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+             <div class="footer-links">
+                <a href="https://odiagames.site/" class="lang-text" data-key="nav_home">Home</a>
+             </div>
+            <p class="lang-text" data-key="footer_copyright">© 2025 Odia Games. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const langSwitchBtn = document.getElementById('lang-switch');
+        const allLangTextElements = document.querySelectorAll('.lang-text');
+        
+        const translations = {
+            en: {
+                header_title: "Odia Games",
+                nav_home: "Home",
+                nav_privacy: "Privacy",
+                nav_terms: "Terms",
+                about_title: "About Us",
+                p1: "Welcome to Odia Games! We are a passionate team based in Dhenkanal, Odisha, dedicated to reviving the cherished games of our childhood. This is a unique game website where you can find and play our traditional games in both Odia and English.",
+                p2: "We are proud to be the first website in Odisha where you can enjoy these nostalgic games in our own mother tongue, connecting our generation and the next with our rich cultural roots.",
+                mission_title: "Our Mission",
+                mission_p: "Our mission is to preserve, promote, and digitally archive the iconic games of Odisha. In a world of fast-paced digital entertainment, we aim to provide a space where the simplicity and joy of our traditional games can be experienced by anyone, anywhere. We believe that games are a powerful way to keep our culture and language alive.",
+                founder_title: "Meet the Founder",
+                founder_p: "Odia Games was founded by <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>Sandeep Biswal G</a>, a tech enthusiast with a deep love for his culture. His vision is to create a high-quality platform that not only entertains but also serves as a bridge to our heritage. You can follow his journey on Instagram.",
+                future_title: "What's Next?",
+                future_p: "The journey has just begun! In the future, we will be adding more iconic Odia games that we all grew up playing on boards and in the fields. We are constantly working to improve the experience and expand our collection of games.",
+                contact_title: "Contact Us",
+                contact_p: "We love to hear from our users! If you have any questions, suggestions, or just want to say hello, please feel free to reach out to us.",
+                contact_details: "<strong>Email:</strong> <a href='mailto:message.sbg@gmail.com'>message.sbg@gmail.com</a><br><strong>Address:</strong> Dhenkanal, Odisha, 759001, India",
+                footer_copyright: "© 2025 Odia Games. All Rights Reserved."
+            },
+            or: {
+                header_title: "ଓଡ଼ିଆ ଗେମ୍ସ",
+                nav_home: "ହୋମ୍",
+                nav_privacy: "ଗୋପନୀୟତା",
+                nav_terms: "ସର୍ତ୍ତାବଳୀ",
+                about_title: "ଆମ ବିଷୟରେ",
+                p1: "ଓଡ଼ିଆ ଗେମ୍ସକୁ ସ୍ୱାଗତ! ଆମେ ଓଡ଼ିଶାର ଢେଙ୍କାନାଳରେ ଥିବା ଏକ ଉତ୍ସାହୀ ଦଳ, ଯିଏ ଆମ ପିଲାଦିନର ପ୍ରିୟ ଖେଳଗୁଡ଼ିକୁ ପୁନର୍ଜୀବିତ କରିବା ପାଇଁ ସମର୍ପିତ। ଏହା ଏକ ଅନନ୍ୟ ଗେମ୍ ୱେବସାଇଟ୍ ଯେଉଁଠାରେ ଆପଣ ଆମର ପାରମ୍ପାରିକ ଖେଳଗୁଡ଼ିକୁ ଉଭୟ ଓଡ଼ିଆ ଏବଂ ଇଂରାଜୀରେ ଖେଳିପାରିବେ।",
+                p2: "ଆମେ ଓଡ଼ିଶାର ପ୍ରଥମ ୱେବସାଇଟ୍ ହୋଇଥିବାରୁ ଗର୍ବିତ, ଯେଉଁଠାରେ ଆପଣ ଏହି ପୁରୁଣା ସ୍ମୃତିର ଖେଳଗୁଡ଼ିକୁ ଆମ ନିଜ ମାତୃଭାଷାରେ ଉପଭୋଗ କରିପାରିବେ, ଯାହା ଆମର ପିଢି ଏବଂ ଆଗାମୀ ପିଢିକୁ ଆମର ସମୃଦ୍ଧ ସାଂସ୍କୃତିକ ମୂଳ ସହିତ ଯୋଡ଼ିବ।",
+                mission_title: "ଆମର ଲକ୍ଷ୍ୟ",
+                mission_p: "ଆମର ଲକ୍ଷ୍ୟ ହେଉଛି ଓଡ଼ିଶାର ପ୍ରସିଦ୍ଧ ଖେଳଗୁଡ଼ିକୁ ସଂରକ୍ଷଣ, ପ୍ରୋତ୍ସାହନ ଏବଂ ଡିଜିଟାଲ୍ ଭାବରେ ସଂଗ୍ରହ କରିବା। ଦ୍ରୁତ ଗତିରେ ଚାଲୁଥିବା ଡିଜିଟାଲ୍ ମନୋରଞ୍ଜନ ଦୁନିଆରେ, ଆମେ ଏପରି ଏକ ସ୍ଥାନ ପ୍ରଦାନ କରିବାକୁ ଲକ୍ଷ୍ୟ ରଖିଛୁ ଯେଉଁଠାରେ ଆମର ପାରମ୍ପାରିକ ଖେଳର ସରଳତା ଏବଂ ଆନନ୍ଦକୁ ଯେକେହି, ଯେକୌଣସି ସ୍ଥାନରେ ଅନୁଭବ କରିପାରିବେ। ଆମେ ବିଶ୍ୱାସ କରୁ ଯେ ଖେଳ ଆମ ସଂସ୍କୃତି ଏବଂ ଭାଷାକୁ ଜୀବନ୍ତ ରଖିବାର ଏକ ଶକ୍ତିଶାଳୀ ମାଧ୍ୟମ।",
+                founder_title: "ପ୍ରତିଷ୍ଠାତାଙ୍କୁ ଭେଟନ୍ତୁ",
+                founder_p: "ଓଡ଼ିଆ ଗେମ୍ସର ପ୍ରତିଷ୍ଠାତା ହେଉଛନ୍ତି <a href='https://www.instagram.com/sandeepbiswalg' target='_blank' rel='noopener noreferrer'>ସନ୍ଦୀପ ବିଶ୍ଵାଳ ଜି</a>, ଜଣେ ବୈଷୟିକ ଉତ୍ସାହୀ ଯାହାଙ୍କର ନିଜ ସଂସ୍କୃତି ପ୍ରତି ଗଭୀର ଭଲପାଇବା ରହିଛି। ତାଙ୍କର ଦୃଷ୍ଟିକୋଣ ହେଉଛି ଏକ ଉଚ୍ଚ-ଗୁଣବତ୍ତା ସମ୍ପନ୍ନ ପ୍ଲାଟଫର୍ମ ତିଆରି କରିବା ଯାହା କେବଳ ମନୋରଞ୍ଜନ କରେ ନାହିଁ ବରଂ ଆମର ପରମ୍ପରା ସହିତ ଏକ ସେତୁ ଭାବରେ କାର୍ଯ୍ୟ କରେ। ଆପଣ ତାଙ୍କ ଯାତ୍ରାକୁ ଇନଷ୍ଟାଗ୍ରାମରେ ଅନୁସରଣ କରିପାରିବେ।",
+                future_title: "ଆଗକୁ କ'ଣ?",
+                future_p: "ଯାତ୍ରା ଏବେ ଆରମ୍ଭ ହୋଇଛି! ଭବିଷ୍ୟତରେ, ଆମେ ଆହୁରି ଅନେକ ପ୍ରସିଦ୍ଧ ଓଡ଼ିଆ ଖେଳ ଯୋଡିବୁ ଯାହା ଆମେ ସମସ୍ତେ ବୋର୍ଡରେ ଏବଂ ପଡ଼ିଆରେ ଖେଳି ବଡ଼ ହୋଇଛୁ। ଆମେ ନିରନ୍ତର ଭାବରେ ଅଭିଜ୍ଞତାକୁ ଉନ୍ନତ କରିବା ଏବଂ ଆମର ଖେଳ ସଂଗ୍ରହକୁ ବିସ୍ତାର କରିବା ପାଇଁ କାର୍ଯ୍ୟ କରୁଛୁ।",
+                contact_title: "ଯୋଗାଯୋଗ କରନ୍ତୁ",
+                contact_p: "ଆମେ ଆମର ବ୍ୟବହାରକାରୀଙ୍କଠାରୁ ଶୁଣିବାକୁ ଭଲପାଉ! ଯଦି ଆପଣଙ୍କର କୌଣସି ପ୍ରଶ୍ନ, ପରାମର୍ଶ ଅଛି, କିମ୍ବା କେବଳ ଆମ ସହ କଥା ହେବାକୁ ଚାହାଁନ୍ତି, ଦୟାକରି ଆମ ସହିତ ଯୋଗାଯୋଗ କରନ୍ତୁ।",
+                contact_details: "<strong>ଇମେଲ୍:</strong> <a href='mailto:message.sbg@gmail.com'>message.sbg@gmail.com</a><br><strong>ଠିକଣା:</strong> ଢେଙ୍କାନାଳ, ଓଡ଼ିଶା, ୭୫୯୦୦୧, ଭାରତ",
+                footer_copyright: "© ୨୦୨୫ ଓଡ଼ିଆ ଗେମ୍ସ। ସର୍ବସ୍ୱତ୍ତ୍ୱ ସଂରକ୍ଷିତ।"
+            }
+        };
+
+        let currentLang = 'en'; // Default language
+
+        const switchLanguage = () => {
+            currentLang = currentLang === 'en' ? 'or' : 'en';
+
+            allLangTextElements.forEach(el => {
+                const key = el.dataset.key;
+                if (key && translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            if (currentLang === 'or') {
+                document.body.classList.add('or-lang');
+                langSwitchBtn.textContent = 'EN';
+            } else {
+                document.body.classList.remove('or-lang');
+                langSwitchBtn.textContent = 'ଓଡ଼ିଆ';
+            }
+        };
+        
+        langSwitchBtn.addEventListener('click', switchLanguage);
+      });
+    </script>
+</body>
+</html>
