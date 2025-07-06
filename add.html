@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Card Generator</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+    <style>
+        :root {
+            --bg-color: #f4f7fc;
+            --card-color: #ffffff;
+            --text-color: #1c1c1e;
+            --sub-text-color: #6c757d;
+            --primary-color: #0a2463;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+        body {
+            font-family: "Poppins", sans-serif;
+            background-color: var(--bg-color);
+            padding: 20px 40px;
+            color: var(--text-color);
+        }
+        .main-container {
+            max-width: 900px;
+            margin: auto;
+        }
+        .generator-section, .preview-section, .code-section {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        h1, h2 {
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        textarea#generated-code {
+            width: 100%;
+            min-height: 200px;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            background-color: #f9f9f9;
+            white-space: pre;
+            overflow-x: auto;
+            resize: vertical;
+        }
+        .copy-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            background-color: var(--primary-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+        .copy-button:hover {
+            background-color: #081c4a;
+        }
+        #copy-feedback {
+            margin-left: 15px;
+            color: #00693f;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        /* ---- Game Card CSS (This is the style for the component itself) ---- */
+        .game-card {
+            background-color: var(--card-color);
+            border-radius: 1.5rem;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            text-decoration: none;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .game-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.75rem;
+            object-fit: cover;
+            flex-shrink: 0;
+            background-color: #eee;
+        }
+        .game-card-text {
+            flex-grow: 1;
+        }
+        .game-card-text h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 0 0.1rem 0;
+            color: var(--text-color);
+        }
+        .game-card-text p {
+            font-size: 0.9rem;
+            color: var(--sub-text-color);
+            margin: 0;
+        }
+        .btn-play {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            background-color: #1c1c1e;
+            color: #fff;
+            border-radius: 2rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <h1>Interactive Game Card Generator</h1>
+        
+        <div class="generator-section">
+            <h2>1. Fill in the Details</h2>
+            <form id="card-generator-form">
+                <label for="game-url">Game URL (The link to play the game)</label>
+                <input type="url" id="game-url" value="https://example.com/play/tictactoe" required>
+                
+                <label for="logo-url">Logo Image URL</label>
+                <input type="url" id="logo-url" value="https://i.imgur.com/k9y3PjV.png" required>
+                
+                <label for="game-name">Game Name</label>
+                <input type="text" id="game-name" value="Tic Tac Toe" required>
+                
+                <label for="game-subtitle">Subtitle</label>
+                <input type="text" id="game-subtitle" value="Multiplayer">
+            </form>
+        </div>
+
+        <div class="preview-section">
+            <h2>2. Live Preview</h2>
+            <div id="live-preview-container">
+                <!-- The live preview of the card will be generated here -->
+            </div>
+        </div>
+
+        <div class="code-section">
+            <h2>3. Copy the Code</h2>
+            <p>Paste this HTML snippet anywhere in your website.</p>
+            <textarea id="generated-code" readonly rows="12"></textarea>
+            <button class="copy-button" id="copy-btn">
+                <i class="bi bi-clipboard-check"></i>
+                <span>Copy Code</span>
+            </button>
+            <span id="copy-feedback">Copied!</span>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get all the elements we need to work with
+            const gameUrlInput = document.getElementById('game-url');
+            const logoUrlInput = document.getElementById('logo-url');
+            const gameNameInput = document.getElementById('game-name');
+            const gameSubtitleInput = document.getElementById('game-subtitle');
+            
+            const livePreviewContainer = document.getElementById('live-preview-container');
+            const generatedCodeTextarea = document.getElementById('generated-code');
+            const copyBtn = document.getElementById('copy-btn');
+            const copyFeedback = document.getElementById('copy-feedback');
+
+            // This is the function that does all the work
+            function updateCard() {
+                // Read the current values from the input fields
+                const gameUrl = gameUrlInput.value;
+                const logoUrl = logoUrlInput.value;
+                const gameName = gameNameInput.value;
+                const gameSubtitle = gameSubtitleInput.value;
+
+                // Create the HTML for the live preview
+                const previewHTML = `
+                    <a href="${gameUrl}" class="game-card" onclick="event.preventDefault();">
+                        <img src="${logoUrl}" alt="${gameName} Icon" class="game-icon">
+                        <div class="game-card-text">
+                            <h3>${gameName}</h3>
+                            <p>${gameSubtitle}</p>
+                        </div>
+                        <div class="btn-play">Play</div>
+                    </a>`;
+                
+                // Update the live preview on the page
+                livePreviewContainer.innerHTML = previewHTML;
+
+                // Create the nicely formatted HTML for the code box
+                const codeHTML = `
+<!-- Start: Game Card for ${gameName} -->
+<a href="${gameUrl}" class="game-card">
+    <img src="${logoUrl}" alt="${gameName} Icon" class="game-icon">
+    <div class="game-card-text">
+        <h3>${gameName}</h3>
+        <p>${gameSubtitle}</p>
+    </div>
+    <div class="btn-play">Play</div>
+</a>
+<!-- End: Game Card -->`;
+                
+                // Update the text area with the generated code
+                generatedCodeTextarea.value = codeHTML.trim();
+            }
+
+            // Listen for any typing in the input fields and update the card
+            const inputs = [gameUrlInput, logoUrlInput, gameNameInput, gameSubtitleInput];
+            inputs.forEach(input => {
+                input.addEventListener('input', updateCard);
+            });
+
+            // Handle the "Copy Code" button click
+            copyBtn.addEventListener('click', () => {
+                generatedCodeTextarea.select();
+                navigator.clipboard.writeText(generatedCodeTextarea.value).then(() => {
+                    // Show "Copied!" feedback to the user
+                    copyFeedback.style.opacity = '1';
+                    setTimeout(() => {
+                        copyFeedback.style.opacity = '0';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy text: ', err);
+                });
+            });
+
+            // Run the function once on page load to generate the initial example
+            updateCard();
+        });
+    </script>
+</body>
+</html>
