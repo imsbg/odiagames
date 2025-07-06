@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- DYNAMIC SEO TAGS: These will be replaced by JavaScript -->
+    <title>Odia Games Blog</title>
+    <meta name="description" content="Read articles from the Odia Games blog.">
+    
+    <!-- Reused from your main site -->
+    <meta name="theme-color" content="#f4f7fc" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+    <style>
+        /* Re-use your main site's CSS */
+        :root {--bg-color: #f4f7fc;--card-color: #ffffff;--text-color: #1c1c1e;--sub-text-color: #6c757d;--primary-color: #0a2463;--shadow: 0 10px 30px rgba(0, 0, 0, 0.07);}
+        * {margin: 0;padding: 0;box-sizing: border-box;}
+        html {scroll-behavior: smooth;}
+        body {font-family: "Poppins", sans-serif;background-color: var(--bg-color);color: var(--text-color);line-height: 1.6;display: flex;flex-direction: column;min-height: 100vh;}
+        body.or-lang {font-family: "Noto Sans Oriya", sans-serif;}
+        .container {max-width: 1200px;margin: 0 auto;padding: 0 20px;}
+        main {flex-grow: 1;padding-top: 2rem;}
+        header {padding: 1.25rem 0;position: sticky;top: 0;z-index: 1000;background-color: rgba(244, 247, 252, 0.85);backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px);border-bottom: 1px solid rgba(0, 0, 0, 0.05);}
+        .header-content {display: flex;justify-content: space-between;align-items: center;}
+        .header-left {font-size: 1.5rem;font-weight: 700;text-decoration: none;color: var(--text-color);}
+        .header-right {display: flex;align-items: center;gap: 1.5rem;}
+        .main-nav a {text-decoration: none;color: var(--text-color);font-weight: 500;transition: color 0.3s;padding: 0.5rem;}
+        .lang-toggle-btn {background-color: var(--primary-color);color: #fff;border: none;width: 40px;height: 40px;border-radius: 50%;cursor: pointer;font-size: 1.1rem;font-weight: 700;display: flex; justify-content: center; align-items: center;}
+        footer {background: var(--bg-color);color: var(--text-color);padding: 2rem 0;text-align: center;margin-top: 4rem;border-top: 1px solid #e0e0e0;}
+        .footer-links {margin-top: 1rem;display: flex;justify-content: center;gap: 1.5rem;font-weight: 500;}
+        .footer-links a {color: var(--sub-text-color);text-decoration: none;}
+
+        /* Single Post specific styles */
+        .post-container { max-width: 800px; margin: 2rem auto; }
+        .post-card-single { background: var(--card-color); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow); }
+        .post-hero-image { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-radius: 1rem; margin-bottom: 2rem; }
+        .post-title { font-size: 2.5rem; line-height: 1.2; margin-bottom: 1rem; }
+        .post-meta-single { color: var(--sub-text-color); margin-bottom: 2rem; border-bottom: 1px solid #eee; padding-bottom: 1rem; }
+        .post-content-area { font-size: 1.1rem; line-height: 1.8; color: #333; }
+        .post-content-area p { margin-bottom: 1.5rem; }
+        .post-content-area h1, .post-content-area h2, .post-content-area h3 { margin: 2rem 0 1rem 0; color: var(--text-color); }
+        .post-content-area a { color: var(--primary-color); text-decoration: underline; }
+        .post-content-area img { max-width: 100%; height: auto; border-radius: 8px; }
+        .post-content-area .in-post-ad { margin: 2rem 0; text-align: center; }
+        .skeleton { background-color: #e0e0e0; animation: shimmer 1.5s infinite ease-in-out; border-radius: 4px; }
+        @keyframes shimmer { 0% { opacity: 0.8; } 50% { opacity: 0.4; } 100% { opacity: 0.8; } }
+    </style>
+</head>
+<body class="or-lang">
+    <header id="main-header">
+      <div class="container header-content">
+        <a href="/" class="header-left" data-key="logo_text">ଓଡ଼ିଆ ଖେଳ</a>
+        <div class="header-right">
+          <nav class="main-nav desktop-nav">
+            <a href="/" data-key="nav_home"></a>
+            <a href="/blog" data-key="nav_blog"></a>
+          </nav>
+          <button id="lang-toggle-btn" class="lang-toggle-btn"></button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+        <div id="post-container" class="post-container">
+            <!-- Skeleton Loader for a single post -->
+            <div class="skeleton" style="height: 300px; width: 100%; border-radius: 1rem;"></div>
+            <div class="skeleton" style="height: 50px; width: 80%; margin-top: 2rem;"></div>
+            <div class="skeleton" style="height: 20px; width: 40%; margin-top: 1rem; margin-bottom: 2rem;"></div>
+            <div class="skeleton" style="height: 20px; width: 100%; margin-top: 1rem;"></div>
+            <div class="skeleton" style="height: 20px; width: 100%; margin-top: 1rem;"></div>
+            <div class="skeleton" style="height: 20px; width: 90%; margin-top: 1rem;"></div>
+        </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p data-key="footer_copyright"></p>
+        <div class="footer-links"><a href="/terms/" data-key="nav_termss"></a><a href="/privacy-policy/" data-key="nav_privacys"></a><a href="/about/" data-key="nav_about"></a></div>
+      </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                or: { nav_home: "ହୋମ୍", nav_blog: "ବ୍ଲଗ୍", logo_text: "ଓଡ଼ିଆ ଖେଳ", footer_copyright: "© ୨୦୨୫ ଓଡ଼ିଆ ଖେଳ", nav_termss: "ସର୍ତ୍ତାବଳୀ", nav_privacys: "ଗୋପନୀୟତା", nav_about: "ଆମ ବିଷୟରେ" },
+                en: { nav_home: "Home", nav_blog: "Blog", logo_text: "Odia Games", footer_copyright: "© 2025 Odia Games", nav_termss: "Terms", nav_privacys: "Privacy", nav_about: "About Us" }
+            };
+            let currentLang = 'or';
+            let inPostAdCode = '';
+
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+            const postContainer = document.getElementById('post-container');
+            const firebaseConfig = { apiKey: "AIzaSyCI8CEVsIm04yshvJVAZqQcElE_G-VaduQ", authDomain: "odia-games-visitor-counter.firebaseapp.com", projectId: "odia-games-visitor-counter" };
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+
+            const setLanguage = (lang) => {
+                currentLang = (lang === 'en') ? 'en' : 'or';
+                localStorage.setItem("userLanguage", currentLang);
+                document.documentElement.lang = currentLang;
+                document.body.className = `${currentLang}-lang`;
+                langToggleBtn.textContent = (currentLang === 'en') ? 'ଓ' : 'E';
+                document.querySelectorAll("[data-key]").forEach(el => {
+                    if (translations[currentLang][el.dataset.key]) el.textContent = translations[currentLang][el.dataset.key];
+                });
+                loadPost();
+            };
+            
+            const injectAd = (contentHtml, adCode) => {
+                if (!adCode || !contentHtml) return contentHtml;
+                const paragraphs = contentHtml.split('</p>');
+                const adInsertionPoint = 2; // Insert after the 2nd paragraph
+                if (paragraphs.length > adInsertionPoint) {
+                    paragraphs.splice(adInsertionPoint, 0, `<div class="in-post-ad">${adCode}</div>`);
+                }
+                return paragraphs.join('</p>');
+            };
+
+            const loadPost = async () => {
+                try {
+                    const path = window.location.pathname;
+                    const slug = path.substring(path.lastIndexOf('/') + 1);
+                    if (!slug) { postContainer.innerHTML = '<h1>Post not found</h1>'; return; }
+
+                    const query = db.collection('posts').where('slug', '==', slug).limit(1);
+                    const snapshot = await query.get();
+
+                    if (snapshot.empty) {
+                        postContainer.innerHTML = '<h1>404 - Post Not Found</h1>';
+                        document.title = "Post Not Found - Odia Games";
+                        return;
+                    }
+
+                    const post = snapshot.docs[0].data();
+                    const title = currentLang === 'or' && post.title_or ? post.title_or : post.title_en;
+                    let content = currentLang === 'or' && post.content_or ? post.content_or : post.content_en;
+                    const metaDesc = currentLang === 'or' && post.meta_description_or ? post.meta_description_or : post.meta_description_en;
+                    const author = post.author || 'Odia Games Team';
+                    const date = post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString(currentLang === 'or' ? 'or-IN' : 'en-US') : '';
+
+                    document.title = `${title} - Odia Games`;
+                    document.querySelector('meta[name="description"]').setAttribute('content', metaDesc);
+
+                    const contentWithAd = injectAd(content, inPostAdCode);
+
+                    postContainer.innerHTML = `
+                        <div class="post-card-single">
+                            <img src="${post.thumbnailUrl}" alt="${title}" class="post-hero-image">
+                            <h1 class="post-title">${title}</h1>
+                            <div class="post-meta-single">
+                                <span>By ${author}</span> •
+                                <span>${date}</span>
+                            </div>
+                            <div class="post-content-area">${contentWithAd}</div>
+                        </div>
+                    `;
+                } catch (error) {
+                    console.error("Error loading post:", error);
+                    postContainer.innerHTML = `<h1>Error loading post.</h1>`;
+                }
+            };
+
+            const fetchAdSettings = async () => {
+                try {
+                    const doc = await db.collection('settings').doc('blogSettings').get();
+                    if (doc.exists) inPostAdCode = doc.data().inPostAdCode || '';
+                } catch (e) { console.error("Could not fetch ad settings", e); }
+            };
+            
+            const getLanguageFromLocation = async () => {
+                try {
+                    const response = await fetch(`https://ipinfo.io/json?token=9f0cd4dbf91e59`);
+                    if (!response.ok) return 'or';
+                    const data = await response.json();
+                    return (data.region && data.region !== 'Odisha') ? 'en' : 'or';
+                } catch (error) { return 'or'; }
+            };
+
+            const initializeApp = async () => {
+                await fetchAdSettings();
+                const savedLang = localStorage.getItem("userLanguage");
+                const initialLang = savedLang ? savedLang : await getLanguageFromLocation();
+                setLanguage(initialLang);
+            };
+
+            langToggleBtn.addEventListener('click', () => {
+                const newLang = (currentLang === 'en') ? 'or' : 'en';
+                setLanguage(newLang);
+            });
+
+            initializeApp();
+        });
+    </script>
+</body>
+</html>
