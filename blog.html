@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO for Blog Listing Page -->
+    <title>Blog - Odia Games</title>
+    <meta name="description" content="Read the latest articles, updates, and stories from Odia Games. Your source for gaming news and insights in Odia and English.">
+    
+    <meta name="theme-color" content="#f4f7fc" />
+    <link rel="canonical" href="https://odiagames.site/blog" />
+    
+    <!-- Fonts and Icons (same as your index.html) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
+
+    <style>
+        /* --- General Site Styles (Copied from your index.html) --- */
+        :root {
+            --bg-color: #f4f7fc;
+            --card-color: #ffffff;
+            --text-color: #1c1c1e;
+            --sub-text-color: #6c757d;
+            --primary-color: #0a2463;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: "Poppins", sans-serif; background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
+        body.or-lang { font-family: "Noto Sans Oriya", sans-serif; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        main { flex-grow: 1; padding-top: 2rem; }
+
+        /* --- Header Styles (Copied from your index.html) --- */
+        header { padding: 1.25rem 0; position: sticky; top: 0; z-index: 1000; background-color: rgba(244, 247, 252, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0, 0, 0, 0.05); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .header-left { font-size: 1.5rem; font-weight: 700; text-decoration: none; color: var(--text-color); }
+        .header-right { display: flex; align-items: center; gap: 1.5rem; }
+        .main-nav a { text-decoration: none; color: var(--text-color); font-weight: 500; transition: color 0.3s; padding: 0.5rem; }
+        .main-nav a:hover { color: var(--primary-color); }
+        .lang-toggle-btn { background-color: var(--primary-color); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.1rem; font-weight: 700; display: flex; justify-content: center; align-items: center; }
+
+        /* --- Footer Styles (Copied from your index.html) --- */
+        footer { background: var(--bg-color); color: var(--text-color); padding: 2rem 0; text-align: center; margin-top: 4rem; border-top: 1px solid #e0e0e0; }
+        footer p { font-weight: bold; }
+        .footer-links { margin-top: 1rem; display: flex; justify-content: center; gap: 1.5rem; font-weight: 500; }
+        .footer-links a { color: var(--sub-text-color); text-decoration: none; }
+        .footer-links a:hover { color: var(--primary-color); text-decoration: underline; }
+        
+        /* --- NEW: Blog-specific Styles --- */
+        .blog-list { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 2rem;
+        }
+        .post-card { 
+            background: var(--card-color); 
+            border-radius: 1.5rem; 
+            box-shadow: var(--shadow); 
+            overflow: hidden; 
+            text-decoration: none; 
+            color: var(--text-color); 
+            display: flex; 
+            flex-direction: column; 
+            transition: transform 0.3s ease-in-out; 
+        }
+        .post-card:hover { transform: translateY(-5px); }
+        .post-thumbnail img { 
+            width: 100%; 
+            height: 200px; 
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        .post-content { padding: 1.5rem; flex-grow: 1; }
+        .post-content h3 { 
+            font-size: 1.4rem; 
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        .post-meta { 
+            font-size: 0.9rem; 
+            color: var(--sub-text-color); 
+            margin-bottom: 1rem; 
+            display: block;
+        }
+        .post-excerpt { 
+            font-size: 1rem; 
+            line-height: 1.7; 
+            color: var(--sub-text-color);
+        }
+        .skeleton { 
+            background-color: #e0e0e0; 
+            animation: shimmer 1.5s infinite ease-in-out; 
+        }
+        .skeleton-image { height: 200px; }
+        .skeleton-text { height: 20px; margin-bottom: 10px; border-radius: 4px; }
+        @keyframes shimmer { 0% { opacity: 0.8; } 50% { opacity: 0.4; } 100% { opacity: 0.8; } }
+    </style>
+</head>
+<body class="or-lang">
+    <!-- Header (Reused from your main site, with a "Home" link added) -->
+    <header id="main-header">
+      <div class="container header-content">
+        <a href="/" class="header-left" data-key="logo_text">ଓଡ଼ିଆ ଖେଳ ବ୍ଲଗ୍</a>
+        <div class="header-right">
+          <nav class="main-nav desktop-nav">
+            <a href="/" data-key="nav_home"></a>
+            <a href="/blog/" data-key="nav_blog"></a>
+            <a href="mailto:message.sbg@gmail.com" data-key="nav_advertise"></a>
+          </nav>
+          <button id="lang-toggle-btn" class="lang-toggle-btn"></button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h1 data-key="blog_page_title" style="font-size: 2.5rem;">Our Blog</h1>
+            <div id="blog-list-container" class="blog-list">
+                <!-- Skeleton Loader will be shown initially -->
+                <div class="post-card">
+                    <div class="post-thumbnail skeleton skeleton-image"></div>
+                    <div class="post-content">
+                        <div class="skeleton skeleton-text" style="width: 80%; height: 28px;"></div>
+                        <div class="skeleton skeleton-text" style="width: 50%;"></div>
+                        <div class="skeleton skeleton-text" style="width: 100%; margin-top: 1rem;"></div>
+                        <div class="skeleton skeleton-text" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="post-card">
+                    <div class="post-thumbnail skeleton skeleton-image"></div>
+                    <div class="post-content">
+                        <div class="skeleton skeleton-text" style="width: 70%; height: 28px;"></div>
+                        <div class="skeleton skeleton-text" style="width: 40%;"></div>
+                        <div class="skeleton skeleton-text" style="width: 95%; margin-top: 1rem;"></div>
+                        <div class="skeleton skeleton-text" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (Reused from your main site) -->
+    <footer>
+      <div class="container">
+        <p data-key="footer_copyright"></p>
+        <div class="footer-links">
+            <a href="/terms/" data-key="nav_termss"></a>
+            <a href="/privacy-policy/" data-key="nav_privacys"></a>
+            <a href="/about/" data-key="nav_about"></a>
+        </div>
+      </div>
+    </footer>
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                or: { 
+                    nav_home: "ହୋମ୍", 
+                    nav_blog: "ବ୍ଲଗ୍",
+                    nav_advertise: "ଯୋଗାଯୋଗ କରନ୍ତୁ",
+                    logo_text: "ଓଡ଼ିଆ ଖେଳ",
+                    blog_page_title: "ଆମର ବ୍ଲଗ୍", 
+                    footer_copyright: "© ୨୦୨୫ ଓଡ଼ିଆ ଖେଳ", 
+                    nav_termss: "ସର୍ତ୍ତାବଳୀ",
+                    nav_privacys: "ଗୋପନୀୟତା",
+                    nav_about: "ଆମ ବିଷୟରେ",
+                    no_posts_found: "କୌଣସି ପୋଷ୍ଟ ମିଳିଲା ନାହିଁ |"
+                },
+                en: { 
+                    nav_home: "Home", 
+                    nav_blog: "Blog",
+                    nav_advertise: "Contact",
+                    logo_text: "Odia Games",
+                    blog_page_title: "Our Blog", 
+                    footer_copyright: "© 2025 Odia Games", 
+                    nav_termss: "Terms",
+                    nav_privacys: "Privacy",
+                    nav_about: "About Us",
+                    no_posts_found: "No posts found."
+                }
+            };
+
+            let currentLang = 'or';
+            const langToggleBtn = document.getElementById('lang-toggle-btn');
+            const blogListContainer = document.getElementById('blog-list-container');
+            
+            const firebaseConfig = { apiKey: "AIzaSyCI8CEVsIm04yshvJVAZqQcElE_G-VaduQ", authDomain: "odia-games-visitor-counter.firebaseapp.com", projectId: "odia-games-visitor-counter" };
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+
+            const setLanguage = (lang) => {
+                currentLang = (lang === 'en') ? 'en' : 'or';
+                localStorage.setItem("userLanguage", currentLang);
+                
+                document.documentElement.lang = currentLang;
+                document.body.className = `${currentLang}-lang`;
+                langToggleBtn.textContent = (currentLang === 'en') ? 'ଓ' : 'E';
+
+                document.querySelectorAll("[data-key]").forEach(el => {
+                    const key = el.dataset.key;
+                    if (translations[currentLang][key]) {
+                        el.textContent = translations[currentLang][key];
+                    }
+                });
+                
+                // If posts are already loaded, we just re-render them with the new language
+                if (window.blogPosts) {
+                    renderPosts(window.blogPosts);
+                }
+            };
+
+            const renderPosts = (posts) => {
+                if (!posts || posts.length === 0) {
+                    blogListContainer.innerHTML = `<p data-key="no_posts_found">${translations[currentLang].no_posts_found}</p>`;
+                    return;
+                }
+
+                blogListContainer.innerHTML = '';
+                posts.forEach(post => {
+                    const card = document.createElement('a');
+                    card.href = `/blog/${post.slug}`;
+                    card.className = 'post-card';
+
+                    const title = currentLang === 'or' && post.title_or ? post.title_or : post.title_en;
+                    const excerpt = currentLang === 'or' && post.meta_description_or ? post.meta_description_or : post.meta_description_en;
+                    const author = post.author || 'Odia Games Team';
+                    const date = post.createdAt ? new Date(post.createdAt.seconds * 1000).toLocaleDateString(currentLang === 'or' ? 'or-IN' : 'en-US') : '';
+
+                    card.innerHTML = `
+                        <div class="post-thumbnail">
+                            <img src="${post.thumbnailUrl}" alt="${title}" loading="lazy">
+                        </div>
+                        <div class="post-content">
+                            <h3>${title}</h3>
+                            <span class="post-meta">By ${author} • ${date}</span>
+                            <p class="post-excerpt">${excerpt}</p>
+                        </div>
+                    `;
+                    blogListContainer.appendChild(card);
+                });
+            };
+
+            const fetchPosts = async () => {
+                try {
+                    const snapshot = await db.collection('posts').orderBy('createdAt', 'desc').get();
+                    window.blogPosts = snapshot.docs.map(doc => doc.data());
+                    renderPosts(window.blogPosts);
+                } catch (error) {
+                    console.error("Error fetching posts: ", error);
+                    blogListContainer.innerHTML = `<p>Error loading posts. Please try again later.</p>`;
+                }
+            };
+
+            const getLanguageFromLocation = async () => {
+                try {
+                    const response = await fetch(`https://ipinfo.io/json?token=9f0cd4dbf91e59`);
+                    if (!response.ok) return 'or';
+                    const data = await response.json();
+                    return (data.region && data.region !== 'Odisha') ? 'en' : 'or';
+                } catch (error) {
+                    return 'or'; 
+                }
+            };
+
+            const initializeApp = async () => {
+                const savedLang = localStorage.getItem("userLanguage");
+                let initialLang;
+
+                if (savedLang) {
+                    initialLang = savedLang;
+                } else {
+                    initialLang = await getLanguageFromLocation();
+                }
+                
+                setLanguage(initialLang);
+                fetchPosts();
+            };
+
+            langToggleBtn.addEventListener('click', () => {
+                const newLang = (currentLang === 'en') ? 'or' : 'en';
+                setLanguage(newLang);
+            });
+
+            initializeApp();
+        });
+    </script>
+</body>
+</html>
