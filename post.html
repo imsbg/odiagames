@@ -59,6 +59,94 @@
         .footer-links {margin-top: 1rem;display: flex;justify-content: center;gap: 1.5rem;font-weight: 500;}
         .footer-links a {color: var(--sub-text-color);text-decoration: none;}
         /* Single Post specific styles */
+
+        .demo-container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        h1, h2, p {
+            color: var(--text-color);
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            background-color: #f9f9f9;
+            white-space: pre;
+            overflow-x: auto;
+        }
+
+        /* --- Step 2: Add this CSS to your main stylesheet --- */
+        /* This is the CSS that styles the actual game card */
+        .game-card {
+            background-color: var(--card-color);
+            border-radius: 1.5rem; /* 24px */
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            text-decoration: none;
+            padding: 1rem; /* 16px */
+            display: flex;
+            align-items: center;
+            gap: 1rem; /* 16px */
+        }
+        
+        .game-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .game-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.75rem; /* 12px */
+            object-fit: cover;
+            flex-shrink: 0; /* Prevents the icon from shrinking */
+        }
+        
+        .game-card-text {
+            flex-grow: 1; /* This is key! It pushes the button to the right */
+        }
+
+        .game-card-text h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 0 0.1rem 0;
+            color: var(--text-color);
+        }
+        
+        .game-card-text p {
+            font-size: 0.9rem;
+            color: var(--sub-text-color);
+            margin: 0;
+        }
+        
+        .btn-play {
+            /* Since the whole card is a link, this is just for visuals */
+            padding: 0.6rem 1.2rem;
+            font-size: 0.9rem;
+            background-color: #1c1c1e;
+            color: #fff;
+            border-radius: 2rem; /* Makes it a pill shape */
+            font-weight: 500;
+            transition: opacity 0.2s;
+            white-space: nowrap; /* Prevents text from wrapping */
+        }
+
+        .game-card:hover .btn-play {
+            opacity: 0.85;
+        }
+        
         .post-container { max-width: 800px; margin: 2rem auto; }
         .post-card-single { background: var(--card-color); padding: 2rem; border-radius: 1rem; box-shadow: var(--shadow); }
         .post-hero-image { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-radius: 1rem; margin-bottom: 2rem; }
@@ -73,6 +161,7 @@
         .skeleton { background-color: #e0e0e0; animation: shimmer 1.5s infinite ease-in-out; border-radius: 4px; }
         @keyframes shimmer { 0% { opacity: 0.8; } 50% { opacity: 0.4; } 100% { opacity: 0.8; } }
         @media (max-width: 768px) { .post-card-single { padding: 1.5rem; } .post-title { font-size: 2rem; } }
+        
     </style>
 </head>
 <body class="or-lang">
