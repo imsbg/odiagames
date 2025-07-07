@@ -35,12 +35,12 @@
   "url": "https://odiagames.site"
 }
 </script>
-    <style>
+      <style>
       :root {--bg-color: #f4f7fc;--card-color: #ffffff;--text-color: #1c1c1e;--sub-text-color: #6c757d;--primary-color: #0a2463;--accent-color1: #e3d8f4;--accent-color2: #d3edd4;--shadow: 0 10px 30px rgba(0, 0, 0, 0.07);}
       * {margin: 0;padding: 0;box-sizing: border-box;}
       html {scroll-behavior: smooth;}
       body {font-family: "Poppins", sans-serif;background-color: var(--bg-color);color: var(--text-color);line-height: 1.6;display: flex;flex-direction: column;min-height: 100vh;}
-      body.or-lang, body.od_en-lang {font-family: "Noto Sans Oriya", "Poppins", sans-serif;}
+      body.or-lang, body.od_en-lang, body.hi_en-lang {font-family: "Noto Sans Oriya", "Poppins", sans-serif;}
       .container {max-width: 1200px;margin: 0 auto;padding: 0 20px;}
       main {flex-grow: 1;padding-top: 2rem;}
       header {padding: 1.25rem 0;position: sticky;top: 0;z-index: 1000;background-color: rgba(244, 247, 252, 0.85);backdrop-filter: blur(10px);-webkit-backdrop-filter: blur(10px);border-bottom: 1px solid rgba(0, 0, 0, 0.05);}
@@ -173,6 +173,13 @@
         
         let allContent = [], appLanguages = {}, currentLang = "en", latestVisitCount = 0;
         
+        // --- MODIFIED: This map is now only for PRETTY URLs. It is OPTIONAL. ---
+        // If you add a 'hinglish' language with code 'hi_en', you can add 'hi_en: "hinglish"' here.
+        const langUrlMap = { en: 'english', or: 'odia', od_en: 'odinglish' };
+        
+        // --- This will be built dynamically now ---
+        let urlLangMap = {};
+
         const searchBar = document.getElementById("search-bar"), visitCountEl = document.getElementById("visit-count"), featuredGameSection = document.getElementById("featured-game-section"), featuredContainer = document.getElementById("featured-game-container"), categoriesContainer = document.getElementById("categories-container"), categoriesSection = document.getElementById("categories-section"), allGamesContainer = document.getElementById("all-games-container"), skeletonContainer = document.getElementById("skeleton-container"), actualContent = document.getElementById("actual-content"), langSwitcher = document.getElementById('lang-switcher'), langSwitcherBtn = document.getElementById('lang-switcher-btn'), currentLangText = document.getElementById('current-lang-text'), langDropdown = document.getElementById('lang-dropdown'), menuToggle = document.getElementById("menu-toggle"), mobileNav = document.getElementById("mobile-nav"), menuOpen = document.getElementById("menu-open-icon"), menuClose = document.getElementById("menu-close-icon"), categoryModal = document.getElementById("category-modal"), categoryModalTitle = document.getElementById("category-modal-title"), categoryModalGames = document.getElementById("category-modal-games");
 
         const toOdiaNumerals = (n) => {
@@ -193,6 +200,10 @@
             const uiStrings = appLanguages[currentLang].ui;
             currentLangText.textContent = appLanguages[currentLang].displayName;
 
+            if (uiStrings && uiStrings.page_title) {
+                document.title = uiStrings.page_title;
+            }
+
             document.querySelectorAll("[data-key]").forEach(el => {
                 const key = el.dataset.key;
                 if (uiStrings && uiStrings[key]) {
@@ -205,6 +216,14 @@
             if (latestVisitCount > 0) { visitCountEl.textContent = currentLang === "or" ? toOdiaNumerals(latestVisitCount) : latestVisitCount.toLocaleString('en-US'); }
             if (allContent.length > 0) renderAll();
             langDropdown.classList.remove('active');
+
+            // --- MODIFIED: Now uses the language code as a fallback for the URL ---
+            const langParam = langUrlMap[langCode] || langCode;
+            const currentUrl = new URL(window.location);
+            if (currentUrl.searchParams.get('lang') !== langParam) {
+                const newUrl = `${window.location.pathname}?lang=${langParam}`;
+                window.history.pushState({ lang: langCode }, '', newUrl);
+            }
         };
         
         const renderAll = () => {
@@ -300,8 +319,10 @@
             openModal(categoryModal);
         };
 
+        // --- THE FIX IS HERE: This function is now fully dynamic ---
         const buildLangSwitcher = () => {
             langDropdown.innerHTML = '';
+            // Loop through ALL languages fetched from Firebase
             for (const langCode in appLanguages) {
                 const lang = appLanguages[langCode];
                 const li = document.createElement('li');
@@ -310,6 +331,30 @@
                 langDropdown.appendChild(li);
             }
         };
+
+        function getInitialLanguage() {
+            // Build the reverse map dynamically
+            urlLangMap = Object.entries(langUrlMap).reduce((acc, [code, param]) => {
+                acc[param] = code;
+                return acc;
+            }, {});
+
+            const params = new URLSearchParams(window.location.search);
+            const langFromUrl = params.get('lang');
+
+            // Check pretty URL first, then check if the param is a direct language code
+            if (langFromUrl && urlLangMap[langFromUrl] && appLanguages[urlLangMap[langFromUrl]]) {
+                return urlLangMap[langFromUrl];
+            } else if (langFromUrl && appLanguages[langFromUrl]) {
+                return langFromUrl;
+            }
+            
+            const langFromStorage = localStorage.getItem("userLanguage");
+            if (langFromStorage && appLanguages[langFromStorage]) {
+                return langFromStorage;
+            }
+            return 'en';
+        }
 
         async function initializeApp() {
             try {
@@ -322,10 +367,8 @@
                 allContent = contentSnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
                 
                 buildLangSwitcher();
-
-                const savedLang = localStorage.getItem("userLanguage");
-                const initialLang = (appLanguages[savedLang]) ? savedLang : 'en'; 
-
+                
+                const initialLang = getInitialLanguage();
                 setLanguage(initialLang);
                 
                 loadFooterAd();
@@ -364,6 +407,11 @@
                 }
             } catch (e) { console.error("Error loading footer ad", e); }
         }
+
+        window.addEventListener('popstate', (event) => {
+            const initialLang = getInitialLanguage();
+            setLanguage(initialLang);
+        });
 
         langSwitcherBtn.addEventListener('click', (e) => { e.stopPropagation(); langDropdown.classList.toggle('active'); });
         langDropdown.addEventListener('click', (e) => {
