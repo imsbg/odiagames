@@ -31,7 +31,6 @@
         label input[type="checkbox"] { width: auto; margin-bottom: 0; }
         .lang-field-group { border-left: 3px solid #eee; padding-left: 15px; margin-bottom: 15px; }
         .lang-field-group h4 { margin: 10px 0 5px; color: #555; font-size: 0.9rem; }
-        /* --- NEW: Modal Styles for Language Manager --- */
         #lang-modal { position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5); }
         .modal-content { background-color: #fefefe; margin: 5% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 700px; border-radius: 8px; }
         .modal-header { display: flex; justify-content: space-between; align-items: center; }
@@ -49,7 +48,6 @@
         <div id="admin-section">
             <p>Welcome, <strong id="admin-email"></strong>! <button id="logout-btn">Logout</button></p>
             <hr />
-            <!-- --- NEW: Language Management Section --- -->
             <h2>Site Languages</h2>
             <div id="lang-list">Loading languages...</div>
             <button id="add-lang-btn">Add New Language</button>
@@ -62,7 +60,6 @@
             <form id="content-form">
                 <input type="hidden" id="content-id" /><input type="hidden" id="content-type" value="game" />
                 <div id="game-fields">
-                    <!-- --- MODIFIED: This container will be populated dynamically --- -->
                     <div id="dynamic-lang-fields"></div>
                     <hr>
                     <input type="url" id="iconUrl" placeholder="Icon Image URL" required /><input type="url" id="gameUrl" placeholder="Game Link URL" required />
@@ -81,7 +78,6 @@
         </div>
     </div>
 
-    <!-- --- NEW: Language Management Modal --- -->
     <div id="lang-modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -107,22 +103,18 @@
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
     <script>
-        // --- This script is heavily modified for dynamic language management ---
-
         const firebaseConfig = { apiKey: "AIzaSyCI8CEVsIm04yshvJVAZqQcElE_G-VaduQ", authDomain: "odia-games-visitor-counter.firebaseapp.com", projectId: "odia-games-visitor-counter" };
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth(), db = firebase.firestore();
 
-        // DOM Elements
         const loginSection = document.getElementById("login-section"), adminSection = document.getElementById("admin-section"), contentList = document.getElementById("content-list"), contentForm = document.getElementById("content-form"), contentIdInput = document.getElementById("content-id"), contentTypeInput = document.getElementById("content-type"), submitBtn = document.getElementById("submit-btn"), cancelEditBtn = document.getElementById("cancel-edit-btn"), gameFields = document.getElementById("game-fields"), adFields = document.getElementById("ad-fields"), htmlAdFields = document.getElementById("html-ad-fields"), dynamicLangFields = document.getElementById('dynamic-lang-fields');
         const langModal = document.getElementById('lang-modal'), langForm = document.getElementById('lang-form'), langList = document.getElementById('lang-list');
 
         let allContentData = {}, activeLanguages = [], sortableInstance = null;
         
-        // Key UI translation strings. This is the "master list".
-        const uiTranslationKeys = ['logo_text', 'nav_advertise', 'nav_blog', 'nav_termss', 'nav_privacys', 'nav_about', 'nav_follow', 'search_placeholder', 'featured_game_title', 'categories_title', 'all_games_title', 'games_count_text', 'play_now_text', 'footer_copyright', 'total_visits_text'];
+        // --- UPDATED: 'page_title' is now included ---
+        const uiTranslationKeys = ['page_title', 'logo_text', 'nav_advertise', 'nav_blog', 'nav_termss', 'nav_privacys', 'nav_about', 'nav_follow', 'search_placeholder', 'featured_game_title', 'categories_title', 'all_games_title', 'games_count_text', 'play_now_text', 'footer_copyright', 'total_visits_text'];
 
-        // --- AUTHENTICATION ---
         auth.onAuthStateChanged(user => {
             if (user) {
                 loginSection.style.display = "none";
@@ -141,13 +133,11 @@
 
         document.getElementById("logout-btn").addEventListener("click", () => auth.signOut());
 
-        // --- CORE INITIALIZATION ---
         async function initializeApp() {
             await loadLanguages();
             await loadContent();
         }
 
-        // --- LANGUAGE MANAGEMENT ---
         async function loadLanguages() {
             try {
                 const snapshot = await db.collection('languages').get();
@@ -193,7 +183,6 @@
             const uiFieldsContainer = document.getElementById('lang-ui-fields');
             uiFieldsContainer.innerHTML = '';
             
-            // Dynamically create input for each UI key
             uiTranslationKeys.forEach(key => {
                 const label = document.createElement('label');
                 label.textContent = key;
@@ -204,18 +193,18 @@
                 uiFieldsContainer.appendChild(label);
             });
 
-            if (langData) { // Editing existing language
+            if (langData) {
                 document.getElementById('lang-form-title').textContent = 'Edit Language';
                 document.getElementById('lang-id').value = langData.id;
                 document.getElementById('lang-code').value = langData.id;
-                document.getElementById('lang-code').readOnly = true; // Can't change code
+                document.getElementById('lang-code').readOnly = true;
                 document.getElementById('lang-displayName').value = langData.displayName;
                 uiTranslationKeys.forEach(key => {
                     if (langData.ui && langData.ui[key]) {
                         document.getElementById(`ui_${key}`).value = langData.ui[key];
                     }
                 });
-            } else { // Adding new language
+            } else {
                 document.getElementById('lang-form-title').textContent = 'Add Language';
                 document.getElementById('lang-id').value = '';
                 document.getElementById('lang-code').readOnly = false;
@@ -263,14 +252,12 @@
                 await db.collection('languages').doc(code).set(data, { merge: true });
                 alert('Language saved successfully!');
                 langModal.style.display = 'none';
-                initializeApp(); // Reload everything
+                initializeApp();
             } catch (error) {
                 alert('Error saving language: ' + error.message);
             }
         });
 
-
-        // --- CONTENT MANAGEMENT (Games, Ads) ---
         contentForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const id = contentIdInput.value;
@@ -289,8 +276,13 @@
                     gameUrl: document.getElementById("gameUrl").value,
                     isFeatured: document.getElementById("isFeatured").checked,
                 });
-            } else if (type === 'ad') { /* ... ad logic unchanged ... */ } 
-            else if (type === 'html_ad') { /* ... html_ad logic unchanged ... */ }
+            } else if (type === 'ad') {
+                 Object.assign(data, {
+                    brandName: document.getElementById("ad_brandName").value, imageUrl: document.getElementById("ad_imageUrl").value, description: document.getElementById("ad_description").value, linkUrl: document.getElementById("ad_linkUrl").value, buttonText: document.getElementById("ad_buttonText").value, buttonColor: document.getElementById("ad_buttonColor").value,
+                });
+            } else if (type === 'html_ad') {
+                Object.assign(data, { htmlCode: document.getElementById("html_ad_code").value });
+            }
 
             try {
                 if (id) {
@@ -316,7 +308,7 @@
                 const snapshot = await db.collection("content").orderBy("order", "asc").get();
                 contentList.innerHTML = "";
                 allContentData = {};
-                snapshot.forEach(doc => { /* ... rendering logic unchanged but for title ... */
+                snapshot.forEach(doc => {
                     const data = doc.data();
                     allContentData[doc.id] = data;
                     const itemDiv = document.createElement("div");
@@ -325,14 +317,14 @@
                     let tag = '', title = '', featured = '';
                     if (data.type === 'game') {
                         tag = '<span class="item-type-tag tag-game">Game</span>';
-                        title = (data.titles && data.titles.en) ? data.titles.en : "Untitled Game"; // Default to English title
+                        title = (data.titles && data.titles.en) ? data.titles.en : (data.title_en || "Untitled Game");
                         if (data.isFeatured) featured = '<span class="featured-indicator">★ Featured</span>';
                     } else if (data.type === 'ad') {
                         tag = '<span class="item-type-tag tag-ad">Image Ad</span>'; title = data.brandName || "Untitled Ad";
                     } else if (data.type === 'html_ad') {
                         tag = '<span class="item-type-tag tag-html-ad">HTML Ad</span>'; title = "Embedded Ad Code";
                     }
-                    itemDiv.innerHTML = `<span class="content-list-item-name">${tag} ${title} ${featured}</span><div><button class="edit-btn" data-id="${doc.id}">Edit</button><button class="delete-btn" data-id="${doc.id}">Delete</button></div>`;
+                    itemDiv.innerHTML = `<span class="content-list-item-name">${tag} ${title} ${featured}</span><div><button class="edit-btn" data-id="${doc.id}">Edit</button><button class="delete-btn" data-id="${doc.id}" style="background-color:#d9534f">Delete</button></div>`;
                     contentList.appendChild(itemDiv);
                 });
                 if (sortableInstance) sortableInstance.destroy();
@@ -346,8 +338,16 @@
         contentList.addEventListener("click", async (e) => {
             const id = e.target.dataset.id;
             if (!id) return;
-            if (e.target.classList.contains("delete-btn")) { /* ... delete unchanged ... */ } 
-            else if (e.target.classList.contains("edit-btn")) {
+            if (e.target.classList.contains("delete-btn")) {
+                if (confirm("Are you sure?")) {
+                    try {
+                        await db.collection("content").doc(id).delete();
+                        alert("Deleted!");
+                        await reIndexOnDelete();
+                        loadContent();
+                    } catch (error) { console.error("Error deleting item: ", error); }
+                }
+            } else if (e.target.classList.contains("edit-btn")) {
                 const data = allContentData[id];
                 if (data) {
                     resetForm();
@@ -355,14 +355,22 @@
                     showForm(data.type);
                     if (data.type === 'game') {
                         activeLanguages.forEach(lang => {
-                            if (data.titles && data.titles[lang.id]) document.getElementById(`title_${lang.id}`).value = data.titles[lang.id];
-                            if (data.categories && data.categories[lang.id]) document.getElementById(`category_${lang.id}`).value = data.categories[lang.id];
+                            const titleEl = document.getElementById(`title_${lang.id}`);
+                            const catEl = document.getElementById(`category_${lang.id}`);
+                            if(titleEl) titleEl.value = (data.titles && data.titles[lang.id]) || '';
+                            if(catEl) catEl.value = (data.categories && data.categories[lang.id]) || '';
                         });
                         document.getElementById('iconUrl').value = data.iconUrl || '';
                         document.getElementById('gameUrl').value = data.gameUrl || '';
                         document.getElementById('isFeatured').checked = !!data.isFeatured;
-                    } else if (data.type === 'ad') { /* ... ad edit unchanged ... */ } 
-                    else if (data.type === 'html_ad') { /* ... html_ad edit unchanged ... */ }
+                    } else if (data.type === 'ad') {
+                         Object.keys(data).forEach(key => {
+                            const el = document.getElementById(`ad_${key}`);
+                            if (el) { el.value = data[key]; }
+                        });
+                    } else if (data.type === 'html_ad') {
+                        document.getElementById('html_ad_code').value = data.htmlCode || '';
+                    }
                     document.getElementById("form-title").textContent = "Edit Content";
                     submitBtn.textContent = "Update Content";
                     cancelEditBtn.style.display = "block";
@@ -370,12 +378,47 @@
                 }
             }
         });
-
-        function resetForm() { /* ... unchanged ... */ }
+        
+        function resetForm() {
+            contentForm.reset();
+            contentIdInput.value = "";
+            cancelEditBtn.style.display = "none";
+            submitBtn.textContent = "Add Game";
+            document.getElementById("form-title").textContent = "Add/Edit Content";
+            showForm('game');
+        }
         cancelEditBtn.addEventListener("click", resetForm);
-        function showForm(type) { /* ... unchanged ... */ }
-        async function reIndexOnDrag() { /* ... unchanged ... */ }
-        async function reIndexOnDelete() { /* ... unchanged ... */ }
+        
+        function showForm(type) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`.tab-btn[onclick="showForm('${type}')"]`).classList.add('active');
+            contentTypeInput.value = type;
+            gameFields.style.display = 'none'; adFields.style.display = 'none'; htmlAdFields.style.display = 'none';
+            const isEditing = !!contentIdInput.value;
+            let buttonText = isEditing ? 'Update' : 'Add';
+            if (type === 'game') { gameFields.style.display = 'block'; buttonText += ' Game'; } 
+            else if (type === 'ad') { adFields.style.display = 'block'; buttonText += ' Image Ad'; } 
+            else if (type === 'html_ad') { htmlAdFields.style.display = 'block'; buttonText += ' HTML Ad'; }
+            submitBtn.textContent = buttonText;
+        }
+
+        async function reIndexOnDrag() {
+            const items = Array.from(contentList.children).map(el => el.dataset.id);
+            const batch = db.batch();
+            items.forEach((id, index) => {
+                batch.update(db.collection("content").doc(id), { order: index });
+            });
+            try { await batch.commit(); } catch (e) { console.error("Error re-indexing: ", e); }
+        }
+
+        async function reIndexOnDelete() {
+            const snapshot = await db.collection("content").orderBy("order", "asc").get();
+            const batch = db.batch();
+            snapshot.docs.forEach((doc, index) => {
+                batch.update(doc.ref, { order: index });
+            });
+            await batch.commit();
+        }
     </script>
 </body>
 </html>
