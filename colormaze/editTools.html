@@ -1,0 +1,65 @@
+<div id="editWrapper">
+    <div id="floatForm">
+    	<input id='toggleShowOption' name="toggleOption" type="button" value="Hide Edit Option" />
+        
+        <div id="editOption">
+        	<br/>
+            <div id='selectPuzzleWrapper'>	
+                Select viewport:<br/>
+				<select id="viewport" name="viewport">
+					<option value="true">landscape</option>
+					<option value="false">portrait</option>
+                </select><br/><br/>
+                			
+                Select puzzles:<br/>
+                <select id="puzzlesList" name="puzzlesList">
+                </select><br/>
+                <input id="prevPuzzle" name="prevPuzzle" class="button" type="button" value="Prev Puzzle">
+                <input id="nextPuzzle" name="nextPuzzle" class="button" type="button" value="Next Puzzle">
+                <br/><br/>
+            </div>
+            
+            <div id='editPuzzleWrapper'>
+                <input id='removePuzzle' name="removePuzzle" type="button" value="Remove Puzzle" />
+                <input id='movePuzzleUp' name="movePuzzleUp" type="button" value="Move Puzzle Up" />
+                <input id='movePuzzleDown' name="movePuzzleDown" type="button" value="Move Puzzle Down" />
+                <input id='addPuzzle' name="addPuzzle" type="button" value="Add Puzzle" />
+                <br/><br/>
+                Edit puzzle:<br/>
+                <input id="editPuzzle" name="editPuzzle" type="button" value="Edit Puzzle">
+                <input id='testPlay' name="testPlay" type="button" value="Test Play" />
+                <br/><br/>
+                Generate and replace array:
+                <input id='generateArray' name="generateArray" type="button" value="Generate Array" />
+                <textarea id="outputArray" name="outputArray" cols="" rows="10"></textarea>
+            </div>
+
+            <div id="puzzleEditWrapper">
+                Puzzle:<br/>
+                <div class="formRowLong extraHeight">
+                    <label>Column x Row:</label><br>
+                    <input id="puzzleColumn" name="puzzleColumn" class="button" type="text" />
+                    <input id="puzzleRow" name="puzzleRow" class="button" type="text" />
+                </div>
+
+                <div class="formRowLong extraHeight">
+                    <label>Start position X and Y:</label><br>
+                    <input id="puzzlePosX" name="puzzlePosX" class="button" type="text" />
+                    <input id="puzzlePosY" name="puzzlePosY" class="button" type="text" />
+                </div>
+                <br>
+                *Click on the grid to switch between block or path.
+
+                <br>
+                <input id="updatePuzzle" name="updatePuzzle" type="button" value="Update Puzzle">
+                <input id='puzzleBack' name="puzzleBack" type="button" value="Done" />
+            </div>
+
+            <div id="playWrapper">
+            	<div id="gameStatus"></div>
+            	<input id='stopTestPlay' name="stopTestPlay" type="button" value="Stop Play" />
+            </div>
+
+        </div>
+   </div>
+</div>
