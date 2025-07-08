@@ -55,8 +55,8 @@
             display: flex; align-items: center; justify-content: center;
         }
         .screen {
-            padding: 20px; flex-grow: 1; display: flex; flex-direction: column; 
-            align-items: center; justify-content: center; gap: 3vh;
+            padding: 20px; flex: 1; display: flex; flex-direction: column; 
+            align-items: center; justify-content: space-around;
         }
         #score-panel {
             display: flex; justify-content: space-between; align-items: center; width: 100%;
@@ -69,7 +69,7 @@
         .active-player { background-color: var(--primary-green); color: var(--text-dark); }
         .vs-text { font-weight: 800; }
         .board-wrapper {
-            width: 100%; padding: 5px; /* Using less padding to let SVG breathe */
+            width: 100%; padding: 5px;
             background-color: var(--container-bg);
             border-radius: 20px; box-shadow: 0 4px 20px var(--shadow-color);
         }
@@ -81,17 +81,39 @@
              transition: all 0.2s ease-out;
              transform-origin: center center;
         }
-        /* --- THIS IS THE CORRECTED SELECTION STYLE --- */
         #game-board-svg .piece-image.selected {
-            transform: scale(1.15); /* Makes the selected piece slightly bigger */
-            filter: drop-shadow(0px 0px 6px var(--highlight-color)); /* The green glow effect */
+            transform: scale(1.15);
+            filter: drop-shadow(0px 0px 6px var(--highlight-color));
         }
-        #game-info { margin-top: auto; padding-top: 20px; text-align: center;}
+        #game-info { text-align: center; width: 100%; }
         #status-message { font-size: 1.2em; font-weight: bold; color: var(--text-dark); min-height: 25px; }
         #restart-btn {
             background-color: var(--primary-green); border: none; color: var(--text-dark);
             padding: 10px 30px; border-radius: 10px; font-family: 'Nunito', sans-serif;
-            font-size: 1.1em; font-weight: 700; cursor: pointer; margin-top: 15px;
+            font-size: 1.1em; font-weight: 700; cursor: pointer; margin-top: 10px;
+        }
+        /* --- NEW: Floating How to Play button style --- */
+        #how-to-play-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: bold;
+            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            transition: transform 0.2s ease;
+        }
+        #how-to-play-btn:hover {
+            transform: scale(1.1);
         }
     </style>
 </head>
@@ -120,7 +142,6 @@
                 </div>
             </div>
             <div class="board-wrapper">
-                <!-- THE VIEWBOX FIX: Adding "padding" inside the SVG canvas -->
                 <svg id="game-board-svg" viewBox="-15 -15 130 130"></svg>
             </div>
             <div id="game-info">
@@ -128,6 +149,9 @@
                 <button id="restart-btn" data-lang-key="restart"></button>
             </div>
         </div>
+
+        <!-- NEW: Floating "How to Play" button is placed here -->
+        <a id="how-to-play-btn" href="https://odiagames.site/bagha-chheli/how-to-play.html" target="_blank">?</a>
     </div>
 
     <script>
@@ -142,6 +166,7 @@
         goats: { or: 'ଛେଳି', en: 'Goats' },
         online: { or: 'ଅନଲାଇନ୍', en: 'Online' },
         restart: { or: 'ପୁନଃ ଆରମ୍ଭ', en: 'Restart' },
+        how_to_play_tooltip: { or: 'କିପରି ଖେଳିବେ?', en: 'How to Play?' }, // NEW for the tooltip
         confirm_restart_text: { or: 'ଆପଣ ନିଶ୍ଚିତ ଯେ ଆପଣ ପୁନର୍ବାର ଆରମ୍ଭ କରିବାକୁ ଚାହୁଁଛନ୍ତି?', en: 'Are you sure you want to restart?' },
         tiger_placement: { or: 'ବାଘ: ୪ଟି ବାଘ ରଖନ୍ତୁ', en: 'Tiger: Place 4 tigers' },
         goat_initial_placement: { or: 'ଛେଳି: ୪ ଟି ଛେଳି ରଖନ୍ତୁ', en: 'Goat: Place 4 goats' },
@@ -177,6 +202,7 @@
         statusMessage: document.getElementById('status-message'),
         langSwitchBtn: document.getElementById('lang-switch-btn'),
         restartBtn: document.getElementById('restart-btn'),
+        howToPlayBtn: document.getElementById('how-to-play-btn'), // NEW
     };
 
     let state = {};
@@ -220,7 +246,6 @@
         dom.boardSvg.appendChild(pieceGroup);
     }
 
-    // THIS FUNCTION HAS BEEN CORRECTED
     function renderPieces() {
         const pieceGroup = dom.boardSvg.querySelector('#piece-group');
         if (!pieceGroup) return;
@@ -231,12 +256,7 @@
                 const isTiger = pieceType === TIGER;
                 const size = isTiger ? 22 : 18;
                 const image = document.createElementNS(SVG_NS, 'image');
-                
-                // FIX: Use setAttributeNS with the xlink namespace for SVG image href.
-                // This ensures compatibility across more browsers and renderers.
-                // The old line was: image.setAttribute('href', ...);
                 image.setAttributeNS('http://www.w3.org/1999/xlink', 'href', isTiger ? TIGER_IMG_URL : GOAT_IMG_URL);
-                
                 image.setAttribute('x', coord.x - size / 2); 
                 image.setAttribute('y', coord.y - size / 2);
                 image.setAttribute('width', size); 
@@ -365,11 +385,11 @@
         currentLanguage = lang; document.documentElement.lang = lang;
         document.body.style.fontFamily = lang === 'or' ? "'Noto Sans Oriya', 'Nunito', sans-serif" : "'Nunito', 'Noto Sans Oriya', sans-serif";
         dom.langSwitchBtn.textContent = lang === 'or' ? 'EN' : 'ଓଡ଼ିଆ';
+        dom.howToPlayBtn.title = translations['how_to_play_tooltip'][lang]; // NEW
         document.querySelectorAll('[data-lang-key]').forEach(el => {
             const key = el.dataset.langKey;
             if (translations[key]) el.textContent = translations[key][lang];
         });
-        localStorage.setItem('preferredLanguage', lang);
         updateUI();
     }
     
@@ -387,8 +407,8 @@
     });
     
     const savedLang = localStorage.getItem('preferredLanguage');
-    setLanguage(savedLang || 'or');
     initGame();
+    setLanguage(savedLang || 'or');
     </script>
 </body>
 </html>
