@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="or">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ଆଗାମୀ ଯୁଗ | ଦ୍ୱାପର ଯୁଗ</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Odia:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #03030c;
+            --planet-color-top: #242635;
+            --planet-color-bottom: #0e0e18;
+            --glow-color-1: rgba(92, 108, 250, 0.4);
+            --glow-color-2: rgba(92, 108, 250, 0.2);
+            --glow-color-3: rgba(92, 108, 250, 0.1);
+            --glow-color-core: #5c6cfa;
+            --text-color: #c9d0ff;
+            --subtitle-color: #8a96e2;
+        }
+
+        /* --- BASIC SETUP --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Anek Odia', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+        
+        /* --- OPENING PRELOADER --- */
+        .preloader {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #000;
+            z-index: 1000;
+            transition: opacity 1s ease-out;
+        }
+        body.loaded .preloader {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* --- HOME BUTTON --- */
+        .home-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            z-index: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--subtitle-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            opacity: 0;
+            animation: fade-in-delayed 2s 2s forwards;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .home-button:hover {
+            color: var(--glow-color-core);
+            transform: translateX(-4px);
+        }
+        .home-button svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            fill: currentColor;
+            transition: fill 0.3s ease;
+        }
+        @keyframes fade-in-delayed { to { opacity: 0.8; } }
+
+        /* --- LAYOUT & SCROLL SECTIONS --- */
+        .scroll-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+        }
+        .scroll-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero Section with Eclipse */
+        #hero-section {
+            justify-content: flex-end; /* Align eclipse at the bottom */
+        }
+        
+        /* --- LAYERED ECLIPSE EFFECT --- */
+        .eclipse-container {
+            width: 150vw;
+            height: 150vw;
+            max-width: 1800px;
+            max-height: 1800px;
+            position: relative;
+            transform: translateY(75%);
+            animation: rise-eclipse 3s 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            opacity: 0;
+        }
+        @keyframes rise-eclipse {
+            to { transform: translateY(50%); opacity: 1; }
+        }
+
+        .eclipse-planet {
+            width: 100%; height: 100%;
+            background: linear-gradient(to bottom, var(--planet-color-top), var(--planet-color-bottom));
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Grainy texture overlay */
+        .eclipse-planet::after {
+            content: ''; position: absolute; top:0; left:0; right:0; bottom:0;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAXJJREFUaAXNVMlOAlEQ3GgMUrPZDG41cZNCjD8kP0bCwwg8gPZZiE+QRt2A+AIaNCyYyUowG4tNk/+gaRoM5oG2o5JMQmNJlPZklZaumT70/PudmZqaQn5zZ+gHxwSADsB6FZZvW4AYAiAEYgBA7IJVzJI0LQEBEpYthJdJ0t0pAYGcnOBeAtZArWdA+WkLSA3AfgZqHAt4hOhvj0w2EBuASiWkM3E2pDOWsGb5JAdAyoFcD/VyS8NAtAPZg3iZ4aDfAkbtPBLgAlAtbPoXQYqBvL0o3q6G5ArQR6fWn6C+hHxrBdK3AJuAOhC+p8oFCjI1p+j8oEB+w2U5yA3wK2j/g44eR2LBrAPcTpiGwbLFCU6s2X+g/b8Fcs3z8FmAPmFzexjwPOc4B8f0MhCWBhN+jPMAcgBcbzLqWdYlYCnJ3lT2MvsJqJQUAQzY8JqR5lbn4PUDkBF0Lh1dK5z5Vbk5t1dAmCBoEUSfRuwuydjHheDDc9v4gCkB8/g3YpG4t94h+pQVhXQBbG2pAFyC1gEnZ7r3pAFoAVD4uRDbDUSh5/8t4AP47APgA2I+RjQdAH8T3v/QnQI2sjw2y3n8Awv6wJmXPzI2AAAAAElFTkSuQmCC);
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        .eclipse-glow {
+            width: 100%; height: 100%;
+            border-radius: 50%;
+            position: absolute; top: 0; left: 0;
+            animation: pulse-glow 6s ease-in-out infinite;
+            box-shadow:
+                inset 0 20px 30px -10px #000,
+                0 -20px 80px 40px var(--glow-color-3),
+                0 -20px 50px 20px var(--glow-color-2),
+                0 -10px 30px 10px var(--glow-color-1);
+        }
+        @keyframes pulse-glow { 50% { transform: scale(1.02); opacity: 0.9; } }
+        
+        .scroll-down-prompt {
+            position: absolute; bottom: 3rem;
+            color: var(--subtitle-color);
+            letter-spacing: 0.2em; font-size: 0.8rem;
+            opacity: 0; animation: fade-in-delayed 2s 3.5s forwards;
+        }
+
+        /* --- TEXT & COUNTDOWN STYLING --- */
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 500; letter-spacing: 0.2em;
+        }
+
+        #countdown-section { min-height: auto; padding-bottom: 10vh; }
+        
+        #countdown {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1.5rem;
+            width: 100%; max-width: 1200px;
+            padding: 2rem 0;
+        }
+        
+        .countdown-item span {
+            display: block; font-weight: 500;
+            line-height: 1; color: var(--text-color);
+            font-size: clamp(2rem, 8vw, 4.5rem);
+        }
+        .countdown-item p {
+            font-size: clamp(0.7rem, 2vw, 1rem);
+            font-weight: 300; color: var(--subtitle-color);
+            letter-spacing: 0.1em; margin-top: 0.5rem;
+            text-transform: uppercase;
+        }
+        /* Style milliseconds to prevent jittering */
+        .millisecond-item span {
+            font-family: 'Anek Odia', monospace;
+            color: var(--glow-color-core);
+            font-weight: 700;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 600px) {
+            .home-button {
+                top: 1rem;
+                left: 1rem;
+            }
+        }
+
+    </style>
+</head>
+<body class="loading">
+    <div class="preloader"></div>
+
+    <!-- ===== Back to Home Button ===== -->
+    <!-- IMPORTANT: Change the href="#" to your actual home page URL -->
+    <a href="#" class="home-button">
+        <svg viewBox="0 0 24 24"><path d="M10.707 17.707 4 11h16v2H4l6.707 6.707-1.414 1.414L.172 12.707a1 1 0 0 1 0-1.414L9.293 2.879l1.414 1.414L4 11h16v2H4l6.707 6.707-1.414 1.414z"/></svg>
+        <span>ମୁଖ୍ୟ ପୃଷ୍ଠା</span>
+    </a>
+    <!-- ================================ -->
+
+    <main class="scroll-container">
+        
+        <section id="hero-section" class="scroll-section is-visible">
+            <div class="eclipse-container">
+                <div class="eclipse-glow"></div>
+                <div class="eclipse-planet"></div>
+            </div>
+            <div class="scroll-down-prompt">ତଳକୁ ସ୍କ୍ରୋଲ୍ କରନ୍ତୁ</div>
+        </section>
+        
+        <section id="title-section" class="scroll-section">
+            <h1>ଶୀଘ୍ର ଆସୁଛି</h1>
+        </section>
+
+        <section id="countdown-section" class="scroll-section">
+            <div id="countdown">
+                <div class="countdown-item human-years-item">
+                    <span id="human-years">୦</span>
+                    <p>ମାନବ ବର୍ଷ ବାକି</p>
+                </div> <br>
+                <div class="countdown-item">
+                    <span id="years">୦</span>
+                    <p>ବର୍ଷ</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="days">୦</span>
+                    <p>ଦିନ</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="hours">୦</span>
+                    <p>ଘଣ୍ଟା</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="minutes">୦</span>
+                    <p>ମିନିଟ୍</p>
+                </div>
+                <div class="countdown-item">
+                    <span id="seconds">୦</span>
+                    <p>ସେକେଣ୍ଡ</p>
+                </div>
+                <div class="countdown-item millisecond-item">
+                    <span id="milliseconds">୦୦୦</span>
+                    <p>ମିଲିସେକେଣ୍ଡ</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // --- OPENING ANIMATION ---
+        window.addEventListener('load', () => {
+            document.body.classList.remove('loading');
+            document.body.classList.add('loaded');
+        });
+
+        // --- SCROLL-TRIGGERED FADE-IN ANIMATION ---
+        const revealElements = document.querySelectorAll('.scroll-section:not(.is-visible)');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        revealElements.forEach(el => observer.observe(el));
+
+
+        // --- ODIA COUNTDOWN LOGIC ---
+
+        const launchDate = new Date("January 1, 9025 00:00:00").getTime();
+        
+        const elements = {
+            humanYears: document.getElementById("human-years"),
+            years: document.getElementById("years"),
+            days: document.getElementById("days"),
+            hours: document.getElementById("hours"),
+            minutes: document.getElementById("minutes"),
+            seconds: document.getElementById("seconds"),
+            milliseconds: document.getElementById("milliseconds"),
+        };
+
+        const ODIA_NUMERALS = ['୦', '୧', '୨', '୩', '୪', '୫', '୬', '୭', '୮', '୯'];
+        const ARABIC_NUMERALS_REGEX = /[0-9]/g;
+        
+        function convertToOdia(input) {
+            return input.toString().replace(ARABIC_NUMERALS_REGEX, digit => ODIA_NUMERALS[parseInt(digit, 10)]);
+        }
+
+        const MS_IN_SECOND = 1000;
+        const MS_IN_MINUTE = MS_IN_SECOND * 60;
+        const MS_IN_HOUR = MS_IN_MINUTE * 60;
+        const MS_IN_DAY = MS_IN_HOUR * 24;
+        const MS_IN_YEAR = MS_IN_DAY * 365.25;
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            let distance = launchDate - now;
+
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.getElementById("countdown").innerHTML = "<h2 style='font-size: 1.5rem; grid-column: 1 / -1; color: var(--glow-color-core);'>ଯୁଗ ଆରମ୍ଭ ହୋଇଛି!</h2>";
+                return;
+            }
+
+            const totalHumanYears = (distance / MS_IN_YEAR).toFixed(6);
+            const years = Math.floor(distance / MS_IN_YEAR);
+            let remainder = distance % MS_IN_YEAR;
+            const days = Math.floor(remainder / MS_IN_DAY);
+            remainder %= MS_IN_DAY;
+            const hours = Math.floor(remainder / MS_IN_HOUR);
+            remainder %= MS_IN_HOUR;
+            const minutes = Math.floor(remainder / MS_IN_MINUTE);
+            remainder %= MS_IN_MINUTE;
+            const seconds = Math.floor(remainder / MS_IN_SECOND);
+            const milliseconds = remainder % MS_IN_SECOND;
+
+            elements.humanYears.innerText = convertToOdia(totalHumanYears);
+            elements.years.innerText = convertToOdia(years);
+            elements.days.innerText = convertToOdia(String(days).padStart(2, '0'));
+            elements.hours.innerText = convertToOdia(String(hours).padStart(2, '0'));
+            elements.minutes.innerText = convertToOdia(String(minutes).padStart(2, '0'));
+            elements.seconds.innerText = convertToOdia(String(seconds).padStart(2, '0'));
+            elements.milliseconds.innerText = convertToOdia(String(milliseconds).padStart(3, '0'));
+        }
+
+        const countdownInterval = setInterval(updateCountdown, 47);
+    </script>
+</body>
+</html>
