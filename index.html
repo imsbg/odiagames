@@ -127,6 +127,10 @@
       .close-button {position: absolute;top: 1rem;right: 1.5rem;font-size: 2rem;cursor: pointer;color: #aaa;}
       .close-button:hover {color: #000;}
       @media (max-width: 768px) {.main-nav.desktop-nav {display: none;} #menu-toggle {display: block;} .modal-content {width: 95%;}}
+      #back-to-top-btn { position: fixed; bottom: 20px; right: 20px; z-index: 1010; background-color: var(--primary-color); color: white; border: none; border-radius: 50%; width: 45px; height: 45px; font-size: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.15); opacity: 0; visibility: hidden; transform: translateY(20px); transition: opacity 0.3s, visibility 0.3s, transform 0.3s, bottom 0.3s; }
+      #back-to-top-btn.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+      #back-to-top-btn:hover { background-color: #081d4f; }
+      body.footer-ad-visible #back-to-top-btn { bottom: 90px; }
     </style>
 </head>
 <body class="">
@@ -187,6 +191,8 @@
     <div id="footer-ad-banner"><button id="close-footer-ad">×</button><div id="footer-ad-content"></div></div>
     <div id="category-modal" class="modal"><div class="modal-content"><span class="close-button">×</span><h1 id="category-modal-title"></h1><div id="category-modal-games" class="content-list"></div></div></div>
 
+    <button id="back-to-top-btn" aria-label="Go to top" title="Go to top"><i class="bi bi-arrow-up-short"></i></button>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 
@@ -198,14 +204,11 @@
         
         let allContent = [], appLanguages = {}, currentLang = "en", latestVisitCount = 0;
         
-        // --- MODIFIED: This map is now only for PRETTY URLs. It is OPTIONAL. ---
-        // If you add a 'hinglish' language with code 'hi_en', you can add 'hi_en: "hinglish"' here.
         const langUrlMap = { en: 'english', or: 'odia', od_en: 'odinglish' };
         
-        // --- This will be built dynamically now ---
         let urlLangMap = {};
 
-        const searchBar = document.getElementById("search-bar"), visitCountEl = document.getElementById("visit-count"), featuredGameSection = document.getElementById("featured-game-section"), featuredContainer = document.getElementById("featured-game-container"), categoriesContainer = document.getElementById("categories-container"), categoriesSection = document.getElementById("categories-section"), allGamesContainer = document.getElementById("all-games-container"), skeletonContainer = document.getElementById("skeleton-container"), actualContent = document.getElementById("actual-content"), langSwitcher = document.getElementById('lang-switcher'), langSwitcherBtn = document.getElementById('lang-switcher-btn'), currentLangText = document.getElementById('current-lang-text'), langDropdown = document.getElementById('lang-dropdown'), menuToggle = document.getElementById("menu-toggle"), mobileNav = document.getElementById("mobile-nav"), menuOpen = document.getElementById("menu-open-icon"), menuClose = document.getElementById("menu-close-icon"), categoryModal = document.getElementById("category-modal"), categoryModalTitle = document.getElementById("category-modal-title"), categoryModalGames = document.getElementById("category-modal-games");
+        const searchBar = document.getElementById("search-bar"), visitCountEl = document.getElementById("visit-count"), featuredGameSection = document.getElementById("featured-game-section"), featuredContainer = document.getElementById("featured-game-container"), categoriesContainer = document.getElementById("categories-container"), categoriesSection = document.getElementById("categories-section"), allGamesContainer = document.getElementById("all-games-container"), skeletonContainer = document.getElementById("skeleton-container"), actualContent = document.getElementById("actual-content"), langSwitcher = document.getElementById('lang-switcher'), langSwitcherBtn = document.getElementById('lang-switcher-btn'), currentLangText = document.getElementById('current-lang-text'), langDropdown = document.getElementById('lang-dropdown'), menuToggle = document.getElementById("menu-toggle"), mobileNav = document.getElementById("mobile-nav"), menuOpen = document.getElementById("menu-open-icon"), menuClose = document.getElementById("menu-close-icon"), categoryModal = document.getElementById("category-modal"), categoryModalTitle = document.getElementById("category-modal-title"), categoryModalGames = document.getElementById("category-modal-games"), backToTopBtn = document.getElementById("back-to-top-btn");
 
         const toOdiaNumerals = (n) => {
             const numStrWithCommas = n.toLocaleString('en-US');
@@ -242,12 +245,11 @@
             if (allContent.length > 0) renderAll();
             langDropdown.classList.remove('active');
 
-            // --- MODIFIED: Now uses the language code as a fallback for the URL ---
             const langParam = langUrlMap[langCode] || langCode;
             const currentUrl = new URL(window.location);
             if (currentUrl.searchParams.get('lang') !== langParam) {
-                const newUrl = `${window.location.pathname}?lang=${langParam}`;
-                window.history.pushState({ lang: langCode }, '', newUrl);
+                currentUrl.searchParams.set('lang', langParam); // Preserves other params like 'q'
+                window.history.pushState({ lang: langCode }, '', currentUrl.toString());
             }
         };
         
@@ -344,10 +346,8 @@
             openModal(categoryModal);
         };
 
-        // --- THE FIX IS HERE: This function is now fully dynamic ---
         const buildLangSwitcher = () => {
             langDropdown.innerHTML = '';
-            // Loop through ALL languages fetched from Firebase
             for (const langCode in appLanguages) {
                 const lang = appLanguages[langCode];
                 const li = document.createElement('li');
@@ -358,7 +358,6 @@
         };
 
         function getInitialLanguage() {
-            // Build the reverse map dynamically
             urlLangMap = Object.entries(langUrlMap).reduce((acc, [code, param]) => {
                 acc[param] = code;
                 return acc;
@@ -367,7 +366,6 @@
             const params = new URLSearchParams(window.location.search);
             const langFromUrl = params.get('lang');
 
-            // Check pretty URL first, then check if the param is a direct language code
             if (langFromUrl && urlLangMap[langFromUrl] && appLanguages[urlLangMap[langFromUrl]]) {
                 return urlLangMap[langFromUrl];
             } else if (langFromUrl && appLanguages[langFromUrl]) {
@@ -383,6 +381,14 @@
 
         async function initializeApp() {
             try {
+                // --- NEW CODE: Handles search query from URL ---
+                const urlParams = new URLSearchParams(window.location.search);
+                const searchQuery = urlParams.get('q');
+                if (searchQuery) {
+                    searchBar.value = decodeURIComponent(searchQuery.trim());
+                }
+                // --- END OF NEW CODE ---
+
                 const [langSnapshot, contentSnapshot] = await Promise.all([
                     db.collection("languages").get(),
                     db.collection("content").orderBy("order", "asc").get()
@@ -428,6 +434,7 @@
                         const content = document.getElementById('footer-ad-content');
                         content.innerHTML = `<a href="${data.linkUrl}" target="_blank" rel="noopener sponsored"><img src="${data.imageUrl}" alt="Advertisement"></a>`;
                         banner.style.display = 'flex';
+                        document.body.classList.add('footer-ad-visible');
                     }
                 }
             } catch (e) { console.error("Error loading footer ad", e); }
@@ -455,8 +462,20 @@
         document.getElementById('close-footer-ad').addEventListener('click', () => {
             document.getElementById('footer-ad-banner').style.display = 'none';
             localStorage.setItem('footerAdClosed', 'true');
+            document.body.classList.remove('footer-ad-visible');
         });
         
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
         initializeApp();
       });
     </script>
